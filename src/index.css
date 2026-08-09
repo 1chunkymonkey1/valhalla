@@ -1,14 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-slate-deep: #0B0F12;
-  --color-slate-mid: #141A1F;
-  --color-emerald: #00FF9D;
-  --color-rust: #8B5A2B;
-  --color-rust-light: #B87333;
-  --color-iron: #3D3D3D;
-
-  --font-mono: "Share Tech Mono", ui-monospace, monospace;
+  --font-mono: ui-monospace, "SF Mono", "Share Tech Mono", monospace;
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
@@ -16,7 +9,6 @@
   body {
     @apply font-sans antialiased;
     margin: 0;
-    background-color: #0B0F12;
   }
 
   #root {
@@ -24,63 +16,17 @@
   }
 }
 
-@layer utilities {
-  .font-mono {
-    font-family: var(--font-mono);
+@keyframes tile-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
   }
-
-  .text-glow {
-    text-shadow: 0 0 12px rgba(0, 255, 157, 0.45);
-  }
-
-  .bg-concrete {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-@layer components {
-  .launch-card {
-    @apply relative flex flex-col p-4 sm:p-5 rounded border transition-all duration-300 min-h-[200px];
-    background: linear-gradient(145deg, rgba(20, 26, 31, 0.9), rgba(11, 15, 18, 0.95));
-  }
-
-  .launch-card--locked {
-    @apply opacity-40 grayscale border-stone-800;
-  }
-
-  .launch-card--next {
-    @apply border-emerald/40 bg-slate-mid/80;
-    box-shadow: 0 0 30px rgba(0, 255, 157, 0.08);
-  }
-
-  .launch-card--live {
-    @apply border-emerald/30;
-    box-shadow:
-      0 0 20px rgba(0, 255, 157, 0.12),
-      inset 0 1px 0 rgba(0, 255, 157, 0.08);
-  }
-
-  .cyber-border {
-    border: 2px solid transparent;
-    border-radius: inherit;
-    background:
-      linear-gradient(#141A1F, #141A1F) padding-box,
-      linear-gradient(90deg, #00FF9D, #8B5A2B, #00FF9D) border-box;
-    background-size: 200% 100%;
-    animation: cyber-flash 2s linear infinite;
-  }
-}
-
-@keyframes cyber-flash {
-  0% {
-    background-position: 0% 50%;
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.6;
-  }
-  100% {
-    background-position: 200% 50%;
-    opacity: 1;
-  }
+.animate-tile-in {
+  animation: tile-in 0.6s ease-out forwards;
 }
