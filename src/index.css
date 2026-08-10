@@ -1,32 +1,44 @@
 @import "tailwindcss";
 
-@theme {
-  --font-mono: ui-monospace, "SF Mono", "Share Tech Mono", monospace;
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+@font-face {
+  font-family: "Edwardian Script";
+  src: local("Edwardian Script ITC"), local("Edwardian Script");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @layer base {
   body {
-    @apply font-sans antialiased;
     margin: 0;
   }
-
-  #root {
-    min-height: 100svh;
-  }
 }
 
-@keyframes tile-in {
-  from {
-    opacity: 0;
-    transform: scale(0.92);
+.test-page {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.shimmer-text {
+  margin: 0;
+  font-family: "Edwardian Script ITC", "Edwardian Script", cursive;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 400;
+  color: #1a1a1a;
+  letter-spacing: 0.02em;
+  animation: faint-shimmer 6s ease-in-out infinite;
+}
+
+@keyframes faint-shimmer {
+  0%,
+  100% {
+    opacity: 0.92;
+    text-shadow: 0 0 0 transparent;
   }
-  to {
+  50% {
     opacity: 1;
-    transform: scale(1);
+    text-shadow: 0 0 18px rgba(0, 0, 0, 0.04);
   }
-}
-
-.animate-tile-in {
-  animation: tile-in 0.6s ease-out forwards;
 }
