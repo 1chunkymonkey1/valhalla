@@ -1,88 +1,54 @@
 import { Link, Navigate } from 'react-router-dom'
-import {
-  getCompanyBySlug,
-  getNextCompany,
-  isSiteLive,
-  getSiteLiveTime,
-} from '../data/schedule'
-import { useNow } from '../hooks/useNow'
+import { getCompany } from '../lib/companies'
+import { getPortalPhase, getRevealAt } from '../lib/launchSchedule'
+import { useSimulationClock } from '../hooks/useSimulationClock'
 import SimpleCountdown from '../components/SimpleCountdown'
+import CompanySite from '../components/CompanySite'
 import { formatPDT } from '../utils/time'
 
 export default function CompanySitePage({ slug }) {
-  const now = useNow()
-  const company = getCompanyBySlug(slug)
+  const { now } = useSimulationClock()
+  const company = getCompany(slug)
 
   if (!company) return <Navigate to="/" replace />
 
-  const live = isSiteLive(company, now)
-  const next = getNextCompany(company)
-  const nextLive = next ? isSiteLive(next, now) : false
-  const nextLaunch = next ? getSiteLiveTime(next) : null
+  const phase = getPortalPhase(company.id, now)
+  const open = phase === 'clickable' || phase === 'revealed'
 
-  if (!live) {
+  if (!open) {
     return (
-      <div className="min-h-svh bg-white text-black flex flex-col items-center justify-center px-6">
-        <p className="text-sm text-black/40 mb-6">{company.name}</p>
+      <div className="vh-hub min-h-svh flex flex-col items-center justify-center px-6">
+        <p className="vh-countdown__label mb-6">{company.name}</p>
         <SimpleCountdown
-          targetDate={getSiteLiveTime(company)}
+          targetDate={getRevealAt(company.id)}
           now={now}
-          label={`Opens ${formatPDT(getSiteLiveTime(company))}`}
+          label={`Opens ${formatPDT(getRevealAt(company.id))}`}
         />
-        <Link to="/" className="mt-12 text-sm text-black/30 hover:text-black/60">
-          ← back
+        <Link to="/?demo=1" className="mt-12 text-sm text-black/30 hover:text-black/55">
+          ← hub
         </Link>
       </div>
     )
   }
 
-  return (
-    <div className="min-h-svh bg-white text-black">
-      <div className="max-w-lg mx-auto px-6 py-16">
-        <p className="font-mono text-xs text-black/30 mb-4">
-          {String(company.id).padStart(2, '0')} / 12
-        </p>
+  return <CompanySite company={mapLegacy(company)} now={now} />
+}
 
-        <h1 className="text-3xl font-medium mb-3">{company.name}</h1>
-        <p className="text-black/60 leading-relaxed mb-2">{company.concept}</p>
-        <p className="font-mono text-xs text-black/30 mb-12">{company.tag}</p>
-
-        {/* Site content placeholder — build out each company's real page here */}
-        <div className="border border-black/10 rounded p-8 mb-16 text-center text-sm text-black/40">
-          Your site content goes here.
-        </div>
-
-        {/* Chain to next */}
-        <div className="border-t border-black/10 pt-8">
-          {next ? (
-            nextLive ? (
-              <Link
-                to={`/${next.slug}`}
-                className="block text-center font-mono text-sm hover:underline underline-offset-4"
-              >
-                Continue to {next.name} →
-              </Link>
-            ) : (
-              <SimpleCountdown
-                targetDate={nextLaunch}
-                now={now}
-                label={`Next door opens · ${next.name}`}
-              />
-            )
-          ) : (
-            <p className="text-center text-sm text-black/40">
-              You&apos;ve reached the end.{' '}
-              <Link to="/" className="underline underline-offset-2 hover:text-black">
-                View the mosaic
-              </Link>
-            </p>
-          )}
-        </div>
-
-        <Link to="/" className="block text-center mt-12 text-sm text-black/30 hover:text-black/60">
-          ← hub
-        </Link>
-      </div>
-    </div>
-  )
+/** Adapt Phase 1 company shape to existing CompanySite props. */
+function mapLegacy(company) {
+  return {
+    id: ['wolf','holm','demeter','viking','atoll','njord','eagle','olympus','aeolus','phenix','aether','corvus'].indexOf(company.id) + 1,
+    slug: company.id,
+    name: company.name,
+    domain: company.domain[0].toUpperCase() + company.domain.slice(1),
+    pillar: company.pillar[0].toUpperCase() + company.pillar.slice(1),
+    publicStatus: 'concept',
+    pattern: 'interest',
+    tagline: company.name,
+    concept: '',
+    accent: '#1C1917',
+    ink: '#FAFAF9',
+    imageSrc: company.imageSrc,
+    placeholderSrc: company.placeholderSrc,
+  }
 }

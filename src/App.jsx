@@ -1,9 +1,21 @@
-import './index.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import ValhallaHub from './components/mosaic/ValhallaHub'
+import CompanySitePage from './pages/CompanySitePage'
+import { GRID_ORDER } from './lib/companies'
 
 export default function App() {
   return (
-    <div className="test-page">
-      <p className="shimmer-text">As you wish</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ValhallaHub />} />
+        {GRID_ORDER.map((id) => (
+          <Route
+            key={id}
+            path={`/${id}`}
+            element={<CompanySitePage slug={id} />}
+          />
+        ))}
+      </Routes>
+    </BrowserRouter>
   )
 }

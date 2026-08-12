@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react'
+import { getDemoNow, isDemoMode } from '../utils/demoTime'
 
-export function useNow(intervalMs = 1000) {
-  const [now, setNow] = useState(() => new Date())
+export function useNow(intervalMs = 100) {
+  const [now, setNow] = useState(() => (isDemoMode() ? getDemoNow() : new Date()))
 
   useEffect(() => {
-    const id = setInterval(() => setNow(new Date()), intervalMs)
+    const tick = () => {
+      setNow(isDemoMode() ? getDemoNow() : new Date())
+    }
+    tick()
+    // Faster UI refresh in demo so 100× clock feels smooth
+    const ms = isDemoMode() ? 50 : intervalMs
+    const id = setInterval(tick, ms)
     return () => clearInterval(id)
   }, [intervalMs])
 
