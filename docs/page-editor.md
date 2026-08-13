@@ -22,8 +22,16 @@ Same founder cookie as `/admin` (`requireAdmin`).
 | Image upload | Prefer Supabase Storage bucket `page-assets` |
 | **Publish custom layout** | When checked + Save, live site uses published blocks |
 | **Save** | Writes Supabase (or memory fallback) → public `GET /api/hub/page?id=` |
+| **Site defaults** | Reloads the built-in layout derived from the live hall/hub copy |
 
 Uncheck **Publish custom layout** and Save to restore the default React UI for that page.
+
+### Built-in site defaults
+
+When a page has **no stored blocks** in Supabase/memory, the editor hydrates from `src/lib/defaultPageLayouts.js` — real copy and images from `companyProducts` / press release, laid out as free-move blocks. Defaults ship with **Publish custom layout off**, so the live React pages stay unchanged until a founder enables publish and Saves.
+
+- **12 halls:** hero image, brand, headline, support, reservation CTA, about, pay-hold band, gallery strip.
+- **Hub:** post-mosaic marketing band (mission, domains, quote, Press/Contact CTAs). Does not replace countdown, mosaic, unlock codes, or email capture.
 
 ## Page IDs
 
@@ -80,3 +88,4 @@ Uploads go through the server service role (`POST /api/admin/pages/upload`). No 
 - Hub custom content is a **band under the mosaic**, not a full hub redesign (Living Mosaic / countdown / hall codes stay authoritative).
 - Without Storage, images fall back to **data URLs capped at ~400KB** (and memory layouts are lost on cold starts if Supabase tables are missing).
 - Company custom layouts still keep reservation + NextDoor; they do not edit pay links or roadmaps as first-class blocks yet.
+- Site-default blocks approximate the live hall (copy + gallery). Full-bleed CSS hero wash, social link row, and `ProductRoadmap` are not block types — re-add roadmap copy manually if you publish a custom layout.

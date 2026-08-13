@@ -11,6 +11,7 @@ import {
   newBlock,
   snap,
 } from '../lib/pageEditor'
+import { getDefaultPageLayout, isEmptyLayout } from '../lib/defaultPageLayouts'
 
 const ADMIN_EMAIL = 'info@valhallaco.org'
 
@@ -60,11 +61,22 @@ export default function PageEditorPage() {
         setStatus(data.error || 'Failed to load')
         return
       }
-      setLayout(data.page?.layout || emptyLayout())
+      const stored = data.page?.layout || emptyLayout()
+      if (isEmptyLayout(stored)) {
+        setLayout(getDefaultPageLayout(id))
+        setDirty(true)
+        setStatus('Loaded · site defaults (unsaved — Save to persist)')
+      } else {
+        setLayout(stored)
+        setDirty(false)
+        setStatus(
+          data.page?.updatedAt
+            ? `Loaded · updated ${new Date(data.page.updatedAt).toLocaleString()}`
+            : 'Loaded',
+        )
+      }
       setStorage(data.storage || 'memory')
       setSelectedId(null)
-      setDirty(false)
-      setStatus(data.page?.updatedAt ? `Loaded · updated ${new Date(data.page.updatedAt).toLocaleString()}` : 'Loaded · empty layout')
     } catch {
       setStatus('Failed to load')
     }
@@ -339,6 +351,18 @@ export default function PageEditorPage() {
           </label>
           <button type="button" className="vh-editor__save" disabled={saving} onClick={save}>
             {saving ? 'Saving…' : 'Save'}
+          </button>
+          <button
+            type="button"
+            className="vh-editor__link"
+            onClick={() => {
+              setLayout(getDefaultPageLayout(pageId))
+              setSelectedId(null)
+              setDirty(true)
+              setStatus('Restored site defaults (unsaved)')
+            }}
+          >
+            Site defaults
           </button>
           <Link to="/admin" className="vh-editor__link">
             Admin
