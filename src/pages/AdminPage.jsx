@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SiteMenu from '../components/layout/SiteMenu'
 import { formatUsd } from '../data/payLinks'
+import { HALL_IDS, TEAM_ROLES } from '../data/teamRoles'
 
 const ADMIN_EMAIL = 'info@valhallaco.org'
 
@@ -14,6 +15,16 @@ export default function AdminPage() {
   const [error, setError] = useState('')
   const [ledger, setLedger] = useState(null)
   const [localPreview, setLocalPreview] = useState({ reservations: [], signups: [] })
+  const [adminTab, setAdminTab] = useState('overview')
+  const [people, setPeople] = useState(null)
+  const [inviteForm, setInviteForm] = useState({
+    email: '',
+    name: '',
+    role: 'hall_lead',
+    halls: [],
+  })
+  const [lastInviteUrl, setLastInviteUrl] = useState('')
+  const [peopleMsg, setPeopleMsg] = useState('')
 
   async function refreshSession() {
     const controller = new AbortController()
@@ -27,6 +38,7 @@ export default function AdminPage() {
       if (data.authenticated) {
         setAuth({ loading: false, ok: true, email: data.email })
         loadLedger().catch(() => {})
+        loadPeople().catch(() => {})
       } else {
         setAuth({ loading: false, ok: false, email: null })
       }
@@ -42,6 +54,13 @@ export default function AdminPage() {
     if (!res.ok) return
     const data = await res.json()
     setLedger(data)
+  }
+
+  async function loadPeople() {
+    const res = await fetch('/api/admin/people', { credentials: 'include' })
+    if (!res.ok) return
+    const data = await res.json()
+    setPeople(data)
   }
 
   useEffect(() => {
@@ -88,6 +107,7 @@ export default function AdminPage() {
     setTotp('')
     setAuth({ loading: false, ok: true, email: data.email })
     await loadLedger()
+    await loadPeople()
   }
 
   async function logout() {
@@ -213,55 +233,307 @@ export default function AdminPage() {
     )
   }
 
+  async function sendInvite(e) {
+    e.preventDefault()
+    setPeopleMsg('')
+    const res = await fetch('/api/admin/people', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'invite', ...inviteForm }),
+    })
+    const data = await res.json()
+    if (!res.ok) {
+      setPeopleMsg(data.error || 'Invite failed')
+      return
+    }
+    setLastInviteUrl(data.acceptUrl)
+    setPeopleMsg(`Invite ready for ${data.invite.email}`)
+    setInviteForm({ email: '', name: '', role: 'hall_lead', halls: [] })
+    loadPeople()
+  }
+
+  function toggleHall(hall) {
+    setInviteForm((prev) => {
+      const has = prev.halls.includes(hall)
+      return {
+        ...prev,
+        halls: has ? prev.halls.filter((h) => h !== hall) : [...prev.halls, hall],
+      }
+    })
+  }
+
+  async function exportEmpire() {
+    const res = await fetch('/api/admin/people', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'export' }),
+    })
+    const data = await res.json()
+    if (!res.ok) return
+    const blob = new Blob([JSON.stringify(data.empire, null, 2)], {
+      type: 'application/json',
+    })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `valhalla-empire-${new Date().toISOString().slice(0, 10)}.json`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  async function importEmpireFile(file) {
+    if (!file) return
+    const text = await file.text()
+    const empire = JSON.parse(text)
+    const res = await fetch('/api/admin/people', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'import', empire }),
+    })
+    const data = await res.json()
+    setPeopleMsg(data.ok ? 'Empire state imported' : 'Import failed')
+    loadPeople()
+  }
+
   return (
     <div className="vh-page vh-admin vh-admin--in">
       <SiteMenu />
       <header className="vh-admin__top">
         <div>
-          <p className="vh-admin__mark">Valhalla Admin</p>
-          <p>{auth.email}</p>
+          <p className="vh-admin__mark">Valhalla Control Tower</p>
+          <p>{auth.email} · founder / super admin</p>
         </div>
         <button type="button" onClick={logout}>
           Sign out
         </button>
       </header>
 
-      <section className="vh-admin__grid">
-        <div className="vh-admin__card">
-          <h2>Email signups (server)</h2>
-          <p className="vh-admin__count">{ledger?.signups?.length ?? 0}</p>
-          <SignupList rows={ledger?.signups || []} />
-        </div>
-        <div className="vh-admin__card">
-          <h2>Reservations (server)</h2>
-          <p className="vh-admin__count">{ledger?.reservations?.length ?? 0}</p>
-          <ReservationList rows={ledger?.reservations || []} />
-        </div>
-        <div className="vh-admin__card">
-          <h2>This browser ledger</h2>
-          <p className="vh-admin__count">
-            {localPreview.reservations.length} reservations · {localPreview.signups.length} emails
-          </p>
-          <button type="button" className="vh-admin__secondary" onClick={uploadLocalLedger}>
-            Upload browser reservations to server
+      <nav className="vh-team__tabs">
+        {[
+          ['overview', 'Overview'],
+          ['people', 'People'],
+          ['ledgers', 'Ledgers'],
+          ['activity', 'Activity'],
+        ].map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            className={adminTab === id ? 'is-active' : ''}
+            onClick={() => setAdminTab(id)}
+          >
+            {label}
           </button>
-          <ReservationList rows={localPreview.reservations} />
-        </div>
-        <div className="vh-admin__card">
-          <h2>Company status</h2>
-          <ul className="vh-admin__companies">
-            {(ledger?.companies || []).map((c) => (
-              <li key={c.id}>
-                <Link to={`/${c.id}`}>{c.name}</Link>
+        ))}
+      </nav>
+
+      {adminTab === 'overview' && (
+        <section className="vh-admin__grid">
+          <div className="vh-admin__card">
+            <h2>Empire seats</h2>
+            <p className="vh-admin__count">{people?.users?.length ?? 0}</p>
+            <p className="vh-admin__note">
+              Team mates work at <Link to="/team">/team</Link>. You stay here with 2FA.
+            </p>
+          </div>
+          <div className="vh-admin__card">
+            <h2>Open invites</h2>
+            <p className="vh-admin__count">
+              {people?.invites?.filter((i) => !i.acceptedAt).length ?? 0}
+            </p>
+          </div>
+          <div className="vh-admin__card">
+            <h2>Interest</h2>
+            <p className="vh-admin__count">
+              {(ledger?.reservations?.length ?? 0) + (ledger?.signups?.length ?? 0)}
+            </p>
+            <p className="vh-admin__note">Reservations + email signups on server.</p>
+          </div>
+          <div className="vh-admin__card">
+            <h2>Twelve halls</h2>
+            <ul className="vh-admin__companies">
+              {(ledger?.companies || []).map((c) => (
+                <li key={c.id}>
+                  <Link to={`/${c.id}`}>{c.name}</Link>
+                  <span>
+                    {c.domain} · {c.pillar}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {adminTab === 'people' && (
+        <section className="vh-admin__people">
+          <form className="vh-admin__card" onSubmit={sendInvite}>
+            <h2>Invite teammate</h2>
+            <p className="vh-admin__note">
+              They get a simple email+password seat. Roles: hall lead, empire ops, growth, finance,
+              comms.
+            </p>
+            <label>
+              Email
+              <input
+                type="email"
+                required
+                value={inviteForm.email}
+                onChange={(e) => setInviteForm((p) => ({ ...p, email: e.target.value }))}
+              />
+            </label>
+            <label>
+              Name
+              <input
+                value={inviteForm.name}
+                onChange={(e) => setInviteForm((p) => ({ ...p, name: e.target.value }))}
+              />
+            </label>
+            <label>
+              Role
+              <select
+                value={inviteForm.role}
+                onChange={(e) => setInviteForm((p) => ({ ...p, role: e.target.value }))}
+              >
+                {Object.entries(people?.roles || TEAM_ROLES).map(([id, meta]) => (
+                  <option key={id} value={id}>
+                    {meta.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <fieldset className="vh-admin__halls">
+              <legend>Hall access (for hall leads)</legend>
+              {(people?.halls || HALL_IDS).map((h) => (
+                <label key={h} className="vh-admin__check">
+                  <input
+                    type="checkbox"
+                    checked={inviteForm.halls.includes(h)}
+                    onChange={() => toggleHall(h)}
+                  />
+                  {h}
+                </label>
+              ))}
+            </fieldset>
+            <button type="submit">Create invite link</button>
+            {peopleMsg && <p className="vh-admin__note">{peopleMsg}</p>}
+            {lastInviteUrl && (
+              <p className="vh-admin__invite">
+                Share this once:{' '}
+                <a href={lastInviteUrl} target="_blank" rel="noreferrer">
+                  {lastInviteUrl}
+                </a>
+              </p>
+            )}
+          </form>
+
+          <div className="vh-admin__card">
+            <h2>Team</h2>
+            <ul className="vh-admin__list">
+              {(people?.users || []).map((u) => (
+                <li key={u.id}>
+                  <strong>
+                    {u.name} · {u.email}
+                  </strong>
+                  <span>
+                    {u.role}
+                    {u.halls?.length ? ` · ${u.halls.join(', ')}` : ''}
+                    {u.active === false ? ' · inactive' : ''}
+                  </span>
+                </li>
+              ))}
+              {!people?.users?.length && (
+                <p className="vh-admin__empty">No seats yet — send the first invite.</p>
+              )}
+            </ul>
+          </div>
+
+          <div className="vh-admin__card">
+            <h2>Pending invites</h2>
+            <ul className="vh-admin__list">
+              {(people?.invites || [])
+                .filter((i) => !i.acceptedAt)
+                .map((i) => (
+                  <li key={i.id}>
+                    <strong>{i.email}</strong>
+                    <span>
+                      {i.role} · expires {i.expiresAt?.slice(0, 10)}
+                    </span>
+                  </li>
+                ))}
+            </ul>
+            <div className="vh-admin__row">
+              <button type="button" className="vh-admin__secondary" onClick={exportEmpire}>
+                Export empire JSON
+              </button>
+              <label className="vh-admin__secondary vh-admin__file">
+                Import empire JSON
+                <input
+                  type="file"
+                  accept="application/json"
+                  hidden
+                  onChange={(e) => importEmpireFile(e.target.files?.[0])}
+                />
+              </label>
+            </div>
+            <p className="vh-admin__note">
+              Server memory is ephemeral on serverless — export after inviting people, import after
+              redeploys.
+            </p>
+          </div>
+        </section>
+      )}
+
+      {adminTab === 'ledgers' && (
+        <section className="vh-admin__grid">
+          <div className="vh-admin__card">
+            <h2>Email signups (server)</h2>
+            <p className="vh-admin__count">{ledger?.signups?.length ?? 0}</p>
+            <SignupList rows={ledger?.signups || []} />
+          </div>
+          <div className="vh-admin__card">
+            <h2>Reservations (server)</h2>
+            <p className="vh-admin__count">{ledger?.reservations?.length ?? 0}</p>
+            <ReservationList rows={ledger?.reservations || []} />
+          </div>
+          <div className="vh-admin__card">
+            <h2>This browser ledger</h2>
+            <p className="vh-admin__count">
+              {localPreview.reservations.length} reservations · {localPreview.signups.length} emails
+            </p>
+            <button type="button" className="vh-admin__secondary" onClick={uploadLocalLedger}>
+              Upload browser reservations to server
+            </button>
+            <ReservationList rows={localPreview.reservations} />
+          </div>
+        </section>
+      )}
+
+      {adminTab === 'activity' && (
+        <section className="vh-admin__card">
+          <h2>Activity</h2>
+          <ul className="vh-admin__list">
+            {(people?.activity || []).map((a) => (
+              <li key={a.id}>
+                <strong>
+                  {a.type} · {a.actor || '—'}
+                </strong>
                 <span>
-                  {c.domain} · {c.pillar}
+                  {a.at}
+                  {a.hall ? ` · ${a.hall}` : ''}
+                  {a.title ? ` · ${a.title}` : ''}
+                  {a.email ? ` · ${a.email}` : ''}
                 </span>
               </li>
             ))}
+            {!people?.activity?.length && (
+              <p className="vh-admin__empty">Activity appears as the team works.</p>
+            )}
           </ul>
-          {ledger?.note && <p className="vh-admin__note">{ledger.note}</p>}
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   )
 }

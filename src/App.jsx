@@ -4,6 +4,9 @@ import CompanySitePage from './pages/CompanySitePage'
 import PressPage from './pages/PressPage'
 import FlowPage from './pages/FlowPage'
 import AdminPage from './pages/AdminPage'
+import TeamLoginPage from './pages/TeamLoginPage'
+import TeamJoinPage from './pages/TeamJoinPage'
+import TeamWorkspacePage from './pages/TeamWorkspacePage'
 import {
   ContactPage,
   ConsumersPage,
@@ -26,6 +29,9 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/roadmap" element={<RoadmapIndexPage />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/team" element={<TeamWorkspacePage />} />
+        <Route path="/team/login" element={<TeamLoginPage />} />
+        <Route path="/team/join" element={<TeamJoinPage />} />
         {GRID_ORDER.map((id) => (
           <Route key={id} path={`/${id}`} element={<CompanySitePage slug={id} />} />
         ))}

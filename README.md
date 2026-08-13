@@ -50,8 +50,18 @@ npx vercel --prod
 | `/investors` `/consumers` `/partners` | Audience pages |
 | `/roadmap` | Roadmap index |
 | `/contact` | Contact |
-| `/admin` | Password-gated ledger |
+| `/admin` | Founder control tower (password + 2FA) — people, ledgers, activity |
+| `/team` | Empire workspace for invited teammates |
+| `/team/login` | Simple email + password team login |
+| `/team/join?token=` | Accept invite + set password |
 | `/{company}` | Company hall (chain unlock timing preserved) |
+
+### Team seats
+
+1. Sign in at `/admin` as founder.
+2. Open **People** → invite email + role + halls → copy invite link.
+3. Teammate opens link, sets password, works at `/team`.
+4. **Export empire JSON** after invites (server memory is ephemeral on serverless).
 
 ## Pay Links
 

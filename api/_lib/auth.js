@@ -175,3 +175,95 @@ export function requireAdmin(req, res) {
   }
   return session
 }
+
+/* —— Team sessions (separate cookie from founder admin TOTP) —— */
+const TEAM_COOKIE = 'vh_team_session'
+const TEAM_TTL_MS = 14 * 24 * 60 * 60 * 1000
+
+export function signTeamSession(payload) {
+  const secret = getSecret()
+  if (!secret) throw new Error('ADMIN_SESSION_SECRET not configured')
+  const body = b64url(JSON.stringify(payload))
+  const sig = createHmac('sha256', secret).update(`team:${body}`).digest()
+  return `${body}.${b64url(sig)}`
+}
+
+export function verifyTeamToken(token) {
+  if (!token || typeof token !== 'string') return null
+  const secret = getSecret()
+  if (!secret) return null
+  const [body, sig] = token.split('.')
+  if (!body || !sig) return null
+  const expected = createHmac('sha256', secret).update(`team:${body}`).digest()
+  let given
+  try {
+    given = fromB64url(sig)
+  } catch {
+    return null
+  }
+  if (given.length !== expected.length || !timingSafeEqual(given, expected)) return null
+  try {
+    const payload = JSON.parse(fromB64url(body).toString('utf8'))
+    if (!payload?.exp || Date.now() > payload.exp) return null
+    if (!payload.email || !payload.role) return null
+    return payload
+  } catch {
+    return null
+  }
+}
+
+export function getTeamSession(req) {
+  const cookies = parseCookies(req)
+  return verifyTeamToken(cookies[TEAM_COOKIE])
+}
+
+export function setTeamSessionCookie(res, token) {
+  const secure = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1'
+  const parts = [
+    `${TEAM_COOKIE}=${encodeURIComponent(token)}`,
+    'Path=/',
+    'HttpOnly',
+    'SameSite=Strict',
+    `Max-Age=${Math.floor(TEAM_TTL_MS / 1000)}`,
+  ]
+  if (secure) parts.push('Secure')
+  res.setHeader('Set-Cookie', parts.join('; '))
+}
+
+export function clearTeamSessionCookie(res) {
+  const secure = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1'
+  const parts = [`${TEAM_COOKIE}=`, 'Path=/', 'HttpOnly', 'SameSite=Strict', 'Max-Age=0']
+  if (secure) parts.push('Secure')
+  res.setHeader('Set-Cookie', parts.join('; '))
+}
+
+export function createTeamSessionPayload(user) {
+  return {
+    kind: 'team',
+    email: user.email,
+    name: user.name,
+    role: user.role,
+    halls: user.halls || [],
+    iat: Date.now(),
+    exp: Date.now() + TEAM_TTL_MS,
+  }
+}
+
+export function requireTeam(req, res) {
+  const session = getTeamSession(req)
+  if (!session) {
+    json(res, 401, { ok: false, error: 'Unauthorized' })
+    return null
+  }
+  return session
+}
+
+/** Founder admin OR team super_admin may manage people. */
+export function requirePeopleAdmin(req, res) {
+  const admin = getSession(req)
+  if (admin) return { ...admin, kind: 'admin' }
+  const team = getTeamSession(req)
+  if (team?.role === 'super_admin') return { ...team, kind: 'team' }
+  json(res, 401, { ok: false, error: 'Unauthorized' })
+  return null
+}

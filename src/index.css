@@ -1653,6 +1653,291 @@
   opacity: 0.5;
 }
 
+.vh-admin__people {
+  display: grid;
+  gap: 1rem;
+  padding: 0 1.25rem 3rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.vh-admin__people .vh-admin__card label {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.65rem 0;
+  font-size: 0.85rem;
+}
+
+.vh-admin__people input,
+.vh-admin__people select {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+  background: transparent;
+  padding: 0.5rem 0;
+  font: inherit;
+}
+
+.vh-admin__halls {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0.75rem;
+  margin: 0.75rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  gap: 0.35rem;
+}
+
+.vh-admin__halls legend {
+  padding: 0 0.35rem;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.vh-admin__check {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.35rem !important;
+  font-size: 0.8rem !important;
+  text-transform: capitalize;
+}
+
+.vh-admin__invite {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+.vh-admin__file {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Team workspace */
+.vh-team__split {
+  display: grid;
+  gap: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 4rem 1.25rem 3rem;
+}
+
+@media (min-width: 860px) {
+  .vh-team__split {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: start;
+  }
+}
+
+.vh-team__mark {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.vh-team__explain h1,
+.vh-team__gate h1,
+.vh-team__top h1 {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.vh-team__explain ol {
+  margin: 1.25rem 0;
+  padding-left: 1.2rem;
+  color: rgba(0, 0, 0, 0.62);
+  line-height: 1.55;
+}
+
+.vh-team__note,
+.vh-team__fine,
+.vh-team__blurb {
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.vh-team__gate {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+}
+
+.vh-team__gate--solo {
+  max-width: 28rem;
+  margin: 4rem auto;
+}
+
+.vh-team__gate label {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.85rem 0;
+  font-size: 0.85rem;
+}
+
+.vh-team__gate input {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+  padding: 0.55rem 0;
+  font: inherit;
+}
+
+.vh-team__gate button,
+.vh-team__top button,
+.vh-team__inline button,
+.vh-team__hall-actions button {
+  margin-top: 0.75rem;
+  min-height: 2.6rem;
+  padding: 0.55rem 1rem;
+  border: none;
+  background: #1a1a1a;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.vh-team__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 1rem;
+}
+
+.vh-team__role {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.45;
+}
+
+.vh-team__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  max-width: 1100px;
+  margin: 0 auto 1rem;
+  padding: 0 1.25rem;
+}
+
+.vh-team__tabs button {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: transparent;
+  padding: 0.45rem 0.8rem;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.vh-team__tabs button.is-active {
+  background: #1a1a1a;
+  color: #fff;
+  border-color: #1a1a1a;
+}
+
+.vh-team__grid,
+.vh-team__panel,
+.vh-team__halls {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+.vh-team__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .vh-team__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.vh-team__card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.65);
+  padding: 1.1rem 1.15rem;
+}
+
+.vh-team__card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.vh-team__hall {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.vh-team__hall-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.vh-team__hall-actions a,
+.vh-team__hall-actions button {
+  margin: 0;
+  font-size: 0.8rem;
+  min-height: 2.1rem;
+  text-decoration: none;
+  color: #fff;
+  background: #1a1a1a;
+  padding: 0.4rem 0.7rem;
+  border: none;
+}
+
+.vh-team__inline {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.vh-team__inline input,
+.vh-team__inline select {
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  padding: 0.55rem 0.65rem;
+  font: inherit;
+  background: #fff;
+}
+
+.vh-team__columns {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 900px) {
+  .vh-team__columns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.vh-team__task-actions {
+  display: flex !important;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.vh-team__task-actions button {
+  margin: 0;
+  min-height: auto;
+  padding: 0.2rem 0.45rem;
+  font-size: 0.7rem;
+  background: transparent;
+  color: #1a1a1a;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 @media (max-width: 640px) {
   .vh-flow__matrix {
     grid-template-columns: 3.2rem repeat(4, minmax(0, 1fr));
