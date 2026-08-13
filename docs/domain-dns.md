@@ -30,12 +30,12 @@ npx vercel domains add valhallaco.org
 npx vercel domains add www.valhallaco.org
 ```
 
-Vercel will show the exact records. Typical pattern:
+Vercel will show the exact records. As of deploy day, inspect reported:
 
-- **A** `@` → `76.76.21.21` (confirm in Vercel dashboard — IPs can change)
-- **CNAME** `www` → `cname.vercel-dns.com` (confirm in dashboard)
+- **A** `@` → `76.76.21.21` (recommended; confirm anytime with `npx vercel domains inspect valhallaco.org`)
+- **CNAME** `www` → `cname.vercel-dns.com` (after attaching `www.valhallaco.org` to the `valhalla` project)
 
-Add those in Squarespace DNS → Custom records. Leave Google MX/TXT untouched.
+**Do not switch nameservers to Vercel** if Google Workspace MX/SPF/DKIM currently live in Squarespace DNS — keep Squarespace as the DNS host and only replace website A/CNAME records. Switching NS to `ns1.vercel-dns.com` / `ns2.vercel-dns.com` would require re-creating all Google mail records on Vercel.
 
 ## Verification checklist
 
