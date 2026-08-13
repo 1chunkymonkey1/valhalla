@@ -256,6 +256,7 @@ export const wolfModelRows = [
         id: 'fenrir-01',
         status: 'scheduled',
         targetDate: '2027-01-13',
+        image: '/images/products/wolf/fenrir-01.jpg',
         summary: 'First wolf on the trail — electric adventure motorcycle.',
         description:
           'Fenrir 01 is the lead product: an electric adventure motorcycle aimed at riders who want frontier miles without a fossil cloud. Target window January 13, 2027. Predeposits opening soon — today we collect email interest only. Planned specs (range, pack chemistry, service network) stay labeled until engineering review.',
@@ -342,6 +343,7 @@ export const wolfModelRows = [
         id: 'fenrir-02',
         status: 'planned',
         targetDate: '2028-01-13',
+        image: '/images/products/wolf/fenrir-02.jpg',
         summary: 'Second-generation adventure motorcycle.',
         description:
           'Fenrir 02 refines range, serviceability, and cold-weather packaging from the 01 program. Drops on the annual anniversary of Fenrir 01 under the every-two-months matrix cadence (line 01s fill 2027; model 02s begin 2028).',
@@ -428,6 +430,7 @@ export const wolfModelRows = [
         id: 'fenrir-03',
         status: 'theoretical',
         targetDate: '2029-01-13',
+        image: '/images/products/wolf/fenrir-03.jpg',
         summary: 'Third motorcycle generation — pack systems mature.',
         description:
           'Fenrir 03 is a longer-horizon motorcycle generation once 01/02 field learning exists. Opacity rises; claims stay blueprint-honest.',

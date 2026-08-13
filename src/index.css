@@ -1546,11 +1546,14 @@
   padding: 3.5rem 1.5rem 1rem;
 }
 
-/* —— Wolf product matrix —— */
+/* —— Product matrix (equal CSS grid) —— */
 .wolf-matrix,
 .product-matrix {
-  max-width: min(72rem, 100%);
-  --matrix-cell: 7.25rem;
+  max-width: min(76rem, 100%);
+  --matrix-gutter: 0.55rem;
+  --matrix-row-label: 2.75rem;
+  --matrix-cell: 7.5rem;
+  --matrix-cols: 6;
 }
 
 .wolf-matrix__mission,
@@ -1618,24 +1621,26 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.wolf-matrix__table,
-.product-matrix__table {
+.product-matrix__grid {
+  display: grid;
+  grid-template-columns:
+    var(--matrix-row-label)
+    repeat(var(--matrix-cols), var(--matrix-cell));
+  gap: var(--matrix-gutter);
   width: max-content;
-  min-width: 100%;
-  table-layout: fixed;
-  border-collapse: separate;
-  border-spacing: 0.45rem;
+  min-width: min(100%, calc(var(--matrix-row-label) + var(--matrix-cols) * var(--matrix-cell) + var(--matrix-cols) * var(--matrix-gutter)));
+  align-items: stretch;
 }
 
-.wolf-matrix__sr {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+.product-matrix__grid-row {
+  display: contents;
+}
+
+.product-matrix__td {
+  width: var(--matrix-cell);
+  height: var(--matrix-cell);
+  min-width: var(--matrix-cell);
+  min-height: var(--matrix-cell);
 }
 
 .wolf-matrix__corner,
@@ -1649,67 +1654,75 @@
   color: var(--cs-muted, rgba(0, 0, 0, 0.45));
   font-weight: 500;
   text-align: left;
-  vertical-align: middle;
-  width: 3.2rem;
-  min-width: 3.2rem;
+  display: flex;
+  align-items: center;
+  width: var(--matrix-row-label);
+  min-width: var(--matrix-row-label);
+  box-sizing: border-box;
 }
 
 .wolf-matrix__corner-label {
   display: block;
-  padding: 0.35rem 0.25rem;
+  padding: 0.35rem 0.15rem;
 }
 
 .wolf-matrix__colhead,
 .product-matrix__colhead {
+  box-sizing: border-box;
+  width: var(--matrix-cell);
+  min-width: var(--matrix-cell);
+  max-width: var(--matrix-cell);
+  height: 3.6rem;
   text-align: center;
-  vertical-align: bottom;
-  padding: 0 0.2rem 0.35rem;
-  width: var(--matrix-cell);
-  min-width: var(--matrix-cell);
-  max-width: var(--matrix-cell);
-}
-
-.wolf-matrix__table td,
-.product-matrix__table td {
-  width: var(--matrix-cell);
-  min-width: var(--matrix-cell);
-  max-width: var(--matrix-cell);
-  height: var(--matrix-cell);
-  padding: 0;
-  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 0.15rem 0.2rem;
+  overflow: hidden;
 }
 
 .wolf-matrix__line-name {
   display: block;
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   letter-spacing: -0.02em;
   color: var(--cs-ink, #14201a);
+  line-height: 1.15;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .wolf-matrix__line-epithet {
-  display: block;
-  margin-top: 0.2rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  margin-top: 0.18rem;
   font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.08em;
+  font-size: 8px;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--cs-muted, rgba(0, 0, 0, 0.45));
-  line-height: 1.35;
+  line-height: 1.3;
+  max-width: 100%;
+  text-wrap: balance;
 }
 
 .wolf-matrix__cell,
 .product-matrix__cell {
+  position: relative;
   box-sizing: border-box;
-  width: var(--matrix-cell);
-  height: var(--matrix-cell);
-  min-width: var(--matrix-cell);
-  min-height: var(--matrix-cell);
-  max-width: var(--matrix-cell);
-  max-height: var(--matrix-cell);
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
   aspect-ratio: 1 / 1;
   border: 1px solid color-mix(in srgb, var(--cs-accent, #2f5c45) 38%, transparent);
-  border-radius: 0.7rem;
+  border-radius: 0.65rem;
   background:
     linear-gradient(
       145deg,
@@ -1722,19 +1735,75 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.28rem;
-  padding: 0.45rem 0.35rem;
+  gap: 0.22rem;
+  padding: 0.4rem 0.3rem;
   text-decoration: none;
   transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
   color: var(--cs-ink, #14201a);
+  overflow: hidden;
+}
+
+.product-matrix__cell--photo {
+  padding: 0;
+  justify-content: flex-end;
+  border-color: color-mix(in srgb, var(--cs-ink, #14201a) 22%, transparent);
+  background: #1a221c;
+  color: #f4efe8;
+}
+
+.product-matrix__cell-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  display: block;
+  transition: transform 320ms ease, filter 320ms ease;
+}
+
+.product-matrix__cell-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.14rem;
+  width: 100%;
+  padding: 1.6rem 0.35rem 0.4rem;
+  text-align: center;
+  background: linear-gradient(
+    to top,
+    rgba(12, 16, 14, 0.78) 0%,
+    rgba(12, 16, 14, 0.28) 55%,
+    transparent 100%
+  );
+}
+
+.product-matrix__cell--photo .wolf-matrix__cell-name,
+.product-matrix__cell--photo .wolf-matrix__cell-status,
+.product-matrix__cell--photo .wolf-matrix__cell-date {
+  color: #f7f4ee;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+.product-matrix__cell--photo .wolf-matrix__cell-status,
+.product-matrix__cell--photo .wolf-matrix__cell-date {
+  opacity: 0.78;
 }
 
 .wolf-matrix__cell:hover:not(:disabled),
 .wolf-matrix__cell--active,
 .product-matrix__cell:hover {
-  transform: translateY(-2px) scale(1.015);
+  transform: translateY(-2px);
   border-color: var(--cs-accent, #2f5c45);
   box-shadow: 0 10px 28px rgba(20, 32, 26, 0.08);
+}
+
+.product-matrix__cell--photo:hover .product-matrix__cell-img {
+  transform: scale(1.04);
+  filter: contrast(1.03) saturate(1.04);
 }
 
 .wolf-matrix__cell--mystery {
@@ -1748,10 +1817,10 @@
 
 .wolf-matrix__cell-name {
   font-family: var(--font-display);
-  font-size: clamp(0.78rem, 1.4vw, 0.95rem);
+  font-size: clamp(0.72rem, 1.25vw, 0.9rem);
   letter-spacing: -0.02em;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .wolf-matrix__cell-status {
@@ -1764,17 +1833,26 @@
 
 .wolf-matrix__cell-date {
   font-family: var(--font-sans);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   opacity: 0.42;
   text-align: center;
-  line-height: 1.25;
+  line-height: 1.2;
   max-width: 6.5rem;
 }
 
-.wolf-matrix__hint {
+.wolf-matrix__hint,
+.product-matrix__hint {
   margin: 0.85rem 0 0;
   font-size: 0.82rem;
   color: var(--cs-muted, rgba(0, 0, 0, 0.45));
+}
+
+@media (min-width: 1100px) {
+  .wolf-matrix,
+  .product-matrix {
+    --matrix-cell: 8rem;
+    --matrix-gutter: 0.6rem;
+  }
 }
 
 .wolf-matrix__detail-grid {
@@ -1967,12 +2045,32 @@
   padding: 0 1.5rem 4rem;
 }
 
+.product-detail__hero {
+  margin: 0 0 1.75rem;
+  border-radius: 0.35rem;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--cs-ink, #14201a) 8%, var(--cs-paper, #f3f1eb));
+}
+
+.product-detail__hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
 .product-detail__blueprint {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr);
   gap: 1.5rem 2rem;
   align-items: start;
   margin-bottom: 2.25rem;
+}
+
+.product-detail__blueprint--copy-only {
+  grid-template-columns: 1fr;
 }
 
 .product-detail__blueprint h2,

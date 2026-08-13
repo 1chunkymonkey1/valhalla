@@ -100,11 +100,28 @@ export default function ProductDetailPage({
       </header>
 
       <main className="product-detail__main">
-        <section className="product-detail__blueprint">
-          <ProductStencil
-            stencil={line.stencil || line.vehicle}
-            hall={company.name}
-          />
+        {(cell.image || line.image) && (
+          <figure className="product-detail__hero">
+            <img
+              src={cell.image || line.image}
+              alt={`${displayName} in the field`}
+              loading="eager"
+              decoding="async"
+            />
+          </figure>
+        )}
+
+        <section
+          className={`product-detail__blueprint${
+            cell.image || line.image ? ' product-detail__blueprint--copy-only' : ''
+          }`}
+        >
+          {!(cell.image || line.image) && (
+            <ProductStencil
+              stencil={line.stencil || line.vehicle}
+              hall={company.name}
+            />
+          )}
           <div className="product-detail__blueprint-copy">
             <h2>What it does</h2>
             <p>{cell.does || line.does || cell.description}</p>

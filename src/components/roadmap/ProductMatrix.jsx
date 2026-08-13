@@ -10,6 +10,7 @@ export default function ProductMatrix({ companyId }) {
   if (!matrix) return null
 
   const { lines, rows, mission, title, kicker, community } = matrix
+  const colCount = lines.length
 
   return (
     <section className="vh-road product-matrix wolf-matrix" id="roadmap">
@@ -41,70 +42,101 @@ export default function ProductMatrix({ companyId }) {
       )}
 
       <div className="product-matrix__scroll wolf-matrix__scroll">
-        <table className="product-matrix__table wolf-matrix__table">
-          <caption className="product-matrix__sr wolf-matrix__sr">
-            Product lines across columns, model generations down rows.
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col" className="product-matrix__corner wolf-matrix__corner">
-                <span className="wolf-matrix__corner-label">Model</span>
-              </th>
-              {lines.map((line) => (
-                <th key={line.id} scope="col" className="product-matrix__colhead wolf-matrix__colhead">
-                  <span className="wolf-matrix__line-name">{line.name}</span>
-                  <span className="wolf-matrix__line-epithet">{line.epithet}</span>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, rowIndex) => (
-              <tr key={row.id} className={row.mystery ? 'wolf-matrix__row--mystery' : ''}>
-                <th scope="row" className="product-matrix__rowhead wolf-matrix__rowhead">
-                  {row.label}
-                </th>
-                {lines.map((line, lineIndex) => {
-                  if (row.mystery) {
-                    return (
-                      <td key={line.id}>
-                        <button
-                          type="button"
-                          className="product-matrix__cell wolf-matrix__cell wolf-matrix__cell--mystery"
-                          disabled
-                          aria-label="Sealed future"
-                          style={{ opacity: 0.22 + lineIndex * 0.02 }}
-                        >
-                          ?
-                        </button>
-                      </td>
-                    )
-                  }
-                  const cell = row.cells[line.id]
-                  if (!cell) {
-                    return (
-                      <td key={line.id}>
-                        <span className="product-matrix__cell wolf-matrix__cell wolf-matrix__cell--mystery">
-                          —
-                        </span>
-                      </td>
-                    )
-                  }
-                  const opacity = matrixCellOpacity(
-                    rowIndex,
-                    lineIndex,
-                    lines.length,
-                    rows.length,
-                  )
-                  const href = `/${companyId}/${cell.id}`
+        <div
+          className="product-matrix__grid"
+          role="table"
+          aria-label="Product lines across columns, model generations down rows"
+          style={{
+            '--matrix-cols': colCount,
+          }}
+        >
+          <div role="row" className="product-matrix__grid-row product-matrix__grid-row--head">
+            <div
+              role="columnheader"
+              className="product-matrix__corner wolf-matrix__corner"
+            >
+              <span className="wolf-matrix__corner-label">Model</span>
+            </div>
+            {lines.map((line) => (
+              <div
+                key={line.id}
+                role="columnheader"
+                className="product-matrix__colhead wolf-matrix__colhead"
+              >
+                <span className="wolf-matrix__line-name">{line.name}</span>
+                <span className="wolf-matrix__line-epithet">{line.epithet}</span>
+              </div>
+            ))}
+          </div>
+
+          {rows.map((row, rowIndex) => (
+            <div
+              key={row.id}
+              role="row"
+              className={`product-matrix__grid-row${
+                row.mystery ? ' wolf-matrix__row--mystery' : ''
+              }`}
+            >
+              <div
+                role="rowheader"
+                className="product-matrix__rowhead wolf-matrix__rowhead"
+              >
+                {row.label}
+              </div>
+              {lines.map((line, lineIndex) => {
+                if (row.mystery) {
                   return (
-                    <td key={line.id}>
-                      <Link
-                        to={href}
-                        className="product-matrix__cell wolf-matrix__cell"
-                        style={{ opacity }}
-                        aria-label={`${line.name} ${row.label}`}
+                    <div key={line.id} role="cell" className="product-matrix__td">
+                      <button
+                        type="button"
+                        className="product-matrix__cell wolf-matrix__cell wolf-matrix__cell--mystery"
+                        disabled
+                        aria-label="Sealed future"
+                        style={{ opacity: 0.22 + lineIndex * 0.02 }}
                       >
+                        ?
+                      </button>
+                    </div>
+                  )
+                }
+                const cell = row.cells[line.id]
+                if (!cell) {
+                  return (
+                    <div key={line.id} role="cell" className="product-matrix__td">
+                      <span className="product-matrix__cell wolf-matrix__cell wolf-matrix__cell--mystery">
+                        —
+                      </span>
+                    </div>
+                  )
+                }
+                const opacity = matrixCellOpacity(
+                  rowIndex,
+                  lineIndex,
+                  lines.length,
+                  rows.length,
+                )
+                const href = `/${companyId}/${cell.id}`
+                const imageSrc = cell.image || line.image
+                return (
+                  <div key={line.id} role="cell" className="product-matrix__td">
+                    <Link
+                      to={href}
+                      className={`product-matrix__cell wolf-matrix__cell${
+                        imageSrc ? ' product-matrix__cell--photo' : ''
+                      }`}
+                      style={{ opacity }}
+                      aria-label={`${line.name} ${row.label}`}
+                    >
+                      {imageSrc && (
+                        <img
+                          className="product-matrix__cell-img"
+                          src={imageSrc}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
+                      <span className="product-matrix__cell-copy">
                         <span className="wolf-matrix__cell-name">
                           {line.name} {row.label}
                         </span>
@@ -116,14 +148,14 @@ export default function ProductMatrix({ companyId }) {
                             {formatMatrixDate(cell.targetDate)}
                           </span>
                         )}
-                      </Link>
-                    </td>
-                  )
-                })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                      </span>
+                    </Link>
+                  </div>
+                )
+              })}
+            </div>
+          ))}
+        </div>
       </div>
 
       <p className="product-matrix__hint wolf-matrix__hint">
