@@ -1,8 +1,21 @@
 import { createHmac, timingSafeEqual, scryptSync, randomBytes } from 'node:crypto'
+import { verifyTotp } from './totp.js'
 
 export const ADMIN_EMAIL = 'info@valhallaco.org'
 const COOKIE_NAME = 'vh_admin_session'
 const SESSION_TTL_MS = 12 * 60 * 60 * 1000
+
+export function getTotpSecret() {
+  return (process.env.ADMIN_TOTP_SECRET || '').trim()
+}
+
+export function isTotpConfigured() {
+  return getTotpSecret().length >= 16
+}
+
+export function verifyAdminTotp(code) {
+  return verifyTotp(code, getTotpSecret())
+}
 
 function getSecret() {
   return process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_PASSWORD || ''

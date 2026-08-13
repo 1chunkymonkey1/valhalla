@@ -9,6 +9,8 @@ export default function AdminPage() {
   const [auth, setAuth] = useState({ loading: true, ok: false, email: null })
   const [email, setEmail] = useState(ADMIN_EMAIL)
   const [password, setPassword] = useState('')
+  const [totp, setTotp] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [ledger, setLedger] = useState(null)
   const [localPreview, setLocalPreview] = useState({ reservations: [], signups: [] })
@@ -47,6 +49,20 @@ export default function AdminPage() {
     }
   }, [])
 
+  async function pastePassword() {
+    setError('')
+    try {
+      const text = await navigator.clipboard.readText()
+      if (!text) {
+        setError('Clipboard is empty — copy the password first, then Paste.')
+        return
+      }
+      setPassword(text.trim())
+    } catch {
+      setError('Clipboard blocked by the browser. Type the password, or allow paste for this site.')
+    }
+  }
+
   async function login(e) {
     e.preventDefault()
     setError('')
@@ -54,7 +70,7 @@ export default function AdminPage() {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, totp }),
     })
     const data = await res.json().catch(() => ({}))
     if (!res.ok) {
@@ -62,6 +78,7 @@ export default function AdminPage() {
       return
     }
     setPassword('')
+    setTotp('')
     setAuth({ loading: false, ok: true, email: data.email })
     await loadLedger()
   }
@@ -101,36 +118,83 @@ export default function AdminPage() {
     return (
       <div className="vh-page vh-admin">
         <SiteMenu />
-        <form className="vh-admin__gate" onSubmit={login}>
+        <form className="vh-admin__gate" onSubmit={login} autoComplete="on">
           <p className="vh-admin__mark">Valhalla</p>
           <h1>Admin</h1>
-          <p className="vh-admin__hint">Restricted to {ADMIN_EMAIL}</p>
+          <p className="vh-admin__hint">
+            Restricted to {ADMIN_EMAIL} · password + authenticator code
+          </p>
           <label>
             Email
             <input
               type="email"
+              name="username"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="username"
+              inputMode="email"
             />
           </label>
           <label>
             Password
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
+              name="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onPaste={(e) => {
+                const text = e.clipboardData?.getData('text')
+                if (text != null) {
+                  e.preventDefault()
+                  setPassword(text)
+                }
+              }}
               autoComplete="current-password"
+              spellCheck={false}
+            />
+          </label>
+          <div className="vh-admin__row">
+            <button type="button" className="vh-admin__secondary" onClick={pastePassword}>
+              Paste password
+            </button>
+            <button
+              type="button"
+              className="vh-admin__secondary"
+              onClick={() => setShowPassword((v) => !v)}
+            >
+              {showPassword ? 'Hide' : 'Show'} password
+            </button>
+          </div>
+          <label>
+            Authenticator code
+            <input
+              type="text"
+              name="one-time-code"
+              required
+              inputMode="numeric"
+              pattern="[0-9]{6}"
+              maxLength={6}
+              placeholder="6-digit code"
+              value={totp}
+              onChange={(e) => setTotp(e.target.value.replace(/\D/g, '').slice(0, 6))}
+              onPaste={(e) => {
+                const text = e.clipboardData?.getData('text')?.replace(/\D/g, '').slice(0, 6)
+                if (text) {
+                  e.preventDefault()
+                  setTotp(text)
+                }
+              }}
+              autoComplete="one-time-code"
             />
           </label>
           {error && <p className="vh-admin__error">{error}</p>}
           <button type="submit">Enter</button>
           <p className="vh-admin__fine">
-            Auth via serverless <code>/api/admin/login</code>. Set{' '}
-            <code>ADMIN_PASSWORD</code> + <code>ADMIN_SESSION_SECRET</code> on Vercel — never commit
-            secrets.
+            Needs <code>ADMIN_PASSWORD</code>, <code>ADMIN_SESSION_SECRET</code>, and{' '}
+            <code>ADMIN_TOTP_SECRET</code> on Vercel. Generate the TOTP secret with{' '}
+            <code>npm run admin:totp</code>.
           </p>
           <Link to="/">← Hub</Link>
         </form>

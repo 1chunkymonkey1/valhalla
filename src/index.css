@@ -1528,7 +1528,17 @@
   font-size: 0.85rem;
 }
 
+.vh-admin__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: -0.25rem 0 0.75rem;
+}
+
 .vh-admin__gate input {
+  -webkit-user-select: text;
+  user-select: text;
+
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background: transparent;
