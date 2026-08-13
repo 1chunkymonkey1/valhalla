@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import SiteMenu from '../components/layout/SiteMenu'
+import CompanySocialLinks from '../components/CompanySocialLinks'
 
 export default function TeamWorkspacePage() {
   const navigate = useNavigate()
@@ -91,7 +92,7 @@ export default function TeamWorkspacePage() {
       <SiteMenu />
       <header className="vh-team__top">
         <div>
-          <p className="vh-team__mark">Empire workspace</p>
+          <p className="vh-team__mark">Team workspace</p>
           <h1>
             {user.name}{' '}
             <span className="vh-team__role">
@@ -112,7 +113,8 @@ export default function TeamWorkspacePage() {
           ['tasks', 'Tasks'],
           ['inbox', 'Inbox'],
           ['notes', 'Notes'],
-          ['guide', 'How this works'],
+          ['socials', 'Socials'],
+          ['guide', 'Guide'],
         ].map(([id, label]) => (
           <button
             key={id}
@@ -163,12 +165,12 @@ export default function TeamWorkspacePage() {
             </ul>
           </div>
           <div className="vh-team__card">
-            <h2>Interest pulse</h2>
+            <h2>Interest</h2>
             <p className="vh-admin__count">
               {reservations.length} holds · {signups.length} emails
             </p>
             <p className="vh-team__blurb">
-              Refundable reservations and newsletter signups scoped to halls you can see.
+              Refundable holds and email signups for halls you can see.
             </p>
           </div>
         </section>
@@ -186,6 +188,7 @@ export default function TeamWorkspacePage() {
                 <p>
                   {h.openTasks} tasks · {h.reservations} reservations · {h.notes} notes
                 </p>
+                <CompanySocialLinks social={h.social} />
               </div>
               <div className="vh-team__hall-actions">
                 <Link to={`/${h.id}`}>Public site</Link>
@@ -198,6 +201,9 @@ export default function TeamWorkspacePage() {
               </div>
             </article>
           ))}
+          {!halls.length && (
+            <p className="vh-admin__empty">No halls assigned yet.</p>
+          )}
         </section>
       )}
 
@@ -301,7 +307,7 @@ export default function TeamWorkspacePage() {
               ))}
             </select>
             <input
-              placeholder="Hall note / decision / blocker"
+              placeholder="Note, decision, or blocker"
               value={noteBody}
               onChange={(e) => setNoteBody(e.target.value)}
             />
@@ -316,7 +322,28 @@ export default function TeamWorkspacePage() {
                 <span>{n.body}</span>
               </li>
             ))}
+            {!notes.length && <p className="vh-admin__empty">No notes yet.</p>}
           </ul>
+        </section>
+      )}
+
+      {tab === 'socials' && (
+        <section className="vh-team__grid">
+          {halls.map((h) => (
+            <div key={h.id} className="vh-team__card">
+              <h2>{h.name}</h2>
+              <CompanySocialLinks social={h.social} />
+              {h.social?.followerNotes && (
+                <p className="vh-team__blurb">{h.social.followerNotes}</p>
+              )}
+              {!h.social?.linkedin &&
+                !h.social?.instagram &&
+                !h.social?.x &&
+                !h.social?.discord && (
+                  <p className="vh-admin__empty">No links yet — set in /admin → Socials.</p>
+                )}
+            </div>
+          ))}
         </section>
       )}
 

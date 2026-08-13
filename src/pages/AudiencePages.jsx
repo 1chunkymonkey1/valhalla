@@ -19,15 +19,15 @@ function AudiencePage({ kind, title, lead, bullets }) {
           ))}
         </ul>
         <EmailCapture
-          title="Request briefings"
-          hint="We’ll reply from info@valhallaco.org when the next window opens."
+          title="Get updates"
+          hint="Replies come from info@valhallaco.org."
           source={kind}
           audience={kind}
         />
         <p className="vh-aud__links">
-          <Link to="/flow">See the network flow</Link>
+          <Link to="/flow">Network flow</Link>
           <a href={DISCORD_INVITE} target="_blank" rel="noreferrer">
-            Join Discord
+            Discord
           </a>
           <a href={`mailto:${CONTACT_EMAIL}`}>Email</a>
         </p>
@@ -41,11 +41,11 @@ export function InvestorsPage() {
     <AudiencePage
       kind="investors"
       title="Investors"
-      lead="Civilization infrastructure across twelve companies — diligence with clear non-claims."
+      lead="Twelve companies across land, water, air, and space. Diligence first — no public securities offer here."
       bullets={[
-        'Unified operating framework across land, water, air, and space.',
-        'Refundable reservation ledgers measure real demand before capital locks.',
-        'No public securities offer on this surface — inquiries only via info@valhallaco.org.',
+        'One operating framework across the four domains.',
+        'Refundable holds show demand before capital locks.',
+        'Inquiries only: info@valhallaco.org.',
       ]}
     />
   )
@@ -56,11 +56,11 @@ export function ConsumersPage() {
     <AudiencePage
       kind="consumers"
       title="Consumers"
-      lead="Hold a place on products you believe in — fully refundable until gates clear."
+      lead="Hold a place on products you care about. Fully refundable until gates clear."
       bullets={[
-        'Browse the living mosaic as halls unlock.',
-        'Company sites take refundable holds and email interest — not forced deposits.',
-        'Discord community for drops, questions, and hall talk.',
+        'Watch halls unlock on the mosaic.',
+        'Company sites take refundable holds and email interest.',
+        'Discord for drops and questions.',
       ]}
     />
   )
@@ -71,11 +71,11 @@ export function PartnersPage() {
     <AudiencePage
       kind="partners"
       title="Partners"
-      lead="Manufacturers, operators, harbors, landowners, and research labs — build with the matrix."
+      lead="Manufacturers, operators, harbors, landowners, research labs."
       bullets={[
-        'Each hall lists partner interest groups on its reservation form.',
-        'Flow chart shows how columns and pillars reinforce each other.',
-        'Odin (Discord) answers from the curated knowledge base — no false ops claims.',
+        'Each hall lists partner interest groups on its form.',
+        'Flow chart shows how columns and pillars connect.',
+        'Odin on Discord answers from the knowledge base.',
       ]}
     />
   )
@@ -116,15 +116,14 @@ export function RoadmapIndexPage() {
         <p className="vh-aud__mark">Valhalla</p>
         <h1>Roadmap</h1>
         <p>
-          Each hall carries its own oval path — first product clear, later ones fading into mystery.
-          Wolf’s second-to-last vision is the <strong>Bifröst Line</strong> (SF→NYC maglev).
+          Each hall has its own product path. Wolf’s later vision includes the{' '}
+          <strong>Bifröst Line</strong> (SF→NYC maglev).
         </p>
       </header>
       <main className="vh-aud__main">
         <p>
           Open a company from the <Link to="/">mosaic</Link> or the{' '}
-          <Link to="/flow">flow chart</Link> to walk its product sequence. Theoretical items take
-          email only; mystery ovals stay sealed.
+          <Link to="/flow">flow</Link> for its product sequence.
         </p>
       </main>
     </div>

@@ -23,27 +23,27 @@ const HALLS = [
 export const ROLES = {
   super_admin: {
     label: 'Founder / Super Admin',
-    blurb: 'Sees the entire empire. Invites people, assigns halls, exports state.',
+    blurb: 'Full access. Invites, halls, export.',
   },
   empire_ops: {
     label: 'Empire Ops',
-    blurb: 'Cross-hall coordination, launch timing, and task oversight.',
+    blurb: 'Cross-hall coordination and launch timing.',
   },
   hall_lead: {
     label: 'Hall Lead',
-    blurb: 'Owns one or more company halls — reservations, notes, product drops.',
+    blurb: 'Owns one or more halls — holds, notes, drops.',
   },
   growth: {
     label: 'Growth',
-    blurb: 'Email signups, waitlists, community, and consumer interest.',
+    blurb: 'Email, waitlists, community.',
   },
   finance: {
     label: 'Finance',
-    blurb: 'Refundable holds, pay-link status, and reservation money capture.',
+    blurb: 'Refundable holds and pay-link status.',
   },
   comms: {
     label: 'Comms',
-    blurb: 'Press, partners, Discord, and external narrative.',
+    blurb: 'Press, partners, Discord.',
   },
 }
 
@@ -321,10 +321,10 @@ export async function createInvite({ email, name, role, halls, invitedBy }) {
 
 export async function listInvites() {
   if (!isSupabaseConfigured()) {
-    return mem().invites.map((inv) => ({
-      ...inv,
-      tokenPreview: `${inv.token.slice(0, 6)}…`,
-    }))
+    return mem().invites.map((inv) => {
+      const { token, ...rest } = inv
+      return { ...rest, tokenPreview: `${token.slice(0, 6)}…` }
+    })
   }
 
   const sb = getSupabase()
@@ -335,7 +335,8 @@ export async function listInvites() {
   if (error) throw error
   return (data || []).map((r) => {
     const inv = mapInvite(r)
-    return { ...inv, tokenPreview: `${inv.token.slice(0, 6)}…` }
+    const { token, ...rest } = inv
+    return { ...rest, tokenPreview: `${token.slice(0, 6)}…` }
   })
 }
 

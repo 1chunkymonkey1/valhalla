@@ -20,6 +20,12 @@ Team users, invites, tasks, notes, activity, email signups, and reservations per
 4. Confirm tables exist under **Table Editor**:
    `team_users`, `invites`, `tasks`, `notes`, `activity`, `signups`, `reservations`
 
+5. Also run the second migration for hall codes + socials:
+
+   `supabase/migrations/20260813_hall_codes_socials.sql`
+
+   Tables: `hall_codes`, `company_socials`
+
 ## 3. Copy API keys
 
 1. Project **Settings** → **API**
@@ -57,9 +63,15 @@ Deployments → latest Production → **Redeploy** (or push to `main`).
 3. Invite a teammate under **People** → accept at `/team/join` → sign in at `/team`.
 4. Redeploy again — the seat should still exist.
 
+## Hall codes + socials
+
+- `/admin` → **Hall codes**: set Instagram unlock codes for Eagle → Corvus (or use `HALL_CODE_<HALL>` env vars).
+- `/admin` → **Socials**: LinkedIn / Instagram / X / Discord URLs per company.
+- Public: `GET /api/hub/status`, `POST /api/hub/unlock`, `GET /api/hub/socials`.
+
 ## Fallback
 
-If Supabase env vars are missing, the API falls back to in-memory storage (data lost on cold starts). Export/import JSON still works as a backup.
+If Supabase env vars are missing, the API falls back to in-memory storage (data lost on cold starts). Export/import JSON still works as a backup. Hall codes can still come from `HALL_CODE_*` env vars.
 
 ## Local `.env` (optional, for `vercel dev`)
 

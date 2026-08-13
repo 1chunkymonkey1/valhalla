@@ -1,21 +1,30 @@
 import { Link } from 'react-router-dom'
 import SimpleCountdown from './SimpleCountdown'
+import HallUnlockForm from './HallUnlockForm'
 import { formatPDT } from '../utils/time'
 import { getCompany } from '../lib/companies'
+import { getNextDoorCue } from '../data/nextDoorCues'
 import {
   getHubClickAt,
   getNextCompanyId,
   getNextPreviewUnlockAt,
+  getWave2Start,
+  INSTAGRAM_URL,
+  isWave2Hall,
 } from '../lib/launchSchedule'
-import { getNextDoorCue } from '../data/nextDoorCues'
 
 /**
  * Chain bridge on each company site:
- * 1) Cue + blank + 1h countdown until next preview unlock
- * 2) Cue + clickable next name when countdown hits 0
- * 3) Soft note that the mosaic tile opens 30 minutes later
+ * Wave 1 — cue + blank + 1h countdown, then clickable next name
+ * Into / within wave 2 — Instagram code unlock
  */
-export default function NextDoor({ company, now }) {
+export default function NextDoor({
+  company,
+  now,
+  unlockedSet = new Set(),
+  unlock,
+  unlockError,
+}) {
   const nextId = getNextCompanyId(company.slug)
   const next = nextId ? getCompany(nextId) : null
 
@@ -28,6 +37,59 @@ export default function NextDoor({ company, now }) {
             View the mosaic
           </Link>
         </p>
+      </div>
+    )
+  }
+
+  if (isWave2Hall(next.id)) {
+    const wave2Start = getWave2Start()
+    const beforeBreak = now.getTime() < wave2Start.getTime()
+    const unlocked = unlockedSet.has(next.id)
+
+    if (unlocked) {
+      return (
+        <div className="cs-nextdoor">
+          <p className="cs-nextdoor__kicker">Next door</p>
+          <p className="cs-nextdoor__line">
+            <Link to={`/${next.id}`} className="cs-nextdoor__name">
+              {next.name}
+            </Link>{' '}
+            is open.
+          </p>
+        </div>
+      )
+    }
+
+    if (beforeBreak) {
+      return (
+        <div className="cs-nextdoor">
+          <p className="cs-nextdoor__kicker">Next door</p>
+          <p className="cs-nextdoor__line">
+            Wave 2 begins after a short break. Codes land on{' '}
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
+              Instagram
+            </a>
+            .
+          </p>
+          <div className="cs-nextdoor__clock">
+            <SimpleCountdown
+              targetDate={wave2Start}
+              now={now}
+              label={`Codes from ${formatPDT(wave2Start)}`}
+            />
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div className="cs-nextdoor">
+        <HallUnlockForm
+          hallId={next.id}
+          onUnlock={unlock}
+          error={unlockError}
+          compact
+        />
       </div>
     )
   }
@@ -72,9 +134,7 @@ export default function NextDoor({ company, now }) {
       )}
 
       {hubOpen && (
-        <p className="cs-nextdoor__note">
-          {next.name} is also live on the mosaic.
-        </p>
+        <p className="cs-nextdoor__note">{next.name} is also live on the mosaic.</p>
       )}
     </div>
   )

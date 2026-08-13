@@ -28,6 +28,9 @@ import {
   updateTask,
   verifyPasswordHash,
 } from '../_lib/empireStore.js'
+import { listCompanySocials } from '../_lib/companySocials.js'
+import { plainText } from '../_lib/sanitize.js'
+import { clientKey, rateLimit } from '../_lib/rateLimit.js'
 
 const HALL_META = {
   wolf: { name: 'Wolf', domain: 'land', pillar: 'movement' },
@@ -56,6 +59,13 @@ async function handleLogin(req, res) {
   if (req.method !== 'POST') {
     return json(res, 405, { ok: false, error: 'Method not allowed' })
   }
+
+  const rl = rateLimit(clientKey(req, 'team-login'), { limit: 20, windowMs: 15 * 60 * 1000 })
+  if (!rl.ok) {
+    res.setHeader('Retry-After', String(rl.retryAfterSec))
+    return json(res, 429, { ok: false, error: 'Too many login attempts. Try again later.' })
+  }
+
   if (!process.env.ADMIN_SESSION_SECRET && !process.env.ADMIN_PASSWORD) {
     return json(res, 503, {
       ok: false,
@@ -204,12 +214,13 @@ async function handleNotes(req, res) {
       if (!body.hall || !halls.includes(body.hall)) {
         return json(res, 403, { ok: false, error: 'No access to that hall' })
       }
-      if (!body.body?.trim()) {
+      const noteBody = plainText(body.body, 2000)
+      if (!noteBody) {
         return json(res, 400, { ok: false, error: 'Note body required' })
       }
       const note = await addNote({
         hall: body.hall,
-        body: body.body.trim(),
+        body: noteBody,
         author: user.email,
       })
       return json(res, 200, { ok: true, note })
@@ -243,7 +254,8 @@ async function handleTasks(req, res) {
   if (req.method === 'POST') {
     try {
       const body = await readBody(req)
-      if (!body.title?.trim()) {
+      const title = plainText(body.title, 200)
+      if (!title) {
         return json(res, 400, { ok: false, error: 'Title required' })
       }
       const halls = hallAccessFor(user)
@@ -251,8 +263,8 @@ async function handleTasks(req, res) {
         return json(res, 403, { ok: false, error: 'No access to that hall' })
       }
       const task = await addTask({
-        title: body.title.trim(),
-        body: body.body || '',
+        title,
+        body: plainText(body.body || '', 4000),
         hall: body.hall || null,
         status: body.status || 'todo',
         assignee: body.assignee || user.email,
@@ -267,17 +279,14 @@ async function handleTasks(req, res) {
   if (req.method === 'PATCH') {
     try {
       const body = await readBody(req)
-      const task = await updateTask(
-        body.id,
-        {
-          title: body.title,
-          body: body.body,
-          status: body.status,
-          assignee: body.assignee,
-          hall: body.hall,
-        },
-        user.email,
-      )
+      const patch = {
+        status: body.status,
+        assignee: body.assignee,
+        hall: body.hall,
+      }
+      if (body.title !== undefined) patch.title = plainText(body.title, 200)
+      if (body.body !== undefined) patch.body = plainText(body.body, 4000)
+      const task = await updateTask(body.id, patch, user.email)
       if (!task) return json(res, 404, { ok: false, error: 'Task not found' })
       return json(res, 200, { ok: true, task })
     } catch (err) {
@@ -300,10 +309,11 @@ async function handleWorkspace(req, res) {
     if (!user) return json(res, 401, { ok: false, error: 'Unauthorized' })
 
     const halls = hallAccessFor(user)
-    const [tasks, reservations, signups] = await Promise.all([
+    const [tasks, reservations, signups, socials] = await Promise.all([
       listTasks({ email: user.email, halls, role: user.role }),
       listReservations(),
       listSignups(),
+      listCompanySocials(),
     ])
 
     const notesNested = await Promise.all(halls.map((h) => listNotes(h)))
@@ -312,6 +322,7 @@ async function handleWorkspace(req, res) {
     const scopedReservations = reservations.filter(
       (r) => !r.companyId || halls.includes(r.companyId),
     )
+    const socialById = Object.fromEntries(socials.map((s) => [s.companyId, s]))
 
     return json(res, 200, {
       ok: true,
@@ -330,23 +341,25 @@ async function handleWorkspace(req, res) {
         openTasks: tasks.filter((t) => t.hall === id && t.status !== 'done').length,
         reservations: scopedReservations.filter((r) => r.companyId === id).length,
         notes: notes.filter((n) => n.hall === id).length,
+        social: socialById[id] || null,
       })),
       tasks: tasks.slice(0, 80),
       notes: notes.slice(0, 40),
       reservations: scopedReservations.slice(0, 80),
       signups: signups.slice(0, 80),
+      socials: socials.filter((s) => halls.includes(s.companyId)),
       guides: [
         {
-          title: 'How team login works',
-          body: 'You receive an invite link from the founder. Set your password once, then sign in at /team with email + password. No authenticator required for team seats.',
+          title: 'Team login',
+          body: 'Open your invite link, set a password, then sign in at /team with email and password.',
         },
         {
-          title: 'Your halls',
-          body: 'Each company is a hall. Open a hall to manage notes, tasks, and the refundable interest flowing into that company.',
+          title: 'Halls',
+          body: 'Each company is a hall. Use notes and tasks for that hall’s work and refundable interest.',
         },
         {
-          title: 'Founder control tower',
-          body: 'Only info@valhallaco.org uses /admin with password + 2FA. That view watches people, ledgers, and activity across the empire.',
+          title: 'Founder admin',
+          body: 'Only info@valhallaco.org uses /admin (password + 2FA) for people, codes, socials, and ledgers.',
         },
       ],
     })

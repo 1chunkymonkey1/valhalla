@@ -7,7 +7,7 @@ const LINKS = [
   { to: '/investors', label: 'Investors' },
   { to: '/consumers', label: 'Consumers' },
   { to: '/partners', label: 'Partners' },
-  { to: '/flow', label: 'Flow chart' },
+  { to: '/flow', label: 'Flow' },
   { to: '/roadmap', label: 'Roadmap' },
   { to: '/press', label: 'Press' },
   { to: '/contact', label: 'Contact' },

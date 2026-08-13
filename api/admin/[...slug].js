@@ -36,6 +36,9 @@ import {
   getUserByEmail,
   hashPassword,
 } from '../_lib/empireStore.js'
+import { listHallCodesAdmin, setHallCode, WAVE2_HALLS } from '../_lib/hallCodes.js'
+import { listCompanySocials, upsertCompanySocial } from '../_lib/companySocials.js'
+import { clientKey, rateLimit } from '../_lib/rateLimit.js'
 
 const COMPANY_SUMMARY = [
   { id: 'wolf', name: 'Wolf', domain: 'land', pillar: 'movement', wave: 1 },
@@ -63,6 +66,12 @@ function routeKey(req) {
 async function handleLogin(req, res) {
   if (req.method !== 'POST') {
     return json(res, 405, { ok: false, error: 'Method not allowed' })
+  }
+
+  const rl = rateLimit(clientKey(req, 'admin-login'), { limit: 12, windowMs: 15 * 60 * 1000 })
+  if (!rl.ok) {
+    res.setHeader('Retry-After', String(rl.retryAfterSec))
+    return json(res, 429, { ok: false, error: 'Too many login attempts. Try again later.' })
   }
 
   if (!process.env.ADMIN_PASSWORD && !process.env.ADMIN_PASSWORD_HASH) {
@@ -249,6 +258,74 @@ async function handlePeople(req, res) {
   return json(res, 405, { ok: false, error: 'Method not allowed' })
 }
 
+async function handleCodes(req, res) {
+  const session = requireAdmin(req, res)
+  if (!session) return
+
+  if (req.method === 'GET') {
+    try {
+      const codes = await listHallCodesAdmin()
+      return json(res, 200, {
+        ok: true,
+        codes,
+        wave2Halls: WAVE2_HALLS,
+        storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+        note: 'Codes unlock Eagle→Corvus after the post-Njord break. Publish on Instagram.',
+      })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Codes error' })
+    }
+  }
+
+  if (req.method === 'POST') {
+    try {
+      const body = await readBody(req)
+      const hallId = String(body.hallId || body.hall || '')
+        .trim()
+        .toLowerCase()
+      const row = await setHallCode(hallId, body.code, body.note || '')
+      return json(res, 200, { ok: true, code: row })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
+async function handleSocials(req, res) {
+  const session = requireAdmin(req, res)
+  if (!session) return
+
+  if (req.method === 'GET') {
+    try {
+      const socials = await listCompanySocials()
+      return json(res, 200, {
+        ok: true,
+        socials,
+        storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+      })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Socials error' })
+    }
+  }
+
+  if (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH') {
+    try {
+      const body = await readBody(req)
+      const companyId = String(body.companyId || body.hall || '')
+        .trim()
+        .toLowerCase()
+      const row = await upsertCompanySocial(companyId, body)
+      return json(res, 200, { ok: true, social: row })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'login') return handleLogin(req, res)
@@ -256,5 +333,7 @@ export default async function handler(req, res) {
   if (key === 'session') return handleSession(req, res)
   if (key === 'ledger') return handleLedger(req, res)
   if (key === 'people') return handlePeople(req, res)
+  if (key === 'codes') return handleCodes(req, res)
+  if (key === 'socials') return handleSocials(req, res)
   return json(res, 404, { ok: false, error: 'Not found' })
 }

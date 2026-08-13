@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import NextDoor from './NextDoor'
 import ReservationForm from './ReservationForm'
 import ProductRoadmap from './roadmap/ProductRoadmap'
 import SiteMenu from './layout/SiteMenu'
+import CompanySocialLinks from './CompanySocialLinks'
 import { companyProducts } from '../data/companyProducts'
 import { formatUsd, getCompanyPayLink } from '../data/payLinks'
 import { DISCORD_INVITE } from '../data/pressRelease'
@@ -46,7 +48,13 @@ const TONES = {
   },
 }
 
-export default function CompanySite({ company, now }) {
+export default function CompanySite({
+  company,
+  now,
+  unlockedSet = new Set(),
+  unlock,
+  unlockError,
+}) {
   const product = companyProducts[company.slug] || {
     product: company.name,
     headline: company.name,
@@ -64,6 +72,22 @@ export default function CompanySite({ company, now }) {
   }
   const strip = product.gallery.slice(1)
   const pay = getCompanyPayLink(company.slug)
+  const [social, setSocial] = useState(null)
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/hub/socials')
+      .then((r) => r.json())
+      .then((data) => {
+        if (cancelled || !data?.socials) return
+        const hit = data.socials.find((s) => s.companyId === company.slug)
+        if (hit) setSocial(hit)
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [company.slug])
 
   return (
     <div
@@ -116,6 +140,7 @@ export default function CompanySite({ company, now }) {
           <h2 className="cs-about__title">What this is</h2>
           <p className="cs-about__body">{product.body}</p>
           <p className="cs-about__note">Fully refundable reservations</p>
+          <CompanySocialLinks social={social} className="cs-about__socials" />
         </section>
 
         {pay && (
@@ -161,7 +186,13 @@ export default function CompanySite({ company, now }) {
         </section>
 
         <div className="cs-next">
-          <NextDoor company={company} now={now} />
+          <NextDoor
+            company={company}
+            now={now}
+            unlockedSet={unlockedSet}
+            unlock={unlock}
+            unlockError={unlockError}
+          />
         </div>
 
         <footer className="cs-foot">

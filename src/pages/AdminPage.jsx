@@ -25,6 +25,11 @@ export default function AdminPage() {
   })
   const [lastInviteUrl, setLastInviteUrl] = useState('')
   const [peopleMsg, setPeopleMsg] = useState('')
+  const [codes, setCodes] = useState([])
+  const [codeDrafts, setCodeDrafts] = useState({})
+  const [codesMsg, setCodesMsg] = useState('')
+  const [socials, setSocials] = useState([])
+  const [socialMsg, setSocialMsg] = useState('')
 
   async function refreshSession() {
     const controller = new AbortController()
@@ -39,6 +44,8 @@ export default function AdminPage() {
         setAuth({ loading: false, ok: true, email: data.email })
         loadLedger().catch(() => {})
         loadPeople().catch(() => {})
+        loadCodes().catch(() => {})
+        loadSocials().catch(() => {})
       } else {
         setAuth({ loading: false, ok: false, email: null })
       }
@@ -61,6 +68,25 @@ export default function AdminPage() {
     if (!res.ok) return
     const data = await res.json()
     setPeople(data)
+  }
+
+  async function loadCodes() {
+    const res = await fetch('/api/admin/codes', { credentials: 'include' })
+    if (!res.ok) return
+    const data = await res.json()
+    setCodes(data.codes || [])
+    const drafts = {}
+    for (const row of data.codes || []) {
+      drafts[row.hallId] = { code: row.code || '', note: row.note || '' }
+    }
+    setCodeDrafts(drafts)
+  }
+
+  async function loadSocials() {
+    const res = await fetch('/api/admin/socials', { credentials: 'include' })
+    if (!res.ok) return
+    const data = await res.json()
+    setSocials(data.socials || [])
   }
 
   useEffect(() => {
@@ -108,12 +134,59 @@ export default function AdminPage() {
     setAuth({ loading: false, ok: true, email: data.email })
     await loadLedger()
     await loadPeople()
+    await loadCodes()
+    await loadSocials()
   }
 
   async function logout() {
     await fetch('/api/admin/logout', { method: 'POST', credentials: 'include' })
     setAuth({ loading: false, ok: false, email: null })
     setLedger(null)
+    setCodes([])
+    setSocials([])
+  }
+
+  async function saveCode(hallId) {
+    setCodesMsg('')
+    const draft = codeDrafts[hallId] || { code: '', note: '' }
+    const res = await fetch('/api/admin/codes', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hallId, code: draft.code, note: draft.note }),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      setCodesMsg(data.error || 'Save failed')
+      return
+    }
+    setCodesMsg(`Saved ${hallId}`)
+    await loadCodes()
+  }
+
+  async function saveSocial(companyId) {
+    setSocialMsg('')
+    const row = socials.find((s) => s.companyId === companyId)
+    if (!row) return
+    const res = await fetch('/api/admin/socials', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(row),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      setSocialMsg(data.error || 'Save failed')
+      return
+    }
+    setSocialMsg(`Saved ${companyId}`)
+    await loadSocials()
+  }
+
+  function patchSocial(companyId, field, value) {
+    setSocials((prev) =>
+      prev.map((s) => (s.companyId === companyId ? { ...s, [field]: value } : s)),
+    )
   }
 
   async function uploadLocalLedger() {
@@ -303,8 +376,8 @@ export default function AdminPage() {
       <SiteMenu />
       <header className="vh-admin__top">
         <div>
-          <p className="vh-admin__mark">Valhalla Control Tower</p>
-          <p>{auth.email} · founder / super admin</p>
+          <p className="vh-admin__mark">Valhalla</p>
+          <p>{auth.email} · admin</p>
         </div>
         <button type="button" onClick={logout}>
           Sign out
@@ -315,6 +388,8 @@ export default function AdminPage() {
         {[
           ['overview', 'Overview'],
           ['people', 'People'],
+          ['codes', 'Hall codes'],
+          ['socials', 'Socials'],
           ['ledgers', 'Ledgers'],
           ['activity', 'Activity'],
         ].map(([id, label]) => (
@@ -332,10 +407,10 @@ export default function AdminPage() {
       {adminTab === 'overview' && (
         <section className="vh-admin__grid">
           <div className="vh-admin__card">
-            <h2>Empire seats</h2>
+            <h2>Team seats</h2>
             <p className="vh-admin__count">{people?.users?.length ?? 0}</p>
             <p className="vh-admin__note">
-              Team mates work at <Link to="/team">/team</Link>. You stay here with 2FA.
+              Teammates work at <Link to="/team">/team</Link>. You stay here with 2FA.
             </p>
           </div>
           <div className="vh-admin__card">
@@ -485,6 +560,146 @@ export default function AdminPage() {
                 : ' — memory fallback. Add SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (see docs/supabase-setup.md).'}
             </p>
           </div>
+        </section>
+      )}
+
+      {adminTab === 'codes' && (
+        <section className="vh-admin__people">
+          <div className="vh-admin__card">
+            <h2>Wave 2 Instagram codes</h2>
+            <p className="vh-admin__note">
+              After Njord + the 2:00 PM PDT break, visitors unlock Eagle → Corvus with these codes.
+              Publish each on Instagram. Env fallback: <code>HALL_CODE_EAGLE</code>, etc.
+            </p>
+            {codesMsg && <p className="vh-admin__note">{codesMsg}</p>}
+            <ul className="vh-admin__code-list">
+              {codes.map((row) => (
+                <li key={row.hallId} className="vh-admin__code-row">
+                  <strong>{row.hallId}</strong>
+                  <span className="vh-admin__note">
+                    {row.configured ? `via ${row.source}` : 'not set'}
+                  </span>
+                  <input
+                    value={codeDrafts[row.hallId]?.code || ''}
+                    onChange={(e) =>
+                      setCodeDrafts((p) => ({
+                        ...p,
+                        [row.hallId]: {
+                          ...(p[row.hallId] || {}),
+                          code: e.target.value.toUpperCase(),
+                        },
+                      }))
+                    }
+                    placeholder="CODE"
+                    spellCheck={false}
+                    autoComplete="off"
+                  />
+                  <input
+                    value={codeDrafts[row.hallId]?.note || ''}
+                    onChange={(e) =>
+                      setCodeDrafts((p) => ({
+                        ...p,
+                        [row.hallId]: {
+                          ...(p[row.hallId] || {}),
+                          note: e.target.value,
+                        },
+                      }))
+                    }
+                    placeholder="Optional note"
+                  />
+                  <button type="button" onClick={() => saveCode(row.hallId)}>
+                    Save
+                  </button>
+                </li>
+              ))}
+              {!codes.length && (
+                <p className="vh-admin__empty">Loading codes…</p>
+              )}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {adminTab === 'socials' && (
+        <section className="vh-admin__people">
+          <div className="vh-admin__card">
+            <h2>Social tower</h2>
+            <p className="vh-admin__note">
+              LinkedIn, Instagram, X, Discord per hall. Shown on team workspace and company pages
+              when set.
+            </p>
+            {socialMsg && <p className="vh-admin__note">{socialMsg}</p>}
+          </div>
+          {socials.map((row) => (
+            <form
+              key={row.companyId}
+              className="vh-admin__card"
+              onSubmit={(e) => {
+                e.preventDefault()
+                saveSocial(row.companyId)
+              }}
+            >
+              <h2>{row.companyId}</h2>
+              <label>
+                LinkedIn
+                <input
+                  value={row.linkedin || ''}
+                  onChange={(e) => patchSocial(row.companyId, 'linkedin', e.target.value)}
+                  placeholder="https://linkedin.com/…"
+                />
+              </label>
+              <label>
+                Instagram
+                <input
+                  value={row.instagram || ''}
+                  onChange={(e) => patchSocial(row.companyId, 'instagram', e.target.value)}
+                  placeholder="https://instagram.com/…"
+                />
+              </label>
+              <label>
+                X
+                <input
+                  value={row.x || ''}
+                  onChange={(e) => patchSocial(row.companyId, 'x', e.target.value)}
+                  placeholder="https://x.com/…"
+                />
+              </label>
+              <label>
+                Discord
+                <input
+                  value={row.discord || ''}
+                  onChange={(e) => patchSocial(row.companyId, 'discord', e.target.value)}
+                  placeholder="https://discord.gg/…"
+                />
+              </label>
+              <label>
+                Follower notes
+                <input
+                  value={row.followerNotes || ''}
+                  onChange={(e) => patchSocial(row.companyId, 'followerNotes', e.target.value)}
+                  placeholder="Counts, last check…"
+                />
+              </label>
+              <label>
+                Last checked
+                <input
+                  type="date"
+                  value={row.lastChecked ? String(row.lastChecked).slice(0, 10) : ''}
+                  onChange={(e) =>
+                    patchSocial(
+                      row.companyId,
+                      'lastChecked',
+                      e.target.value ? new Date(e.target.value).toISOString() : null,
+                    )
+                  }
+                />
+              </label>
+              <button type="submit">Save {row.companyId}</button>
+            </form>
+          ))}
+          {!socials.length && (
+            <p className="vh-admin__empty">Loading socials…</p>
+          )}
         </section>
       )}
 

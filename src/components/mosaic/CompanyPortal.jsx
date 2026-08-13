@@ -5,10 +5,10 @@ import {
   isHubTileClickable,
 } from '../../lib/launchSchedule'
 
-export default function CompanyPortal({ company, now }) {
-  const phase = getPortalPhase(company.id, now)
-  const progress = getBuildProgress(company.id, now)
-  const interactive = isHubTileClickable(company.id, now)
+export default function CompanyPortal({ company, now, unlockedSet = new Set() }) {
+  const phase = getPortalPhase(company.id, now, unlockedSet)
+  const progress = getBuildProgress(company.id, now, unlockedSet)
+  const interactive = isHubTileClickable(company.id, now, unlockedSet)
   const showImage = phase === 'revealed' || phase === 'clickable' || interactive
   const src = company.imageSrc || company.placeholderSrc
   const isPlaceholder = !company.imageSrc

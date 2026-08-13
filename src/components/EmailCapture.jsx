@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 export default function EmailCapture({
-  title = 'Stay in the halls',
-  hint = 'Launch notes, product drops, and press — no spam.',
+  title = 'Get launch notes',
+  hint = 'Product drops and press. No spam.',
   source = 'hub',
   audience = 'general',
   companyId = null,
