@@ -38,10 +38,10 @@ export default function ValhallaHub() {
           <header className="vh-hub__header vh-hub__header--solo">
             <img
               className="vh-hub__glyph"
-              src="/brand-mark.svg"
+              src="/brand-mark.png"
               alt=""
-              width={28}
-              height={28}
+              width={40}
+              height={40}
               decoding="async"
             />
             <p className="vh-hub__mark">Valhalla</p>

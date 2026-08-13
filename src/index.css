@@ -80,10 +80,10 @@
 
 .vh-hub__glyph {
   display: block;
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   margin: 0 auto 0.85rem;
-  opacity: 0.72;
+  opacity: 1;
 }
 
 .vh-hub__mark {
