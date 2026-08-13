@@ -5,8 +5,7 @@
  */
 
 export const companyRoadmaps = {
-  // Wolf UI is the square matrix in WolfProductMatrix + wolfMatrix.js.
-  // Keep a thin legacy list for any oval consumers / admin mirrors.
+  // All halls use ProductMatrix + hallMatrices.js. Legacy oval lists kept for mirrors.
   wolf: {
     layout: 'matrix',
     cascadeNote:

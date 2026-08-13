@@ -1,17 +1,21 @@
 /** Per-company product windows: copy, interest groups, and site photography */
 
+const emailFirst = {
+  emailOnly: true,
+  ctaPrimary: 'Join the list',
+  ctaSecondary: 'Product path',
+  aboutNote: 'Predeposits opening soon · email list only',
+}
+
 export const companyProducts = {
   wolf: {
     product: 'Wolf Transit',
     headline: 'Join the list. Ride the path.',
     support:
       'Electric adventure motorcycle first — then ATV, car, truck, rescue air, and the Dire Wolf railroad. Predeposits opening soon.',
-    body: 'Wolf Transit builds a named pack of land machines under wolf myth and history, culminating in a phased transcontinental rail. Fenrir 01 targets January 13, 2027. Today we collect email only — no payment holds.',
+    body: 'Wolf Transit builds a named pack of land machines under wolf myth and history, culminating in a phased transcontinental rail. Community fix-it culture under every line. Fenrir 01 targets January 13, 2027. Today we collect email only — no payment holds.',
     tone: 'land',
-    emailOnly: true,
-    ctaPrimary: 'Join the list',
-    ctaSecondary: 'Product path',
-    aboutNote: 'Predeposits opening soon · email list only',
+    ...emailFirst,
     gallery: [
       { src: '/images/wolf.png', alt: 'Wolf in snow' },
       { src: '/images/sites/wolf-ref.jpg', alt: 'Wolf reference' },
@@ -29,8 +33,9 @@ export const companyProducts = {
     product: 'Holm Modular Home',
     headline: 'A home that lands where the site allows.',
     support: 'Linkable habitation modules — timber, quiet volumes, real weather.',
-    body: 'Reserve a configuration interest with a fully refundable hold. This is not stamped plans or a construction contract.',
+    body: 'Holm is a modular habitation concept — Timber, Sod, Adobe, Commons, Bridge, and Hearth. Email interest only for now. Not stamped plans or a construction contract. Predeposits opening soon.',
     tone: 'land',
+    ...emailFirst,
     gallery: [
       { src: '/images/holm.png', alt: 'Modular cabin in snow' },
       { src: '/images/sites/holm-cabin.jpg', alt: 'Holm modular cabin' },
@@ -49,8 +54,9 @@ export const companyProducts = {
     product: 'Demeter Land Energy',
     headline: 'Fields that work twice.',
     support: 'Agrivoltaic pathways and land-energy diligence — soil first, claims last.',
-    body: 'Capture region interest with a fully refundable program reservation. Not an investment offer.',
+    body: 'Demeter runs soil-first land-energy diligence including Ethanol Grove synergy for Tier 3 dual-injection machines. Email interest — not an investment offer. Predeposits opening soon.',
     tone: 'land',
+    ...emailFirst,
     gallery: [
       { src: '/images/demeter.png', alt: 'Agrivoltaic field' },
       { src: '/images/sites/demeter-field.jpg', alt: 'Wheat field' },
@@ -69,8 +75,9 @@ export const companyProducts = {
     product: 'Viking Voyage',
     headline: 'Board as yourself. Disembark changed.',
     support: 'Story-led northern voyage — cold water, hard cliffs, quiet cabins.',
-    body: 'Hold a fully refundable cabin reservation while itineraries and operators are confirmed.',
+    body: 'Viking Voyage is a water-movement arch: Knarr, Dreki, Skíðblaðnir, Harbor Ring, Saga Cabin, and Midgard Circuit. Partner-gated and email-list first. Predeposits opening soon.',
     tone: 'water',
+    ...emailFirst,
     gallery: [
       { src: '/images/viking.png', alt: 'Longship on fjord' },
       { src: '/images/sites/viking-fjord.jpg', alt: 'Fjord water' },
@@ -88,9 +95,10 @@ export const companyProducts = {
   atoll: {
     product: 'Atoll Habitat',
     headline: 'Living on the water line.',
-    support: 'Floating modular habitats — Atoll 01, 02, and 03 concepts.',
-    body: 'Fully refundable reservation holds your place in the interest ledger — not a deed and not a funded pre-sale.',
+    support: 'Floating modular habitats — Lagoon, Reef, Tide, and ring concepts.',
+    body: 'Atoll builds floating modular habitats. Email interest ledger only for now — not a deed. Predeposits opening soon.',
     tone: 'water',
+    ...emailFirst,
     gallery: [
       { src: '/images/atoll.png', alt: 'Floating habitat' },
       { src: '/images/sites/atoll-lagoon.jpg', alt: 'Lagoon water' },
@@ -108,8 +116,9 @@ export const companyProducts = {
     product: 'Njord Water Systems',
     headline: 'The water substrate.',
     support: 'OTEC, atmospheric water, and maritime power — research before promises.',
-    body: 'Fully refundable reservation for follow-up. No output or water-quality claim on this surface.',
+    body: 'Njord is the water substrate. Research before promises. Email follow-up until predeposits open. No output or water-quality claim on this surface.',
     tone: 'water',
+    ...emailFirst,
     gallery: [
       { src: '/images/njord.png', alt: 'Offshore platform' },
       { src: '/images/sites/njord-ocean.jpg', alt: 'Deep ocean' },
@@ -127,8 +136,9 @@ export const companyProducts = {
     product: 'Eagle Aviation',
     headline: 'Above the weather line.',
     support: 'Aviation access interest — traveler and partner queues, not tickets.',
-    body: 'Fully refundable reservation of interest. Not a flight schedule.',
+    body: 'Eagle hosts aviation access interest and partner/route research. Not a flight schedule. Email list until predeposits open.',
     tone: 'air',
+    ...emailFirst,
     gallery: [
       { src: '/images/eagle.png', alt: 'Eagle in snow' },
       { src: '/images/sites/air-clouds.jpg', alt: 'Cloud deck' },
@@ -146,8 +156,9 @@ export const companyProducts = {
     product: 'Olympus Habitat Research',
     headline: 'Habitation in the thin air.',
     support: 'Upper-atmosphere platforms studied as research — not tourism.',
-    body: 'Fully refundable hold for briefings and collaboration queues.',
+    body: 'Olympus studies thin-air habitation research. Briefings and email queues — not tourism. Predeposits opening soon.',
     tone: 'air',
+    ...emailFirst,
     gallery: [
       { src: '/images/olympus.png', alt: 'Cloud platforms' },
       { src: '/images/sites/air-clouds.jpg', alt: 'High clouds' },
@@ -165,8 +176,9 @@ export const companyProducts = {
     product: 'Aeolus Atmosphere',
     headline: 'Wind as infrastructure.',
     support: 'Climate-atmosphere research governance — updates, not deployment authority.',
-    body: 'Fully refundable reservation for consultation queues.',
+    body: 'Aeolus publishes research governance updates — not deployment authority. Email consultation queues until predeposits open.',
     tone: 'air',
+    ...emailFirst,
     gallery: [
       { src: '/images/aeolus.png', alt: 'Wind-swept sky' },
       { src: '/images/sites/aeolus-wind.jpg', alt: 'Turbines in cloud' },
@@ -184,8 +196,9 @@ export const companyProducts = {
     product: 'Phenix Mission',
     headline: 'Heat. Ascent. Return.',
     support: 'Mission-concept workspace for payload inquiry — not a launch booking.',
-    body: 'Fully refundable reservation for follow-up while the program matures.',
+    body: 'Phenix is a mission-concept workspace — not a launch booking. Email follow-up until predeposits open.',
     tone: 'space',
+    ...emailFirst,
     gallery: [
       { src: '/images/phenix.png', alt: 'Phenix bird' },
       { src: '/images/sites/aether-orbit.jpg', alt: 'Earth from orbit' },
@@ -203,8 +216,9 @@ export const companyProducts = {
     product: 'Aether Habitation',
     headline: 'Quiet rooms above the curve.',
     support: 'Space habitation concepts with legal status disclosed — never a territorial claim.',
-    body: 'Fully refundable reservation for the partner and research ledger.',
+    body: 'Aether studies quiet rooms above the curve with legal status disclosed — never a territorial claim. Email partner ledger until predeposits open.',
     tone: 'space',
+    ...emailFirst,
     gallery: [
       { src: '/images/aether.png', alt: 'Orbital habitat' },
       { src: '/images/sites/aether-orbit.jpg', alt: 'Earth orbit' },
@@ -222,9 +236,10 @@ export const companyProducts = {
     product: 'Corvus Raven OS',
     headline: 'Twenty-one prompts. One badge at the summit.',
     support:
-      'Raven OS — $100, $200, $300… through phased tiers to Prompt 21 at $21,000.',
-    body: 'Fully refundable prompt holds via Squarespace Pay Links when live. Prompt 21 unlocks the Twenty-First Raven community badge. Odin on Discord answers from the curated knowledge base.',
+      'Raven OS — $100, $200, $300… through phased tiers to Prompt 21 at $21,000. Pay Links opening soon.',
+    body: 'Raven OS phased prompts with Twenty-First Raven badge at Prompt 21. Email list today; Pay Links opening soon. Odin on Discord answers from the curated knowledge base.',
     tone: 'space',
+    ...emailFirst,
     gallery: [
       { src: '/images/corvus.png', alt: 'Raven in snow' },
       { src: '/images/sites/city-canyon.jpg', alt: 'City canyon' },

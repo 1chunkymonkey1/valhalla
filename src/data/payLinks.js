@@ -1,11 +1,8 @@
 /**
  * Squarespace Pay Link stubs.
  *
- * Create real links in Squarespace → Pay Links (prefer Squarespace Payments
- * for unlimited links), then paste URLs into `payUrl` fields below.
- * Until then, CTAs show estimated hold amounts and a “link pending” state.
- *
- * All holds are marketed as fully refundable reservation deposits.
+ * Public hall CTAs are email-only until predeposits open (`disabled: true`).
+ * Keep estimate amounts for when Pay Links go live.
  */
 
 export const PAY_LINK_STATUS = {
@@ -13,88 +10,81 @@ export const PAY_LINK_STATUS = {
   live: 'live',
 }
 
+const openingSoon = {
+  disabled: true,
+  payUrl: '',
+  notes: 'Predeposits opening soon. Email list only on the public path.',
+}
+
 /** Estimated fully refundable hold amounts by company (USD). */
 export const companyPayLinks = {
   wolf: {
     label: 'Wolf · Fenrir 01 (predeposits opening soon)',
     estimateUsd: 2500,
-    payUrl: '',
-    /** Wolf CTAs are email-only until predeposits open — do not surface Pay Links. */
-    disabled: true,
-    notes: 'Predeposits opening soon. Email list only on the public Wolf path.',
+    ...openingSoon,
   },
   holm: {
     label: 'Holm · modular home configuration hold',
     estimateUsd: 5000,
-    payUrl: '',
-    notes: 'Refundable configuration interest — not a construction contract.',
+    ...openingSoon,
   },
   demeter: {
     label: 'Demeter · land-energy program hold',
     estimateUsd: 1500,
-    payUrl: '',
-    notes: 'Refundable diligence queue — not an investment offer.',
+    ...openingSoon,
   },
   viking: {
     label: 'Viking · voyage cabin hold',
     estimateUsd: 1200,
-    payUrl: '',
-    notes: 'Refundable cabin reservation while itineraries confirm.',
+    ...openingSoon,
   },
   atoll: {
     label: 'Atoll · habitat interest hold',
     estimateUsd: 7500,
-    payUrl: '',
-    notes: 'Refundable ledger place — not a deed.',
+    ...openingSoon,
   },
   njord: {
     label: 'Njord · water systems briefing hold',
     estimateUsd: 1000,
-    payUrl: '',
-    notes: 'Refundable follow-up reservation.',
+    ...openingSoon,
   },
   eagle: {
     label: 'Eagle · aviation access hold',
     estimateUsd: 2000,
-    payUrl: '',
-    notes: 'Refundable interest — not a ticket.',
+    ...openingSoon,
   },
   olympus: {
     label: 'Olympus · habitat research hold',
     estimateUsd: 1500,
-    payUrl: '',
-    notes: 'Refundable briefing / collaboration queue.',
+    ...openingSoon,
   },
   aeolus: {
     label: 'Aeolus · atmosphere program hold',
     estimateUsd: 1000,
-    payUrl: '',
-    notes: 'Refundable consultation reservation.',
+    ...openingSoon,
   },
   phenix: {
     label: 'Phenix · mission inquiry hold',
     estimateUsd: 5000,
-    payUrl: '',
-    notes: 'Refundable payload inquiry — not a launch booking.',
+    ...openingSoon,
   },
   aether: {
     label: 'Aether · habitation partner hold',
     estimateUsd: 4000,
-    payUrl: '',
-    notes: 'Refundable partner / research ledger.',
+    ...openingSoon,
   },
   corvus: {
     label: 'Corvus · Raven OS entry (see prompt tiers)',
     estimateUsd: 100,
-    payUrl: '',
-    notes: 'Entry tier mirrors Prompt 01. Higher tiers in corvusPromptPayLinks.',
+    ...openingSoon,
+    notes:
+      'Prompt Pay Links opening soon. Email list only on the public Corvus path today.',
   },
 }
 
 /**
  * Corvus Raven OS — 21 prompt tiers.
  * payUrl left empty until Squarespace Pay Links are created.
- * Pricing defined in corvusPricing.js; amounts mirrored here for checkout wiring.
  */
 export { corvusPromptPayLinks } from './corvusPricing.js'
 

@@ -137,7 +137,7 @@ export default function CompanySite({
                 <EmailCapture
                   title="Join the list"
                   hint="Email only for now. Predeposits opening soon — no payment hold on this page."
-                  doneHint="You’re on the Wolf list. We’ll write when Fenrir updates or predeposits open."
+                  doneHint={`You’re on the ${company.name} list. We’ll write when this hall moves or predeposits open.`}
                   source={`site:${company.slug}:reserve`}
                   companyId={company.slug}
                   audience="waitlist"
@@ -245,7 +245,7 @@ export default function CompanySite({
             <EmailCapture
               title="Join the list"
               hint="Email only for now. Predeposits opening soon — no payment hold on this page. ZIP and interest can wait."
-              doneHint="You’re on the Wolf list. We’ll write when Fenrir updates or predeposits open."
+              doneHint={`You’re on the ${company.name} list. We’ll write when this hall moves or predeposits open.`}
               source={`site:${company.slug}:reserve`}
               companyId={company.slug}
               audience="waitlist"
