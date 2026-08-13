@@ -46,6 +46,13 @@ import {
   uploadPageAsset,
   upsertPageLayout,
 } from '../_lib/pageLayouts.js'
+import {
+  getAdminThread,
+  listAdminThreads,
+  markAdminRead,
+  replyAsAdmin,
+  setThreadStatus,
+} from '../_lib/siteChat.js'
 import { clientKey, rateLimit } from '../_lib/rateLimit.js'
 
 const COMPANY_SUMMARY = [
@@ -411,6 +418,53 @@ async function handlePagesUpload(req, res) {
   }
 }
 
+async function handleInbox(req, res) {
+  const session = requireAdmin(req, res)
+  if (!session) return
+
+  if (req.method === 'GET') {
+    try {
+      const url = new URL(req.url, `https://${req.headers.host || 'localhost'}`)
+      const threadId = String(url.searchParams.get('id') || url.searchParams.get('threadId') || '')
+        .trim()
+      if (threadId) {
+        const data = await getAdminThread(threadId)
+        return json(res, 200, { ok: true, ...data })
+      }
+      const pageId = String(url.searchParams.get('pageId') || url.searchParams.get('page') || '')
+        .trim()
+        .toLowerCase()
+      const data = await listAdminThreads({ pageId: pageId || undefined })
+      return json(res, 200, { ok: true, ...data })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Inbox error' })
+    }
+  }
+
+  if (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH') {
+    try {
+      const body = await readBody(req)
+      const threadId = String(body.threadId || body.id || '').trim()
+      if (!threadId) return json(res, 400, { ok: false, error: 'threadId required' })
+      const action = String(body.action || 'reply').trim().toLowerCase()
+      if (action === 'read') {
+        const data = await markAdminRead(threadId)
+        return json(res, 200, { ok: true, ...data })
+      }
+      if (action === 'close' || action === 'open') {
+        const data = await setThreadStatus(threadId, action === 'close' ? 'closed' : 'open')
+        return json(res, 200, { ok: true, ...data })
+      }
+      const data = await replyAsAdmin(threadId, body.body || body.message || body.text || '')
+      return json(res, 200, { ok: true, ...data })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'login') return handleLogin(req, res)
@@ -422,5 +476,6 @@ export default async function handler(req, res) {
   if (key === 'socials') return handleSocials(req, res)
   if (key === 'pages') return handlePages(req, res)
   if (key === 'pages/upload') return handlePagesUpload(req, res)
+  if (key === 'inbox') return handleInbox(req, res)
   return json(res, 404, { ok: false, error: 'Not found' })
 }

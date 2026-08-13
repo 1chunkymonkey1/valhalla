@@ -13,8 +13,11 @@ import DemoControls from './DemoControls'
 import SiteMenu from '../layout/SiteMenu'
 import EmailCapture from '../EmailCapture'
 import HallUnlockForm from '../HallUnlockForm'
+import CompanySocialLinks from '../CompanySocialLinks'
+import AskHallWidget from '../AskHallWidget'
 import PublishedBlocks, { fetchPublishedLayout } from '../PublishedBlocks'
 import { DISCORD_INVITE } from '../../data/pressRelease'
+import { INSTAGRAM_URL } from '../../lib/launchSchedule'
 import { Link } from 'react-router-dom'
 import SimpleCountdown from '../SimpleCountdown'
 
@@ -29,6 +32,11 @@ export default function ValhallaHub() {
   const codeHall =
     !showCountdown && now >= wave2Start ? getNextCodeHall(unlockedSet, now) || nextHall : null
   const [hubLayout, setHubLayout] = useState(null)
+  const [hubSocial, setHubSocial] = useState({
+    companyId: 'hub',
+    instagram: INSTAGRAM_URL,
+    discord: DISCORD_INVITE,
+  })
 
   useEffect(() => {
     if (showCountdown) return
@@ -36,6 +44,20 @@ export default function ValhallaHub() {
     fetchPublishedLayout('hub').then((layout) => {
       if (!cancelled) setHubLayout(layout)
     })
+    fetch('/api/hub/socials')
+      .then((r) => r.json())
+      .then((data) => {
+        if (cancelled || !data?.socials?.length) return
+        // Hub shows Valhalla IG/Discord plus a light sample of hall links (Wolf).
+        const wolf = data.socials.find((s) => s.companyId === 'wolf')
+        setHubSocial({
+          companyId: 'hub',
+          instagram: INSTAGRAM_URL,
+          discord: DISCORD_INVITE,
+          x: wolf?.x || '',
+        })
+      })
+      .catch(() => {})
     return () => {
       cancelled = true
     }
@@ -103,11 +125,10 @@ export default function ValhallaHub() {
             <footer className="vh-hub__foot">
               <Link to="/press">Press</Link>
               <Link to="/flow">Flow</Link>
-              <a href={DISCORD_INVITE} target="_blank" rel="noreferrer">
-                Discord
-              </a>
               <Link to="/contact">Contact</Link>
+              <CompanySocialLinks social={hubSocial} className="vh-hub__socials" />
             </footer>
+            <AskHallWidget pageId="hub" hallName="Valhalla" dormant={false} />
           </>
         )}
       </div>

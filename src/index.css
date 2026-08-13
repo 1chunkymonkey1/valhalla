@@ -2468,3 +2468,344 @@
   width: min(100%, 1000px);
   padding: 0 1rem;
 }
+
+/* Ask-the-hall visitor widget */
+.vh-ask {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 60;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.vh-ask__launcher {
+  position: relative;
+  border: 1px solid rgba(20, 20, 18, 0.22);
+  background: #f7f7f3;
+  color: #1a1a18;
+  padding: 0.65rem 1rem;
+  font: inherit;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.vh-ask__badge {
+  position: absolute;
+  top: -0.35rem;
+  right: -0.35rem;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  background: #2f5c45;
+  color: #f7f7f3;
+  font-size: 0.65rem;
+  line-height: 1.1rem;
+  text-align: center;
+}
+
+.vh-ask__panel {
+  width: min(22rem, calc(100vw - 2rem));
+  max-height: min(32rem, calc(100vh - 2rem));
+  display: flex;
+  flex-direction: column;
+  background: #f7f7f3;
+  border: 1px solid rgba(20, 20, 18, 0.16);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  color: #1a1a18;
+}
+
+.vh-ask__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.85rem 0.9rem 0.35rem;
+}
+
+.vh-ask__kicker {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.vh-ask__title {
+  margin: 0.15rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.vh-ask__close {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 0.8rem;
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+.vh-ask__blurb {
+  margin: 0;
+  padding: 0 0.9rem 0.55rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  opacity: 0.65;
+}
+
+.vh-ask__msgs {
+  flex: 1;
+  overflow: auto;
+  padding: 0.4rem 0.9rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 8rem;
+}
+
+.vh-ask__empty {
+  margin: 0.5rem 0;
+  font-size: 0.82rem;
+  opacity: 0.5;
+}
+
+.vh-ask__bubble {
+  max-width: 92%;
+  padding: 0.45rem 0.6rem;
+  background: rgba(0, 0, 0, 0.04);
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.vh-ask__bubble p {
+  margin: 0.15rem 0 0;
+}
+
+.vh-ask__bubble--me {
+  align-self: flex-end;
+  background: rgba(47, 92, 69, 0.12);
+}
+
+.vh-ask__bubble--admin {
+  align-self: flex-start;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.vh-ask__bubble--system {
+  align-self: stretch;
+  background: transparent;
+  border-left: 2px solid rgba(0, 0, 0, 0.12);
+  opacity: 0.8;
+}
+
+.vh-ask__who {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.vh-ask__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.65rem 0.9rem 0.9rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.vh-ask__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.vh-ask__form input,
+.vh-ask__form textarea {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: #fff;
+  padding: 0.4rem 0.5rem;
+  font: inherit;
+  font-size: 0.82rem;
+  resize: vertical;
+}
+
+.vh-ask__form button {
+  border: 1px solid rgba(20, 20, 18, 0.35);
+  background: #1a1a18;
+  color: #f7f7f3;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.vh-ask__form button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.vh-ask__error {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #8a2a2a;
+}
+
+.cs-foot__socials,
+.vh-hub__socials {
+  display: inline-flex;
+  margin: 0;
+  gap: 0.65rem 0.9rem;
+}
+
+.cs-foot {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+/* Admin inbox */
+.vh-admin__inbox {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vh-admin__inbox-split {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .vh-admin__inbox-split {
+    grid-template-columns: minmax(14rem, 18rem) 1fr;
+    align-items: start;
+  }
+}
+
+.vh-admin__inbox-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.vh-admin__inbox-item {
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 0.65rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  cursor: pointer;
+  font: inherit;
+}
+
+.vh-admin__inbox-item.is-active {
+  border-color: rgba(47, 92, 69, 0.55);
+}
+
+.vh-admin__inbox-item.is-unread strong {
+  color: #2f5c45;
+}
+
+.vh-admin__inbox-item span {
+  font-size: 0.78rem;
+  opacity: 0.65;
+}
+
+.vh-admin__inbox-preview {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vh-admin__inbox-thread {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 0.85rem;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.vh-admin__inbox-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.vh-admin__inbox-head h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+}
+
+.vh-admin__inbox-msgs {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-height: 50vh;
+}
+
+.vh-admin__bubble {
+  padding: 0.5rem 0.65rem;
+  background: rgba(0, 0, 0, 0.04);
+  font-size: 0.88rem;
+}
+
+.vh-admin__bubble span {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.vh-admin__bubble p {
+  margin: 0.2rem 0 0;
+}
+
+.vh-admin__bubble--admin {
+  background: rgba(47, 92, 69, 0.1);
+  align-self: flex-end;
+  max-width: 90%;
+}
+
+.vh-admin__bubble--visitor {
+  align-self: flex-start;
+  max-width: 90%;
+}
+
+.vh-admin__bubble--system {
+  opacity: 0.75;
+  border-left: 2px solid rgba(0, 0, 0, 0.12);
+  background: transparent;
+}
+
+.vh-admin__inbox-compose {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vh-admin__inbox-compose textarea {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  padding: 0.5rem;
+  font: inherit;
+  resize: vertical;
+}

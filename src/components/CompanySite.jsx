@@ -5,10 +5,10 @@ import ReservationForm from './ReservationForm'
 import ProductRoadmap from './roadmap/ProductRoadmap'
 import SiteMenu from './layout/SiteMenu'
 import CompanySocialLinks from './CompanySocialLinks'
+import AskHallWidget from './AskHallWidget'
 import PublishedBlocks, { fetchPublishedLayout } from './PublishedBlocks'
 import { companyProducts } from '../data/companyProducts'
 import { formatUsd, getCompanyPayLink } from '../data/payLinks'
-import { DISCORD_INVITE } from '../data/pressRelease'
 
 const TONES = {
   land: {
@@ -147,12 +147,11 @@ export default function CompanySite({
             </div>
             <footer className="cs-foot">
               <Link to="/?demo=1">← mosaic</Link>
-              <a href={DISCORD_INVITE} target="_blank" rel="noreferrer">
-                Discord
-              </a>
+              <CompanySocialLinks social={social} className="cs-foot__socials" />
               <Link to="/flow">Flow</Link>
             </footer>
           </main>
+          <AskHallWidget pageId={company.slug} hallName={company.name} />
         </>
       ) : (
         <>
@@ -247,12 +246,11 @@ export default function CompanySite({
 
         <footer className="cs-foot">
           <Link to="/?demo=1">← mosaic</Link>
-          <a href={DISCORD_INVITE} target="_blank" rel="noreferrer">
-            Discord
-          </a>
+          <CompanySocialLinks social={social} className="cs-foot__socials" />
           <Link to="/flow">Flow</Link>
         </footer>
       </main>
+      <AskHallWidget pageId={company.slug} hallName={company.name} />
         </>
       )}
     </div>

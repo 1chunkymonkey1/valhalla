@@ -1,5 +1,8 @@
 {
   "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    {
+      "source": "/((?!api/|src/|@vite/|@react-refresh|@id/|@fs/|node_modules/|assets/).*)",
+      "destination": "/index.html"
+    }
   ]
 }

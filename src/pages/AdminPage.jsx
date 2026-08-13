@@ -30,6 +30,14 @@ export default function AdminPage() {
   const [codesMsg, setCodesMsg] = useState('')
   const [socials, setSocials] = useState([])
   const [socialMsg, setSocialMsg] = useState('')
+  const [inboxThreads, setInboxThreads] = useState([])
+  const [inboxUnread, setInboxUnread] = useState(0)
+  const [inboxActive, setInboxActive] = useState(null)
+  const [inboxMessages, setInboxMessages] = useState([])
+  const [inboxReply, setInboxReply] = useState('')
+  const [inboxMsg, setInboxMsg] = useState('')
+  const [inboxFilter, setInboxFilter] = useState('')
+  const [inboxStorage, setInboxStorage] = useState('')
 
   async function refreshSession() {
     const controller = new AbortController()
@@ -46,6 +54,7 @@ export default function AdminPage() {
         loadPeople().catch(() => {})
         loadCodes().catch(() => {})
         loadSocials().catch(() => {})
+        loadInbox().catch(() => {})
       } else {
         setAuth({ loading: false, ok: false, email: null })
       }
@@ -89,6 +98,75 @@ export default function AdminPage() {
     setSocials(data.socials || [])
   }
 
+  async function loadInbox(pageId = inboxFilter) {
+    const q = pageId ? `?pageId=${encodeURIComponent(pageId)}` : ''
+    const res = await fetch(`/api/admin/inbox${q}`, { credentials: 'include' })
+    if (!res.ok) return
+    const data = await res.json()
+    setInboxThreads(data.threads || [])
+    setInboxUnread(data.unreadTotal || 0)
+    setInboxStorage(data.storage || '')
+  }
+
+  async function openInboxThread(threadId) {
+    setInboxMsg('')
+    const res = await fetch(`/api/admin/inbox?id=${encodeURIComponent(threadId)}`, {
+      credentials: 'include',
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      setInboxMsg(data.error || 'Could not open thread')
+      return
+    }
+    setInboxActive(data.thread || null)
+    setInboxMessages(data.messages || [])
+    await fetch('/api/admin/inbox', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ threadId, action: 'read' }),
+    })
+    await loadInbox()
+  }
+
+  async function sendInboxReply(e) {
+    e.preventDefault()
+    if (!inboxActive?.id || !inboxReply.trim()) return
+    setInboxMsg('')
+    const res = await fetch('/api/admin/inbox', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ threadId: inboxActive.id, action: 'reply', body: inboxReply }),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      setInboxMsg(data.error || 'Reply failed')
+      return
+    }
+    setInboxReply('')
+    setInboxActive(data.thread || inboxActive)
+    setInboxMessages(data.messages || [])
+    await loadInbox()
+  }
+
+  async function setInboxStatus(status) {
+    if (!inboxActive?.id) return
+    const res = await fetch('/api/admin/inbox', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ threadId: inboxActive.id, action: status }),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      setInboxMsg(data.error || 'Update failed')
+      return
+    }
+    setInboxActive(data.thread || inboxActive)
+    await loadInbox()
+  }
+
   useEffect(() => {
     refreshSession()
     try {
@@ -100,6 +178,13 @@ export default function AdminPage() {
       // ignore
     }
   }, [])
+
+  useEffect(() => {
+    if (!auth.ok || adminTab !== 'inbox') return
+    loadInbox()
+    const id = setInterval(() => loadInbox(), 8000)
+    return () => clearInterval(id)
+  }, [auth.ok, adminTab, inboxFilter])
 
   async function pastePassword() {
     setError('')
@@ -136,6 +221,7 @@ export default function AdminPage() {
     await loadPeople()
     await loadCodes()
     await loadSocials()
+    await loadInbox()
   }
 
   async function logout() {
@@ -144,6 +230,9 @@ export default function AdminPage() {
     setLedger(null)
     setCodes([])
     setSocials([])
+    setInboxThreads([])
+    setInboxActive(null)
+    setInboxMessages([])
   }
 
   async function saveCode(hallId) {
@@ -387,6 +476,7 @@ export default function AdminPage() {
       <nav className="vh-team__tabs">
         {[
           ['overview', 'Overview'],
+          ['inbox', inboxUnread ? `Inbox (${inboxUnread})` : 'Inbox'],
           ['people', 'People'],
           ['codes', 'Hall codes'],
           ['socials', 'Socials'],
@@ -430,6 +520,13 @@ export default function AdminPage() {
             <p className="vh-admin__note">Reservations + email signups on server.</p>
           </div>
           <div className="vh-admin__card">
+            <h2>Site inbox</h2>
+            <p className="vh-admin__count">{inboxUnread}</p>
+            <p className="vh-admin__note">
+              Unread hall chats from Ask widgets. Open the Inbox tab to reply.
+            </p>
+          </div>
+          <div className="vh-admin__card">
             <h2>Twelve halls</h2>
             <ul className="vh-admin__companies">
               {(ledger?.companies || []).map((c) => (
@@ -441,6 +538,134 @@ export default function AdminPage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+      )}
+
+      {adminTab === 'inbox' && (
+        <section className="vh-admin__inbox">
+          <div className="vh-admin__card">
+            <h2>Hall inbox</h2>
+            <p className="vh-admin__note">
+              Visitors ask via the Ask widget on each company site and the live hub. Replies appear
+              in their session. Storage: <strong>{inboxStorage || '…'}</strong>
+              {inboxStorage === 'memory'
+                ? ' — run Supabase chat migration for durable threads.'
+                : ''}
+            </p>
+            <label>
+              Filter hall
+              <select
+                value={inboxFilter}
+                onChange={(e) => {
+                  setInboxFilter(e.target.value)
+                  setInboxActive(null)
+                  setInboxMessages([])
+                }}
+              >
+                <option value="">All pages</option>
+                <option value="hub">hub</option>
+                {HALL_IDS.map((h) => (
+                  <option key={h} value={h}>
+                    {h}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {inboxMsg && <p className="vh-admin__note">{inboxMsg}</p>}
+          </div>
+          <div className="vh-admin__inbox-split">
+            <ul className="vh-admin__inbox-list">
+              {inboxThreads.map((t) => (
+                <li key={t.id}>
+                  <button
+                    type="button"
+                    className={`vh-admin__inbox-item ${inboxActive?.id === t.id ? 'is-active' : ''} ${t.unreadAdmin ? 'is-unread' : ''}`}
+                    onClick={() => openInboxThread(t.id)}
+                  >
+                    <strong>
+                      {t.pageId}
+                      {t.unreadAdmin ? ` · ${t.unreadAdmin} new` : ''}
+                    </strong>
+                    <span>
+                      {t.visitorName || t.visitorEmail || 'Visitor'} · {t.status}
+                    </span>
+                    <span className="vh-admin__inbox-preview">{t.preview || '—'}</span>
+                  </button>
+                </li>
+              ))}
+              {!inboxThreads.length && (
+                <p className="vh-admin__empty">No messages yet — Ask widgets write here.</p>
+              )}
+            </ul>
+            <div className="vh-admin__inbox-thread">
+              {!inboxActive && (
+                <p className="vh-admin__empty">Select a thread to reply.</p>
+              )}
+              {inboxActive && (
+                <>
+                  <header className="vh-admin__inbox-head">
+                    <div>
+                      <h2>
+                        {inboxActive.pageId}
+                        {inboxActive.visitorName ? ` · ${inboxActive.visitorName}` : ''}
+                      </h2>
+                      <p className="vh-admin__note">
+                        {inboxActive.visitorEmail || 'No email'} · {inboxActive.status}
+                      </p>
+                    </div>
+                    <div className="vh-admin__row">
+                      {inboxActive.status === 'open' ? (
+                        <button
+                          type="button"
+                          className="vh-admin__secondary"
+                          onClick={() => setInboxStatus('close')}
+                        >
+                          Close
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          className="vh-admin__secondary"
+                          onClick={() => setInboxStatus('open')}
+                        >
+                          Reopen
+                        </button>
+                      )}
+                    </div>
+                  </header>
+                  <div className="vh-admin__inbox-msgs">
+                    {inboxMessages.map((m) => (
+                      <div
+                        key={m.id}
+                        className={`vh-admin__bubble vh-admin__bubble--${m.sender}`}
+                      >
+                        <span>
+                          {m.sender === 'visitor'
+                            ? 'Visitor'
+                            : m.sender === 'admin'
+                              ? 'You'
+                              : 'System'}
+                        </span>
+                        <p>{m.body}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <form className="vh-admin__inbox-compose" onSubmit={sendInboxReply}>
+                    <textarea
+                      rows={3}
+                      value={inboxReply}
+                      onChange={(e) => setInboxReply(e.target.value)}
+                      placeholder="Reply to visitor…"
+                      required
+                    />
+                    <button type="submit" disabled={!inboxReply.trim()}>
+                      Send reply
+                    </button>
+                  </form>
+                </>
+              )}
+            </div>
           </div>
         </section>
       )}
@@ -628,8 +853,9 @@ export default function AdminPage() {
           <div className="vh-admin__card">
             <h2>Social tower</h2>
             <p className="vh-admin__note">
-              LinkedIn, Instagram, X, Discord per hall. Shown on team workspace and company pages
-              when set.
+              LinkedIn, Instagram, X, Discord per hall. Public company pages show these links.
+              Empty rows auto-fill suggested placeholder handles — create/claim the accounts, then
+              replace with real URLs (and LinkedIn when ready).
             </p>
             {socialMsg && <p className="vh-admin__note">{socialMsg}</p>}
           </div>

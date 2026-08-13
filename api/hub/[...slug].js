@@ -17,6 +17,12 @@ import {
 import { listCompanySocials, toPublicSocial } from '../_lib/companySocials.js'
 import { getPublishedPageLayout, isValidPageId } from '../_lib/pageLayouts.js'
 import { isSupabaseConfigured } from '../_lib/supabase.js'
+import {
+  getVisitorThread,
+  markVisitorRead,
+  newVisitorToken,
+  startOrContinueThread,
+} from '../_lib/siteChat.js'
 
 function routeKey(req) {
   const slug = req.query?.slug
@@ -146,11 +152,68 @@ async function handlePage(req, res) {
   }
 }
 
+async function handleChat(req, res) {
+  if (req.method === 'GET') {
+    try {
+      const url = new URL(req.url, `https://${req.headers.host || 'localhost'}`)
+      const threadId = String(url.searchParams.get('threadId') || url.searchParams.get('id') || '')
+        .trim()
+      const token = String(url.searchParams.get('token') || '').trim()
+      if (!threadId || !token) {
+        return json(res, 400, { ok: false, error: 'threadId and token required' })
+      }
+      const data = await getVisitorThread(threadId, token)
+      return json(res, 200, { ok: true, ...data })
+    } catch (err) {
+      return json(res, 404, { ok: false, error: err.message || 'Not found' })
+    }
+  }
+
+  if (req.method === 'POST') {
+    const rl = rateLimit(clientKey(req, 'hub-chat'), { limit: 40, windowMs: 15 * 60 * 1000 })
+    if (!rl.ok) {
+      res.setHeader('Retry-After', String(rl.retryAfterSec))
+      return json(res, 429, { ok: false, error: 'Too many messages. Try again later.' })
+    }
+    try {
+      const body = await readBody(req)
+      const action = String(body.action || 'send').trim().toLowerCase()
+      if (action === 'token') {
+        return json(res, 200, { ok: true, visitorToken: newVisitorToken() })
+      }
+      if (action === 'read') {
+        const threadId = String(body.threadId || '').trim()
+        const token = String(body.visitorToken || body.token || '').trim()
+        const data = await markVisitorRead(threadId, token)
+        return json(res, 200, { ok: true, ...data })
+      }
+      let visitorToken = String(body.visitorToken || body.token || '').trim()
+      if (!visitorToken) visitorToken = newVisitorToken()
+      const data = await startOrContinueThread({
+        pageId: String(body.pageId || body.page || body.hall || '')
+          .trim()
+          .toLowerCase(),
+        visitorToken,
+        threadId: body.threadId ? String(body.threadId).trim() : '',
+        visitorName: body.name || body.visitorName || '',
+        visitorEmail: body.email || body.visitorEmail || '',
+        body: body.body || body.message || body.text || '',
+      })
+      return json(res, 200, { ok: true, ...data })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'status' || key === 'unlocks') return handleStatus(req, res)
   if (key === 'unlock') return handleUnlock(req, res)
   if (key === 'socials') return handleSocials(req, res)
   if (key === 'page') return handlePage(req, res)
+  if (key === 'chat') return handleChat(req, res)
   return json(res, 404, { ok: false, error: 'Not found' })
 }

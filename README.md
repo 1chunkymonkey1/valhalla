@@ -37,8 +37,14 @@ Demo the full clock with `/?demo=1`.
 ### Social tower
 
 - `/admin` → **Socials**: LinkedIn, Instagram, X, Discord (+ follower notes / last-checked) per company.
-- Persists in Supabase `company_socials` (see migration).
-- Surfaces on `/team` and company pages when URLs are set.
+- Persists in Supabase `company_socials` (see migration). Empty rows auto-seed suggested placeholder handles.
+- Surfaces on company pages (about + footer), `/team`, and lightly on the live hub.
+
+### Site chat
+
+- Compact **Ask** widget on each open hall + live hub → `/admin` → **Inbox** (human reply).
+- APIs: `POST/GET /api/hub/chat`, `GET/POST /api/admin/inbox`.
+- Run `supabase/migrations/20260813_site_chat.sql` for durable storage.
 
 ## Vercel environment
 

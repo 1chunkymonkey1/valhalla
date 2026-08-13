@@ -1,5 +1,6 @@
 /**
  * Per-company social links for the admin social tower.
+ * Empty rows are filled with suggested placeholder URLs (not yet claimed accounts).
  */
 
 import { getSupabase, isSupabaseConfigured } from './supabase.js'
@@ -18,6 +19,88 @@ export const SOCIAL_HALLS = [
   'aeolus',
   'corvus',
 ]
+
+/** Shared Valhalla Discord — safe default for every hall until hall-specific invites exist. */
+export const VALHALLA_DISCORD = 'https://discord.gg/JA6wrNg6n'
+
+/**
+ * Suggested public handles. Accounts may not exist yet — Eason must create/claim
+ * and update URLs in /admin → Socials. Placeholders only fill empty fields.
+ */
+export const SOCIAL_PLACEHOLDERS = {
+  wolf: {
+    instagram: 'https://www.instagram.com/wolf_transit/',
+    x: 'https://x.com/wolf_transit',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  viking: {
+    instagram: 'https://www.instagram.com/viking_marine/',
+    x: 'https://x.com/viking_marine',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  eagle: {
+    instagram: 'https://www.instagram.com/eagle_aviation/',
+    x: 'https://x.com/eagle_aviation',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  phenix: {
+    instagram: 'https://www.instagram.com/phenix_aerospace/',
+    x: 'https://x.com/phenix_aerospace',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  holm: {
+    instagram: 'https://www.instagram.com/holm_development/',
+    x: 'https://x.com/holm_development',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  atoll: {
+    instagram: 'https://www.instagram.com/atoll_living/',
+    x: 'https://x.com/atoll_living',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  olympus: {
+    instagram: 'https://www.instagram.com/olympus_habitat/',
+    x: 'https://x.com/olympus_habitat',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  aether: {
+    instagram: 'https://www.instagram.com/aether_orbit/',
+    x: 'https://x.com/aether_orbit',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  demeter: {
+    instagram: 'https://www.instagram.com/demeter_energy/',
+    x: 'https://x.com/demeter_energy',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  njord: {
+    instagram: 'https://www.instagram.com/njord_water/',
+    x: 'https://x.com/njord_water',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  aeolus: {
+    instagram: 'https://www.instagram.com/aeolus_climate/',
+    x: 'https://x.com/aeolus_climate',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  corvus: {
+    instagram: 'https://www.instagram.com/corvus_intel/',
+    x: 'https://x.com/corvus_intel',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+}
 
 const EMPTY = {
   linkedin: '',
@@ -48,25 +131,81 @@ function mapRow(row) {
   }
 }
 
+function applyPlaceholders(companyId, row) {
+  const ph = SOCIAL_PLACEHOLDERS[companyId] || {}
+  const base = { companyId, ...EMPTY, ...(row || {}) }
+  const out = { ...base }
+  const seededFields = []
+  for (const key of ['linkedin', 'instagram', 'x', 'discord']) {
+    if (!String(out[key] || '').trim() && ph[key]) {
+      out[key] = ph[key]
+      seededFields.push(key)
+    }
+  }
+  out.placeholderFields = seededFields
+  out.isPlaceholder = seededFields.length > 0
+  return out
+}
+
+let seedAttempted = false
+
+/** Persist placeholders into empty store rows once per cold start (best-effort). */
+async function seedEmptyRows(rows) {
+  if (seedAttempted) return rows
+  seedAttempted = true
+  const next = []
+  for (const row of rows) {
+    const filled = applyPlaceholders(row.companyId, row)
+    const needsWrite =
+      filled.placeholderFields.length > 0 &&
+      !row.linkedin &&
+      !row.instagram &&
+      !row.x &&
+      !row.discord
+    if (needsWrite) {
+      try {
+        const saved = await upsertCompanySocial(row.companyId, {
+          linkedin: filled.linkedin,
+          instagram: filled.instagram,
+          x: filled.x,
+          discord: filled.discord,
+          followerNotes:
+            row.followerNotes ||
+            'Placeholder URLs — create/claim accounts, then replace with real links.',
+          lastChecked: row.lastChecked,
+        })
+        next.push(applyPlaceholders(row.companyId, saved))
+      } catch {
+        next.push(filled)
+      }
+    } else {
+      next.push(filled)
+    }
+  }
+  return next
+}
+
 export async function listCompanySocials() {
+  let rows
   if (!isSupabaseConfigured()) {
-    return SOCIAL_HALLS.map((id) => ({
+    rows = SOCIAL_HALLS.map((id) => ({
       companyId: id,
       ...(mem()[id] || EMPTY),
     }))
+  } else {
+    const sb = getSupabase()
+    const { data, error } = await sb.from('company_socials').select('*')
+    if (error) throw error
+    const byId = Object.fromEntries((data || []).map((r) => [r.company_id, mapRow(r)]))
+    rows = SOCIAL_HALLS.map((id) => byId[id] || { companyId: id, ...EMPTY })
   }
-
-  const sb = getSupabase()
-  const { data, error } = await sb.from('company_socials').select('*')
-  if (error) throw error
-  const byId = Object.fromEntries((data || []).map((r) => [r.company_id, mapRow(r)]))
-  return SOCIAL_HALLS.map((id) => byId[id] || { companyId: id, ...EMPTY })
+  return seedEmptyRows(rows)
 }
 
 export async function getCompanySocial(companyId) {
   if (!SOCIAL_HALLS.includes(companyId)) return null
   if (!isSupabaseConfigured()) {
-    return { companyId, ...(mem()[companyId] || EMPTY) }
+    return applyPlaceholders(companyId, { companyId, ...(mem()[companyId] || EMPTY) })
   }
   const sb = getSupabase()
   const { data, error } = await sb
@@ -75,7 +214,7 @@ export async function getCompanySocial(companyId) {
     .eq('company_id', companyId)
     .maybeSingle()
   if (error) throw error
-  return mapRow(data) || { companyId, ...EMPTY }
+  return applyPlaceholders(companyId, mapRow(data) || { companyId, ...EMPTY })
 }
 
 export async function upsertCompanySocial(companyId, patch) {
@@ -102,7 +241,7 @@ export async function upsertCompanySocial(companyId, patch) {
       lastChecked: row.lastChecked,
       updatedAt: now,
     }
-    return { companyId, ...mem()[companyId] }
+    return applyPlaceholders(companyId, { companyId, ...mem()[companyId] })
   }
 
   const sb = getSupabase()
@@ -129,5 +268,6 @@ export function toPublicSocial(row) {
   if (row.instagram) out.instagram = row.instagram
   if (row.x) out.x = row.x
   if (row.discord) out.discord = row.discord
+  if (row.isPlaceholder) out.placeholder = true
   return out
 }

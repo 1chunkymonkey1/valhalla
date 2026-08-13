@@ -26,6 +26,12 @@ Team users, invites, tasks, notes, activity, email signups, and reservations per
 
    Tables: `hall_codes`, `company_socials`
 
+6. Also run the site chat migration:
+
+   `supabase/migrations/20260813_site_chat.sql`
+
+   Tables: `chat_threads`, `chat_messages`
+
 ## 3. Copy API keys
 
 1. Project **Settings** → **API**
@@ -68,6 +74,15 @@ Deployments → latest Production → **Redeploy** (or push to `main`).
 - `/admin` → **Hall codes**: set Instagram unlock codes for Eagle → Corvus (or use `HALL_CODE_<HALL>` env vars).
 - `/admin` → **Socials**: LinkedIn / Instagram / X / Discord URLs per company.
 - Public: `GET /api/hub/status`, `POST /api/hub/unlock`, `GET /api/hub/socials`.
+- Empty social rows auto-seed suggested placeholder handles (e.g. `wolf_transit`, `holm_development`, `phenix_aerospace`) plus the shared Discord invite. **Create/claim those accounts**, then replace URLs in Admin → Socials. LinkedIn stays empty until you add real company pages.
+
+## Site chat (Ask the hall)
+
+1. Run `supabase/migrations/20260813_site_chat.sql` in the SQL Editor.
+2. Visitors use the compact **Ask** widget on each open company page and on the live (non-dormant) hub.
+3. Messages land in `/admin` → **Inbox**. Founder replies there; the visitor sees replies in the same session/thread.
+4. Public: `GET|POST /api/hub/chat`. Admin: `GET|POST /api/admin/inbox`.
+5. Without Supabase, chat falls back to memory (lost on cold starts) — same pattern as other empire features.
 
 ## Page layouts (founder visual editor)
 
