@@ -30,26 +30,23 @@ export default function ValhallaHub() {
   return (
     <div className={`vh-hub ${showCountdown ? 'vh-hub--dormant' : ''}`}>
       <div className="vh-hub__grain" aria-hidden />
+      {showCountdown && (
+        <img
+          className="vh-hub__brand-corner"
+          src="/brand-mark.png"
+          alt="Valhalla"
+          width={32}
+          height={32}
+          decoding="async"
+        />
+      )}
       {!showCountdown && <SiteMenu tone="hub" />}
       <div className="vh-hub__inner">
         <DemoControls mode={mode} />
 
         {showCountdown ? (
           <header className="vh-hub__header vh-hub__header--solo">
-            <img
-              className="vh-hub__glyph"
-              src="/brand-mark.png"
-              alt=""
-              width={40}
-              height={40}
-              decoding="async"
-            />
-            <p className="vh-hub__mark">Valhalla</p>
-            <CountdownClock
-              targetDate={eventStart}
-              now={now}
-              label="August 13 · 8:00 AM PDT"
-            />
+            <CountdownClock targetDate={eventStart} now={now} />
           </header>
         ) : (
           <>
