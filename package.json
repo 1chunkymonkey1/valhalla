@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "admin:totp": "node scripts/generate-admin-totp.mjs"
+    "admin:totp": "node scripts/generate-admin-totp.mjs",
+    "sync:product-images": "node scripts/sync-product-images.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.3",

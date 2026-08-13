@@ -1,30 +1,35 @@
-Fenrir product-in-environment recipe
-====================================
+Fenrir / Wolf product-in-environment recipe
+==========================================
 
-Goal: adventure motorcycle composited into Eason’s real Wolf / launch plates
-(snow whiteout, wolf-ref winter slope, Luke frost meadow / mountain bridge).
+Full 12-hall batch checklist + tonight workflow:
+  docs/product-images.md
 
-Ranked tools for THIS workflow (plate + vehicle insert):
-  1. Gemini image edit (Nano Banana / Gemini 2.5 Flash Image) — best plate lock:
-     upload the real photo, instruct “add motorcycle, keep background pixels”
-  2. GPT-image (ChatGPT image edit) — strong edit + lighting match on uploaded plate
-  3. Flux (Kontext / Fill / Redux) — excellent photoreal; use img2img or inpaint
-     with the plate as control; great when you already have a cutout bike
-  4. Midjourney — gorgeous bikes, weaker plate fidelity unless --cref/--sref /
-     remix on the exact plate; easy to drift from the real location
+Ranked tools for plate + vehicle insert:
+  1. Gemini image edit (Nano Banana / Gemini 2.5 Flash Image) — best plate lock
+  2. GPT-image (ChatGPT image edit) — strong edit + lighting match
+  3. Flux (Kontext / Fill / Redux) — excellent photoreal; img2img / inpaint
+  4. Midjourney — gorgeous subjects, weaker plate fidelity
 
-In-repo now: GenerateImage seed assets using public/images/wolf.png,
-sites/wolf-ref.jpg, and plates in ../_plates/. Replace with Gemini/GPT edits
-on those plates for final production stills.
+After dropping JPGs into public/images/products/{company}/{slug}.jpg:
+  npm run sync:product-images
+
+Naming: cell id = filename stem (hati-01.jpg, knarr-01.jpg, …).
 
 Prompt skeleton (paste with plate attached):
-  Photoreal electric adventure motorcycle (matte charcoal / dark iron, knobby
-  tires, no logos) standing in THIS exact photograph. Preserve the original
-  landscape, trees, snow texture, and camera grain. Match overcast light and
-  cast a soft shadow consistent with the plate. Tires slightly sunk in snow.
-  No rider, no UI, no purple grade, no CGI glow. Documentary product photo.
+  Photoreal [PRODUCT NOUN] (matte charcoal / dark iron, no logos) in THIS exact
+  photograph. Preserve the original landscape, trees, snow/water/sky texture,
+  and camera grain. Match overcast or plate light; cast a soft consistent shadow.
+  Ground contact real (tires slightly sunk, hull wet, etc.). No rider/people,
+  no UI, no purple grade, no CGI glow. Documentary product photo.
 
-Files:
-  fenrir-01.jpg — whiteout snow field (Wolf hero plate mood)
-  fenrir-02.jpg — winter trees / slope (wolf-ref mood)
-  fenrir-03.jpg — frost bridge / mountain approach (Luke plates)
+Wolf plates:
+  ../_plates/wolf-snow-alt.jpg
+  ../_plates/luke-frost-meadow-bridge.jpg
+  ../_plates/luke-bridge-mountain.jpg
+  ../../sites/wolf-ref.jpg
+
+Wolf seed stills (replace with Gemini/GPT plate composites for finals):
+  fenrir-01.jpg — whiteout snow
+  fenrir-02.jpg — winter trees / slope
+  fenrir-03.jpg — frost bridge / mountain
+  + hati / skoll / geri / freki / dire-wolf when present

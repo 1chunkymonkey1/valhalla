@@ -4,6 +4,7 @@ import {
   matrixCellOpacity,
   formatMatrixDate,
 } from '../../data/hallMatrices'
+import { resolveProductImage } from '../../lib/productImages'
 
 export default function ProductMatrix({ companyId }) {
   const matrix = getHallMatrix(companyId)
@@ -116,7 +117,7 @@ export default function ProductMatrix({ companyId }) {
                   rows.length,
                 )
                 const href = `/${companyId}/${cell.id}`
-                const imageSrc = cell.image || line.image
+                const imageSrc = resolveProductImage(companyId, cell, line)
                 return (
                   <div key={line.id} role="cell" className="product-matrix__td">
                     <Link

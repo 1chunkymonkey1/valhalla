@@ -9,6 +9,7 @@ import SiteMenu from '../components/layout/SiteMenu'
 import { formatMatrixDate } from '../data/hallMatrices'
 import { CORVUS_PHASES, corvusPromptPayLinks } from '../data/corvusPricing'
 import { formatUsd } from '../data/payLinks'
+import { resolveProductImage } from '../lib/productImages'
 
 const TONES = {
   land: {
@@ -63,6 +64,7 @@ export default function ProductDetailPage({
   const highlights = cell.highlights || line.highlights || []
   const phases =
     cell.phases && matrix.phasesForLineId === line.id ? matrix.phases : null
+  const heroImage = resolveProductImage(companyId, cell, line)
 
   return (
     <div
@@ -100,10 +102,10 @@ export default function ProductDetailPage({
       </header>
 
       <main className="product-detail__main">
-        {(cell.image || line.image) && (
+        {heroImage && (
           <figure className="product-detail__hero">
             <img
-              src={cell.image || line.image}
+              src={heroImage}
               alt={`${displayName} in the field`}
               loading="eager"
               decoding="async"
@@ -113,10 +115,10 @@ export default function ProductDetailPage({
 
         <section
           className={`product-detail__blueprint${
-            cell.image || line.image ? ' product-detail__blueprint--copy-only' : ''
+            heroImage ? ' product-detail__blueprint--copy-only' : ''
           }`}
         >
-          {!(cell.image || line.image) && (
+          {!heroImage && (
             <ProductStencil
               stencil={line.stencil || line.vehicle}
               hall={company.name}
