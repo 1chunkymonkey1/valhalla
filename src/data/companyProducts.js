@@ -215,10 +215,11 @@ export const companyProducts = {
     ],
   },
   corvus: {
-    product: 'Corvus Odin',
-    headline: 'A founder workspace that stays local.',
-    support: 'Odin — early access for builders who want signal without the cloud circus.',
-    body: 'Fully refundable early-access reservation while the product ships in stages.',
+    product: 'Corvus Raven OS',
+    headline: 'Twenty-one prompts. One badge at the summit.',
+    support:
+      'Raven OS — $100, $200, $300… through phased tiers to Prompt 21 at $21,000.',
+    body: 'Fully refundable prompt holds via Squarespace Pay Links when live. Prompt 21 unlocks the Twenty-First Raven community badge. Odin on Discord answers from the curated knowledge base.',
     tone: 'space',
     gallery: [
       { src: '/images/corvus.png', alt: 'Raven in snow' },

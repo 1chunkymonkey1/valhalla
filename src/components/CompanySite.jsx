@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
 import NextDoor from './NextDoor'
 import ReservationForm from './ReservationForm'
+import ProductRoadmap from './roadmap/ProductRoadmap'
+import SiteMenu from './layout/SiteMenu'
 import { companyProducts } from '../data/companyProducts'
+import { formatUsd, getCompanyPayLink } from '../data/payLinks'
+import { DISCORD_INVITE } from '../data/pressRelease'
 
 const TONES = {
   land: {
@@ -59,6 +63,7 @@ export default function CompanySite({ company, now }) {
     alt: company.name,
   }
   const strip = product.gallery.slice(1)
+  const pay = getCompanyPayLink(company.slug)
 
   return (
     <div
@@ -73,6 +78,10 @@ export default function CompanySite({ company, now }) {
         '--cs-wash': tone.wash,
       }}
     >
+      <div className="cs-menu-slot">
+        <SiteMenu tone="company" />
+      </div>
+
       <header className="cs-hero">
         <img className="cs-hero__media" src={hero.src} alt="" aria-hidden="true" />
         <div className="cs-hero__wash" aria-hidden />
@@ -94,8 +103,8 @@ export default function CompanySite({ company, now }) {
             <a href="#reserve" className="cs-btn cs-btn--solid">
               Hold a reservation
             </a>
-            <a href="#about" className="cs-btn cs-btn--ghost">
-              Read the concept
+            <a href="#roadmap" className="cs-btn cs-btn--ghost">
+              Product path
             </a>
           </div>
         </div>
@@ -106,8 +115,23 @@ export default function CompanySite({ company, now }) {
           <p className="cs-kicker">{product.product}</p>
           <h2 className="cs-about__title">What this is</h2>
           <p className="cs-about__body">{product.body}</p>
-          <p className="cs-about__note">Fully refundable reservations · no payment captured</p>
+          <p className="cs-about__note">Fully refundable reservations</p>
         </section>
+
+        {pay && (
+          <section className="cs-payband" aria-label="Refundable pay hold">
+            <p className="cs-kicker">Squarespace pay hold</p>
+            <h2 className="cs-about__title">{formatUsd(pay.estimateUsd)} estimated hold</h2>
+            <p className="cs-about__body">{pay.notes}</p>
+            {pay.payUrl ? (
+              <a className="cs-btn cs-btn--solid" href={pay.payUrl} target="_blank" rel="noreferrer">
+                Continue to Pay Link
+              </a>
+            ) : (
+              <p className="cs-about__note">Pay Link URL pending in config</p>
+            )}
+          </section>
+        )}
 
         {strip.length > 0 && (
           <section className="cs-gallery" aria-label={`${company.name} atmosphere`}>
@@ -122,6 +146,8 @@ export default function CompanySite({ company, now }) {
           </section>
         )}
 
+        <ProductRoadmap companyId={company.slug} companyName={company.name} />
+
         <section id="reserve" className="cs-reserve">
           <ReservationForm
             companyId={company.slug}
@@ -129,6 +155,8 @@ export default function CompanySite({ company, now }) {
             productName={product.product}
             interestGroups={product.interestGroups}
             accent={tone.accent}
+            estimateUsd={pay?.estimateUsd}
+            payUrl={pay?.payUrl || ''}
           />
         </section>
 
@@ -138,6 +166,10 @@ export default function CompanySite({ company, now }) {
 
         <footer className="cs-foot">
           <Link to="/?demo=1">← mosaic</Link>
+          <a href={DISCORD_INVITE} target="_blank" rel="noreferrer">
+            Discord
+          </a>
+          <Link to="/flow">Flow</Link>
         </footer>
       </main>
     </div>

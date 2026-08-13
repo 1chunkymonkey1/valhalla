@@ -1,0 +1,17 @@
+{
+  "name": "valhalla-odin-bot",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Odin — Valhalla Discord Q&A and moderation bot",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "discord.js": "^14.22.1"
+  }
+}

@@ -1,16 +1,63 @@
-# React + Vite
+# Valhalla Multi-Launch Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Living Mosaic hub for twelve companies across land, water, air, and space.
 
-Currently, two official plugins are available:
+- Production: https://valhalla-hazel.vercel.app
+- Domain (pending DNS): https://valhallaco.org
+- Discord: https://discord.gg/JA6wrNg6n
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+React + Vite + Tailwind · Vercel serverless `/api` · Discord bot in `/discord-bot`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Local
 
-## Expanding the Oxlint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Admin API needs env (see below). Without it, `/admin` login returns 503.
+
+## Vercel environment (required for admin)
+
+Set in Vercel → Project → Settings → Environment Variables (Production):
+
+| Name | Notes |
+|---|---|
+| `ADMIN_PASSWORD` | Server-only. Never `VITE_*`. Rotate if exposed in chat. |
+| `ADMIN_SESSION_SECRET` | Long random string for signing httpOnly session cookies |
+| `ADMIN_PASSWORD_HASH` | Optional instead of `ADMIN_PASSWORD`: `salt:hex` from scrypt |
+
+Admin email is fixed: **info@valhallaco.org**
+
+```bash
+npx vercel env add ADMIN_PASSWORD
+npx vercel env add ADMIN_SESSION_SECRET
+npx vercel --prod
+```
+
+## Routes
+
+| Path | Purpose |
+|---|---|
+| `/` | Mosaic + email capture + menu |
+| `/flow` | Network interconnection chart |
+| `/press` | Press release |
+| `/investors` `/consumers` `/partners` | Audience pages |
+| `/roadmap` | Roadmap index |
+| `/contact` | Contact |
+| `/admin` | Password-gated ledger |
+| `/{company}` | Company hall (chain unlock timing preserved) |
+
+## Pay Links
+
+Stubs in `src/data/payLinks.js`. Paste Squarespace Pay Link URLs when ready. All holds are **fully refundable**.
+
+## Discord Odin
+
+See `discord-bot/README.md`. Needs `DISCORD_TOKEN` on a persistent host.
+
+## DNS
+
+See `docs/domain-dns.md`. Keep Google Workspace MX/SPF/DKIM; replace Squarespace A/CNAME with Vercel only.

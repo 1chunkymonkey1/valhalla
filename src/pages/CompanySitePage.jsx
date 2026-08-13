@@ -1,6 +1,10 @@
 import { Link, Navigate } from 'react-router-dom'
 import { getCompany } from '../lib/companies'
-import { getPortalPhase, getRevealAt } from '../lib/launchSchedule'
+import {
+  getHubClickAt,
+  getPreviewUnlockAt,
+  isCompanySiteOpen,
+} from '../lib/launchSchedule'
 import { useSimulationClock } from '../hooks/useSimulationClock'
 import SimpleCountdown from '../components/SimpleCountdown'
 import CompanySite from '../components/CompanySite'
@@ -12,18 +16,22 @@ export default function CompanySitePage({ slug }) {
 
   if (!company) return <Navigate to="/" replace />
 
-  const phase = getPortalPhase(company.id, now)
-  const open = phase === 'clickable' || phase === 'revealed'
+  const open = isCompanySiteOpen(company.id, now)
+  const previewAt = getPreviewUnlockAt(company.id)
+  const hubAt = getHubClickAt(company.id)
 
   if (!open) {
     return (
       <div className="vh-hub min-h-svh flex flex-col items-center justify-center px-6">
         <p className="vh-countdown__label mb-6">{company.name}</p>
         <SimpleCountdown
-          targetDate={getRevealAt(company.id)}
+          targetDate={previewAt}
           now={now}
-          label={`Opens ${formatPDT(getRevealAt(company.id))}`}
+          label={`Opens via previous hall · ${formatPDT(previewAt)}`}
         />
+        <p className="mt-4 text-center text-xs text-black/35 max-w-xs">
+          Mosaic tile unlocks {formatPDT(hubAt)} — thirty minutes after the link appears next door.
+        </p>
         <Link to="/?demo=1" className="mt-12 text-sm text-black/30 hover:text-black/55">
           ← hub
         </Link>

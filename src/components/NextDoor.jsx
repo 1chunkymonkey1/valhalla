@@ -1,39 +1,79 @@
 import { Link } from 'react-router-dom'
 import SimpleCountdown from './SimpleCountdown'
 import { formatPDT } from '../utils/time'
-import { REVEAL_ORDER, getCompany } from '../lib/companies'
-import { getPortalPhase, getRevealAt } from '../lib/launchSchedule'
+import { getCompany } from '../lib/companies'
+import {
+  getHubClickAt,
+  getNextCompanyId,
+  getNextPreviewUnlockAt,
+} from '../lib/launchSchedule'
+import { getNextDoorCue } from '../data/nextDoorCues'
 
+/**
+ * Chain bridge on each company site:
+ * 1) Cue + blank + 1h countdown until next preview unlock
+ * 2) Cue + clickable next name when countdown hits 0
+ * 3) Soft note that the mosaic tile opens 30 minutes later
+ */
 export default function NextDoor({ company, now }) {
-  const idx = REVEAL_ORDER.indexOf(company.slug)
-  const nextId = idx >= 0 && idx < REVEAL_ORDER.length - 1 ? REVEAL_ORDER[idx + 1] : null
+  const nextId = getNextCompanyId(company.slug)
   const next = nextId ? getCompany(nextId) : null
-  const nextOpen = next ? ['revealed', 'clickable'].includes(getPortalPhase(next.id, now)) : false
-  const nextLaunch = next ? getRevealAt(next.id) : null
 
-  return (
-    <div className="border-t border-black/10 pt-10 mt-16">
-      {next ? (
-        nextOpen ? (
-          <Link
-            to={`/${next.id}`}
-            className="block text-center font-mono text-sm tracking-wide hover:underline underline-offset-4"
-          >
-            Continue to {next.name} →
-          </Link>
-        ) : (
-          <SimpleCountdown
-            targetDate={nextLaunch}
-            now={now}
-            label={`Next door opens · ${next.name} · ${formatPDT(nextLaunch)}`}
-          />
-        )
-      ) : (
-        <p className="text-center text-sm opacity-50">
+  if (!next) {
+    return (
+      <div className="cs-nextdoor">
+        <p className="cs-nextdoor__done">
           Sequence complete.{' '}
-          <Link to="/" className="underline underline-offset-2">
+          <Link to="/?demo=1" className="cs-nextdoor__hub-link">
             View the mosaic
           </Link>
+        </p>
+      </div>
+    )
+  }
+
+  const cue = getNextDoorCue(company.slug)
+  const previewAt = getNextPreviewUnlockAt(company.slug)
+  const hubAt = getHubClickAt(next.id)
+  const previewOpen = previewAt && now.getTime() >= previewAt.getTime()
+  const hubOpen = now.getTime() >= hubAt.getTime()
+
+  return (
+    <div className="cs-nextdoor">
+      <p className="cs-nextdoor__kicker">Next door</p>
+
+      <p className="cs-nextdoor__line">
+        <span>{previewOpen ? cue.after : cue.before}</span>{' '}
+        {previewOpen ? (
+          <Link to={`/${next.id}`} className="cs-nextdoor__name">
+            {next.name}
+          </Link>
+        ) : (
+          <span className="cs-nextdoor__blank" aria-label="locked destination">
+            ____
+          </span>
+        )}
+      </p>
+
+      {!previewOpen && previewAt && (
+        <div className="cs-nextdoor__clock">
+          <SimpleCountdown
+            targetDate={previewAt}
+            now={now}
+            label={`Unlocks ${formatPDT(previewAt)}`}
+          />
+        </div>
+      )}
+
+      {previewOpen && !hubOpen && (
+        <p className="cs-nextdoor__note">
+          {next.name} is open from here. Mosaic tile unlocks {formatPDT(hubAt)}.
+        </p>
+      )}
+
+      {hubOpen && (
+        <p className="cs-nextdoor__note">
+          {next.name} is also live on the mosaic.
         </p>
       )}
     </div>

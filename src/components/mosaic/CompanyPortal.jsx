@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom'
 import {
   getBuildProgress,
   getPortalPhase,
+  isHubTileClickable,
 } from '../../lib/launchSchedule'
 
 export default function CompanyPortal({ company, now }) {
   const phase = getPortalPhase(company.id, now)
   const progress = getBuildProgress(company.id, now)
-  const interactive = phase === 'clickable'
-  const showImage = phase === 'revealed' || phase === 'clickable'
+  const interactive = isHubTileClickable(company.id, now)
+  const showImage = phase === 'revealed' || phase === 'clickable' || interactive
   const src = company.imageSrc || company.placeholderSrc
   const isPlaceholder = !company.imageSrc
 

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { formatUsd } from '../data/payLinks'
 
 const empty = {
   name: '',
@@ -16,6 +17,8 @@ export default function ReservationForm({
   productName,
   interestGroups,
   accent = '#1a1a1a',
+  estimateUsd = null,
+  payUrl = '',
 }) {
   const [values, setValues] = useState({ ...empty, product: productName })
   const [submitted, setSubmitted] = useState(null)
@@ -24,7 +27,7 @@ export default function ReservationForm({
     setValues((prev) => ({ ...prev, [key]: value }))
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     const payload = {
       companyId,
@@ -38,6 +41,8 @@ export default function ReservationForm({
       reservationType: 'fully_refundable',
       refundable: true,
       paymentCaptured: false,
+      amountEstimateUsd: estimateUsd,
+      payLinkId: payUrl || null,
       submittedAt: new Date().toISOString(),
       status: 'held_refundable',
     }
@@ -51,6 +56,16 @@ export default function ReservationForm({
       // storage may be unavailable
     }
 
+    try {
+      await fetch('/api/reservations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+    } catch {
+      // offline / local-only still ok
+    }
+
     setSubmitted(payload)
   }
 
@@ -61,6 +76,7 @@ export default function ReservationForm({
         <h3 className="vh-reserve__title">Fully refundable hold confirmed</h3>
         <p className="vh-reserve__body">
           {submitted.product} · {submitted.interestGroup}
+          {estimateUsd != null ? ` · est. ${formatUsd(estimateUsd)}` : ''}
         </p>
         <dl className="vh-reserve__receipt">
           <div>
@@ -76,9 +92,18 @@ export default function ReservationForm({
             <dd>{submitted.zip}</dd>
           </div>
         </dl>
+        {payUrl ? (
+          <p className="vh-reserve__body">
+            Optional money hold:{' '}
+            <a href={payUrl} target="_blank" rel="noreferrer">
+              Squarespace Pay Link
+            </a>{' '}
+            (fully refundable).
+          </p>
+        ) : null}
         <p className="vh-reserve__fine">
-          No charge was taken. This is a fully refundable reservation hold stored for follow-up.
-          You can cancel anytime by contacting the hall with this email.
+          This is a fully refundable reservation hold stored for follow-up. You can cancel anytime by
+          contacting the hall with this email.
         </p>
       </div>
     )
@@ -90,7 +115,9 @@ export default function ReservationForm({
       <h3 className="vh-reserve__title">{productName}</h3>
       <p className="vh-reserve__body">
         Leave phone, ZIP, and email. Choose your interest group. We hold a fully refundable
-        reservation — no non-refundable deposit on this page.
+        reservation
+        {estimateUsd != null ? ` (estimated hold ${formatUsd(estimateUsd)})` : ''} — no
+        non-refundable deposit on this page.
       </p>
 
       <div className="vh-reserve__grid">
@@ -166,8 +193,8 @@ export default function ReservationForm({
           onChange={(e) => update('refundableAck', e.target.checked)}
         />
         <span>
-          I understand this is a <strong>fully refundable</strong> reservation hold. No charge is
-          taken here. Terms may require entity and payment gates before any future deposit.
+          I understand this is a <strong>fully refundable</strong> reservation hold. Terms may
+          require entity and payment gates before any future deposit.
         </span>
       </label>
 
