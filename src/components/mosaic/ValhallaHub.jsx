@@ -9,6 +9,7 @@ import { useSimulationClock } from '../../hooks/useSimulationClock'
 import { useHallUnlocks } from '../../hooks/useHallUnlocks'
 import CountdownClock from './CountdownClock'
 import MosaicGrid from './MosaicGrid'
+import NextUnlockTimer from './NextUnlockTimer'
 import DemoControls from './DemoControls'
 import SiteMenu from '../layout/SiteMenu'
 import EmailCapture from '../EmailCapture'
@@ -77,6 +78,7 @@ export default function ValhallaHub() {
         />
       )}
       {!showCountdown && <SiteMenu tone="hub" />}
+      {!showCountdown && <NextUnlockTimer now={now} unlockedSet={unlockedSet} />}
       <div className="vh-hub__inner">
         <DemoControls mode={mode} rate={rate} paused={paused} />
 

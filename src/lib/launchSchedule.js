@@ -136,6 +136,38 @@ export function getNextCodeHall(unlockedSet, now) {
   return null
 }
 
+/**
+ * Next mosaic unlock for the hub top timer.
+ * Returns null before event start (dormant countdown-only hub).
+ *
+ * kind:
+ * - timed — countdown to `at` (wave-1 hub click, or Wave 2 window open)
+ * - code — next hall needs an Instagram code
+ * - all-open — every hall unlocked
+ */
+export function getNextHubUnlock(now, unlockedSet = new Set()) {
+  const t = now.getTime()
+  if (t < getEventStart().getTime()) return null
+
+  for (const id of WAVE1_ORDER) {
+    const at = getHubClickAt(id)
+    if (t < at.getTime()) {
+      return { companyId: id, at, kind: 'timed' }
+    }
+  }
+
+  if (t < getWave2Start().getTime()) {
+    return { companyId: WAVE2_ORDER[0], at: getWave2Start(), kind: 'timed' }
+  }
+
+  const nextCode = getNextCodeHall(unlockedSet, now)
+  if (nextCode) {
+    return { companyId: nextCode, at: null, kind: 'code' }
+  }
+
+  return { companyId: null, at: null, kind: 'all-open' }
+}
+
 export function canAttemptCode(hallId, unlockedSet, now) {
   if (!isWave2Hall(hallId)) return false
   if (now.getTime() < getWave2Start().getTime()) return false

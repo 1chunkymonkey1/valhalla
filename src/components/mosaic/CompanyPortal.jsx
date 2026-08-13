@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   getBuildProgress,
@@ -13,9 +14,25 @@ export default function CompanyPortal({ company, now, unlockedSet = new Set() })
   const src = company.imageSrc || company.placeholderSrc
   const isPlaceholder = !company.imageSrc
 
+  // Bump to remount the article and restart the 0→100% fade on appear/unlock.
+  const [appearGen, setAppearGen] = useState(() => (phase !== 'dormant' ? 1 : 0))
+  const prevPhase = useRef(phase)
+
+  useEffect(() => {
+    const was = prevPhase.current
+    prevPhase.current = phase
+    if (phase === 'dormant') return
+    if (was === 'dormant' || (was === 'constructing' && phase !== 'constructing')) {
+      setAppearGen((n) => n + 1)
+    }
+  }, [phase])
+
   const body = (
     <article
-      className={`vh-portal vh-portal--${phase} vh-portal--${company.domain}`}
+      key={appearGen}
+      className={`vh-portal vh-portal--${phase} vh-portal--${company.domain}${
+        phase !== 'dormant' ? ' vh-portal--appear' : ''
+      }`}
       data-company={company.id}
       data-phase={phase}
     >
