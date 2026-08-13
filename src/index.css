@@ -1535,6 +1535,20 @@
   margin: -0.25rem 0 0.75rem;
 }
 
+.vh-admin__totp input {
+  font-size: 1.5rem;
+  letter-spacing: 0.35em;
+  font-variant-numeric: tabular-nums;
+}
+
+.vh-admin__totp-help {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.45);
+  letter-spacing: 0;
+}
+
 .vh-admin__gate input {
   -webkit-user-select: text;
   user-select: text;

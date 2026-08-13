@@ -16,17 +16,24 @@ export default function AdminPage() {
   const [localPreview, setLocalPreview] = useState({ reservations: [], signups: [] })
 
   async function refreshSession() {
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), 8000)
     try {
-      const res = await fetch('/api/admin/session', { credentials: 'include' })
-      const data = await res.json()
+      const res = await fetch('/api/admin/session', {
+        credentials: 'include',
+        signal: controller.signal,
+      })
+      const data = await res.json().catch(() => ({}))
       if (data.authenticated) {
         setAuth({ loading: false, ok: true, email: data.email })
-        await loadLedger()
+        loadLedger().catch(() => {})
       } else {
         setAuth({ loading: false, ok: false, email: null })
       }
     } catch {
       setAuth({ loading: false, ok: false, email: null })
+    } finally {
+      clearTimeout(timer)
     }
   }
 
@@ -167,8 +174,8 @@ export default function AdminPage() {
               {showPassword ? 'Hide' : 'Show'} password
             </button>
           </div>
-          <label>
-            Authenticator code
+          <label className="vh-admin__totp">
+            6-digit authenticator code
             <input
               type="text"
               name="one-time-code"
@@ -176,7 +183,7 @@ export default function AdminPage() {
               inputMode="numeric"
               pattern="[0-9]{6}"
               maxLength={6}
-              placeholder="6-digit code"
+              placeholder="000000"
               value={totp}
               onChange={(e) => setTotp(e.target.value.replace(/\D/g, '').slice(0, 6))}
               onPaste={(e) => {
@@ -187,7 +194,11 @@ export default function AdminPage() {
                 }
               }}
               autoComplete="one-time-code"
+              autoFocus={false}
             />
+            <span className="vh-admin__totp-help">
+              From Google Authenticator / Authy / 1Password for info@valhallaco.org
+            </span>
           </label>
           {error && <p className="vh-admin__error">{error}</p>}
           <button type="submit">Enter</button>
