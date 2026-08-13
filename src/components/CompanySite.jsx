@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import NextDoor from './NextDoor'
 import ReservationForm from './ReservationForm'
+import EmailCapture from './EmailCapture'
 import ProductRoadmap from './roadmap/ProductRoadmap'
 import SiteMenu from './layout/SiteMenu'
 import CompanySocialLinks from './CompanySocialLinks'
@@ -73,6 +74,12 @@ export default function CompanySite({
   }
   const strip = product.gallery.slice(1)
   const pay = getCompanyPayLink(company.slug)
+  const emailOnly = Boolean(product.emailOnly) || Boolean(pay?.disabled)
+  const primaryCta = product.ctaPrimary || (emailOnly ? 'Join the list' : 'Hold a reservation')
+  const secondaryCta = product.ctaSecondary || 'Product path'
+  const aboutNote =
+    product.aboutNote ||
+    (emailOnly ? 'Predeposits opening soon · email list only' : 'Fully refundable reservations')
   const [social, setSocial] = useState(null)
   const [published, setPublished] = useState(null)
 
@@ -126,15 +133,26 @@ export default function CompanySite({
           <PublishedBlocks layout={published} className="cs-pub" />
           <main>
             <section id="reserve" className="cs-reserve">
-              <ReservationForm
-                companyId={company.slug}
-                companyName={company.name}
-                productName={product.product}
-                interestGroups={product.interestGroups}
-                accent={tone.accent}
-                estimateUsd={pay?.estimateUsd}
-                payUrl={pay?.payUrl || ''}
-              />
+              {emailOnly ? (
+                <EmailCapture
+                  title="Join the list"
+                  hint="Email only for now. Predeposits opening soon — no payment hold on this page."
+                  doneHint="You’re on the Wolf list. We’ll write when Fenrir updates or predeposits open."
+                  source={`site:${company.slug}:reserve`}
+                  companyId={company.slug}
+                  audience="waitlist"
+                />
+              ) : (
+                <ReservationForm
+                  companyId={company.slug}
+                  companyName={company.name}
+                  productName={product.product}
+                  interestGroups={product.interestGroups}
+                  accent={tone.accent}
+                  estimateUsd={pay?.estimateUsd}
+                  payUrl={pay?.payUrl || ''}
+                />
+              )}
             </section>
             <div className="cs-next">
               <NextDoor
@@ -174,10 +192,10 @@ export default function CompanySite({
           <p className="cs-hero__support">{product.support}</p>
           <div className="cs-hero__cta">
             <a href="#reserve" className="cs-btn cs-btn--solid">
-              Hold a reservation
+              {primaryCta}
             </a>
             <a href="#roadmap" className="cs-btn cs-btn--ghost">
-              Product path
+              {secondaryCta}
             </a>
           </div>
         </div>
@@ -188,11 +206,11 @@ export default function CompanySite({
           <p className="cs-kicker">{product.product}</p>
           <h2 className="cs-about__title">What this is</h2>
           <p className="cs-about__body">{product.body}</p>
-          <p className="cs-about__note">Fully refundable reservations</p>
+          <p className="cs-about__note">{aboutNote}</p>
           <CompanySocialLinks social={social} className="cs-about__socials" />
         </section>
 
-        {pay && (
+        {pay && !pay.disabled && !emailOnly && (
           <section className="cs-payband" aria-label="Refundable pay hold">
             <p className="cs-kicker">Squarespace pay hold</p>
             <h2 className="cs-about__title">{formatUsd(pay.estimateUsd)} estimated hold</h2>
@@ -223,15 +241,26 @@ export default function CompanySite({
         <ProductRoadmap companyId={company.slug} companyName={company.name} />
 
         <section id="reserve" className="cs-reserve">
-          <ReservationForm
-            companyId={company.slug}
-            companyName={company.name}
-            productName={product.product}
-            interestGroups={product.interestGroups}
-            accent={tone.accent}
-            estimateUsd={pay?.estimateUsd}
-            payUrl={pay?.payUrl || ''}
-          />
+          {emailOnly ? (
+            <EmailCapture
+              title="Join the list"
+              hint="Email only for now. Predeposits opening soon — no payment hold on this page. ZIP and interest can wait."
+              doneHint="You’re on the Wolf list. We’ll write when Fenrir updates or predeposits open."
+              source={`site:${company.slug}:reserve`}
+              companyId={company.slug}
+              audience="waitlist"
+            />
+          ) : (
+            <ReservationForm
+              companyId={company.slug}
+              companyName={company.name}
+              productName={product.product}
+              interestGroups={product.interestGroups}
+              accent={tone.accent}
+              estimateUsd={pay?.estimateUsd}
+              payUrl={pay?.payUrl || ''}
+            />
+          )}
         </section>
 
         <div className="cs-next">

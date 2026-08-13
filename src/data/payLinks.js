@@ -16,10 +16,12 @@ export const PAY_LINK_STATUS = {
 /** Estimated fully refundable hold amounts by company (USD). */
 export const companyPayLinks = {
   wolf: {
-    label: 'Wolf · Fenrir 01 reservation hold',
+    label: 'Wolf · Fenrir 01 (predeposits opening soon)',
     estimateUsd: 2500,
     payUrl: '',
-    notes: 'Refundable hold against adventure motorcycle program.',
+    /** Wolf CTAs are email-only until predeposits open — do not surface Pay Links. */
+    disabled: true,
+    notes: 'Predeposits opening soon. Email list only on the public Wolf path.',
   },
   holm: {
     label: 'Holm · modular home configuration hold',

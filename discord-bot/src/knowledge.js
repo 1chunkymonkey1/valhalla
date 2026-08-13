@@ -13,7 +13,7 @@ export const knowledge = {
       'Valhalla is a civilization platform of 12 companies across land, water, air, and space — movement, habitation, and substrate.',
   },
   companies: [
-    { id: 'wolf', domain: 'Land', pillar: 'Movement', blurb: 'Adventure mobility; Fenrir motorcycle path; Bifröst Line maglev vision.' },
+    { id: 'wolf', domain: 'Land', pillar: 'Movement', blurb: 'Wolf Transit matrix — Fenrir motorcycle (Jan 13, 2027), then Hati/Sköll/Geri/Freki; Dire Wolf railroad by Aug 13, 2031. Email list only until predeposits open.' },
     { id: 'holm', domain: 'Land', pillar: 'Habitation', blurb: 'Modular homes.' },
     { id: 'demeter', domain: 'Land', pillar: 'Substrate', blurb: 'Agrivoltaic / land-energy diligence.' },
     { id: 'viking', domain: 'Water', pillar: 'Movement', blurb: 'Story-led northern voyages.' },
@@ -27,11 +27,13 @@ export const knowledge = {
     { id: 'corvus', domain: 'Space', pillar: 'Substrate', blurb: 'Raven OS — 21 prompts; Prompt 21 is $21,000 + community badge.' },
   ],
   reservations:
-    'Company sites collect fully refundable reservation holds. Squarespace Pay Links are configured per product when live. No non-refundable deposit is forced on the public pages.',
+    'Most halls collect fully refundable reservation holds when Pay Links are live. Wolf is email-list only for now — predeposits opening soon. No non-refundable deposit is forced on the public pages.',
   roadmapCaveats:
-    'Roadmaps fade into mystery. Theoretical products are email-capture only. Mystery ovals are intentionally unexplained. Do not invent ship dates or operational claims.',
+    'Roadmaps fade into mystery. Wolf uses a product-line × model matrix. Theoretical products are email-capture only. Mystery cells are intentionally unexplained. Do not invent operational claims beyond published target windows.',
   bifrost:
-    'Wolf’s second-to-last roadmap vision is the Bifröst Line: a five-year SF→NYC maglev ambition targeting about 5.8 hours. It is a vision with objectives — not an operating railroad.',
+    'Dire Wolf (formerly called the Bifröst Line) is Wolf’s phased SF→NYC railroad vision — segments through 2031, not an operating railroad and not a maglev claim on the public site.',
+  direWolf:
+    'Dire Wolf is Wolf Transit’s transcontinental railroad program: Phase I west from late 2027, Phase II central through 2029, Phase III east through 2030, network target August 13, 2031. Blueprint-honest — permits and partners first.',
   admin:
     'Public admin is at /admin and accepts only info@valhallaco.org after serverless auth. Never share passwords in Discord.',
 }
@@ -43,15 +45,15 @@ export function answerQuestion(text) {
     return `${knowledge.identity.summary} I’m Odin — Q&A and moderation for the halls. Site: ${knowledge.identity.domain}`
   }
 
-  if (/bifrost|bifröst|maglev|sf.?nyc|coast.?to.?coast/.test(q)) {
-    return knowledge.bifrost
+  if (/bifrost|bifröst|dire.?wolf|maglev|sf.?nyc|coast.?to.?coast|railroad|rail/.test(q)) {
+    return knowledge.direWolf || knowledge.bifrost
   }
 
   if (/refund|reserv|pay.?link|deposit|squarespace/.test(q)) {
     return knowledge.reservations
   }
 
-  if (/roadmap|mystery|theoretical|fenrir|hati/.test(q)) {
+  if (/roadmap|mystery|theoretical|fenrir|hati|sköll|skoll|geri|freki|wolf.?matrix|product.?path/.test(q)) {
     return knowledge.roadmapCaveats
   }
 
@@ -83,6 +85,6 @@ export function answerQuestion(text) {
   }
 
   return (
-    'I can talk about the twelve companies, refundable reservations, Raven OS pricing, Bifröst Line vision, and roadmap caveats. Ask about a hall by name, or visit valhallaco.org. I will not invent operational claims.'
+    'I can talk about the twelve companies, refundable reservations, Raven OS pricing, Dire Wolf railroad vision, and roadmap caveats. Ask about a hall by name, or visit valhallaco.org. I will not invent operational claims.'
   )
 }

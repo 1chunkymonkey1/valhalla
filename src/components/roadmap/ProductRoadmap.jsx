@@ -3,10 +3,17 @@ import { getRoadmap, roadmapOpacity } from '../../data/roadmaps'
 import EmailCapture from '../EmailCapture'
 import { formatUsd, getCompanyPayLink } from '../../data/payLinks'
 import { CORVUS_PHASES, corvusPromptPayLinks } from '../../data/corvusPricing'
+import WolfProductMatrix from './WolfProductMatrix'
 
 export default function ProductRoadmap({ companyId, companyName }) {
   const roadmap = getRoadmap(companyId)
   const [active, setActive] = useState(null)
+
+  // Wolf uses the square product matrix; other halls keep oval tracks for now.
+  if (companyId === 'wolf') {
+    return <WolfProductMatrix />
+  }
+
   if (!roadmap) return null
 
   const items = roadmap.items

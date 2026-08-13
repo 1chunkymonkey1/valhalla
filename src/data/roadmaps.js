@@ -5,72 +5,80 @@
  */
 
 export const companyRoadmaps = {
+  // Wolf UI is the square matrix in WolfProductMatrix + wolfMatrix.js.
+  // Keep a thin legacy list for any oval consumers / admin mirrors.
   wolf: {
+    layout: 'matrix',
     cascadeNote:
-      'Product drop pattern: when Fenrir 02 ships, Hati 01 drops in the same window.',
+      'Fenrir 01 targets January 13, 2027. New line or model every two months. Dire Wolf rail completes in phases by August 13, 2031. Predeposits opening soon.',
     items: [
       {
         id: 'fenrir-01',
         name: 'Fenrir 01',
-        status: 'complete',
+        status: 'scheduled',
         kind: 'product',
         summary:
-          'Adventure motorcycle program — first wolf on the trail. Specs labeled planned until engineering review closes.',
+          'Electric adventure motorcycle — January 13, 2027. Predeposits opening soon; email list only today.',
         clickable: true,
-        capture: 'pay',
-      },
-      {
-        id: 'fenrir-02',
-        name: 'Fenrir 02',
-        status: 'planned',
-        kind: 'product',
-        summary:
-          'Second generation. When Fenrir 02 drops, Hati 01 drops with it.',
-        clickable: true,
-        capture: 'pay',
-        cascadeWith: ['hati-01'],
+        capture: 'email',
       },
       {
         id: 'hati-01',
         name: 'Hati 01',
         status: 'planned',
         kind: 'product',
-        summary:
-          'Tri-fuel intelligent ATV — hydrogen, battery pack, and a conventional dual-infusion engine that accepts any fuel including ethanol.',
-        clickable: true,
-        capture: 'pay',
-        cascadeFrom: 'fenrir-02',
-      },
-      {
-        id: 'skoll-range',
-        name: 'Sköll Range',
-        status: 'theoretical',
-        kind: 'concept',
-        summary: 'Long-range pack systems and trail logistics — email capture only.',
+        summary: 'Tri-fuel ATV line — March 13, 2027 cadence.',
         clickable: true,
         capture: 'email',
       },
       {
-        id: 'bifrost-line',
-        name: 'Bifröst Line',
+        id: 'skoll-01',
+        name: 'Sköll 01',
+        status: 'planned',
+        kind: 'product',
+        summary: 'Compact electric car — May 13, 2027 cadence.',
+        clickable: true,
+        capture: 'email',
+      },
+      {
+        id: 'geri-01',
+        name: 'Geri 01',
+        status: 'planned',
+        kind: 'product',
+        summary: 'Utility truck — July 13, 2027 cadence.',
+        clickable: true,
+        capture: 'email',
+      },
+      {
+        id: 'freki-01',
+        name: 'Freki 01',
+        status: 'planned',
+        kind: 'product',
+        summary: 'Rescue helicopter concept — September 13, 2027 cadence.',
+        clickable: true,
+        capture: 'email',
+      },
+      {
+        id: 'dire-wolf',
+        name: 'Dire Wolf',
         status: 'vision',
         kind: 'megaproject',
         summary:
-          'Transcontinental maglev: San Francisco → New York City. Mythic bridge between coasts.',
+          'Transcontinental railroad in segments — Phase I from Nov 2027; network target August 13, 2031. (Formerly Bifröst Line.)',
         clickable: true,
         capture: 'email',
         detail: {
           timelineYears: 5,
-          travelHours: 5.8,
+          travelHours: null,
           objectives: [
-            'Prove a U.S. high-speed maglev corridor competitive with global peers',
-            'Cut coast-to-coast travel toward 5.8 hours door-concept to door-concept',
-            'Anchor Wolf mobility into national infrastructure — not only consumer vehicles',
-            'Coordinate land, energy, and right-of-way partners under Valhalla governance',
-            'Publish transparent milestones; no false operational claims before permits',
+            'Phase I western corridor from late 2027',
+            'Phase II central plains through 2029',
+            'Phase III eastern / NYC approach through 2030',
+            'Segment spine complete by August 13, 2031',
+            'No false operational claims before permits and partner gates',
           ],
           whyNation:
-            'The nation needs a spine that matches the century: freight and people moving at world-class speed so industry, families, and defense logistics stop paying the cost of fragmented rails and saturated skies.',
+            'Dire Wolf is the heavy spine under Wolf Transit: freight and people moving on a phased coast-to-coast path so the rest of the pack — bike, ATV, car, truck, rescue air — has a civilization-scale corridor to serve.',
         },
       },
       {

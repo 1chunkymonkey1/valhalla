@@ -10,14 +10,14 @@ export const STATUS_LABELS = {
 export const companyCopy = {
   wolf: {
     hero: 'Ride the frontier. Research the route.',
-    body: 'Wolf explores electric adventure motorcycles and a longer-horizon land-transport research library. Today this site is for model interest, dealer/OEM inquiry, and transparent research — not checkout.',
+    body: 'Wolf Transit is a land-mobility arch: Fenrir motorcycle, Hati ATV, Sköll car, Geri truck, Freki rescue air, and Dire Wolf rail — email interest only until predeposits open. Transparent research, not checkout.',
     bullets: [
-      'Model interest waitlist (planned specs labeled as planned)',
+      'Email list for Fenrir 01 (January 13, 2027) and the matrix cadence',
       'Dealer and OEM inquiry routing',
-      'Transport research briefs — source-linked, claim-reviewed',
+      'Dire Wolf phased railroad — complete by August 13, 2031',
     ],
-    formTitle: 'Join the waitlist',
-    formHint: 'We’ll only use this to share product updates you opt into.',
+    formTitle: 'Join the list',
+    formHint: 'Email only for now. Predeposits opening soon.',
     fields: ['name', 'email', 'interest'],
     interestOptions: ['Rider interest', 'Dealer / service', 'OEM / vendor', 'Research access'],
   },

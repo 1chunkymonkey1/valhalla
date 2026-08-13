@@ -116,8 +116,8 @@ export function RoadmapIndexPage() {
         <p className="vh-aud__mark">Valhalla</p>
         <h1>Roadmap</h1>
         <p>
-          Each hall has its own product path. Wolf’s later vision includes the{' '}
-          <strong>Bifröst Line</strong> (SF→NYC maglev).
+          Each hall has its own product path. Wolf’s later vision includes{' '}
+          <strong>Dire Wolf</strong> — a phased SF→NYC railroad (complete by 2031).
         </p>
       </header>
       <main className="vh-aud__main">

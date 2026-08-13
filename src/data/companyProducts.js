@@ -2,12 +2,16 @@
 
 export const companyProducts = {
   wolf: {
-    product: 'Wolf Adventure Motorcycle',
-    headline: 'Reserve your place on the trail.',
+    product: 'Wolf Transit',
+    headline: 'Join the list. Ride the path.',
     support:
-      'Electric adventure motorcycle concept for riders who want the frontier without the fossil cloud.',
-    body: 'Hold a fully refundable reservation while the product program matures. Specs stay labeled as planned until engineering review.',
+      'Electric adventure motorcycle first — then ATV, car, truck, rescue air, and the Dire Wolf railroad. Predeposits opening soon.',
+    body: 'Wolf Transit builds a named pack of land machines under wolf myth and history, culminating in a phased transcontinental rail. Fenrir 01 targets January 13, 2027. Today we collect email only — no payment holds.',
     tone: 'land',
+    emailOnly: true,
+    ctaPrimary: 'Join the list',
+    ctaSecondary: 'Product path',
+    aboutNote: 'Predeposits opening soon · email list only',
     gallery: [
       { src: '/images/wolf.png', alt: 'Wolf in snow' },
       { src: '/images/sites/wolf-ref.jpg', alt: 'Wolf reference' },

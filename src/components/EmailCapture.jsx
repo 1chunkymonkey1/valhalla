@@ -3,6 +3,7 @@ import { useState } from 'react'
 export default function EmailCapture({
   title = 'Get launch notes',
   hint = 'Product drops and press. No spam.',
+  doneHint = 'We’ll write when the next hall opens.',
   source = 'hub',
   audience = 'general',
   companyId = null,
@@ -60,7 +61,7 @@ export default function EmailCapture({
     return (
       <div className="vh-email vh-email--done">
         <p className="vh-email__title">You’re on the list.</p>
-        <p className="vh-email__hint">We’ll write when the next hall opens.</p>
+        <p className="vh-email__hint">{doneHint}</p>
       </div>
     )
   }

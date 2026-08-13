@@ -135,12 +135,12 @@ export const flowEdges = [
       'Corvus feeds signal back into Wolf and the mosaic — product drops, moderation, and founder tooling across halls.',
   },
   {
-    id: 'loop-bifrost',
+    id: 'loop-dire-wolf',
     from: 'wolf',
-    to: 'eagle',
-    label: 'Bifröst ambition',
+    to: 'aeolus',
+    label: 'Dire Wolf ambition',
     detail:
-      'Wolf’s Bifröst Line (SF→NYC maglev vision) ties land movement to national air/rail catch-up — a five-year civilization bet.',
+      'Wolf’s Dire Wolf railroad (phased SF→NYC, target Aug 2031) ties land movement to national air/rail catch-up — a civilization-scale spine.',
   },
 ]
 
@@ -148,7 +148,7 @@ export const growthLoops = [
   {
     id: 'product-cascade',
     title: 'Product cascade',
-    text: 'When a lead product drops, a paired sibling can drop in the same window (Fenrir 02 → Hati 01; Atoll 02 → Atoll 03).',
+    text: 'Wolf opens a new line or model every two months after Fenrir 01 (Jan 13, 2027). Other halls may still pair drops in the same window (e.g. Atoll 02 → Atoll 03).',
   },
   {
     id: 'reservation-flywheel',
