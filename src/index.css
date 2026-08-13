@@ -78,6 +78,14 @@
   margin-bottom: 1.75rem;
 }
 
+.vh-hub__glyph {
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 0.85rem;
+  opacity: 0.72;
+}
+
 .vh-hub__mark {
   margin: 0;
   font-family: var(--font-mono);

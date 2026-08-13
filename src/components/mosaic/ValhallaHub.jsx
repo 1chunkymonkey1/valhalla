@@ -36,6 +36,14 @@ export default function ValhallaHub() {
 
         {showCountdown ? (
           <header className="vh-hub__header vh-hub__header--solo">
+            <img
+              className="vh-hub__glyph"
+              src="/brand-mark.svg"
+              alt=""
+              width={28}
+              height={28}
+              decoding="async"
+            />
             <p className="vh-hub__mark">Valhalla</p>
             <CountdownClock
               targetDate={eventStart}
