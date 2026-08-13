@@ -1,4 +1,5 @@
 import { json, readBody, requireAdmin } from '../_lib/auth.js'
+import { isSupabaseConfigured } from '../_lib/supabase.js'
 import {
   importReservations,
   listReservations,
@@ -25,24 +26,33 @@ export default async function handler(req, res) {
   if (!session) return
 
   if (req.method === 'GET') {
-    return json(res, 200, {
-      ok: true,
-      email: session.email,
-      signups: listSignups(),
-      reservations: listReservations(),
-      companies: COMPANY_SUMMARY,
-      note: 'Server store is ephemeral on serverless. Upload browser ledger JSON for a durable snapshot.',
-    })
+    try {
+      const [signups, reservations] = await Promise.all([listSignups(), listReservations()])
+      const supabase = isSupabaseConfigured()
+      return json(res, 200, {
+        ok: true,
+        email: session.email,
+        signups,
+        reservations,
+        companies: COMPANY_SUMMARY,
+        storage: supabase ? 'supabase' : 'memory',
+        note: supabase
+          ? 'Durable storage via Supabase.'
+          : 'Memory fallback — set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY for durable empire data.',
+      })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Storage error' })
+    }
   }
 
   if (req.method === 'POST') {
     try {
       const body = await readBody(req)
       const rows = body.reservations || body.ledger || []
-      const imported = importReservations(rows)
+      const imported = await importReservations(rows)
       return json(res, 200, { ok: true, imported })
-    } catch {
-      return json(res, 400, { ok: false, error: 'Bad request' })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
     }
   }
 

@@ -1,4 +1,5 @@
 import { json, readBody, requirePeopleAdmin } from '../_lib/auth.js'
+import { isSupabaseConfigured } from '../_lib/supabase.js'
 import {
   ROLES,
   createInvite,
@@ -18,14 +19,24 @@ export default async function handler(req, res) {
   if (!session) return
 
   if (req.method === 'GET') {
-    return json(res, 200, {
-      ok: true,
-      roles: ROLES,
-      halls: listHallIds(),
-      users: listUsers(),
-      invites: listInvites(),
-      activity: listActivity(80),
-    })
+    try {
+      const [users, invites, activity] = await Promise.all([
+        listUsers(),
+        listInvites(),
+        listActivity(80),
+      ])
+      return json(res, 200, {
+        ok: true,
+        roles: ROLES,
+        halls: listHallIds(),
+        users,
+        invites,
+        activity,
+        storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+      })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Storage error' })
+    }
   }
 
   if (req.method === 'POST') {
@@ -35,7 +46,7 @@ export default async function handler(req, res) {
 
       if (action === 'invite') {
         if (!body.email) return json(res, 400, { ok: false, error: 'Email required' })
-        const invite = createInvite({
+        const invite = await createInvite({
           email: body.email,
           name: body.name || '',
           role: body.role || 'hall_lead',
@@ -51,7 +62,7 @@ export default async function handler(req, res) {
       }
 
       if (action === 'update_user') {
-        const existing = getUserByEmail(body.email)
+        const existing = await getUserByEmail(body.email)
         if (!existing) return json(res, 404, { ok: false, error: 'User not found' })
         const patch = {
           ...existing,
@@ -61,22 +72,23 @@ export default async function handler(req, res) {
           active: body.active ?? existing.active,
         }
         if (body.password) patch.passwordHash = hashPassword(body.password)
-        const user = upsertUser(patch)
+        const user = await upsertUser(patch)
         return json(res, 200, { ok: true, user })
       }
 
       if (action === 'export') {
-        return json(res, 200, { ok: true, empire: exportEmpire() })
+        const empire = await exportEmpire()
+        return json(res, 200, { ok: true, empire })
       }
 
       if (action === 'import') {
-        const ok = importEmpire(body.empire)
+        const ok = await importEmpire(body.empire)
         return json(res, ok ? 200 : 400, { ok })
       }
 
       return json(res, 400, { ok: false, error: 'Unknown action' })
-    } catch {
-      return json(res, 400, { ok: false, error: 'Bad request' })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
     }
   }
 

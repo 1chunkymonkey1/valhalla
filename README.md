@@ -19,9 +19,9 @@ npm run dev
 
 Admin API needs env (see below). Without it, `/admin` login returns 503.
 
-## Vercel environment (required for admin)
+## Vercel environment
 
-Set in Vercel → Project → Settings → Environment Variables (Production):
+Set in Vercel → Project → Settings → Environment Variables (Production + Preview):
 
 | Name | Notes |
 |---|---|
@@ -29,6 +29,10 @@ Set in Vercel → Project → Settings → Environment Variables (Production):
 | `ADMIN_SESSION_SECRET` | Long random string for signing httpOnly session cookies |
 | `ADMIN_TOTP_SECRET` | Base32 secret for authenticator 2FA (required). Generate with `npm run admin:totp` |
 | `ADMIN_PASSWORD_HASH` | Optional instead of `ADMIN_PASSWORD`: `salt:hex` from scrypt |
+| `SUPABASE_URL` | Supabase project URL (durable empire memory) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Server-only service role key — never `VITE_*` |
+
+See **[docs/supabase-setup.md](docs/supabase-setup.md)** for the click-path (create project → run SQL → paste keys → redeploy).
 
 Admin email is fixed: **info@valhallaco.org**. Login needs password **and** a 6-digit authenticator code.
 

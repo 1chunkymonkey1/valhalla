@@ -9,22 +9,26 @@ import { acceptInvite, getInviteByToken, ROLES } from '../_lib/empireStore.js'
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
-    const url = new URL(req.url, 'http://localhost')
-    const token = url.searchParams.get('token') || ''
-    const inv = getInviteByToken(token)
-    if (!inv) {
-      return json(res, 404, { ok: false, error: 'Invite invalid or expired' })
+    try {
+      const url = new URL(req.url, `https://${req.headers.host || 'localhost'}`)
+      const token = url.searchParams.get('token') || ''
+      const inv = await getInviteByToken(token)
+      if (!inv) {
+        return json(res, 404, { ok: false, error: 'Invite invalid or expired' })
+      }
+      return json(res, 200, {
+        ok: true,
+        invite: {
+          email: inv.email,
+          name: inv.name,
+          role: inv.role,
+          roleLabel: ROLES[inv.role]?.label,
+          halls: inv.halls,
+        },
+      })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Invite error' })
     }
-    return json(res, 200, {
-      ok: true,
-      invite: {
-        email: inv.email,
-        name: inv.name,
-        role: inv.role,
-        roleLabel: ROLES[inv.role]?.label,
-        halls: inv.halls,
-      },
-    })
   }
 
   if (req.method !== 'POST') {
@@ -33,7 +37,7 @@ export default async function handler(req, res) {
 
   try {
     const body = await readBody(req)
-    const result = acceptInvite(body.token, {
+    const result = await acceptInvite(body.token, {
       name: body.name,
       password: body.password,
     })
@@ -42,7 +46,7 @@ export default async function handler(req, res) {
     const token = signTeamSession(createTeamSessionPayload(result.user))
     setTeamSessionCookie(res, token)
     return json(res, 200, { ok: true, user: result.user })
-  } catch {
-    return json(res, 400, { ok: false, error: 'Bad request' })
+  } catch (err) {
+    return json(res, 400, { ok: false, error: err.message || 'Bad request' })
   }
 }

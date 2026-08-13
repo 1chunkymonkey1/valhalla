@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       .trim()
       .toLowerCase()
     const password = String(body.password || '')
-    const user = getUserByEmail(email)
+    const user = await getUserByEmail(email)
     if (!user || !user.active || !user.passwordHash) {
       return json(res, 401, { ok: false, error: 'Invalid email or password' })
     }
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     }
     const token = signTeamSession(createTeamSessionPayload(user))
     setTeamSessionCookie(res, token)
-    logActivity({ type: 'team_login', actor: user.email, role: user.role })
+    await logActivity({ type: 'team_login', actor: user.email, role: user.role })
     return json(res, 200, {
       ok: true,
       user: {
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
         halls: user.halls,
       },
     })
-  } catch {
-    return json(res, 400, { ok: false, error: 'Bad request' })
+  } catch (err) {
+    return json(res, 400, { ok: false, error: err.message || 'Bad request' })
   }
 }

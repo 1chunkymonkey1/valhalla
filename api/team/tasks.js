@@ -1,21 +1,29 @@
 import { json, readBody, requireTeam } from '../_lib/auth.js'
-import { addTask, listTasks, updateTask, getUserByEmail, hallAccessFor } from '../_lib/empireStore.js'
+import {
+  addTask,
+  listTasks,
+  updateTask,
+  getUserByEmail,
+  hallAccessFor,
+} from '../_lib/empireStore.js'
 
 export default async function handler(req, res) {
   const session = requireTeam(req, res)
   if (!session) return
-  const user = getUserByEmail(session.email)
+  const user = await getUserByEmail(session.email)
   if (!user) return json(res, 401, { ok: false, error: 'Unauthorized' })
 
   if (req.method === 'GET') {
-    return json(res, 200, {
-      ok: true,
-      tasks: listTasks({
+    try {
+      const tasks = await listTasks({
         email: user.email,
         halls: hallAccessFor(user),
         role: user.role,
-      }),
-    })
+      })
+      return json(res, 200, { ok: true, tasks })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Tasks error' })
+    }
   }
 
   if (req.method === 'POST') {
@@ -28,7 +36,7 @@ export default async function handler(req, res) {
       if (body.hall && !halls.includes(body.hall) && user.role === 'hall_lead') {
         return json(res, 403, { ok: false, error: 'No access to that hall' })
       }
-      const task = addTask({
+      const task = await addTask({
         title: body.title.trim(),
         body: body.body || '',
         hall: body.hall || null,
@@ -37,15 +45,15 @@ export default async function handler(req, res) {
         createdBy: user.email,
       })
       return json(res, 200, { ok: true, task })
-    } catch {
-      return json(res, 400, { ok: false, error: 'Bad request' })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
     }
   }
 
   if (req.method === 'PATCH') {
     try {
       const body = await readBody(req)
-      const task = updateTask(
+      const task = await updateTask(
         body.id,
         {
           title: body.title,
@@ -58,8 +66,8 @@ export default async function handler(req, res) {
       )
       if (!task) return json(res, 404, { ok: false, error: 'Task not found' })
       return json(res, 200, { ok: true, task })
-    } catch {
-      return json(res, 400, { ok: false, error: 'Bad request' })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
     }
   }
 

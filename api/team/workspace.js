@@ -1,4 +1,5 @@
 import { json, requireTeam } from '../_lib/auth.js'
+import { isSupabaseConfigured } from '../_lib/supabase.js'
 import { listReservations, listSignups } from '../_lib/store.js'
 import {
   hallAccessFor,
@@ -30,52 +31,62 @@ export default async function handler(req, res) {
     return json(res, 405, { ok: false, error: 'Method not allowed' })
   }
 
-  const user = getUserByEmail(session.email)
-  if (!user) return json(res, 401, { ok: false, error: 'Unauthorized' })
+  try {
+    const user = await getUserByEmail(session.email)
+    if (!user) return json(res, 401, { ok: false, error: 'Unauthorized' })
 
-  const halls = hallAccessFor(user)
-  const tasks = listTasks({ email: user.email, halls, role: user.role })
-  const notes = halls.flatMap((h) => listNotes(h)).slice(0, 40)
+    const halls = hallAccessFor(user)
+    const [tasks, reservations, signups] = await Promise.all([
+      listTasks({ email: user.email, halls, role: user.role }),
+      listReservations(),
+      listSignups(),
+    ])
 
-  const reservations = listReservations().filter(
-    (r) => !r.companyId || halls.includes(r.companyId),
-  )
-  const signups = listSignups()
+    const notesNested = await Promise.all(halls.map((h) => listNotes(h)))
+    const notes = notesNested.flat().slice(0, 40)
 
-  return json(res, 200, {
-    ok: true,
-    user: {
-      email: user.email,
-      name: user.name,
-      role: user.role,
-      roleLabel: ROLES[user.role]?.label,
-      roleBlurb: ROLES[user.role]?.blurb,
-      halls,
-    },
-    halls: halls.map((id) => ({
-      id,
-      ...HALL_META[id],
-      openTasks: tasks.filter((t) => t.hall === id && t.status !== 'done').length,
-      reservations: reservations.filter((r) => r.companyId === id).length,
-      notes: notes.filter((n) => n.hall === id).length,
-    })),
-    tasks: tasks.slice(0, 80),
-    notes: notes.slice(0, 40),
-    reservations: reservations.slice(0, 80),
-    signups: signups.slice(0, 80),
-    guides: [
-      {
-        title: 'How team login works',
-        body: 'You receive an invite link from the founder. Set your password once, then sign in at /team with email + password. No authenticator required for team seats.',
+    const scopedReservations = reservations.filter(
+      (r) => !r.companyId || halls.includes(r.companyId),
+    )
+
+    return json(res, 200, {
+      ok: true,
+      storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+      user: {
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        roleLabel: ROLES[user.role]?.label,
+        roleBlurb: ROLES[user.role]?.blurb,
+        halls,
       },
-      {
-        title: 'Your halls',
-        body: 'Each company is a hall. Open a hall to manage notes, tasks, and the refundable interest flowing into that company.',
-      },
-      {
-        title: 'Founder control tower',
-        body: 'Only info@valhallaco.org uses /admin with password + 2FA. That view watches people, ledgers, and activity across the empire.',
-      },
-    ],
-  })
+      halls: halls.map((id) => ({
+        id,
+        ...HALL_META[id],
+        openTasks: tasks.filter((t) => t.hall === id && t.status !== 'done').length,
+        reservations: scopedReservations.filter((r) => r.companyId === id).length,
+        notes: notes.filter((n) => n.hall === id).length,
+      })),
+      tasks: tasks.slice(0, 80),
+      notes: notes.slice(0, 40),
+      reservations: scopedReservations.slice(0, 80),
+      signups: signups.slice(0, 80),
+      guides: [
+        {
+          title: 'How team login works',
+          body: 'You receive an invite link from the founder. Set your password once, then sign in at /team with email + password. No authenticator required for team seats.',
+        },
+        {
+          title: 'Your halls',
+          body: 'Each company is a hall. Open a hall to manage notes, tasks, and the refundable interest flowing into that company.',
+        },
+        {
+          title: 'Founder control tower',
+          body: 'Only info@valhallaco.org uses /admin with password + 2FA. That view watches people, ledgers, and activity across the empire.',
+        },
+      ],
+    })
+  } catch (err) {
+    return json(res, 500, { ok: false, error: err.message || 'Workspace error' })
+  }
 }

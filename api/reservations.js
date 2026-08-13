@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       return json(res, 400, { ok: false, error: 'email and companyId required' })
     }
 
-    const row = addReservation({
+    const row = await addReservation({
       companyId,
       companyName: body.companyName || companyId,
       product: body.product || null,
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     })
 
     return json(res, 200, { ok: true, id: row.id })
-  } catch {
-    return json(res, 400, { ok: false, error: 'Bad request' })
+  } catch (err) {
+    return json(res, 400, { ok: false, error: err.message || 'Bad request' })
   }
 }

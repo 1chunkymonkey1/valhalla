@@ -479,8 +479,10 @@ export default function AdminPage() {
               </label>
             </div>
             <p className="vh-admin__note">
-              Server memory is ephemeral on serverless — export after inviting people, import after
-              redeploys.
+              Storage: <strong>{people?.storage || '…'}</strong>
+              {people?.storage === 'supabase'
+                ? ' — durable via Supabase.'
+                : ' — memory fallback. Add SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (see docs/supabase-setup.md).'}
             </p>
           </div>
         </section>

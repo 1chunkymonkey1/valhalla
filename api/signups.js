@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       return json(res, 400, { ok: false, error: 'Valid email required' })
     }
 
-    const row = addSignup({
+    const row = await addSignup({
       email,
       name: String(body.name || '').trim() || null,
       audience: String(body.audience || 'general').trim(),
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     })
 
     return json(res, 200, { ok: true, id: row.id })
-  } catch {
-    return json(res, 400, { ok: false, error: 'Bad request' })
+  } catch (err) {
+    return json(res, 400, { ok: false, error: err.message || 'Bad request' })
   }
 }
