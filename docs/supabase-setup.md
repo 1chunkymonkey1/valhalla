@@ -27,6 +27,8 @@ Team users, invites, tasks, notes, activity, email signups, and reservations per
    - **Project URL** → `SUPABASE_URL`
    - **service_role** key (secret) → `SUPABASE_SERVICE_ROLE_KEY`
 
+Prefer the **Legacy** `service_role` JWT (`eyJ…`) for Vercel server routes. Newer `sb_secret_…` keys can fail auth with `@supabase/supabase-js` in some setups — if admin/team APIs return auth errors after a Ready deploy, switch the Vercel env var to the Legacy JWT and redeploy.
+
 Do **not** put the service role key in any `VITE_*` variable or commit it to git. It bypasses RLS and must stay server-only on Vercel.
 
 ## 4. Add env vars on Vercel
@@ -50,9 +52,10 @@ Deployments → latest Production → **Redeploy** (or push to `main`).
 
 ## 6. Verify
 
-1. `/admin` → Overview / Ledgers should note **Durable storage via Supabase** (or `storage: "supabase"` from API).
-2. Invite a teammate under **People** → accept at `/team/join` → sign in at `/team`.
-3. Redeploy again — the seat should still exist.
+1. `/admin` → **People** should show **Storage: supabase** (not `memory`).
+2. Overview / Ledgers should note **Durable storage via Supabase**.
+3. Invite a teammate under **People** → accept at `/team/join` → sign in at `/team`.
+4. Redeploy again — the seat should still exist.
 
 ## Fallback
 
