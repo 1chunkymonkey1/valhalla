@@ -36,7 +36,7 @@ Demeter   Njord      Aeolus     Corvus
 | 3 Air | Eagle, Olympus, Aeolus | Light blue, silver, white, wispy sky + lightning |
 | 4 Space | Phenix, Aether, Corvus | Mostly black, sparks/twinkles, faint fire/rocket ember |
 
-Rows = Movement / Habitation / Energy.
+Rows = Movement / Habitation / Substrate.
 
 Hub stays **white**. Company pages are separate routes (`/wolf`, etc.).
 

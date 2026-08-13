@@ -10,21 +10,21 @@ export const knowledge = {
     email: 'info@valhallaco.org',
     discord: 'https://discord.gg/JA6wrNg6n',
     summary:
-      'Valhalla is a civilization platform of 12 companies across land, water, air, and space — movement, habitation, and energy.',
+      'Valhalla is a civilization platform of 12 companies across land, water, air, and space — movement, habitation, and substrate.',
   },
   companies: [
     { id: 'wolf', domain: 'Land', pillar: 'Movement', blurb: 'Adventure mobility; Fenrir motorcycle path; Bifröst Line maglev vision.' },
     { id: 'holm', domain: 'Land', pillar: 'Habitation', blurb: 'Modular homes.' },
-    { id: 'demeter', domain: 'Land', pillar: 'Energy', blurb: 'Agrivoltaic / land-energy diligence.' },
+    { id: 'demeter', domain: 'Land', pillar: 'Substrate', blurb: 'Agrivoltaic / land-energy diligence.' },
     { id: 'viking', domain: 'Water', pillar: 'Movement', blurb: 'Story-led northern voyages.' },
     { id: 'atoll', domain: 'Water', pillar: 'Habitation', blurb: 'Floating modular habitats.' },
-    { id: 'njord', domain: 'Water', pillar: 'Energy', blurb: 'Water systems research (OTEC, atmospheric water).' },
+    { id: 'njord', domain: 'Water', pillar: 'Substrate', blurb: 'Water systems research (OTEC, atmospheric water).' },
     { id: 'eagle', domain: 'Air', pillar: 'Movement', blurb: 'Aviation access interest — not tickets.' },
     { id: 'olympus', domain: 'Air', pillar: 'Habitation', blurb: 'Upper-atmosphere habitation research.' },
-    { id: 'aeolus', domain: 'Air', pillar: 'Energy', blurb: 'Climate-atmosphere research governance.' },
+    { id: 'aeolus', domain: 'Air', pillar: 'Substrate', blurb: 'Climate-atmosphere research governance.' },
     { id: 'phenix', domain: 'Space', pillar: 'Movement', blurb: 'Mission-concept workspace — not launch booking.' },
     { id: 'aether', domain: 'Space', pillar: 'Habitation', blurb: 'Space habitation concepts with legal status disclosed.' },
-    { id: 'corvus', domain: 'Space', pillar: 'Energy', blurb: 'Raven OS — 21 prompts; Prompt 21 is $21,000 + community badge.' },
+    { id: 'corvus', domain: 'Space', pillar: 'Substrate', blurb: 'Raven OS — 21 prompts; Prompt 21 is $21,000 + community badge.' },
   ],
   reservations:
     'Company sites collect fully refundable reservation holds. Squarespace Pay Links are configured per product when live. No non-refundable deposit is forced on the public pages.',
@@ -78,7 +78,7 @@ export function answerQuestion(text) {
 
   if (/12 compan|halls|mosaic|domains|land|water|air|space/.test(q)) {
     return (
-      'Twelve halls in a 4×3 mosaic: Land (Wolf, Holm, Demeter), Water (Viking, Atoll, Njord), Air (Eagle, Olympus, Aeolus), Space (Phenix, Aether, Corvus). Rows are Movement, Habitation, Energy.'
+      'Twelve halls in a 4×3 mosaic: Land (Wolf, Holm, Demeter), Water (Viking, Atoll, Njord), Air (Eagle, Olympus, Aeolus), Space (Phenix, Aether, Corvus). Rows are Movement, Habitation, Substrate.'
     )
   }
 

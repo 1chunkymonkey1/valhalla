@@ -1,20 +1,34 @@
 import { useEffect, useState } from 'react'
-import { getClockMode, getSimulatedNow } from '../lib/simulationClock'
+import {
+  getClockMode,
+  getDemoRate,
+  getSimulatedNow,
+  isDemoPaused,
+} from '../lib/simulationClock'
 
 export function useSimulationClock() {
   const [now, setNow] = useState(() => getSimulatedNow())
   const [mode, setMode] = useState(() => getClockMode())
+  const [rate, setRate] = useState(() => getDemoRate())
+  const [paused, setPaused] = useState(() => isDemoPaused())
 
   useEffect(() => {
-    const tick = () => {
+    const sync = () => {
       setMode(getClockMode())
+      setRate(getDemoRate())
+      setPaused(isDemoPaused())
       setNow(getSimulatedNow())
     }
-    tick()
-    const ms = getClockMode() === 'demo' ? 50 : 250
-    const id = setInterval(tick, ms)
-    return () => clearInterval(id)
+    sync()
+    const id = setInterval(sync, 100)
+    window.addEventListener('valhalla-clock', sync)
+    window.addEventListener('storage', sync)
+    return () => {
+      clearInterval(id)
+      window.removeEventListener('valhalla-clock', sync)
+      window.removeEventListener('storage', sync)
+    }
   }, [])
 
-  return { now, mode }
+  return { now, mode, rate, paused }
 }

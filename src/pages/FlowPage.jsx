@@ -22,7 +22,7 @@ export default function FlowPage() {
         }
       : {
           title: 'How the empire grows',
-          body: 'Select a company node or a relationship arc. Columns are domains; rows are Movement, Habitation, Energy. Loops feed intelligence and product cascades back through the mosaic.',
+          body: 'Select a company node or a relationship arc. Columns are domains; rows are Movement, Habitation, Substrate. Loops feed intelligence and product cascades back through the mosaic.',
         }
 
   return (
@@ -31,7 +31,7 @@ export default function FlowPage() {
       <header className="vh-flow__hero">
         <p className="vh-flow__mark">Valhalla</p>
         <h1>Network flow</h1>
-        <p>Land · Water · Air · Space — movement, habitation, energy interlocking.</p>
+        <p>Land · Water · Air · Space — movement, habitation, substrate interlocking.</p>
       </header>
 
       <div className="vh-flow">
@@ -43,7 +43,7 @@ export default function FlowPage() {
             </div>
           ))}
 
-          {['Movement', 'Habitation', 'Energy'].map((pillar, row) => (
+          {['Movement', 'Habitation', 'Substrate'].map((pillar, row) => (
             <FragmentRow
               key={pillar}
               pillar={pillar}

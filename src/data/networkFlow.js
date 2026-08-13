@@ -1,6 +1,6 @@
 /**
  * Network flow — how Valhalla interconnects and grows.
- * Land/Water/Air/Space × Movement/Habitation/Energy + cascade loops.
+ * Land/Water/Air/Space × Movement/Habitation/Substrate + cascade loops.
  */
 
 export const flowDomains = [
@@ -11,7 +11,7 @@ export const flowDomains = [
     companies: [
       { id: 'wolf', name: 'Wolf', pillar: 'Movement' },
       { id: 'holm', name: 'Holm', pillar: 'Habitation' },
-      { id: 'demeter', name: 'Demeter', pillar: 'Energy' },
+      { id: 'demeter', name: 'Demeter', pillar: 'Substrate' },
     ],
   },
   {
@@ -21,7 +21,7 @@ export const flowDomains = [
     companies: [
       { id: 'viking', name: 'Viking', pillar: 'Movement' },
       { id: 'atoll', name: 'Atoll', pillar: 'Habitation' },
-      { id: 'njord', name: 'Njord', pillar: 'Energy' },
+      { id: 'njord', name: 'Njord', pillar: 'Substrate' },
     ],
   },
   {
@@ -31,7 +31,7 @@ export const flowDomains = [
     companies: [
       { id: 'eagle', name: 'Eagle', pillar: 'Movement' },
       { id: 'olympus', name: 'Olympus', pillar: 'Habitation' },
-      { id: 'aeolus', name: 'Aeolus', pillar: 'Energy' },
+      { id: 'aeolus', name: 'Aeolus', pillar: 'Substrate' },
     ],
   },
   {
@@ -41,7 +41,7 @@ export const flowDomains = [
     companies: [
       { id: 'phenix', name: 'Phenix', pillar: 'Movement' },
       { id: 'aether', name: 'Aether', pillar: 'Habitation' },
-      { id: 'corvus', name: 'Corvus', pillar: 'Energy' },
+      { id: 'corvus', name: 'Corvus', pillar: 'Substrate' },
     ],
   },
 ]
@@ -158,7 +158,7 @@ export const growthLoops = [
   {
     id: 'domain-reinforcement',
     title: 'Domain reinforcement',
-    text: 'Each column (Land/Water/Air/Space) stacks Movement → Habitation → Energy so communities, vehicles, and power co-evolve.',
+    text: 'Each column (Land/Water/Air/Space) stacks Movement → Habitation → Substrate so communities, vehicles, and power co-evolve.',
   },
   {
     id: 'intelligence-spine',

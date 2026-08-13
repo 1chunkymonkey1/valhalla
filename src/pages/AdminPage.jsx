@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SiteMenu from '../components/layout/SiteMenu'
+import AdminRevealControls from '../components/AdminRevealControls'
 import { formatUsd } from '../data/payLinks'
 import { HALL_IDS, TEAM_ROLES } from '../data/teamRoles'
 
@@ -476,6 +477,7 @@ export default function AdminPage() {
       <nav className="vh-team__tabs">
         {[
           ['overview', 'Overview'],
+          ['reveal', 'Reveal'],
           ['inbox', inboxUnread ? `Inbox (${inboxUnread})` : 'Inbox'],
           ['people', 'People'],
           ['codes', 'Hall codes'],
@@ -541,6 +543,8 @@ export default function AdminPage() {
           </div>
         </section>
       )}
+
+      {adminTab === 'reveal' && <AdminRevealControls />}
 
       {adminTab === 'inbox' && (
         <section className="vh-admin__inbox">

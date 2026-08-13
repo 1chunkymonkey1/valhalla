@@ -10,7 +10,7 @@ export const CLICK_DELAY_MS = 5 * 1000 // T+5s — "click" appears
 
 /**
  * Mosaic display order (row-major for CSS grid-cols-4):
- *   Movement → Habitation → Energy (rows)
+ *   Movement → Habitation → Substrate (rows)
  *   Land | Water | Air | Space (columns)
  */
 export const MOSAIC_ORDER = [
@@ -108,7 +108,7 @@ export const schedule = [
     slug: 'demeter',
     name: 'Demeter',
     domain: 'Land',
-    pillar: 'Energy',
+    pillar: 'Substrate',
     launchTime: `${LAUNCH_DATE}T10:00:00-07:00`,
     publicStatus: 'research',
     pattern: 'project',
@@ -153,7 +153,7 @@ export const schedule = [
     slug: 'njord',
     name: 'Njord',
     domain: 'Water',
-    pillar: 'Energy',
+    pillar: 'Substrate',
     launchTime: `${LAUNCH_DATE}T14:00:00-07:00`,
     publicStatus: 'research',
     pattern: 'project',
@@ -198,7 +198,7 @@ export const schedule = [
     slug: 'aeolus',
     name: 'Aeolus',
     domain: 'Air',
-    pillar: 'Energy',
+    pillar: 'Substrate',
     launchTime: `${LAUNCH_DATE}T17:00:00-07:00`,
     publicStatus: 'research',
     pattern: 'research',
@@ -243,7 +243,7 @@ export const schedule = [
     slug: 'corvus',
     name: 'Corvus',
     domain: 'Space',
-    pillar: 'Energy',
+    pillar: 'Substrate',
     launchTime: `${LAUNCH_DATE}T20:00:00-07:00`,
     publicStatus: 'concept',
     pattern: 'local',

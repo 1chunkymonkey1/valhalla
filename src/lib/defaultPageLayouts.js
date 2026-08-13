@@ -11,7 +11,7 @@ import { companies, getCompany } from './companies'
 import { PAGE_IDS, SNAP, emptyLayout, snap } from './pageEditor'
 
 const FONTS = {
-  display: 'Fraunces, Georgia, serif',
+  display: 'Source Serif 4, Literata, Georgia, serif',
   body: 'Sora, system-ui, sans-serif',
   mono: 'IBM Plex Mono, ui-monospace, monospace',
 }
@@ -405,7 +405,7 @@ function buildHubLayout() {
   y += 112
 
   const mission =
-    'Twelve companies across land, water, air, and space — building the infrastructure layers that support civilization: movement, habitation, and energy.'
+    'Twelve companies across land, water, air, and space — building the infrastructure layers that support civilization: movement, habitation, and substrate.'
   blocks.push(
     block(pageId, 'mission', 'text', { x: 80, y, w: 800, h: 88 }, {
       content: mission,

@@ -24,9 +24,9 @@ export const PAGE_IDS = [
 export const BLOCK_TYPES = ['hero', 'text', 'image', 'spacer', 'cta']
 
 export const FONT_FAMILIES = [
-  'Fraunces, Georgia, serif',
-  'Sora, system-ui, sans-serif',
+  'Source Serif 4, Literata, Georgia, serif',
   'Literata, Georgia, serif',
+  'Sora, system-ui, sans-serif',
   'Syne, system-ui, sans-serif',
   'IBM Plex Mono, ui-monospace, monospace',
 ]

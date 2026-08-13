@@ -25,7 +25,7 @@ Admin API needs env (see below). Without it, `/admin` login returns 503.
 3. **After Njord** — break until **2:00 PM PDT**.
 4. **Wave 2 (Eagle → Corvus)** — each hall needs an Instagram unlock code (sequential). Enter on the hub or the locked hall page.
 
-Demo the full clock with `/?demo=1`.
+Demo the full clock with `/?demo=1` (100× from T−1h). Founder controls: `/admin` → **Reveal** (watch full reveal, pause, speed, scrub). Same localStorage clock as the hub.
 
 ### Hall codes
 
@@ -82,7 +82,7 @@ npx vercel --prod
 | `/investors` `/consumers` `/partners` | Audience pages |
 | `/roadmap` | Roadmap index |
 | `/contact` | Contact |
-| `/admin` | Founder control tower (2FA) — people, codes, socials, ledgers |
+| `/admin` | Founder control tower (2FA) — reveal clock, people, codes, socials, ledgers |
 | `/team` | Team workspace |
 | `/team/login` | Email + password |
 | `/team/join?token=` | Accept invite |

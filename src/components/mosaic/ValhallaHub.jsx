@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom'
 import SimpleCountdown from '../SimpleCountdown'
 
 export default function ValhallaHub() {
-  const { now, mode } = useSimulationClock()
+  const { now, mode, rate, paused } = useSimulationClock()
   const eventStart = getEventStart()
   const wave2Start = getWave2Start()
   const showCountdown = now < eventStart
@@ -78,7 +78,7 @@ export default function ValhallaHub() {
       )}
       {!showCountdown && <SiteMenu tone="hub" />}
       <div className="vh-hub__inner">
-        <DemoControls mode={mode} />
+        <DemoControls mode={mode} rate={rate} paused={paused} />
 
         {showCountdown ? (
           <header className="vh-hub__header vh-hub__header--solo">

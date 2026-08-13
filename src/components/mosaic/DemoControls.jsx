@@ -1,7 +1,16 @@
-import { resetDemoSession, setClockMode, DEMO_RATE } from '../../lib/simulationClock'
+import {
+  resetDemoSession,
+  exitDemoToLive,
+  getDemoRate,
+  isDemoPaused,
+  toggleDemoPause,
+} from '../../lib/simulationClock'
 
-export default function DemoControls({ mode }) {
+export default function DemoControls({ mode, rate, paused }) {
   if (mode !== 'demo') return null
+
+  const displayRate = rate || getDemoRate()
+  const isPaused = typeof paused === 'boolean' ? paused : isDemoPaused()
 
   function restart() {
     resetDemoSession()
@@ -9,15 +18,22 @@ export default function DemoControls({ mode }) {
   }
 
   function exitDemo() {
-    setClockMode('live')
+    exitDemoToLive()
     window.location.href = '/?demo=0'
+  }
+
+  function onPauseToggle() {
+    toggleDemoPause()
   }
 
   return (
     <div className="vh-demo-controls">
       <span>
-        Demo · {DEMO_RATE}× · start T−1h
+        Demo · {displayRate}× · start T−1h{isPaused ? ' · paused' : ''}
       </span>
+      <button type="button" onClick={onPauseToggle}>
+        {isPaused ? 'Resume' : 'Pause'}
+      </button>
       <button type="button" onClick={restart}>
         Restart
       </button>
