@@ -15,6 +15,7 @@ import {
   verifyHallCode,
 } from '../_lib/hallCodes.js'
 import { listCompanySocials, toPublicSocial } from '../_lib/companySocials.js'
+import { getPublishedPageLayout, isValidPageId } from '../_lib/pageLayouts.js'
 import { isSupabaseConfigured } from '../_lib/supabase.js'
 
 function routeKey(req) {
@@ -122,10 +123,34 @@ async function handleSocials(req, res) {
   }
 }
 
+async function handlePage(req, res) {
+  if (req.method !== 'GET') {
+    return json(res, 405, { ok: false, error: 'Method not allowed' })
+  }
+  try {
+    const url = new URL(req.url, `https://${req.headers.host || 'localhost'}`)
+    const pageId = String(url.searchParams.get('id') || '')
+      .trim()
+      .toLowerCase()
+    if (!isValidPageId(pageId)) {
+      return json(res, 400, { ok: false, error: 'Unknown page id' })
+    }
+    const page = await getPublishedPageLayout(pageId)
+    return json(res, 200, {
+      ok: true,
+      page,
+      storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+    })
+  } catch (err) {
+    return json(res, 500, { ok: false, error: err.message || 'Page error' })
+  }
+}
+
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'status' || key === 'unlocks') return handleStatus(req, res)
   if (key === 'unlock') return handleUnlock(req, res)
   if (key === 'socials') return handleSocials(req, res)
+  if (key === 'page') return handlePage(req, res)
   return json(res, 404, { ok: false, error: 'Not found' })
 }

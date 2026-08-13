@@ -5,6 +5,7 @@ import ReservationForm from './ReservationForm'
 import ProductRoadmap from './roadmap/ProductRoadmap'
 import SiteMenu from './layout/SiteMenu'
 import CompanySocialLinks from './CompanySocialLinks'
+import PublishedBlocks, { fetchPublishedLayout } from './PublishedBlocks'
 import { companyProducts } from '../data/companyProducts'
 import { formatUsd, getCompanyPayLink } from '../data/payLinks'
 import { DISCORD_INVITE } from '../data/pressRelease'
@@ -73,6 +74,7 @@ export default function CompanySite({
   const strip = product.gallery.slice(1)
   const pay = getCompanyPayLink(company.slug)
   const [social, setSocial] = useState(null)
+  const [published, setPublished] = useState(null)
 
   useEffect(() => {
     let cancelled = false
@@ -84,10 +86,15 @@ export default function CompanySite({
         if (hit) setSocial(hit)
       })
       .catch(() => {})
+    fetchPublishedLayout(company.slug).then((layout) => {
+      if (!cancelled) setPublished(layout)
+    })
     return () => {
       cancelled = true
     }
   }, [company.slug])
+
+  const useCustom = Boolean(published?.enabled && published.blocks?.length)
 
   return (
     <div
@@ -106,6 +113,49 @@ export default function CompanySite({
         <SiteMenu tone="company" />
       </div>
 
+      {useCustom ? (
+        <>
+          <div className="cs-pub-bar">
+            <Link to="/?demo=1" className="cs-hero__hub">
+              Valhalla
+            </Link>
+            <span className="cs-hero__meta">
+              {company.domain} · {company.pillar}
+            </span>
+          </div>
+          <PublishedBlocks layout={published} className="cs-pub" />
+          <main>
+            <section id="reserve" className="cs-reserve">
+              <ReservationForm
+                companyId={company.slug}
+                companyName={company.name}
+                productName={product.product}
+                interestGroups={product.interestGroups}
+                accent={tone.accent}
+                estimateUsd={pay?.estimateUsd}
+                payUrl={pay?.payUrl || ''}
+              />
+            </section>
+            <div className="cs-next">
+              <NextDoor
+                company={company}
+                now={now}
+                unlockedSet={unlockedSet}
+                unlock={unlock}
+                unlockError={unlockError}
+              />
+            </div>
+            <footer className="cs-foot">
+              <Link to="/?demo=1">← mosaic</Link>
+              <a href={DISCORD_INVITE} target="_blank" rel="noreferrer">
+                Discord
+              </a>
+              <Link to="/flow">Flow</Link>
+            </footer>
+          </main>
+        </>
+      ) : (
+        <>
       <header className="cs-hero">
         <img className="cs-hero__media" src={hero.src} alt="" aria-hidden="true" />
         <div className="cs-hero__wash" aria-hidden />
@@ -203,6 +253,8 @@ export default function CompanySite({
           <Link to="/flow">Flow</Link>
         </footer>
       </main>
+        </>
+      )}
     </div>
   )
 }

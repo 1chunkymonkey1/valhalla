@@ -402,6 +402,9 @@ export default function AdminPage() {
             {label}
           </button>
         ))}
+        <Link to="/admin/editor/hub" className="vh-admin__editor-link">
+          Page editor
+        </Link>
       </nav>
 
       {adminTab === 'overview' && (

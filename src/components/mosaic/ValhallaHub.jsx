@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
   getEventStart,
   getHubClickAt,
@@ -12,6 +13,7 @@ import DemoControls from './DemoControls'
 import SiteMenu from '../layout/SiteMenu'
 import EmailCapture from '../EmailCapture'
 import HallUnlockForm from '../HallUnlockForm'
+import PublishedBlocks, { fetchPublishedLayout } from '../PublishedBlocks'
 import { DISCORD_INVITE } from '../../data/pressRelease'
 import { Link } from 'react-router-dom'
 import SimpleCountdown from '../SimpleCountdown'
@@ -26,6 +28,18 @@ export default function ValhallaHub() {
   const inWave2Break = njordLive && now < wave2Start
   const codeHall =
     !showCountdown && now >= wave2Start ? getNextCodeHall(unlockedSet, now) || nextHall : null
+  const [hubLayout, setHubLayout] = useState(null)
+
+  useEffect(() => {
+    if (showCountdown) return
+    let cancelled = false
+    fetchPublishedLayout('hub').then((layout) => {
+      if (!cancelled) setHubLayout(layout)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [showCountdown])
 
   return (
     <div className={`vh-hub ${showCountdown ? 'vh-hub--dormant' : ''}`}>
@@ -55,6 +69,12 @@ export default function ValhallaHub() {
             </header>
 
             <MosaicGrid now={now} unlockedSet={unlockedSet} />
+
+            {hubLayout?.enabled && hubLayout.blocks?.length > 0 && (
+              <section className="vh-hub__pub" aria-label="Hub custom content">
+                <PublishedBlocks layout={hubLayout} />
+              </section>
+            )}
 
             {inWave2Break && (
               <section className="vh-hub__break" aria-label="Wave 2 break">

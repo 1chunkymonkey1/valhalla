@@ -2132,3 +2132,339 @@
     font-size: 0.78rem;
   }
 }
+
+/* —— Founder page editor + published layouts —— */
+.vh-admin__editor-link {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.vh-admin__editor-link:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.vh-editor {
+  --ed-ink: #1a1a1a;
+  --ed-paper: #f3f1ec;
+  --ed-line: rgba(26, 26, 26, 0.14);
+  --ed-accent: #2a4a3a;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(42, 74, 58, 0.08), transparent 55%),
+    linear-gradient(180deg, #f7f5f0 0%, var(--ed-paper) 100%);
+  color: var(--ed-ink);
+  padding: 1rem 1.25rem 2.5rem;
+}
+
+.vh-editor__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.vh-editor__brand h1 {
+  margin: 0.15rem 0;
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 600;
+}
+
+.vh-editor__meta {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.vh-editor__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.vh-editor__switcher,
+.vh-editor__toggle {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.vh-editor__switcher select,
+.vh-editor__inspector select,
+.vh-editor__inspector input,
+.vh-editor__inspector textarea {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--ed-line);
+  background: #fff;
+  color: var(--ed-ink);
+  font: inherit;
+}
+
+.vh-editor__save {
+  padding: 0.45rem 1rem;
+  border: none;
+  background: var(--ed-accent);
+  color: #f7f5f0;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.vh-editor__save:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.vh-editor__link {
+  font-size: 0.85rem;
+  color: var(--ed-ink);
+}
+
+.vh-editor__status {
+  min-height: 1.25rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.vh-editor__body {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) 240px;
+  gap: 0.85rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .vh-editor__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vh-editor__rail,
+.vh-editor__inspector {
+  padding: 0.85rem;
+  border: 1px solid var(--ed-line);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.vh-editor__rail h2,
+.vh-editor__inspector h2 {
+  margin: 0 0 0.65rem;
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.05rem;
+}
+
+.vh-editor__add {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.vh-editor__add button,
+.vh-editor__list button,
+.vh-editor__danger {
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--ed-line);
+  background: #fff;
+  color: var(--ed-ink);
+  font: inherit;
+  font-size: 0.82rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.vh-editor__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-height: 280px;
+  overflow: auto;
+}
+
+.vh-editor__list button.is-active {
+  border-color: var(--ed-accent);
+  background: rgba(42, 74, 58, 0.08);
+}
+
+.vh-editor__hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  opacity: 0.7;
+}
+
+.vh-editor__hint.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vh-editor__stage {
+  overflow: auto;
+  border: 1px solid var(--ed-line);
+  background: #e8e4dc;
+  max-height: min(80vh, 900px);
+}
+
+.vh-editor__canvas {
+  position: relative;
+  width: 100%;
+  min-width: 720px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #f7f5f0;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  touch-action: none;
+}
+
+.vh-editor__block {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 0.35rem 0.5rem;
+  border: 1px dashed transparent;
+  cursor: grab;
+  user-select: none;
+  overflow: hidden;
+}
+
+.vh-editor__block:active {
+  cursor: grabbing;
+}
+
+.vh-editor__block.is-selected {
+  border-color: var(--ed-accent);
+  outline: 1px solid rgba(42, 74, 58, 0.35);
+  z-index: 2;
+}
+
+.vh-editor__block--image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.vh-editor__block--spacer {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 0.04),
+    rgba(0, 0, 0, 0.04) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+.vh-editor__spacer-label {
+  font-size: 0.7rem;
+  color: rgba(26, 26, 26, 0.45);
+}
+
+.vh-editor__cta-chip {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid currentColor;
+}
+
+.vh-editor__inspector label {
+  display: block;
+  margin-bottom: 0.65rem;
+  font-size: 0.8rem;
+}
+
+.vh-editor__geom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.vh-editor__danger {
+  margin-top: 0.5rem;
+  border-color: rgba(120, 40, 30, 0.35) !important;
+  color: #6a2a20 !important;
+}
+
+.vh-editor__canvas-h {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.vh-editor__file input[type='file'] {
+  font-size: 0.75rem;
+}
+
+.vh-pub {
+  position: relative;
+  width: min(100%, 1000px);
+  margin: 0 auto;
+}
+
+.vh-pub__block {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.vh-pub__image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.vh-pub__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.1rem;
+  text-decoration: none;
+  border: 1px solid currentColor;
+  color: inherit;
+}
+
+.vh-pub__hero {
+  line-height: 1.15;
+}
+
+.vh-pub__text {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.cs-pub-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 1.25rem 0.5rem;
+}
+
+.cs-pub {
+  margin-bottom: 2rem;
+}
+
+.vh-hub__pub {
+  margin: 1.5rem auto 0;
+  width: min(100%, 1000px);
+  padding: 0 1rem;
+}

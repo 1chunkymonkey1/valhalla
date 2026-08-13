@@ -1,9 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import ValhallaHub from './components/mosaic/ValhallaHub'
 import CompanySitePage from './pages/CompanySitePage'
 import PressPage from './pages/PressPage'
 import FlowPage from './pages/FlowPage'
 import AdminPage from './pages/AdminPage'
+import PageEditorPage from './pages/PageEditorPage'
 import TeamLoginPage from './pages/TeamLoginPage'
 import TeamJoinPage from './pages/TeamJoinPage'
 import TeamWorkspacePage from './pages/TeamWorkspacePage'
@@ -29,6 +30,8 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/roadmap" element={<RoadmapIndexPage />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/editor" element={<Navigate to="/admin/editor/hub" replace />} />
+        <Route path="/admin/editor/:pageId" element={<PageEditorPage />} />
         <Route path="/team" element={<TeamWorkspacePage />} />
         <Route path="/team/login" element={<TeamLoginPage />} />
         <Route path="/team/join" element={<TeamJoinPage />} />

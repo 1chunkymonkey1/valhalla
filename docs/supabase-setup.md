@@ -69,6 +69,14 @@ Deployments → latest Production → **Redeploy** (or push to `main`).
 - `/admin` → **Socials**: LinkedIn / Instagram / X / Discord URLs per company.
 - Public: `GET /api/hub/status`, `POST /api/hub/unlock`, `GET /api/hub/socials`.
 
+## Page layouts (founder visual editor)
+
+1. Run `supabase/migrations/20260813_page_layouts.sql` in the SQL Editor.
+2. Create a **public** Storage bucket named `page-assets` (Dashboard → Storage).
+3. Open `/admin/editor/hub` (or any hall) after founder 2FA login → edit → **Save**.
+
+See [page-editor.md](./page-editor.md) for UX, page IDs, and v1 limits.
+
 ## Fallback
 
 If Supabase env vars are missing, the API falls back to in-memory storage (data lost on cold starts). Export/import JSON still works as a backup. Hall codes can still come from `HALL_CODE_*` env vars.

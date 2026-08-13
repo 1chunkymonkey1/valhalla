@@ -38,6 +38,14 @@ import {
 } from '../_lib/empireStore.js'
 import { listHallCodesAdmin, setHallCode, WAVE2_HALLS } from '../_lib/hallCodes.js'
 import { listCompanySocials, upsertCompanySocial } from '../_lib/companySocials.js'
+import {
+  FONT_FAMILIES,
+  PAGE_IDS,
+  getPageLayout,
+  listPageLayouts,
+  uploadPageAsset,
+  upsertPageLayout,
+} from '../_lib/pageLayouts.js'
 import { clientKey, rateLimit } from '../_lib/rateLimit.js'
 
 const COMPANY_SUMMARY = [
@@ -326,6 +334,83 @@ async function handleSocials(req, res) {
   return json(res, 405, { ok: false, error: 'Method not allowed' })
 }
 
+async function handlePages(req, res) {
+  const session = requireAdmin(req, res)
+  if (!session) return
+
+  if (req.method === 'GET') {
+    try {
+      const url = new URL(req.url, `https://${req.headers.host || 'localhost'}`)
+      const pageId = String(url.searchParams.get('id') || '')
+        .trim()
+        .toLowerCase()
+      if (pageId) {
+        const page = await getPageLayout(pageId)
+        if (!page) return json(res, 404, { ok: false, error: 'Unknown page id' })
+        return json(res, 200, {
+          ok: true,
+          page,
+          pageIds: PAGE_IDS,
+          fonts: FONT_FAMILIES,
+          storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+        })
+      }
+      const pages = await listPageLayouts()
+      return json(res, 200, {
+        ok: true,
+        pages,
+        pageIds: PAGE_IDS,
+        fonts: FONT_FAMILIES,
+        storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+      })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Pages error' })
+    }
+  }
+
+  if (req.method === 'PUT' || req.method === 'POST') {
+    try {
+      const body = await readBody(req)
+      const pageId = String(body.pageId || body.id || '')
+        .trim()
+        .toLowerCase()
+      const page = await upsertPageLayout(pageId, body.layout || body, session.email)
+      return json(res, 200, {
+        ok: true,
+        page,
+        storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+      })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
+async function handlePagesUpload(req, res) {
+  const session = requireAdmin(req, res)
+  if (!session) return
+  if (req.method !== 'POST') {
+    return json(res, 405, { ok: false, error: 'Method not allowed' })
+  }
+  try {
+    const body = await readBody(req)
+    const pageId = String(body.pageId || body.id || '')
+      .trim()
+      .toLowerCase()
+    const result = await uploadPageAsset({
+      pageId,
+      dataUrl: body.dataUrl || body.data || body.image,
+      filename: body.filename || body.name || 'upload',
+      createdBy: session.email,
+    })
+    return json(res, 200, result)
+  } catch (err) {
+    return json(res, 400, { ok: false, error: err.message || 'Upload failed' })
+  }
+}
+
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'login') return handleLogin(req, res)
@@ -335,5 +420,7 @@ export default async function handler(req, res) {
   if (key === 'people') return handlePeople(req, res)
   if (key === 'codes') return handleCodes(req, res)
   if (key === 'socials') return handleSocials(req, res)
+  if (key === 'pages') return handlePages(req, res)
+  if (key === 'pages/upload') return handlePagesUpload(req, res)
   return json(res, 404, { ok: false, error: 'Not found' })
 }
