@@ -750,7 +750,7 @@ const njordMatrix = matrix({
 
 /* ─── Aeolus ─── */
 const aeolusLines = [
-  line({ id: 'gauge', name: 'Wind Gauge', stencil: 'wind', epithet: 'Phase 1 climate gauge', naming: 'Measuring wind as infrastructure.', overview: 'Phase 1 climate-atmosphere research governance: fix climate change through measured programs, not deployment authority on this surface.', does: 'Publishes Phase 1 climate research governance updates for atmosphere programs.', benefits: ['Phase 1 climate framing', 'Governance before deployment claims', 'Policy partner path'], savings: [], addOns: [{ id: 'ethics-pack', name: 'Ethics pack', text: 'Reviewer briefing pack for counsel/NGO partners.' }] }),
+  line({ id: 'gauge', name: 'Wind Gauge', stencil: 'wind', epithet: 'Phase 1 climate gauge', naming: 'Measuring wind as infrastructure.', overview: 'Phase 1 climate-atmosphere research governance toward owning the atmospheric substrate: fix climate through measured programs. No atmospheric-rights sales on this surface.', does: 'Publishes Phase 1 climate research governance updates for atmosphere programs.', benefits: ['Phase 1 climate framing', 'Ownership thesis with research-first cadence', 'Policy partner path'], savings: [], addOns: [{ id: 'ethics-pack', name: 'Ethics pack', text: 'Reviewer briefing pack for counsel/NGO partners.' }] }),
   line({ id: 'choir', name: 'Field Choir', stencil: 'wind', epithet: 'Multi-region sensing', naming: 'Many instruments singing one weather.', overview: 'Multi-region sensing for Phase 1 climate work.', does: 'Coordinates multi-region atmospheric sensing concepts.', benefits: ['Eagle Thermal adjacency'], savings: ['Shared sensors'], addOns: [] }),
   line({ id: 'pressure', name: 'Pressure Net', stencil: 'wind', epithet: 'Pressure mesh', naming: 'Pressure as a readable mesh.', overview: 'Pressure mesh research for climate partners.', does: 'Studies pressure meshes across regions.', benefits: [], savings: [], addOns: [] }),
   line({ id: 'jet', name: 'Jet Stream', stencil: 'wind', epithet: 'Jet studies', naming: 'High roads of air.', overview: 'Jet-stream research notes, theoretical.', does: 'Researches jet-stream relevant governance questions.', benefits: [], savings: [], addOns: [] }),
@@ -763,7 +763,7 @@ const aeolusMatrix = matrix({
   title: 'Aeolus matrix',
   mission: {
     title: 'What Aeolus Atmosphere is building',
-    body: 'Aeolus is the atmospheric operating system in three phases: Phase 1 fix climate (Wind Gauge, Field Choir, Pressure Net, Jet Stream), Phase 2 oxygen and breathable air for space habitats (Whisper Array with Olympus/Aether), Phase 3 radiation protection (Climate Choir). Research governance leads; ownership and deployment authority are not claimed on this surface.',
+    body: 'Aeolus is the atmospheric operating system in three phases: Phase 1 fix climate (Wind Gauge, Field Choir, Pressure Net, Jet Stream), Phase 2 oxygen and breathable air for space habitats (Whisper Array with Olympus/Aether), Phase 3 radiation protection (Climate Choir). Aeolus intends to own the atmospheric substrate. Research governance leads Phase 1; no atmospheric-rights sales on this surface.',
     cadence: 'Cadence: Wind Gauge Phase 1 governance leads; Whisper Phase 2 and Climate Choir Phase 3 stay vision until nearer gates.',
   },
   lines: aeolusLines,

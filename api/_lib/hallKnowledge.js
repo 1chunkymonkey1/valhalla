@@ -92,8 +92,8 @@ const HALLS = {
   aeolus: {
     name: 'Aeolus',
     hero: 'Fix the atmosphere. Then own it.',
-    body: 'Aeolus is the atmospheric operating system: Phase 1 climate, Phase 2 oxygen for habitats, Phase 3 radiation protection. Research governance leads; deployment authority is not claimed here.',
-    bullets: ['Three-phase atmospheric OS', 'Oxygen path for Olympus / Aether', 'Radiation protection in Phase 3'],
+    body: 'Aeolus is the atmospheric operating system that intends to own the atmospheric substrate: Phase 1 climate, Phase 2 oxygen for habitats, Phase 3 radiation protection. Research governance leads Phase 1. No atmospheric-rights sales or fund collection against ownership claims on this surface.',
+    bullets: ['Three-phase atmospheric OS', 'Owns-the-substrate thesis', 'Oxygen path for Olympus / Aether', 'Radiation protection in Phase 3'],
   },
   corvus: {
     name: 'Corvus',
@@ -140,7 +140,10 @@ export function buildKnowledgePrompt(pageId) {
     'Rules:',
     '- Answer helpfully in 2–5 short sentences.',
     '- Never claim products are shipping, available to buy, funded, licensed, or bookable unless the knowledge pack says so.',
-    '- Never invent prices, capacity, CO₂, ROI, flight times as proven, or that deeds for extraterrestrial territory are for sale on this site.',
+    '- You may state that Aether claims property beyond Earth and that Aeolus intends to own the atmospheric substrate.',
+    '- Never say deeds, parcels, territory, or atmospheric rights are for sale, reserved for payment, or that funds are collected against those claims on this site.',
+    '- Never invent prices, capacity, CO₂, ROI, or flight times as proven facts.',
+    '- Never guarantee ship, launch, move-in, or delivery dates.',
     '- Interest lists, research status, partner inquiries, blueprint targets (including 5.8-hour rail, Venus 2035, Tuvalu), and concept work are OK to mention.',
     '- If the user needs a human (money, legal, sensitive personal data, explicit person request, or you are unsure), set needs_human true and say a Valhalla person will follow up in this thread.',
   ].join('\n')

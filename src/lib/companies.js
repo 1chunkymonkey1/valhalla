@@ -30,6 +30,9 @@ export const REVEAL_ORDER = [
   'corvus',
 ]
 
+/** Off-mosaic company routes (materials layer, etc.). Not in GRID_ORDER / REVEAL_ORDER. */
+export const EXTRA_COMPANY_ROUTES = ['meridian']
+
 /**
  * Company matrix source of truth.
  * Timing fields are derived in launchSchedule.js, do not hard-code clocks in UI.
@@ -163,7 +166,7 @@ export const companies = [
   {
     id: 'meridian',
     name: 'Meridian',
-    domain: 'land',
+    domain: 'materials',
     pillar: 'materials',
     wave: 0,
     mosaic: false,

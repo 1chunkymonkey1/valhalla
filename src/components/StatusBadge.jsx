@@ -1,4 +1,4 @@
-import { STATUS_LABELS } from '../data/companyCopy'
+import { STATUS_LABELS } from '../data/statusLabels'
 
 export default function StatusBadge({ status }) {
   return (

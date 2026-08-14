@@ -21,10 +21,9 @@ import {
   PartnersPage,
   RoadmapIndexPage,
 } from './pages/AudiencePages'
-import { GRID_ORDER } from './lib/companies'
+import { EXTRA_COMPANY_ROUTES, GRID_ORDER } from './lib/companies'
 import { resolveProductHost } from './lib/productHost'
 
-const EXTRA_COMPANY_ROUTES = ['meridian']
 const COMPANY_ROUTES = [...GRID_ORDER, ...EXTRA_COMPANY_ROUTES]
 
 function HostProductGate({ children }) {

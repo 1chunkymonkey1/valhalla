@@ -9,6 +9,7 @@ export default {
     flow: 'Flux',
     roadmap: 'Feuille de route',
     press: 'Presse',
+    meridian: 'Meridian',
     contact: 'Contact',
     discord: 'Discord',
     team: 'Équipe',
@@ -16,6 +17,7 @@ export default {
   hub: {
     press: 'Presse',
     flow: 'Flux',
+    meridian: 'Meridian',
     contact: 'Contact',
     nextOpensIn: 'Prochaine ouverture dans',
     afterNjord: 'Après Njord',
@@ -42,7 +44,7 @@ export default {
     boardKicker: 'Le plateau',
     boardTitle: 'Douze halls. Une civilisation.',
     boardBody:
-      'Terre, Eau, Air et Espace empilent Mouvement → Habitation → Substrat. Les voies portent transit, logement, énergie, éthanol, logistique et calcul. Illuminez un nœud pour lire sa toile.',
+      'Terre, Eau, Air et Espace empilent Mouvement → Habitation → Énergie / Intelligence. Meridian est la couche matériaux au-dessous. Les voies portent transit, logement, énergie, éthanol, logistique et calcul. Illuminez un nœud pour lire sa toile.',
     pathway: 'Voie',
     hall: 'Hall',
     enterHall: 'Entrer dans le hall →',

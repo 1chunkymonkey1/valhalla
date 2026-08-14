@@ -9,6 +9,7 @@ export default {
     flow: 'フロー',
     roadmap: 'ロードマップ',
     press: 'プレス',
+    meridian: 'Meridian',
     contact: 'お問い合わせ',
     discord: 'Discord',
     team: 'チーム',
@@ -16,6 +17,7 @@ export default {
   hub: {
     press: 'プレス',
     flow: 'フロー',
+    meridian: 'Meridian',
     contact: 'お問い合わせ',
     nextOpensIn: '次の開錠まで',
     afterNjord: 'Njord のあと',
@@ -41,7 +43,7 @@ export default {
     boardKicker: '盤面',
     boardTitle: '十二の館。ひとつの文明の網。',
     boardBody:
-      '陸・水・空・宇宙は 移動 → 居住 → 基盤 を積み上げる。経路は移動・住宅・エネルギー・エタノール・補給・計算を運ぶ。節を灯して蜘蛛の巣を読む。',
+      '陸・水・空・宇宙は 移動 → 居住 → エネルギー / 知能 を積み上げる。Meridian はその下の材料層。経路は移動・住宅・エネルギー・エタノール・補給・計算を運ぶ。節を灯して蜘蛛の巣を読む。',
     pathway: '経路',
     hall: '館',
     enterHall: '館に入る →',

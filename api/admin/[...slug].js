@@ -72,7 +72,7 @@ const COMPANY_SUMMARY = [
   { id: 'njord', name: 'Njord', domain: 'water', pillar: 'energy', wave: 1 },
   { id: 'aeolus', name: 'Aeolus', domain: 'air', pillar: 'energy', wave: 2 },
   { id: 'corvus', name: 'Corvus', domain: 'space', pillar: 'intelligence', wave: 2 },
-  { id: 'meridian', name: 'Meridian', domain: 'land', pillar: 'materials', wave: 0 },
+  { id: 'meridian', name: 'Meridian', domain: 'materials', pillar: 'materials', wave: 0 },
 ]
 
 function routeKey(req) {

@@ -1,11 +1,13 @@
 import { useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { GRID_ORDER } from '../../lib/companies'
+import { EXTRA_COMPANY_ROUTES, GRID_ORDER } from '../../lib/companies'
 import { resolveProductHost } from '../../lib/productHost'
 import SiteMenu from './SiteMenu'
 
+const COMPANY_PATH_IDS = [...GRID_ORDER, ...EXTRA_COMPANY_ROUTES]
+
 function isCompanyPath(pathname) {
-  return GRID_ORDER.some(
+  return COMPANY_PATH_IDS.some(
     (id) => pathname === `/${id}` || pathname.startsWith(`/${id}/`),
   )
 }

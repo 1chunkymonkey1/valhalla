@@ -75,5 +75,6 @@ function mapLegacy(company) {
     ink: '#FAFAF9',
     imageSrc: company.imageSrc,
     placeholderSrc: company.placeholderSrc,
+    mosaic: company.mosaic !== false,
   }
 }

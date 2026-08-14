@@ -22,6 +22,7 @@ export const CHAT_PAGE_IDS = [
   'njord',
   'aeolus',
   'corvus',
+  'meridian',
 ]
 
 const GREETING =

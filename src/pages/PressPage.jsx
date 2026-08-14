@@ -61,6 +61,7 @@ export default function PressPage() {
 
         <footer className="vh-press__foot">
           <Link to="/">← Hub</Link>
+          <Link to="/meridian">Meridian</Link>
           <a href={DISCORD_INVITE} target="_blank" rel="noreferrer">
             Discord
           </a>

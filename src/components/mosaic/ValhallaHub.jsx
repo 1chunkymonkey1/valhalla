@@ -111,6 +111,7 @@ export default function ValhallaHub() {
               <nav className="vh-hub__foot-nav" aria-label={t('hub.hubLinks')}>
                 <Link to="/press">{t('hub.press')}</Link>
                 <Link to="/flow">{t('hub.flow')}</Link>
+                <Link to="/meridian">{t('hub.meridian')}</Link>
                 <Link to="/contact">{t('hub.contact')}</Link>
               </nav>
               <CompanySocialLinks social={hubSocial} className="vh-hub__socials" />

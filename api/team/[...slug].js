@@ -47,7 +47,7 @@ const HALL_META = {
   njord: { name: 'Njord', domain: 'water', pillar: 'energy' },
   aeolus: { name: 'Aeolus', domain: 'air', pillar: 'energy' },
   corvus: { name: 'Corvus', domain: 'space', pillar: 'intelligence' },
-  meridian: { name: 'Meridian', domain: 'land', pillar: 'materials' },
+  meridian: { name: 'Meridian', domain: 'materials', pillar: 'materials' },
 }
 
 function routeKey(req) {

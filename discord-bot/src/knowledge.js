@@ -21,7 +21,7 @@ export const knowledge = {
     { id: 'njord', domain: 'Water', pillar: 'Energy', blurb: 'Full water energy layer: clean, reuse, split, manufacture, atmospheric water, green hydrogen.' },
     { id: 'eagle', domain: 'Air', pillar: 'Movement', blurb: 'Clean aviation with SAF and electric propulsion; talks toward Spirit Airlines. Not tickets.' },
     { id: 'olympus', domain: 'Air', pillar: 'Habitation', blurb: 'Pressurized cloud cities; Venus 50 km / 2035 north star.' },
-    { id: 'aeolus', domain: 'Air', pillar: 'Energy', blurb: 'Atmospheric OS: climate, oxygen for habitats, radiation protection.' },
+    { id: 'aeolus', domain: 'Air', pillar: 'Energy', blurb: 'Atmospheric OS that intends to own the atmospheric substrate: climate, oxygen for habitats, radiation protection. No atmospheric-rights sales on the public site.' },
     { id: 'phenix', domain: 'Space', pillar: 'Movement', blurb: 'Hawk Mark 1, Bifröst lunar south-pole base camp, Zeus Venus cloud city by 2035.' },
     { id: 'aether', domain: 'Space', pillar: 'Habitation', blurb: 'Claims and real estate beyond Earth. Phenix marks the territory; Aether claims it.' },
     { id: 'corvus', domain: 'Space', pillar: 'Intelligence', blurb: 'Sovereign AI compute. Raven OS substrate; Odin consumer product. Prompt 21 badge.' },

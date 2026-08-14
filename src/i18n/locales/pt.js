@@ -9,6 +9,7 @@ export default {
     flow: 'Fluxo',
     roadmap: 'Roteiro',
     press: 'Imprensa',
+    meridian: 'Meridian',
     contact: 'Contato',
     discord: 'Discord',
     team: 'Equipe',
@@ -16,6 +17,7 @@ export default {
   hub: {
     press: 'Imprensa',
     flow: 'Fluxo',
+    meridian: 'Meridian',
     contact: 'Contato',
     nextOpensIn: 'Próxima abertura em',
     afterNjord: 'Depois de Njord',
@@ -42,7 +44,7 @@ export default {
     boardKicker: 'O tabuleiro',
     boardTitle: 'Doze salões. Uma civilização.',
     boardBody:
-      'Terra, Água, Ar e Espaço empilham Movimento → Habitação → Substrato. Caminhos carregam trânsito, moradia, energia, etanol, suprimento e computação. Acenda um nó para ler a teia.',
+      'Terra, Água, Ar e Espaço empilham Movimento → Habitação → Energia / Inteligência. Meridian é a camada de materiais por baixo. Caminhos carregam trânsito, moradia, energia, etanol, suprimento e computação. Acenda um nó para ler a teia.',
     pathway: 'Caminho',
     hall: 'Salão',
     enterHall: 'Entrar no salão →',

@@ -9,6 +9,7 @@ export default {
     flow: 'Netz',
     roadmap: 'Roadmap',
     press: 'Presse',
+    meridian: 'Meridian',
     contact: 'Kontakt',
     discord: 'Discord',
     team: 'Team',
@@ -16,6 +17,7 @@ export default {
   hub: {
     press: 'Presse',
     flow: 'Netz',
+    meridian: 'Meridian',
     contact: 'Kontakt',
     nextOpensIn: 'Nächste Öffnung in',
     afterNjord: 'Nach Njord',
@@ -42,7 +44,7 @@ export default {
     boardKicker: 'Das Brett',
     boardTitle: 'Zwölf Hallen. Eine Zivilisation.',
     boardBody:
-      'Land, Wasser, Luft und Raum stapeln Bewegung → Behausung → Substrat. Pfade tragen Transit, Wohnen, Energie, Ethanol, Versorgung und Rechnen. Leuchte einen Knoten an, um sein Netz zu lesen.',
+      'Land, Wasser, Luft und Raum stapeln Bewegung → Behausung → Energie / Intelligenz. Meridian ist die Materialschicht darunter. Pfade tragen Transit, Wohnen, Energie, Ethanol, Versorgung und Rechnen. Leuchte einen Knoten an, um sein Netz zu lesen.',
     pathway: 'Pfad',
     hall: 'Halle',
     enterHall: 'Halle betreten →',

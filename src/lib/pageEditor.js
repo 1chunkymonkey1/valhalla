@@ -14,6 +14,7 @@ export const PAGE_IDS = [
   'njord',
   'aeolus',
   'corvus',
+  'meridian',
 ]
 
 export const PAGE_LABELS = {
@@ -30,6 +31,7 @@ export const PAGE_LABELS = {
   njord: 'Njord',
   aeolus: 'Aeolus',
   corvus: 'Corvus',
+  meridian: 'Meridian',
 }
 
 export const BLOCK_TYPES = [

@@ -19,6 +19,7 @@ export const SOCIAL_HALLS = [
   'njord',
   'aeolus',
   'corvus',
+  'meridian',
 ]
 
 /** Shared Valhalla Discord — safe default for every hall until hall-specific invites exist. */
@@ -109,6 +110,12 @@ export const SOCIAL_PLACEHOLDERS = {
   corvus: {
     instagram: 'https://www.instagram.com/corvus_intel/',
     x: 'https://x.com/corvus_intel',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
+  meridian: {
+    instagram: 'https://www.instagram.com/meridian_materials/',
+    x: 'https://x.com/meridian_mats',
     linkedin: '',
     discord: VALHALLA_DISCORD,
   },

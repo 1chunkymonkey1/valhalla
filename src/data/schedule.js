@@ -204,7 +204,7 @@ export const schedule = [
     pattern: 'research',
     tagline: 'Fix the atmosphere. Then own it.',
     concept:
-      'Atmospheric operating system: Phase 1 climate, Phase 2 oxygen for habitats, Phase 3 radiation protection. Research governance leads; deployment authority is not claimed here.',
+      'Atmospheric operating system that intends to own the atmospheric substrate: Phase 1 climate, Phase 2 oxygen for habitats, Phase 3 radiation protection. Research governance leads Phase 1. No atmospheric-rights sales on this surface.',
     accent: '#0F766E',
     ink: '#F0FDFA',
   },
@@ -252,6 +252,26 @@ export const schedule = [
       'Sovereign AI compute: solar-powered, offline-capable, modular. Raven OS is the substrate; Odin is the consumer product for founders. Prompt ladder is the access path.',
     accent: '#09090B',
     ink: '#FAFAFA',
+  },
+  /**
+   * Materials layer beneath the mosaic — always available, not on the launch clock.
+   * Excluded from MOSAIC_ORDER / GRID_ORDER / REVEAL_ORDER.
+   */
+  {
+    id: 13,
+    slug: 'meridian',
+    name: 'Meridian',
+    domain: 'Materials',
+    pillar: 'Materials',
+    launchTime: EVENT_START,
+    publicStatus: 'research',
+    pattern: 'interest',
+    mosaic: false,
+    tagline: 'Worn by everyone. Built to last forever.',
+    concept:
+      'Materials layer beneath all four domains: Earth garment (self-cleaning polymer pants, September 2026 research target), Venus-rated spacesuit, and Stealth body-armor supply chain. Blueprint and interest only.',
+    accent: '#3F3A32',
+    ink: '#F7F4EE',
   },
 ]
 
@@ -334,7 +354,10 @@ export function getCompanyBySlug(slug) {
 }
 
 export function getNextCompany(company) {
-  return schedule.find((c) => c.id === company.id + 1) ?? null
+  if (!company || company.mosaic === false) return null
+  const next = schedule.find((c) => c.id === company.id + 1)
+  if (!next || next.mosaic === false) return null
+  return next
 }
 
 export function getSiteLiveTime(company) {

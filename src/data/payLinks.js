@@ -69,7 +69,7 @@ export const companyPayLinks = {
     ...openingSoon,
   },
   aether: {
-    label: 'Aether · habitation partner hold',
+    label: 'Aether · claims partner hold',
     estimateUsd: 4000,
     ...openingSoon,
   },
@@ -79,6 +79,11 @@ export const companyPayLinks = {
     ...openingSoon,
     notes:
       '',
+  },
+  meridian: {
+    label: 'Meridian · materials interest hold',
+    estimateUsd: 150,
+    ...openingSoon,
   },
 }
 

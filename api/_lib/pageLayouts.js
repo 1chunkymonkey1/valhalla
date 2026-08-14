@@ -19,6 +19,7 @@ export const PAGE_IDS = [
   'njord',
   'aeolus',
   'corvus',
+  'meridian',
 ]
 
 export const BLOCK_TYPES = ['hero', 'text', 'image', 'spacer', 'cta']

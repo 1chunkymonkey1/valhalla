@@ -9,6 +9,7 @@ export default {
     flow: 'Flujo',
     roadmap: 'Hoja de ruta',
     press: 'Prensa',
+    meridian: 'Meridian',
     contact: 'Contacto',
     discord: 'Discord',
     team: 'Equipo',
@@ -16,6 +17,7 @@ export default {
   hub: {
     press: 'Prensa',
     flow: 'Flujo',
+    meridian: 'Meridian',
     contact: 'Contacto',
     nextOpensIn: 'Próxima apertura en',
     afterNjord: 'Después de Njord',
@@ -42,7 +44,7 @@ export default {
     boardKicker: 'El tablero',
     boardTitle: 'Doce salones. Una civilización.',
     boardBody:
-      'Tierra, Agua, Aire y Espacio apilan Movimiento → Habitación → Sustrato. Los caminos llevan tránsito, vivienda, energía, etanol, suministro y cómputo. Ilumina un nodo para leer su telaraña.',
+      'Tierra, Agua, Aire y Espacio apilan Movimiento → Habitación → Energía / Inteligencia. Meridian es la capa de materiales debajo. Los caminos llevan tránsito, vivienda, energía, etanol, suministro y cómputo. Ilumina un nodo para leer su telaraña.',
     pathway: 'Camino',
     hall: 'Salón',
     enterHall: 'Entrar al salón →',

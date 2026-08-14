@@ -52,14 +52,16 @@ export const boardPositions = {
   viking: { x: 38, y: 18, col: 1, row: 0 },
   eagle: { x: 62, y: 18, col: 2, row: 0 },
   phenix: { x: 86, y: 18, col: 3, row: 0 },
-  holm: { x: 14, y: 50, col: 0, row: 1 },
-  atoll: { x: 38, y: 50, col: 1, row: 1 },
-  olympus: { x: 62, y: 50, col: 2, row: 1 },
-  aether: { x: 86, y: 50, col: 3, row: 1 },
-  demeter: { x: 14, y: 82, col: 0, row: 2 },
-  njord: { x: 38, y: 82, col: 1, row: 2 },
-  aeolus: { x: 62, y: 82, col: 2, row: 2 },
-  corvus: { x: 86, y: 82, col: 3, row: 2 },
+  holm: { x: 14, y: 48, col: 0, row: 1 },
+  atoll: { x: 38, y: 48, col: 1, row: 1 },
+  olympus: { x: 62, y: 48, col: 2, row: 1 },
+  aether: { x: 86, y: 48, col: 3, row: 1 },
+  demeter: { x: 14, y: 78, col: 0, row: 2 },
+  njord: { x: 38, y: 78, col: 1, row: 2 },
+  aeolus: { x: 62, y: 78, col: 2, row: 2 },
+  corvus: { x: 86, y: 78, col: 3, row: 2 },
+  /** Off-grid materials layer — beneath the 4×3 mosaic, not a tile. */
+  meridian: { x: 50, y: 96, col: -1, row: 3 },
 }
 
 export const edgeKinds = [
@@ -104,6 +106,12 @@ export const edgeKinds = [
     label: 'Supply',
     color: '#4a5560',
     description: 'Freight, harbor, and corridor logistics',
+  },
+  {
+    id: 'materials',
+    label: 'Materials',
+    color: '#6a5a48',
+    description: 'Meridian materials layer beneath the mosaic',
   },
 ]
 
@@ -424,6 +432,37 @@ export const flowEdges = [
     label: 'Mission docs',
     detail: 'Phenix mission concepts lean on Corvus for requirements and status-labeled documentation.',
   },
+  // —— Meridian materials (off-grid) ——
+  {
+    id: 'mat-meridian-holm',
+    from: 'meridian',
+    to: 'holm',
+    kind: 'materials',
+    major: false,
+    curve: -10,
+    label: 'Build textiles',
+    detail: 'Meridian material systems feed habitation build culture across Holm modules.',
+  },
+  {
+    id: 'mat-meridian-olympus',
+    from: 'meridian',
+    to: 'olympus',
+    kind: 'materials',
+    major: false,
+    curve: 8,
+    label: 'Suit path',
+    detail: 'Venus-rated suit research under Meridian supports Olympus thin-air habitation concepts.',
+  },
+  {
+    id: 'mat-meridian-aether',
+    from: 'meridian',
+    to: 'aether',
+    kind: 'materials',
+    major: false,
+    curve: 14,
+    label: 'Claim kit',
+    detail: 'Materials for stations and claim-support volumes sit under Meridian; Aether owns the claims thesis.',
+  },
 ]
 
 /** Short “how it ties in” blurbs for node selection. */
@@ -470,11 +509,15 @@ export const companyTies = {
   },
   aeolus: {
     title: 'Aeolus · Energy · Air',
-    body: 'Atmospheric OS: climate, oxygen for habitats, radiation protection. Informed by Olympus platforms and Njord sensing; Corvus holds provenance.',
+    body: 'Atmospheric OS that intends to own the atmospheric substrate: Phase 1 climate, Phase 2 oxygen for habitats, Phase 3 radiation protection. Informed by Olympus platforms and Njord sensing; Corvus holds provenance. No atmospheric-rights sales on this surface.',
   },
   corvus: {
     title: 'Corvus · Intelligence · Space',
     body: 'Raven OS / Odin—the sovereign intelligence spine looping knowledge back to Wolf and across halls without false ops claims.',
+  },
+  meridian: {
+    title: 'Meridian · Materials',
+    body: 'Materials layer beneath the mosaic (not a tile): Earth garment research toward September 2026, Venus Suit, and Stealth Armor supply chain. Blueprint and interest only.',
   },
 }
 
@@ -510,7 +553,7 @@ export function companyDomain(companyId) {
 }
 
 export function allCompanies() {
-  return flowDomains.flatMap((d) =>
+  const mosaic = flowDomains.flatMap((d) =>
     d.companies.map((c) => ({
       ...c,
       domainId: d.id,
@@ -518,4 +561,16 @@ export function allCompanies() {
       accent: d.accent,
     })),
   )
+  return [
+    ...mosaic,
+    {
+      id: 'meridian',
+      name: 'Meridian',
+      pillar: 'Materials',
+      domainId: 'materials',
+      domainName: 'Materials',
+      accent: '#6a5a48',
+      offGrid: true,
+    },
+  ]
 }

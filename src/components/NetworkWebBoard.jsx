@@ -7,7 +7,7 @@ import {
   flowEdges,
 } from '../data/networkFlow'
 
-const VB = { w: 1000, h: 720 }
+const VB = { w: 1000, h: 800 }
 const DOMAIN_HEADERS = [
   { id: 'land', label: 'Land', x: 14 },
   { id: 'water', label: 'Water', x: 38 },
@@ -16,8 +16,8 @@ const DOMAIN_HEADERS = [
 ]
 const PILLAR_LABELS = [
   { id: 'movement', label: 'Movement', y: 18 },
-  { id: 'habitation', label: 'Habitation', y: 50 },
-  { id: 'energy', label: 'Energy / Intelligence', y: 82 },
+  { id: 'habitation', label: 'Habitation', y: 48 },
+  { id: 'energy', label: 'Energy / Intelligence', y: 78 },
 ]
 
 function pct(n, total) {
@@ -101,6 +101,7 @@ export default function NetworkWebBoard({
 
   function nodeClass(company) {
     const classes = ['vh-web__node']
+    if (company.offGrid) classes.push('is-offgrid')
     if (selectedId === company.id) classes.push('is-selected')
     if (focusId === company.id) classes.push('is-focus')
     if (connected) {
@@ -227,6 +228,14 @@ export default function NetworkWebBoard({
               {p.label}
             </text>
           ))}
+          <text
+            className="vh-web__axis vh-web__axis--pillar"
+            x="48"
+            y={pct(96, VB.h) + 4}
+            textAnchor="start"
+          >
+            Materials
+          </text>
 
           {/* Faint grid intersections */}
           {DOMAIN_HEADERS.map((d) =>

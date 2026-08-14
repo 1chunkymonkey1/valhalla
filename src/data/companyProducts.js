@@ -186,7 +186,7 @@ export const companyProducts = {
     headline: 'Fix the atmosphere. Then own it.',
     support:
       'Atmospheric operating system in three phases: fix climate, then oxygen for space habitats, then radiation protection.',
-    body: 'Aeolus is the atmospheric operating system. Phase 1: fix climate change. Phase 2: oxygen and breathable air for space habitats (Olympus and Aether adjacency). Phase 3: radiation protection. Research governance leads; deployment authority is not claimed on this surface.',
+    body: 'Aeolus is the atmospheric operating system that intends to own the atmospheric substrate. Phase 1: fix climate change. Phase 2: oxygen and breathable air for space habitats (Olympus and Aether adjacency). Phase 3: radiation protection. Research governance leads Phase 1 work. No atmospheric-rights sales or fund collection against ownership claims on this surface.',
     tone: 'air',
     ...emailFirst,
     gallery: [

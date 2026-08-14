@@ -1873,6 +1873,10 @@
   transition: opacity 220ms ease;
 }
 
+.vh-web__node.is-offgrid .vh-web__node-ring {
+  stroke-dasharray: 4 3;
+}
+
 .vh-web__node.is-dim {
   opacity: 0.28;
 }

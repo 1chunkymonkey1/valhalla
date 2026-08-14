@@ -9,6 +9,7 @@ export default {
     flow: 'Flow',
     roadmap: 'Roadmap',
     press: 'Press',
+    meridian: 'Meridian',
     contact: 'Contact',
     discord: 'Discord',
     team: 'Team',
@@ -16,6 +17,7 @@ export default {
   hub: {
     press: 'Press',
     flow: 'Flow',
+    meridian: 'Meridian',
     contact: 'Contact',
     nextOpensIn: 'Next opens in',
     afterNjord: 'After Njord',

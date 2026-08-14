@@ -466,6 +466,46 @@ export const companyRoadmaps = {
       },
     ],
   },
+  meridian: {
+    items: [
+      {
+        id: 'earth-garment',
+        name: 'Earth Garment',
+        status: 'planned',
+        kind: 'product',
+        summary: 'Self-cleaning polymer pants research toward September 2026. Blueprint and interest only.',
+        clickable: true,
+        capture: 'email',
+      },
+      {
+        id: 'venus-suit',
+        name: 'Venus Suit',
+        status: 'theoretical',
+        kind: 'concept',
+        summary: 'Spacesuit rated for Venus — materials layer supporting Olympus / Phenix paths.',
+        clickable: true,
+        capture: 'email',
+      },
+      {
+        id: 'stealth-armor',
+        name: 'Stealth Armor',
+        status: 'theoretical',
+        kind: 'concept',
+        summary: 'Body-armor supply-chain concepts under Meridian. Low-key on this surface.',
+        clickable: true,
+        capture: 'email',
+      },
+      {
+        id: 'meridian-mystery',
+        name: '-',
+        status: 'mystery',
+        kind: 'mystery',
+        summary: 'Unknown even to them.',
+        clickable: false,
+        capture: null,
+      },
+    ],
+  },
 }
 
 export function getRoadmap(companyId) {

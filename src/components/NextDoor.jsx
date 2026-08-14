@@ -17,6 +17,19 @@ export default function NextDoor({ company, now }) {
   const nextId = getNextCompanyId(company.slug)
   const next = nextId ? getCompany(nextId) : null
 
+  if (company.mosaic === false) {
+    return (
+      <div className="cs-nextdoor">
+        <p className="cs-nextdoor__done">
+          Materials layer · outside the mosaic.{' '}
+          <Link to="/" className="cs-nextdoor__hub-link">
+            View the mosaic
+          </Link>
+        </p>
+      </div>
+    )
+  }
+
   if (!next) {
     return (
       <div className="cs-nextdoor">

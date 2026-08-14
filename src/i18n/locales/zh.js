@@ -9,6 +9,7 @@ export default {
     flow: '脉络',
     roadmap: '路线图',
     press: '新闻',
+    meridian: 'Meridian',
     contact: '联系',
     discord: 'Discord',
     team: '团队',
@@ -16,6 +17,7 @@ export default {
   hub: {
     press: '新闻',
     flow: '脉络',
+    meridian: 'Meridian',
     contact: '联系',
     nextOpensIn: '下一座开启倒计时',
     afterNjord: 'Njord 之后',
@@ -41,7 +43,7 @@ export default {
     boardKicker: '棋盘',
     boardTitle: '十二殿堂。一种文明之网。',
     boardBody:
-      '陆、水、空、天堆叠 运动 → 栖居 → 基底。通路承载交通、住房、能源、乙醇、补给与算力。点亮节点以阅读其蛛网。',
+      '陆、水、空、天堆叠 运动 → 栖居 → 能源 / 智能。Meridian 是其下的材料层。通路承载交通、住房、能源、乙醇、补给与算力。点亮节点以阅读其蛛网。',
     pathway: '通路',
     hall: '殿堂',
     enterHall: '进入殿堂 →',

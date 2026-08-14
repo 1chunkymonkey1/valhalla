@@ -18,6 +18,7 @@ const HALLS = [
   'njord',
   'aeolus',
   'corvus',
+  'meridian',
 ]
 
 export const ROLES = {

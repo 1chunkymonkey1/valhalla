@@ -12,6 +12,7 @@ const LINK_DEFS = [
   { to: '/flow', key: 'nav.flow' },
   { to: '/roadmap', key: 'nav.roadmap' },
   { to: '/press', key: 'nav.press' },
+  { to: '/meridian', key: 'nav.meridian' },
   { to: '/contact', key: 'nav.contact' },
   { href: DISCORD_INVITE, key: 'nav.discord', external: true },
 ]
