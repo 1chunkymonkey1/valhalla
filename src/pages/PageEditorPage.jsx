@@ -418,6 +418,7 @@ export default function PageEditorPage() {
 
         <div
           className="vh-editor__stage"
+          data-lenis-prevent
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onPointerLeave={onPointerUp}
@@ -425,6 +426,7 @@ export default function PageEditorPage() {
           <div
             ref={canvasRef}
             className="vh-editor__canvas"
+            data-lenis-prevent
             style={{
               height: layout.canvasHeight,
               backgroundSize: `${SNAP}px ${SNAP}px`,

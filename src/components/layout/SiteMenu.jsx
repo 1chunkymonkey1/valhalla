@@ -2,6 +2,7 @@ import { useEffect, useId, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DISCORD_INVITE } from '../../data/pressRelease'
 import { useI18n } from '../../i18n/I18nProvider'
+import { getLenis } from '../../lib/smoothScroll'
 
 const LINK_DEFS = [
   { to: '/', key: 'nav.hub' },
@@ -26,10 +27,13 @@ export default function SiteMenu({ tone = 'hub' }) {
       if (e.key === 'Escape') setOpen(false)
     }
     document.addEventListener('keydown', onKey)
+    const prevOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
+    getLenis()?.stop()
     return () => {
       document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
+      document.body.style.overflow = prevOverflow
+      getLenis()?.start()
     }
   }, [open])
 

@@ -8,6 +8,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: auto;
+  }
+
   body {
     @apply font-sans antialiased;
     margin: 0;

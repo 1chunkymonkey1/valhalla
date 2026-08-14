@@ -129,7 +129,7 @@ export default function NetworkWebBoard({
         ))}
       </div>
 
-      <div className="vh-web__stage" ref={boardRef}>
+      <div className="vh-web__stage" ref={boardRef} data-lenis-prevent>
         <svg
           className="vh-web__svg"
           viewBox={`0 0 ${VB.w} ${VB.h}`}

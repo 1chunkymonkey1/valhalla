@@ -42,7 +42,7 @@ export default function ProductMatrix({ companyId }) {
         </div>
       )}
 
-      <div className="product-matrix__scroll wolf-matrix__scroll">
+      <div className="product-matrix__scroll wolf-matrix__scroll" data-lenis-prevent>
         <div
           className="product-matrix__grid"
           role="table"

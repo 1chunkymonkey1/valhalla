@@ -161,7 +161,7 @@ export default function AskHallWidget({ pageId, hallName = 'Valhalla', dormant =
           <p className="vh-ask__blurb">
             Messages go to Valhalla. A person replies here, not an automated chatbot.
           </p>
-          <div className="vh-ask__msgs" ref={listRef}>
+          <div className="vh-ask__msgs" ref={listRef} data-lenis-prevent>
             {!messages.length && (
               <p className="vh-ask__empty">Say hello: questions, reservations, partnerships.</p>
             )}
