@@ -23,6 +23,12 @@ import {
   newVisitorToken,
   startOrContinueThread,
 } from '../_lib/siteChat.js'
+import {
+  clearInvestorCookie,
+  parseInvestorCookie,
+  redeemInvestorCode,
+  setInvestorCookie,
+} from '../_lib/investorCodes.js'
 
 function routeKey(req) {
   const slug = req.query?.slug
@@ -210,10 +216,68 @@ async function handleChat(req, res) {
   return json(res, 405, { ok: false, error: 'Method not allowed' })
 }
 
+async function handleInvestorCode(req, res) {
+  if (req.method === 'GET') {
+    const session = parseInvestorCookie(req)
+    return json(res, 200, {
+      ok: true,
+      unlocked: Boolean(session),
+      tier: session?.tier || null,
+      storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+    })
+  }
+
+  if (req.method === 'POST') {
+    const rl = rateLimit(clientKey(req, 'hub-investor'), { limit: 20, windowMs: 15 * 60 * 1000 })
+    if (!rl.ok) {
+      res.setHeader('Retry-After', String(rl.retryAfterSec))
+      return json(res, 429, { ok: false, error: 'Too many attempts. Try again later.' })
+    }
+
+    try {
+      const body = await readBody(req)
+      const action = String(body.action || 'redeem')
+        .trim()
+        .toLowerCase()
+
+      if (action === 'lock' || action === 'logout' || action === 'clear') {
+        clearInvestorCookie(res)
+        return json(res, 200, { ok: true, unlocked: false })
+      }
+
+      const result = await redeemInvestorCode(body.code, body.note || body.redeemerNote || '')
+      if (!result.ok) {
+        return json(res, 401, { ok: false, error: result.error })
+      }
+
+      try {
+        setInvestorCookie(res, {
+          tier: result.tier,
+          sequence: result.sequence,
+          code: result.code,
+        })
+      } catch {
+        // Cookie signing needs ADMIN_SESSION_SECRET; still return unlock for this response
+      }
+
+      return json(res, 200, {
+        ok: true,
+        unlocked: true,
+        tier: result.tier,
+      })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'status' || key === 'unlocks') return handleStatus(req, res)
   if (key === 'unlock') return handleUnlock(req, res)
+  if (key === 'investor-code' || key === 'investor-codes') return handleInvestorCode(req, res)
   if (key === 'socials') return handleSocials(req, res)
   if (key === 'page') return handlePage(req, res)
   if (key === 'chat') return handleChat(req, res)

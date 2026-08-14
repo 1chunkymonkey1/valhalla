@@ -18,10 +18,10 @@ import { I18nProvider } from './i18n/I18nProvider'
 import {
   ContactPage,
   ConsumersPage,
-  InvestorsPage,
   PartnersPage,
   RoadmapIndexPage,
 } from './pages/AudiencePages'
+import InvestorsPage from './pages/InvestorsPage'
 import { EXTRA_COMPANY_ROUTES, GRID_ORDER } from './lib/companies'
 import { resolveProductHost } from './lib/productHost'
 

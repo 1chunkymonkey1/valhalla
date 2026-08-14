@@ -40,6 +40,12 @@ import {
   hashPassword,
 } from '../_lib/empireStore.js'
 import { listHallCodesAdmin, setHallCode, WAVE2_HALLS } from '../_lib/hallCodes.js'
+import {
+  EXAMPLE_CODES,
+  generateInvestorCode,
+  listInvestorCodesAdmin,
+  setInvestorCodeActive,
+} from '../_lib/investorCodes.js'
 import { listCompanySocials, upsertCompanySocial } from '../_lib/companySocials.js'
 import {
   FONT_FAMILIES,
@@ -425,6 +431,73 @@ async function handleCodes(req, res) {
   return json(res, 405, { ok: false, error: 'Method not allowed' })
 }
 
+async function handleInvestorCodes(req, res) {
+  const session = requireAdmin(req, res)
+  if (!session) return
+
+  if (req.method === 'GET') {
+    try {
+      const codes = await listInvestorCodesAdmin()
+      return json(res, 200, {
+        ok: true,
+        codes,
+        examples: EXAMPLE_CODES,
+        storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+        note: 'P = small investors, E = elephant. Algorithm in docs/investor-codes.md — do not publish on /investors.',
+      })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Investor codes error' })
+    }
+  }
+
+  if (req.method === 'POST') {
+    try {
+      const body = await readBody(req)
+      const action = String(body.action || 'generate')
+        .trim()
+        .toLowerCase()
+
+      if (action === 'revoke' || action === 'disable' || action === 'set-active') {
+        const id = String(body.id || '').trim()
+        if (!id) return json(res, 400, { ok: false, error: 'id required' })
+        const active =
+          action === 'set-active' ? Boolean(body.active) : action === 'revoke' || action === 'disable' ? false : true
+        const row = await setInvestorCodeActive(id, active)
+        return json(res, 200, { ok: true, code: row })
+      }
+
+      if (action === 'enable') {
+        const id = String(body.id || '').trim()
+        if (!id) return json(res, 400, { ok: false, error: 'id required' })
+        const row = await setInvestorCodeActive(id, true)
+        return json(res, 200, { ok: true, code: row })
+      }
+
+      const tier = String(body.tier || body.type || '')
+        .trim()
+        .toLowerCase()
+      const row = await generateInvestorCode(tier, session.email || '')
+      return json(res, 200, { ok: true, code: row })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  if (req.method === 'PATCH') {
+    try {
+      const body = await readBody(req)
+      const id = String(body.id || '').trim()
+      if (!id) return json(res, 400, { ok: false, error: 'id required' })
+      const row = await setInvestorCodeActive(id, Boolean(body.active))
+      return json(res, 200, { ok: true, code: row })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
 async function handleSocials(req, res) {
   const session = requireAdmin(req, res)
   if (!session) return
@@ -794,6 +867,7 @@ export default async function handler(req, res) {
   if (key === 'ledger') return handleLedger(req, res)
   if (key === 'people') return handlePeople(req, res)
   if (key === 'codes') return handleCodes(req, res)
+  if (key === 'investor-codes') return handleInvestorCodes(req, res)
   if (key === 'socials') return handleSocials(req, res)
   if (key === 'pages') return handlePages(req, res)
   if (key === 'pages/upload') return handlePagesUpload(req, res)

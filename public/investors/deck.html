@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Valhalla — Pitch Deck</title>
+<!--
+  EDITABLE SOURCE for Valhalla-Pitch-Deck.pdf
+  1. Edit text below (each slide is marked <!-- SLIDE N: ... -->)
+  2. Save this file
+  3. Run: npm run build   (or double-click rebuild-deck.command)
+  Style: black text on white + Valhalla logo. Keep claims honest — no fake revenue.
+-->
+<style>
+  /* —— Simple slide CSS (widescreen 16:9) —— */
+  :root {
+    --ink: #111;
+    --muted: #444;
+    --bg: #fff;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  @page { size: 13.333in 7.5in; margin: 0; }
+
+  .slide {
+    width: 13.333in;
+    height: 7.5in;
+    padding: 0.55in 0.65in;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+    background: #fff;
+    color: #111;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  .logo { height: 42px; width: auto; }
+  .kicker {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 28px;
+  }
+  h1 {
+    font-size: 42px;
+    line-height: 1.05;
+    margin: 10px 0 12px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: 28px;
+    margin: 0 0 14px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  h3 { font-size: 16px; margin: 0 0 8px; font-weight: 700; }
+  p, li { font-size: 15px; line-height: 1.45; color: #222; }
+  .muted { color: var(--muted); }
+  .small { font-size: 12px; color: #555; line-height: 1.4; }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .domain {
+    border: 1px solid #111;
+    padding: 12px 14px;
+    min-height: 180px;
+  }
+  .domain h3 {
+    margin-bottom: 8px;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .domain ul { margin: 0; padding-left: 16px; }
+  .domain li { margin: 4px 0; font-size: 14px; }
+
+  .two {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 28px;
+    margin-top: 16px;
+  }
+  .rule { border-top: 1px solid #111; margin: 16px 0; }
+  .footer {
+    position: absolute;
+    left: 0.65in;
+    right: 0.65in;
+    bottom: 0.35in;
+    font-size: 11px;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .badge {
+    display: inline-block;
+    border: 1px solid #111;
+    padding: 4px 8px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  .table th,
+  .table td {
+    border: 1px solid #111;
+    padding: 7px 9px;
+    text-align: left;
+    font-size: 13px;
+    vertical-align: top;
+  }
+  .table th { background: #f4f4f4; font-weight: 600; }
+  .big-quote {
+    font-size: 26px;
+    line-height: 1.3;
+    font-weight: 600;
+    max-width: 10.5in;
+    margin-top: 28px;
+  }
+  .lead-box {
+    border: 1px solid #111;
+    padding: 14px 16px;
+    margin-top: 18px;
+  }
+  .fill { color: #111; font-weight: 700; }
+  ul.tight { margin: 8px 0 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SLIDE 1 / 8 — COVER
+     Edit: headline, subhead, credo quote, footer note
+     ============================================================ -->
+<section class="slide" id="slide-cover">
+  <div class="cover-top">
+    <img class="logo" src="assets/brand-mark.png" alt="Valhalla" />
+    <div class="badge">Investor deck · Confidential</div>
+  </div>
+  <p class="kicker" style="margin-top:48px">VALHALLA · ONE CIVILIZATION</p>
+  <h1>Twelve halls.<br/>One civilization system.</h1>
+  <p style="max-width:9.5in;font-size:17px">
+    Land · Water · Air · Space — with Meridian materials beneath. Each hall feeds the other eleven.
+  </p>
+  <p class="big-quote">We are all kings. Kings don't wait for the throne — they build it.</p>
+  <p class="muted" style="margin-top:24px">valhallaco.org · Founded 2026 · California, United States</p>
+  <div class="footer">
+    <span>These are the first 12 halls of the Skáli. The Skáli of Valhalla holds 24. The second wing opens when the first is won.</span>
+    <span>1 / 8</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 2 / 8 — THE PROBLEM
+     Edit: problem bullets, “Valhalla’s answer”, honesty box
+     ============================================================ -->
+<section class="slide" id="slide-problem">
+  <img class="logo" src="assets/brand-mark.png" alt="Valhalla" />
+  <p class="kicker">THE PROBLEM</p>
+  <h2>Civilization’s hard problems are interconnected. Capital usually isn’t.</h2>
+  <div class="two" style="margin-top:20px">
+    <div>
+      <ul class="tight">
+        <li>Housing, transit, energy, water, aviation, atmosphere, and space systems are treated as separate industries.</li>
+        <li>Fragmented solutions fail when they can’t feed each other.</li>
+        <li>Deep tech needs patient builders — and a structure that compounds across domains.</li>
+      </ul>
+      <div class="rule"></div>
+      <h3>Valhalla’s answer</h3>
+      <p>A holdco + 12 specialized companies (halls) that solve hard problems <em>together</em> as one civilization platform.</p>
+    </div>
+    <div>
+      <div class="lead-box">
+        <h3>Blueprint-honest posture</h3>
+        <ul class="tight">
+          <li>No fake revenue</li>
+          <li>MRR today: $0</li>
+          <li>No deed sales</li>
+          <li>Interest lists &amp; research first</li>
+          <li>Legal entity: forming</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>valhallaco.org</span><span>2 / 8</span></div>
+</section>
+
+<!-- ============================================================
+     SLIDE 3 / 8 — THE MOSAIC (12 companies)
+     Edit: company names under Land / Water / Air / Space; Meridian note
+     ============================================================ -->
+<section class="slide" id="slide-mosaic">
+  <img class="logo" src="assets/brand-mark.png" alt="Valhalla" />
+  <p class="kicker">THE MOSAIC</p>
+  <h2>Cover mosaic — 12 companies across four domains</h2>
+  <div class="grid-4">
+    <div class="domain">
+      <h3>Land</h3>
+      <ul>
+        <li><strong>Wolf</strong></li>
+        <li><strong>Holm</strong></li>
+        <li><strong>Demeter</strong></li>
+      </ul>
+      <p class="small" style="margin-top:10px">Movement · Habitation · Substrate</p>
+    </div>
+    <div class="domain">
+      <h3>Water</h3>
+      <ul>
+        <li><strong>Viking</strong></li>
+        <li><strong>Atoll</strong></li>
+        <li><strong>Njord</strong></li>
+      </ul>
+      <p class="small" style="margin-top:10px">Movement · Habitation · Substrate</p>
+    </div>
+    <div class="domain">
+      <h3>Air</h3>
+      <ul>
+        <li><strong>Eagle</strong></li>
+        <li><strong>Olympus</strong></li>
+        <li><strong>Aeolus</strong></li>
+      </ul>
+      <p class="small" style="margin-top:10px">Movement · Habitation · Substrate</p>
+    </div>
+    <div class="domain">
+      <h3>Space</h3>
+      <ul>
+        <li><strong>Phenix</strong></li>
+        <li><strong>Aether</strong></li>
+        <li><strong>Corvus</strong></li>
+      </ul>
+      <p class="small" style="margin-top:10px">Movement · Habitation · Substrate</p>
+    </div>
+  </div>
+  <p class="small" style="margin-top:16px">
+    <strong>Meridian</strong> (optional materials layer beneath all four domains):
+    Earth garment systems, Venus-rated suit research, defense supply-chain concepts — blueprint &amp; interest only.
+    See valhallaco.org/meridian.
+  </p>
+  <div class="footer">
+    <span>We are all kings. Kings don't wait for the throne — they build it.</span>
+    <span>3 / 8</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 4 / 8 — STRUCTURE & LEADERSHIP
+     Edit: holdco description, founder contact, package contents
+     Keeps: dedicated deck for each of 12 + a lead for each of 12
+     ============================================================ -->
+<section class="slide" id="slide-structure">
+  <img class="logo" src="assets/brand-mark.png" alt="Valhalla" />
+  <p class="kicker">STRUCTURE &amp; LEADERSHIP</p>
+  <h2>Dedicated pitch deck for each of the 12 companies.<br/>A lead for each of the 12.</h2>
+  <div class="two" style="margin-top:18px">
+    <div>
+      <h3>Holdco + halls</h3>
+      <ul class="tight">
+        <li><strong>Valhalla</strong> — civilization platform / holdco thesis</li>
+        <li><strong>12 halls</strong> — specialized companies that share systems, narrative, and distribution</li>
+        <li><strong>Meridian</strong> — materials layer (optional mention)</li>
+      </ul>
+      <div class="rule"></div>
+      <h3>Leadership</h3>
+      <p><strong>Founder:</strong> Eason Greene · Leader, Valhalla</p>
+      <p>Contact: info@valhallaco.org · easongreene@gmail.com</p>
+      <p class="small">
+        Each hall has a dedicated Hall Lead seat. Names in this package are marked
+        <span class="fill">[[FILL]]</span> until confirmed.
+      </p>
+    </div>
+    <div class="lead-box">
+      <h3>What investors get in this package</h3>
+      <ul class="tight">
+        <li>This Valhalla platform deck</li>
+        <li>12 dedicated company one-pagers / mini-deck stubs in <code>company-decks/</code></li>
+        <li>Lead roster table in <code>leads.md</code></li>
+      </ul>
+      <p class="small" style="margin-top:12px">
+        Explicit commitment:
+        <strong>dedicated pitch deck for each of the 12 companies</strong>
+        and <strong>a lead for each of the 12</strong>.
+      </p>
+    </div>
+  </div>
+  <div class="footer"><span>valhallaco.org/press</span><span>4 / 8</span></div>
+</section>
+
+<!-- ============================================================
+     SLIDE 5 / 8 — HALL MAP + LEAD SEATS
+     Edit: taglines and [[FILL: … Lead Name]] cells (also update leads.md)
+     ============================================================ -->
+<section class="slide" id="slide-twelve">
+  <img class="logo" src="assets/brand-mark.png" alt="Valhalla" />
+  <p class="kicker" style="margin-top:20px">THE TWELVE</p>
+  <h2>Hall map + lead seats</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Domain</th>
+        <th>Pillar</th>
+        <th>Tagline</th>
+        <th>Lead</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Wolf</td>
+        <td>Land</td>
+        <td>Movement</td>
+        <td>The pack moves first.</td>
+        <td>[[FILL: Wolf Lead Name]]</td>
+      </tr>
+      <tr>
+        <td>Holm</td>
+        <td>Land</td>
+        <td>Habitation</td>
+        <td>Built for the terrain you chose.</td>
+        <td>[[FILL: Holm Lead Name]]</td>
+      </tr>
+      <tr>
+        <td>Demeter</td>
+        <td>Land</td>
+        <td>Energy</td>
+        <td>The same acre feeds a family and powers twenty homes.</td>
+        <td>[[FILL: Demeter Lead Name]]</td>
+      </tr>
+      <tr>
+        <td>Viking</td>
+        <td>Water</td>
+        <td>Movement</td>
+        <td>Board as yourself. Disembark as Ragnar.</td>
+        <td>[[FILL: Viking Lead Name]]</td>
+      </tr>
+      <tr>
+        <td>Atoll</td>
+        <td>Water</td>
+        <td>Habitation</td>
+        <td>Where land ends, Atoll begins.</td>
+        <td>[[FILL: Atoll Lead Name]]</td>
+      </tr>
+      <tr>
+        <td>Njord</td>
+        <td>Water</td>
+        <td>Energy</td>
+        <td>Every molecule of water in the galaxy. Ours.</td>
+        <td>[[FILL: Njord Lead Name]]</td>
+      </tr>
+      <tr>
+        <td>Eagle</td>
+        <td>Air</td>
+        <td>Movement</td>
+        <td>The more you fly, the better it is for the atmosphere.</td>
+        <td>[[FILL: Eagle Lead Name]]</td>
+      </tr>
+      <tr>
+        <td>Olympus</td>
+        <td>Air</td>
+        <td>Habitation</td>
+        <td>The first home above the clouds.</td>
+        <td>[[FILL: Olympus Lead Name]]</td>
+      </tr>
+      <tr>
+        <td>Aeolus</td>
+        <td>Air</td>
+        <td>Energy</td>
+        <td>Fix the atmosphere. Then own it.</td>
+        <td>[[FILL: Aeolus Lead Name]]</td>
+      </tr>
+      <tr>
+        <td>Phenix</td>
+        <td>Space</td>
+        <td>Movement</td>
+        <td>Every launch is a death. Every orbit is a resurrection.</td>
+        <td>[[FILL: Phenix Lead Name]]</td>
+      </tr>
+      <tr>
+        <td>Aether</td>
+        <td>Space</td>
+        <td>Habitation</td>
+        <td>Phenix marks the territory. Aether claims it.</td>
+        <td>[[FILL: Aether Lead Name]]</td>
+      </tr>
+      <tr>
+        <td>Corvus</td>
+        <td>Space</td>
+        <td>Intelligence</td>
+        <td>The mind that runs eleven companies. And counting.</td>
+        <td>[[FILL: Corvus Lead Name]]</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="footer">
+    <span>Fill leads before sending externally if names are known</span>
+    <span>5 / 8</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 6 / 8 — BUSINESS MODEL
+     Edit: Now / Next bullets and capture thesis (keep MRR $0 honest)
+     ============================================================ -->
+<section class="slide" id="slide-model">
+  <img class="logo" src="assets/brand-mark.png" alt="Valhalla" />
+  <p class="kicker">BUSINESS MODEL</p>
+  <h2>How value is created and captured</h2>
+  <div class="two">
+    <div>
+      <h3>Now (honest)</h3>
+      <ul class="tight">
+        <li>Public mosaic &amp; company surfaces at valhallaco.org</li>
+        <li>Interest / email lists and research queues per hall</li>
+        <li>Partner diligence (select halls)</li>
+        <li><strong>MRR: $0</strong> — no fabricated revenue</li>
+      </ul>
+      <div class="rule"></div>
+      <h3>Next</h3>
+      <ul class="tight">
+        <li>Products &amp; services per hall as each reaches readiness</li>
+        <li>Shared distribution, narrative, and systems across the mosaic</li>
+        <li>Holdco coordination of 12 specialized companies</li>
+      </ul>
+    </div>
+    <div class="lead-box">
+      <h3>Capture thesis</h3>
+      <p>
+        Value accrues as halls mature from interest → product → service, with cross-hall demand
+        (energy feeds habitation; mobility feeds claims; compute feeds all).
+      </p>
+      <p class="small" style="margin-top:12px">
+        We do not claim deed sales, booked flights, or capacity/ROI figures that are not diligence-ready.
+      </p>
+    </div>
+  </div>
+  <div class="footer">
+    <span>We are all kings. Kings don't wait for the throne — they build it.</span>
+    <span>6 / 8</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 7 / 8 — THE ASK
+     Edit: [[FILL]] raise / valuation / burn fields; use-of-funds list
+     ============================================================ -->
+<section class="slide" id="slide-ask">
+  <img class="logo" src="assets/brand-mark.png" alt="Valhalla" />
+  <p class="kicker">THE ASK</p>
+  <h2>Fundraising posture</h2>
+  <div class="two">
+    <div>
+      <p><span class="badge">Recommended stage options</span></p>
+      <ul class="tight" style="margin-top:14px">
+        <li><strong>First Check / Pre-seed</strong> — most honest for platform + entity formation + hall leads</li>
+        <li><strong>Seed</strong> — if positioning the mosaic as a multi-company seed vehicle</li>
+      </ul>
+      <div class="rule"></div>
+      <table class="table">
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr>
+          <td>Raise amount</td>
+          <td>
+            [[FILL: Raise Amount]]
+            <span class="small">(suggest $500K–$2.5M First Check / early Seed band — confirm)</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Current valuation</td>
+          <td>
+            [[FILL: Valuation]]
+            <span class="small">(planning midpoint often discussed ~$50M for 0.1% conversations — not a closed round)</span>
+          </td>
+        </tr>
+        <tr><td>Previously raised</td><td>$0</td></tr>
+        <tr><td>MRR</td><td>$0</td></tr>
+        <tr><td>VC-backed</td><td>No</td></tr>
+        <tr><td>Burn / Runway / Cash</td><td>[[FILL]]</td></tr>
+      </table>
+    </div>
+    <div class="lead-box">
+      <h3>Use of funds (draft)</h3>
+      <ul class="tight">
+        <li>Legal entity + holdco/hall structure</li>
+        <li>Hall Lead recruitment (all 12 seats)</li>
+        <li>Deepen 2–4 priority halls</li>
+        <li>Engineering / research diligence</li>
+        <li>Distribution of interest → product pathways</li>
+      </ul>
+      <p class="small" style="margin-top:12px">Replace [[FILL]] fields in APPLICATION.md before submit.</p>
+    </div>
+  </div>
+  <div class="footer"><span>No prior institutional raise claimed</span><span>7 / 8</span></div>
+</section>
+
+<!-- ============================================================
+     SLIDE 8 / 8 — CLOSE
+     Edit: closing line, contact block
+     ============================================================ -->
+<section class="slide" id="slide-close">
+  <img class="logo" src="assets/brand-mark.png" alt="Valhalla" />
+  <p class="kicker" style="margin-top:48px">CLOSE</p>
+  <h1>We are all kings. Kings don't wait for the throne — they build it.</h1>
+  <p style="font-size:18px;max-width:10in;margin-top:18px">
+    Valhalla builds the foundational systems civilization depends on — movement, habitation,
+    energy, atmosphere, space, and sovereign compute — as one mosaic.
+  </p>
+  <div class="rule"></div>
+  <p><strong>Eason Greene</strong> · Founder, Valhalla</p>
+  <p>info@valhallaco.org · easongreene@gmail.com · (209) 768-4306</p>
+  <p>valhallaco.org · valhallaco.org/press</p>
+  <p class="small" style="margin-top:20px">
+    Output PDF: Valhalla-Pitch-Deck.pdf (same folder as this file)
+  </p>
+  <div class="footer">
+    <span>These are the first 12 halls of the Skáli. The Skáli of Valhalla holds 24. The second wing opens when the first is won.</span>
+    <span>8 / 8</span>
+  </div>
+</section>
+
+</body>
+</html>

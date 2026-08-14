@@ -71,6 +71,10 @@ export default function AdminPage() {
   const [codes, setCodes] = useState([])
   const [codeDrafts, setCodeDrafts] = useState({})
   const [codesMsg, setCodesMsg] = useState('')
+  const [investorCodes, setInvestorCodes] = useState([])
+  const [investorCodesMsg, setInvestorCodesMsg] = useState('')
+  const [investorCodesStorage, setInvestorCodesStorage] = useState('')
+  const [investorBusy, setInvestorBusy] = useState(false)
   const [socials, setSocials] = useState([])
   const [socialMsg, setSocialMsg] = useState('')
   const [inboxThreads, setInboxThreads] = useState([])
@@ -100,6 +104,7 @@ export default function AdminPage() {
       loadLedger().catch(() => {}),
       loadPeople().catch(() => {}),
       loadCodes().catch(() => {}),
+      loadInvestorCodes().catch(() => {}),
       loadSocials().catch(() => {}),
       loadInbox().catch(() => {}),
     ])
@@ -177,6 +182,14 @@ export default function AdminPage() {
       drafts[row.hallId] = { code: row.code || '', note: row.note || '' }
     }
     setCodeDrafts(drafts)
+  }
+
+  async function loadInvestorCodes() {
+    const res = await fetch('/api/admin/investor-codes', { credentials: 'include' })
+    if (!res.ok) return
+    const data = await res.json()
+    setInvestorCodes(data.codes || [])
+    setInvestorCodesStorage(data.storage || '')
   }
 
   async function loadSocials() {
@@ -404,6 +417,7 @@ export default function AdminPage() {
     setAuth({ loading: false, ok: false, email: null })
     setLedger(null)
     setCodes([])
+    setInvestorCodes([])
     setSocials([])
     setInboxThreads([])
     setInboxActive(null)
@@ -426,6 +440,50 @@ export default function AdminPage() {
     }
     setCodesMsg(`Saved ${hallId}`)
     await loadCodes()
+  }
+
+  async function generateInvestorCode(tier) {
+    setInvestorCodesMsg('')
+    setInvestorBusy(true)
+    try {
+      const res = await fetch('/api/admin/investor-codes', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'generate', tier }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setInvestorCodesMsg(data.error || 'Generate failed')
+        return
+      }
+      setInvestorCodesMsg(`Issued ${data.code?.code} (${data.code?.tier?.toUpperCase()}#${data.code?.sequence})`)
+      await loadInvestorCodes()
+    } finally {
+      setInvestorBusy(false)
+    }
+  }
+
+  async function setInvestorActive(id, active) {
+    setInvestorCodesMsg('')
+    setInvestorBusy(true)
+    try {
+      const res = await fetch('/api/admin/investor-codes', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'set-active', id, active }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setInvestorCodesMsg(data.error || 'Update failed')
+        return
+      }
+      setInvestorCodesMsg(active ? `Re-enabled ${data.code?.code}` : `Revoked ${data.code?.code}`)
+      await loadInvestorCodes()
+    } finally {
+      setInvestorBusy(false)
+    }
   }
 
   async function saveSocial(companyId) {
@@ -684,6 +742,7 @@ export default function AdminPage() {
           ['inbox', inboxUnread ? `Inbox (${inboxUnread})` : 'Inbox'],
           ['people', 'People'],
           ['codes', 'Hall codes'],
+          ['investor-codes', 'Investor codes'],
           ['socials', 'Socials'],
           ['ledgers', 'Ledgers'],
           ['activity', 'Activity'],
@@ -1125,6 +1184,55 @@ export default function AdminPage() {
               ))}
               {!codes.length && (
                 <p className="vh-admin__empty">Loading codes…</p>
+              )}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {adminTab === 'investor-codes' && (
+        <section className="vh-admin__people">
+          <div className="vh-admin__card">
+            <h2>Investor codes</h2>
+            <p className="vh-admin__note">
+              P = small investors · E = elephant. Generation rules are internal (
+              <code>docs/investor-codes.md</code>) — never put the algorithm on{' '}
+              <Link to="/investors">/investors</Link>. Storage:{' '}
+              {investorCodesStorage || '…'}
+              {investorCodesStorage === 'memory'
+                ? ' (add Supabase + run 20260814_investor_codes.sql for durable codes)'
+                : ''}
+            </p>
+            <div className="vh-admin__invite-actions">
+              <button type="button" disabled={investorBusy} onClick={() => generateInvestorCode('p')}>
+                Generate next P
+              </button>
+              <button type="button" disabled={investorBusy} onClick={() => generateInvestorCode('e')}>
+                Generate next E
+              </button>
+            </div>
+            {investorCodesMsg && <p className="vh-admin__note">{investorCodesMsg}</p>}
+            <ul className="vh-admin__code-list">
+              {investorCodes.map((row) => (
+                <li key={row.id} className="vh-admin__code-row">
+                  <strong>{row.code}</strong>
+                  <span className="vh-admin__note">
+                    {String(row.tier).toUpperCase()}#{row.sequence}
+                    {row.active ? '' : ' · revoked'}
+                    {row.redeemedAt ? ' · redeemed' : ''}
+                  </span>
+                  <span className="vh-admin__note">{row.createdBy || '—'}</span>
+                  <button
+                    type="button"
+                    disabled={investorBusy}
+                    onClick={() => setInvestorActive(row.id, !row.active)}
+                  >
+                    {row.active ? 'Revoke' : 'Re-enable'}
+                  </button>
+                </li>
+              ))}
+              {!investorCodes.length && (
+                <p className="vh-admin__empty">No investor codes issued yet.</p>
               )}
             </ul>
           </div>

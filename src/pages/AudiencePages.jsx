@@ -36,18 +36,6 @@ function AudiencePage({ kind, title, lead, bullets }) {
   )
 }
 
-export function InvestorsPage() {
-  const { t } = useI18n()
-  return (
-    <AudiencePage
-      kind="investors"
-      title={t('audience.investorsTitle')}
-      lead={t('audience.investorsLead')}
-      bullets={[t('audience.investorsB1'), t('audience.investorsB2'), t('audience.investorsB3')]}
-    />
-  )
-}
-
 export function ConsumersPage() {
   const { t } = useI18n()
   return (

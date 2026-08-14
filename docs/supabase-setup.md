@@ -25,6 +25,7 @@ Project URL used in production (example): `https://bhivwdibbykbcbdxetob.supabase
 | `supabase/migrations/20260813_page_layouts.sql` | page layout tables + Storage notes |
 | `supabase/migrations/20260813_auth_user_link.sql` | `team_users.auth_user_id` for Google SSO linkage |
 | `supabase/migrations/20260814_dispatch_queue.sql` | `dispatch_items` founder approve/send queue |
+| `supabase/migrations/20260814_investor_codes.sql` | `investor_codes` (P/E access codes for `/investors`) |
 
 3. Confirm tables under **Table Editor**.
 

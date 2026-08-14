@@ -1498,6 +1498,209 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+/* -- Investors gate + fundraising hub -- */
+.vh-inv {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+.vh-inv--gate {
+  max-width: 28rem;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vh-inv__mark {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin: 0;
+}
+
+.vh-inv__gate-head,
+.vh-inv__open-head {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.vh-inv__open-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  text-align: left;
+}
+
+.vh-inv h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 7vw, 3.4rem);
+  letter-spacing: -0.04em;
+  margin: 0.4rem 0 0.6rem;
+}
+
+.vh-inv__lede {
+  color: rgba(0, 0, 0, 0.58);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.vh-inv__gate-box {
+  display: grid;
+  gap: 0.65rem;
+  padding: 1.25rem 1.15rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.72), rgba(247, 242, 232, 0.9));
+}
+
+.vh-inv__gate-box label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.vh-inv__gate-box input {
+  font: inherit;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: #fff;
+}
+
+.vh-inv__gate-box button,
+.vh-inv__lock {
+  font: inherit;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #1c1814;
+  color: #f7f3ea;
+  cursor: pointer;
+}
+
+.vh-inv__gate-box button:disabled,
+.vh-inv__lock:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.vh-inv__lock {
+  flex-shrink: 0;
+  background: transparent;
+  color: #1c1814;
+}
+
+.vh-inv__error {
+  color: #8b1e1e;
+  margin: 0.25rem 0 0;
+  font-size: 0.92rem;
+}
+
+.vh-inv__foot {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 0.92rem;
+}
+
+.vh-inv__muted {
+  color: rgba(0, 0, 0, 0.52);
+  line-height: 1.5;
+}
+
+.vh-inv__section {
+  margin: 2.25rem 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.vh-inv__section h2 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.65rem;
+}
+
+.vh-inv__quote {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.vh-inv__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.1rem;
+  margin: 0.85rem 0 1rem;
+}
+
+.vh-inv__actions a,
+.vh-inv__deck-list a,
+.vh-inv a {
+  color: rgba(0, 0, 0, 0.62);
+}
+
+.vh-inv__embed {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.03);
+  min-height: 28rem;
+}
+
+.vh-inv__embed iframe {
+  display: block;
+  width: 100%;
+  height: 28rem;
+  border: 0;
+}
+
+.vh-inv__deck-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.vh-inv__deck-list li {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr auto auto auto;
+  gap: 0.55rem 0.75rem;
+  align-items: baseline;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.95rem;
+}
+
+.vh-inv__deck-list span {
+  color: rgba(0, 0, 0, 0.48);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 640px) {
+  .vh-inv__open-head {
+    flex-direction: column;
+  }
+
+  .vh-inv__deck-list li {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .vh-inv__deck-list strong {
+    grid-column: 1 / -1;
+  }
+
+  .vh-inv__deck-list span {
+    grid-column: 1 / -1;
+  }
+}
+
 /* -- Flow / Empire web -- */
 .vh-flow-page {
   position: relative;
