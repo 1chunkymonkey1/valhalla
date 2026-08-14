@@ -99,6 +99,28 @@
   color: rgba(0, 0, 0, 0.3);
 }
 
+.vh-hub__wordmark {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 8vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #0a0a0a;
+  text-align: center;
+}
+
+.vh-hub__credo {
+  margin: 0.85rem 0 0;
+  max-width: 28rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: center;
+}
+
 /* Persistent site chrome: brand left, menu right */
 .vh-chrome {
   pointer-events: none;

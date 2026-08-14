@@ -80,7 +80,8 @@ export default function ValhallaHub() {
         ) : (
           <>
             <header className="vh-hub__header vh-hub__header--quiet">
-              <p className="vh-hub__mark">Valhalla</p>
+              <h1 className="vh-hub__wordmark">{t('hub.mark')}</h1>
+              <p className="vh-hub__credo">{t('hub.credo')}</p>
             </header>
 
             <MosaicGrid now={now} />

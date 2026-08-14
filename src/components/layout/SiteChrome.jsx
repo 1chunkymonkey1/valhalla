@@ -14,6 +14,7 @@ function isCompanyPath(pathname) {
 
 /**
  * Persistent public chrome: brand mark (home) top-left, hamburger top-right.
+ * Landing mosaic (`/`) hides the corner mark; Valhalla is spelled in-page instead.
  */
 export default function SiteChrome() {
   const location = useLocation()
@@ -26,20 +27,23 @@ export default function SiteChrome() {
   )
   if (location.pathname === '/capital') return null
 
+  const isHome = location.pathname === '/'
   const tone =
     hostProduct || isCompanyPath(location.pathname) ? 'company' : 'hub'
 
   return (
     <div className={`vh-chrome vh-chrome--${tone}`} aria-label="Site chrome">
-      <Link to="/" className="vh-chrome__brand" aria-label="Valhalla home">
-        <img
-          src="/brand-mark.png"
-          alt=""
-          width={32}
-          height={32}
-          decoding="async"
-        />
-      </Link>
+      {!isHome && (
+        <Link to="/" className="vh-chrome__brand" aria-label="Valhalla home">
+          <img
+            src="/brand-mark.png"
+            alt=""
+            width={32}
+            height={32}
+            decoding="async"
+          />
+        </Link>
+      )}
       <SiteMenu tone={tone} />
     </div>
   )

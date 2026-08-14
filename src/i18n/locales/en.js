@@ -15,6 +15,8 @@ export default {
     team: 'Team',
   },
   hub: {
+    mark: 'Valhalla',
+    credo: "We are all kings; Kings don't wait for the throne -- they build it",
     press: 'Press',
     flow: 'Flow',
     meridian: 'Meridian',
