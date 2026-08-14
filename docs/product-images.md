@@ -119,187 +119,187 @@ Mark status: `[ ]` todo · `[~]` seed/stand-in · `[x]` Gemini/GPT plate-composi
 | Slug | Subject noun | Status |
 |------|--------------|--------|
 | knarr-01 | electric coastal workboat | [~] seed |
-| knarr-02 | coastal craft follow-on | |
+| knarr-02 | coastal craft follow-on | [~] seed |
 | dreki-01 | expedition longship (modern quiet hull) | [~] seed |
-| dreki-02 | expedition hull follow-on | |
-| skidbladnir-01 | modular ferry | |
-| skidbladnir-02 | winter modular ferry | |
-| harbor-ring-01 | harbor charging / bunkering pier | |
-| harbor-ring-02 | expanded harbor logistics | |
+| dreki-02 | expedition hull follow-on | [~] seed |
+| skidbladnir-01 | modular ferry | [~] seed |
+| skidbladnir-02 | winter modular ferry | [~] seed |
+| harbor-ring-01 | harbor charging / bunkering pier | [~] seed |
+| harbor-ring-02 | expanded harbor logistics | [~] seed |
 | saga-cabin-01 | cold-country voyage cabin | [~] seed |
-| saga-cabin-02 | group berth cabin | |
-| midgard-01 | multi-leg coastal circuit montage (single craft hero) | |
-| midgard-02 | secondary circuit craft | |
+| saga-cabin-02 | group berth cabin | [~] seed |
+| midgard-01 | multi-leg coastal circuit montage (single craft hero) | [~] seed |
+| midgard-02 | secondary circuit craft | [~] seed |
 
 ### Eagle (air · movement) — plate: cloud deck
 
 | Slug | Subject noun | Status |
 |------|--------------|--------|
 | talon-01 | STOL utility aircraft | [~] seed |
-| talon-02 | cold-strip STOL aircraft | |
-| thermal-01 | research glider | |
-| thermal-02 | night research glider | |
-| aerie-01 | regional access turboprop | |
-| aerie-02 | regional aircraft follow-on | |
-| skyway-01 | abstract air-corridor beacon (subtle ground station) | |
-| skyway-02 | multi-region corridor station | |
-| nest-01 | aviation ground support / charging cart | |
-| nest-02 | hydrogen ground staging | |
-| apex-01 | long-range concept aircraft | |
-| apex-02 | long-range follow-on | |
+| talon-02 | cold-strip STOL aircraft | [~] seed |
+| thermal-01 | research glider | [~] seed |
+| thermal-02 | night research glider | [~] seed |
+| aerie-01 | regional access turboprop | [~] seed |
+| aerie-02 | regional aircraft follow-on | [~] seed |
+| skyway-01 | abstract air-corridor beacon (subtle ground station) | [~] seed |
+| skyway-02 | multi-region corridor station | [~] seed |
+| nest-01 | aviation ground support / charging cart | [~] seed |
+| nest-02 | hydrogen ground staging | [~] seed |
+| apex-01 | long-range concept aircraft | [~] seed |
+| apex-02 | long-range follow-on | [~] seed |
 
 ### Phenix (space · movement) — plate: orbit / pad mood
 
 | Slug | Subject noun | Status |
 |------|--------------|--------|
 | ember-01 | small suborbital vehicle | [~] seed |
-| ember-02 | payload bay study vehicle | |
-| ascent-01 | ascent stack architecture | |
-| ascent-02 | ascent options | |
-| return-01 | recovery vehicle | |
-| return-02 | recovery contingency craft | |
-| corona-01 | heat-shield test article | |
-| corona-02 | advanced thermal shield | |
-| ground-nest-01 | launch-pad ground ops module | |
-| ground-nest-02 | pad energy node | |
-| phoenix-gate-01 | mission gate facility | |
-| phoenix-gate-02 | multi-partner gate | |
+| ember-02 | payload bay study vehicle | [~] seed |
+| ascent-01 | ascent stack architecture | [~] seed |
+| ascent-02 | ascent options | [~] seed |
+| return-01 | recovery vehicle | [~] seed |
+| return-02 | recovery contingency craft | [~] seed |
+| corona-01 | heat-shield test article | [~] seed |
+| corona-02 | advanced thermal shield | [~] seed |
+| ground-nest-01 | launch-pad ground ops module | [~] seed |
+| ground-nest-02 | pad energy node | [~] seed |
+| phoenix-gate-01 | mission gate facility | [~] seed |
+| phoenix-gate-02 | multi-partner gate | [~] seed |
 
 ### Holm (land · habitation) — plate: cabin / meadow
 
 | Slug | Subject noun | Status |
 |------|--------------|--------|
 | timber-01 | timber modular dwelling | [~] seed |
-| timber-02 | family timber volume | |
+| timber-02 | family timber volume | [~] seed |
 | sod-01 | sod-inspired earth-backed module | [~] seed |
-| sod-02 | linked sod pair | |
+| sod-02 | linked sod pair | [~] seed |
 | adobe-01 | adobe-inspired desert module | [~] seed |
-| adobe-02 | adobe courtyard link | |
-| commons-01 | shared courtyard utility ring | |
-| commons-02 | multi-household commons | |
-| bridge-01 | short link module between homes | |
-| bridge-02 | longer link hall | |
-| hearth-01 | central hearth gather volume | |
-| hearth-02 | workshop hearth | |
+| adobe-02 | adobe courtyard link | [~] seed |
+| commons-01 | shared courtyard utility ring | [~] seed |
+| commons-02 | multi-household commons | [~] seed |
+| bridge-01 | short link module between homes | [~] seed |
+| bridge-02 | longer link hall | [~] seed |
+| hearth-01 | central hearth gather volume | [~] seed |
+| hearth-02 | workshop hearth | [~] seed |
 
 ### Atoll (water · habitation) — plate: lagoon
 
 | Slug | Subject noun | Status |
 |------|--------------|--------|
 | lagoon-01 | floating calm-water habitat | [~] seed |
-| lagoon-02 | linked lagoon pair | |
-| reef-01 | edge floating habitat | |
-| reef-02 | second-ring habitat | |
-| tide-01 | tide-aware platform | |
-| tide-02 | tide energy assist platform | |
-| dock-01 | harbor dock ring | |
-| dock-02 | multi-berth dock | |
-| ring-01 | floating village ring | |
-| ring-02 | village-scale ring | |
-| deep-01 | deep-water mooring buoy system | |
-| deep-02 | deep mooring follow-on | |
+| lagoon-02 | linked lagoon pair | [~] seed |
+| reef-01 | edge floating habitat | [~] seed |
+| reef-02 | second-ring habitat | [~] seed |
+| tide-01 | tide-aware platform | [~] seed |
+| tide-02 | tide energy assist platform | [~] seed |
+| dock-01 | harbor dock ring | [~] seed |
+| dock-02 | multi-berth dock | [~] seed |
+| ring-01 | floating village ring | [~] seed |
+| ring-02 | village-scale ring | [~] seed |
+| deep-01 | deep-water mooring buoy system | [~] seed |
+| deep-02 | deep mooring follow-on | [~] seed |
 
 ### Olympus (air · habitation) — plate: high clouds
 
 | Slug | Subject noun | Status |
 |------|--------------|--------|
 | summit-01 | thin-air research platform | [~] seed |
-| summit-02 | longer-duration summit | |
-| veil-01 | cloud-veil research lab | |
-| veil-02 | multi-instrument veil lab | |
-| aerie-lab-01 | high-altitude lab module | |
-| aerie-lab-02 | aerie lab follow-on | |
-| thin-air-01 | pressure / life-support skid | |
-| thin-air-02 | advanced life support | |
-| cloud-deck-01 | structural cloud deck | |
-| cloud-deck-02 | extended deck | |
-| strat-01 | stratospheric platform (vision) | |
-| strat-02 | strat follow-on | |
+| summit-02 | longer-duration summit | [~] seed |
+| veil-01 | cloud-veil research lab | [~] seed |
+| veil-02 | multi-instrument veil lab | [~] seed |
+| aerie-lab-01 | high-altitude lab module | [~] seed |
+| aerie-lab-02 | aerie lab follow-on | [~] seed |
+| thin-air-01 | pressure / life-support skid | [~] seed |
+| thin-air-02 | advanced life support | [~] seed |
+| cloud-deck-01 | structural cloud deck | [~] seed |
+| cloud-deck-02 | extended deck | [~] seed |
+| strat-01 | stratospheric platform (vision) | [~] seed |
+| strat-02 | strat follow-on | [~] seed |
 
 ### Aether (space · habitation) — plate: Earth from orbit
 
 | Slug | Subject noun | Status |
 |------|--------------|--------|
 | quiet-room-01 | orbital habitation cell | [~] seed |
-| quiet-room-02 | multi-cell cluster | |
-| ring-study-01 | orbital ring segment | |
-| ring-study-02 | extended ring | |
-| solarium-01 | orbital light volume | |
-| solarium-02 | radiation-aware solarium | |
-| dock-node-01 | orbital docking node | |
-| dock-node-02 | multi-craft dock | |
-| spine-01 | habitat structural spine | |
-| spine-02 | long spine | |
-| halo-01 | large halo architecture (vision) | |
-| halo-02 | halo follow-on | |
+| quiet-room-02 | multi-cell cluster | [~] seed |
+| ring-study-01 | orbital ring segment | [~] seed |
+| ring-study-02 | extended ring | [~] seed |
+| solarium-01 | orbital light volume | [~] seed |
+| solarium-02 | radiation-aware solarium | [~] seed |
+| dock-node-01 | orbital docking node | [~] seed |
+| dock-node-02 | multi-craft dock | [~] seed |
+| spine-01 | habitat structural spine | [~] seed |
+| spine-02 | long spine | [~] seed |
+| halo-01 | large halo architecture (vision) | [~] seed |
+| halo-02 | halo follow-on | [~] seed |
 
 ### Demeter (land · substrate) — plate: wheat / solar field
 
 | Slug | Subject noun | Status |
 |------|--------------|--------|
 | field-01 | agrivoltaic lattice over crops | [~] seed |
-| field-02 | multi-parcel lattice | |
-| root-01 | soil sensor network stakes | |
-| root-02 | regional sensor mesh | |
-| canopy-01 | crop-shade canopy array | |
-| canopy-02 | vision canopy | |
+| field-02 | multi-parcel lattice | [~] seed |
+| root-01 | soil sensor network stakes | [~] seed |
+| root-02 | regional sensor mesh | [~] seed |
+| canopy-01 | crop-shade canopy array | [~] seed |
+| canopy-02 | vision canopy | [~] seed |
 | ethanol-01 | ethanol feedstock grove + still study | [~] seed |
-| ethanol-02 | regional still | |
-| ledger-01 | land diligence field station (subtle) | |
-| ledger-02 | partner ledger kiosk | |
-| season-01 | seasonal field planning markers | |
-| season-02 | multi-climate season | |
+| ethanol-02 | regional still | [~] seed |
+| ledger-01 | land diligence field station (subtle) | [~] seed |
+| ledger-02 | partner ledger kiosk | [~] seed |
+| season-01 | seasonal field planning markers | [~] seed |
+| season-02 | multi-climate season | [~] seed |
 
 ### Njord (water · substrate) — plate: deep ocean
 
 | Slug | Subject noun | Status |
 |------|--------------|--------|
 | otec-01 | OTEC research buoy / plant concept | [~] seed |
-| otec-02 | OTEC site cohort | |
-| atmo-01 | atmospheric water collector | |
-| atmo-02 | arid-site collector | |
-| depth-01 | offshore energy lattice | |
-| depth-02 | vision offshore lattice | |
-| tide-mill-01 | modern tidal mill | |
-| tide-mill-02 | tidal vision | |
+| otec-02 | OTEC site cohort | [~] seed |
+| atmo-01 | atmospheric water collector | [~] seed |
+| atmo-02 | arid-site collector | [~] seed |
+| depth-01 | offshore energy lattice | [~] seed |
+| depth-02 | vision offshore lattice | [~] seed |
+| tide-mill-01 | modern tidal mill | [~] seed |
+| tide-mill-02 | tidal vision | [~] seed |
 | harbor-power-01 | harbor energy pier node | [~] seed |
-| harbor-power-02 | multi-pier harbor power | |
-| brine-01 | brine research skid | |
-| brine-02 | brine follow-on | |
+| harbor-power-02 | multi-pier harbor power | [~] seed |
+| brine-01 | brine research skid | [~] seed |
+| brine-02 | brine follow-on | [~] seed |
 
 ### Aeolus (air · substrate) — plate: turbines / wind sky
 
 | Slug | Subject noun | Status |
 |------|--------------|--------|
 | gauge-01 | wind governance instrument mast | [~] seed |
-| gauge-02 | multi-jurisdiction gauge | |
-| choir-01 | multi-region sensing array | |
-| choir-02 | denser sensing mesh | |
-| pressure-01 | pressure mesh instruments | |
-| pressure-02 | pressure vision | |
-| jet-01 | high-altitude research probe | |
-| jet-02 | jet vision | |
-| whisper-01 | low-impact quiet sensors | |
-| whisper-02 | expanded whisper array | |
-| climate-01 | program climate choir (abstract instruments) | |
-| climate-02 | climate follow-on | |
+| gauge-02 | multi-jurisdiction gauge | [~] seed |
+| choir-01 | multi-region sensing array | [~] seed |
+| choir-02 | denser sensing mesh | [~] seed |
+| pressure-01 | pressure mesh instruments | [~] seed |
+| pressure-02 | pressure vision | [~] seed |
+| jet-01 | high-altitude research probe | [~] seed |
+| jet-02 | jet vision | [~] seed |
+| whisper-01 | low-impact quiet sensors | [~] seed |
+| whisper-02 | expanded whisper array | [~] seed |
+| climate-01 | program climate choir (abstract instruments) | [~] seed |
+| climate-02 | climate follow-on | [~] seed |
 
 ### Corvus (space · substrate / intelligence) — plate: city canyon
 
 | Slug | Subject noun | Status |
 |------|--------------|--------|
 | raven-os-01 | quiet founder desk / prompt workstation (no UI chrome) | [~] seed |
-| raven-os-02 | cohort workspace | |
-| odin-local-01 | local machine workspace | |
-| odin-local-02 | team local sync desk | |
-| mesh-01 | abstract hall-mesh node hardware | |
-| mesh-02 | mesh vision | |
-| forge-01 | prompt forge toolbench | |
-| forge-02 | review workflow desk | |
-| badge-path-01 | subtle raven badge object on desk | |
-| badge-path-02 | community ritual object | |
-| knowledge-01 | knowledge nest library shelf / nest | |
-| knowledge-02 | per-hall knowledge packs | |
+| raven-os-02 | cohort workspace | [~] seed |
+| odin-local-01 | local machine workspace | [~] seed |
+| odin-local-02 | team local sync desk | [~] seed |
+| mesh-01 | abstract hall-mesh node hardware | [~] seed |
+| mesh-02 | mesh vision | [~] seed |
+| forge-01 | prompt forge toolbench | [~] seed |
+| forge-02 | review workflow desk | [~] seed |
+| badge-path-01 | subtle raven badge object on desk | [~] seed |
+| badge-path-02 | community ritual object | [~] seed |
+| knowledge-01 | knowledge nest library shelf / nest | [~] seed |
+| knowledge-02 | per-hall knowledge packs | [~] seed |
 
 ---
 

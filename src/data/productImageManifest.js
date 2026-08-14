@@ -3,7 +3,7 @@
  * Drop JPGs into public/images/products/{company}/{slug}.jpg then re-run:
  *   npm run sync:product-images
  *
- * Filled 35 / 150 slots.
+ * Filled 150 / 150 slots.
  */
 export const PRODUCT_IMAGE_MANIFEST = {
   "wolf": {
@@ -28,42 +28,157 @@ export const PRODUCT_IMAGE_MANIFEST = {
   },
   "viking": {
     "knarr-01": "/images/products/viking/knarr-01.jpg",
+    "knarr-02": "/images/products/viking/knarr-02.jpg",
     "dreki-01": "/images/products/viking/dreki-01.jpg",
-    "saga-cabin-01": "/images/products/viking/saga-cabin-01.jpg"
+    "dreki-02": "/images/products/viking/dreki-02.jpg",
+    "skidbladnir-01": "/images/products/viking/skidbladnir-01.jpg",
+    "skidbladnir-02": "/images/products/viking/skidbladnir-02.jpg",
+    "harbor-ring-01": "/images/products/viking/harbor-ring-01.jpg",
+    "harbor-ring-02": "/images/products/viking/harbor-ring-02.jpg",
+    "saga-cabin-01": "/images/products/viking/saga-cabin-01.jpg",
+    "saga-cabin-02": "/images/products/viking/saga-cabin-02.jpg",
+    "midgard-01": "/images/products/viking/midgard-01.jpg",
+    "midgard-02": "/images/products/viking/midgard-02.jpg"
   },
   "eagle": {
-    "talon-01": "/images/products/eagle/talon-01.jpg"
+    "talon-01": "/images/products/eagle/talon-01.jpg",
+    "talon-02": "/images/products/eagle/talon-02.jpg",
+    "thermal-01": "/images/products/eagle/thermal-01.jpg",
+    "thermal-02": "/images/products/eagle/thermal-02.jpg",
+    "aerie-01": "/images/products/eagle/aerie-01.jpg",
+    "aerie-02": "/images/products/eagle/aerie-02.jpg",
+    "skyway-01": "/images/products/eagle/skyway-01.jpg",
+    "skyway-02": "/images/products/eagle/skyway-02.jpg",
+    "nest-01": "/images/products/eagle/nest-01.jpg",
+    "nest-02": "/images/products/eagle/nest-02.jpg",
+    "apex-01": "/images/products/eagle/apex-01.jpg",
+    "apex-02": "/images/products/eagle/apex-02.jpg"
   },
   "phenix": {
-    "ember-01": "/images/products/phenix/ember-01.jpg"
+    "ember-01": "/images/products/phenix/ember-01.jpg",
+    "ember-02": "/images/products/phenix/ember-02.jpg",
+    "ascent-01": "/images/products/phenix/ascent-01.jpg",
+    "ascent-02": "/images/products/phenix/ascent-02.jpg",
+    "return-01": "/images/products/phenix/return-01.jpg",
+    "return-02": "/images/products/phenix/return-02.jpg",
+    "corona-01": "/images/products/phenix/corona-01.jpg",
+    "corona-02": "/images/products/phenix/corona-02.jpg",
+    "ground-nest-01": "/images/products/phenix/ground-nest-01.jpg",
+    "ground-nest-02": "/images/products/phenix/ground-nest-02.jpg",
+    "phoenix-gate-01": "/images/products/phenix/phoenix-gate-01.jpg",
+    "phoenix-gate-02": "/images/products/phenix/phoenix-gate-02.jpg"
   },
   "holm": {
     "timber-01": "/images/products/holm/timber-01.jpg",
+    "timber-02": "/images/products/holm/timber-02.jpg",
     "sod-01": "/images/products/holm/sod-01.jpg",
-    "adobe-01": "/images/products/holm/adobe-01.jpg"
+    "sod-02": "/images/products/holm/sod-02.jpg",
+    "adobe-01": "/images/products/holm/adobe-01.jpg",
+    "adobe-02": "/images/products/holm/adobe-02.jpg",
+    "commons-01": "/images/products/holm/commons-01.jpg",
+    "commons-02": "/images/products/holm/commons-02.jpg",
+    "bridge-01": "/images/products/holm/bridge-01.jpg",
+    "bridge-02": "/images/products/holm/bridge-02.jpg",
+    "hearth-01": "/images/products/holm/hearth-01.jpg",
+    "hearth-02": "/images/products/holm/hearth-02.jpg"
   },
   "atoll": {
-    "lagoon-01": "/images/products/atoll/lagoon-01.jpg"
+    "lagoon-01": "/images/products/atoll/lagoon-01.jpg",
+    "lagoon-02": "/images/products/atoll/lagoon-02.jpg",
+    "reef-01": "/images/products/atoll/reef-01.jpg",
+    "reef-02": "/images/products/atoll/reef-02.jpg",
+    "tide-01": "/images/products/atoll/tide-01.jpg",
+    "tide-02": "/images/products/atoll/tide-02.jpg",
+    "dock-01": "/images/products/atoll/dock-01.jpg",
+    "dock-02": "/images/products/atoll/dock-02.jpg",
+    "ring-01": "/images/products/atoll/ring-01.jpg",
+    "ring-02": "/images/products/atoll/ring-02.jpg",
+    "deep-01": "/images/products/atoll/deep-01.jpg",
+    "deep-02": "/images/products/atoll/deep-02.jpg"
   },
   "olympus": {
-    "summit-01": "/images/products/olympus/summit-01.jpg"
+    "summit-01": "/images/products/olympus/summit-01.jpg",
+    "summit-02": "/images/products/olympus/summit-02.jpg",
+    "veil-01": "/images/products/olympus/veil-01.jpg",
+    "veil-02": "/images/products/olympus/veil-02.jpg",
+    "aerie-lab-01": "/images/products/olympus/aerie-lab-01.jpg",
+    "aerie-lab-02": "/images/products/olympus/aerie-lab-02.jpg",
+    "thin-air-01": "/images/products/olympus/thin-air-01.jpg",
+    "thin-air-02": "/images/products/olympus/thin-air-02.jpg",
+    "cloud-deck-01": "/images/products/olympus/cloud-deck-01.jpg",
+    "cloud-deck-02": "/images/products/olympus/cloud-deck-02.jpg",
+    "strat-01": "/images/products/olympus/strat-01.jpg",
+    "strat-02": "/images/products/olympus/strat-02.jpg"
   },
   "aether": {
-    "quiet-room-01": "/images/products/aether/quiet-room-01.jpg"
+    "quiet-room-01": "/images/products/aether/quiet-room-01.jpg",
+    "quiet-room-02": "/images/products/aether/quiet-room-02.jpg",
+    "ring-study-01": "/images/products/aether/ring-study-01.jpg",
+    "ring-study-02": "/images/products/aether/ring-study-02.jpg",
+    "solarium-01": "/images/products/aether/solarium-01.jpg",
+    "solarium-02": "/images/products/aether/solarium-02.jpg",
+    "dock-node-01": "/images/products/aether/dock-node-01.jpg",
+    "dock-node-02": "/images/products/aether/dock-node-02.jpg",
+    "spine-01": "/images/products/aether/spine-01.jpg",
+    "spine-02": "/images/products/aether/spine-02.jpg",
+    "halo-01": "/images/products/aether/halo-01.jpg",
+    "halo-02": "/images/products/aether/halo-02.jpg"
   },
   "demeter": {
     "field-01": "/images/products/demeter/field-01.jpg",
-    "ethanol-01": "/images/products/demeter/ethanol-01.jpg"
+    "field-02": "/images/products/demeter/field-02.jpg",
+    "root-01": "/images/products/demeter/root-01.jpg",
+    "root-02": "/images/products/demeter/root-02.jpg",
+    "canopy-01": "/images/products/demeter/canopy-01.jpg",
+    "canopy-02": "/images/products/demeter/canopy-02.jpg",
+    "ethanol-01": "/images/products/demeter/ethanol-01.jpg",
+    "ethanol-02": "/images/products/demeter/ethanol-02.jpg",
+    "ledger-01": "/images/products/demeter/ledger-01.jpg",
+    "ledger-02": "/images/products/demeter/ledger-02.jpg",
+    "season-01": "/images/products/demeter/season-01.jpg",
+    "season-02": "/images/products/demeter/season-02.jpg"
   },
   "njord": {
     "otec-01": "/images/products/njord/otec-01.jpg",
-    "harbor-power-01": "/images/products/njord/harbor-power-01.jpg"
+    "otec-02": "/images/products/njord/otec-02.jpg",
+    "atmo-01": "/images/products/njord/atmo-01.jpg",
+    "atmo-02": "/images/products/njord/atmo-02.jpg",
+    "depth-01": "/images/products/njord/depth-01.jpg",
+    "depth-02": "/images/products/njord/depth-02.jpg",
+    "tide-mill-01": "/images/products/njord/tide-mill-01.jpg",
+    "tide-mill-02": "/images/products/njord/tide-mill-02.jpg",
+    "harbor-power-01": "/images/products/njord/harbor-power-01.jpg",
+    "harbor-power-02": "/images/products/njord/harbor-power-02.jpg",
+    "brine-01": "/images/products/njord/brine-01.jpg",
+    "brine-02": "/images/products/njord/brine-02.jpg"
   },
   "aeolus": {
-    "gauge-01": "/images/products/aeolus/gauge-01.jpg"
+    "gauge-01": "/images/products/aeolus/gauge-01.jpg",
+    "gauge-02": "/images/products/aeolus/gauge-02.jpg",
+    "choir-01": "/images/products/aeolus/choir-01.jpg",
+    "choir-02": "/images/products/aeolus/choir-02.jpg",
+    "pressure-01": "/images/products/aeolus/pressure-01.jpg",
+    "pressure-02": "/images/products/aeolus/pressure-02.jpg",
+    "jet-01": "/images/products/aeolus/jet-01.jpg",
+    "jet-02": "/images/products/aeolus/jet-02.jpg",
+    "whisper-01": "/images/products/aeolus/whisper-01.jpg",
+    "whisper-02": "/images/products/aeolus/whisper-02.jpg",
+    "climate-01": "/images/products/aeolus/climate-01.jpg",
+    "climate-02": "/images/products/aeolus/climate-02.jpg"
   },
   "corvus": {
-    "raven-os-01": "/images/products/corvus/raven-os-01.jpg"
+    "raven-os-01": "/images/products/corvus/raven-os-01.jpg",
+    "raven-os-02": "/images/products/corvus/raven-os-02.jpg",
+    "odin-local-01": "/images/products/corvus/odin-local-01.jpg",
+    "odin-local-02": "/images/products/corvus/odin-local-02.jpg",
+    "mesh-01": "/images/products/corvus/mesh-01.jpg",
+    "mesh-02": "/images/products/corvus/mesh-02.jpg",
+    "forge-01": "/images/products/corvus/forge-01.jpg",
+    "forge-02": "/images/products/corvus/forge-02.jpg",
+    "badge-path-01": "/images/products/corvus/badge-path-01.jpg",
+    "badge-path-02": "/images/products/corvus/badge-path-02.jpg",
+    "knowledge-01": "/images/products/corvus/knowledge-01.jpg",
+    "knowledge-02": "/images/products/corvus/knowledge-02.jpg"
   }
 }
 
