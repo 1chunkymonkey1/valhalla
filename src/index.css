@@ -292,7 +292,7 @@
 }
 
 .vh-portal--dormant {
-  opacity: 0;
+  opacity: 1;
 }
 
 .vh-portal--appear {
@@ -306,9 +306,31 @@
   background: transparent;
 }
 
-/* Dormant: no visible box */
+/* Dormant: faint outline + coming soon */
 .vh-portal--dormant .vh-portal__frame {
-  background: transparent;
+  background: rgba(247, 247, 243, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.vh-portal__soon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.vh-portal__soon span {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.28);
+}
+
+.vh-portal__name--soon {
+  opacity: 0.35;
+  animation: none;
 }
 
 .vh-portal--constructing .vh-portal__frame {

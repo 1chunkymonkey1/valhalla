@@ -37,6 +37,11 @@ export default function CompanyPortal({ company, now }) {
       data-phase={phase}
     >
       <div className="vh-portal__frame">
+        {phase === 'dormant' && (
+          <div className="vh-portal__soon" aria-hidden>
+            <span>coming soon</span>
+          </div>
+        )}
         {phase === 'constructing' && (
           <div className="vh-portal__constructing" aria-hidden>
             <span className="vh-portal__pixel vh-portal__pixel--a" />
@@ -60,7 +65,11 @@ export default function CompanyPortal({ company, now }) {
         {showImage && phase === 'revealed' && <div className="vh-portal__veil" />}
       </div>
 
-      {showImage && <p className="vh-portal__name">{company.name}</p>}
+      {phase === 'dormant' ? (
+        <p className="vh-portal__name vh-portal__name--soon">{company.name}</p>
+      ) : (
+        showImage && <p className="vh-portal__name">{company.name}</p>
+      )}
     </article>
   )
 
