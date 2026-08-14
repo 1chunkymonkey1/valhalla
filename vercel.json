@@ -11,6 +11,9 @@
     },
     "api/hub/[...slug].js": {
       "maxDuration": 60
+    },
+    "api/stripe/[...slug].js": {
+      "maxDuration": 30
     }
   }
 }

@@ -62,8 +62,12 @@ Set in Vercel → Project → Settings → Environment Variables (Production + P
 | `SUPABASE_URL` | Supabase project URL |
 | `SUPABASE_SERVICE_ROLE_KEY` | Server-only, never `VITE_*` |
 | `HALL_CODE_*` | Optional wave-2 code fallbacks |
+| `STRIPE_SECRET_KEY` | Server-only `sk_test`/`sk_live`. Never `VITE_*`, never commit. |
+| `VITE_STRIPE_PUBLISHABLE_KEY` | Browser `pk_test`/`pk_live`. Redeploy after change. |
+| `STRIPE_WEBHOOK_SECRET` | Server-only `whsec_…` for `/api/stripe/webhook` |
+| `STRIPE_CHECKOUT_ENABLED` | Set `true` only when ready; public halls stay email-only by default |
 
-See **[docs/supabase-setup.md](docs/supabase-setup.md)**.
+See **[docs/supabase-setup.md](docs/supabase-setup.md)** and **[docs/stripe-setup.md](docs/stripe-setup.md)**.
 
 Admin email is fixed: **info@valhallaco.org**. Login needs password **and** a 6-digit authenticator code.
 
@@ -97,9 +101,9 @@ npx vercel --prod
 2. Open **People** → invite email + role + halls → copy invite link.
 3. Teammate opens link, sets password, works at `/team`.
 
-## Pay Links
+## Payments (Stripe)
 
-Stubs in `src/data/payLinks.js`. Paste Squarespace Pay Link URLs when ready. All holds are **fully refundable**.
+See **[docs/stripe-setup.md](docs/stripe-setup.md)**. Catch-all: `/api/stripe/*`. Hall estimate stubs remain in `src/data/payLinks.js` (email-only until `STRIPE_CHECKOUT_ENABLED`). Holds are **fully refundable**; no shipping claims on public CTAs.
 
 ## Discord Odin
 

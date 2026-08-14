@@ -1,8 +1,9 @@
 /**
- * Squarespace Pay Link stubs.
+ * Hall hold estimates + legacy Pay Link stubs.
  *
- * Public hall CTAs use email capture while Pay Links stay disabled.
- * Keep estimate amounts for when Pay Links go live.
+ * Public hall CTAs use email capture while checkout stays disabled.
+ * Stripe Checkout (when STRIPE_CHECKOUT_ENABLED) uses server catalog in
+ * api/_lib/stripeClient.js — see docs/stripe-setup.md. Do not claim shipping.
  */
 
 export const PAY_LINK_STATUS = {
