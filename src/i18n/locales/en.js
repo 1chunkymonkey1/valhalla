@@ -40,11 +40,11 @@ export default {
     mark: 'Valhalla',
     title: 'Empire web',
     lead:
-      'A game-board spiderweb of how the twelve halls feed each other—pathways, not spaghetti.',
+      'A game-board spiderweb of how the twelve companies feed each other: pathways, not spaghetti.',
     boardKicker: 'The board',
-    boardTitle: 'Twelve halls. One civilization web.',
+    boardTitle: 'Twelve companies. Four domains. One web.',
     boardBody:
-      'Land, Water, Air, and Space stack Movement → Habitation → Energy / Intelligence. Meridian is the materials layer beneath. Pathways carry transit, housing, power, ethanol, supply, and compute. Light a node to read its spiderweb.',
+      'Land, Water, Air, and Space stack Movement → Habitation → Energy / Intelligence. Each company solves a human problem and ties into the other eleven so they grow as a unit. Meridian is materials beneath. Light a node to read its spiderweb.',
     pathway: 'Pathway',
     hall: 'Hall',
     enterHall: 'Enter hall →',
@@ -59,7 +59,7 @@ export default {
   audience: {
     investorsTitle: 'Investors',
     investorsLead:
-      'Twelve companies across land, water, air, and space. Diligence first, no public securities offer here.',
+      'Twelve companies across Land, Water, Air, and Space, each solving a problem and reinforcing the other eleven. Diligence first, no public securities offer here.',
     investorsB1: 'One operating framework across the four domains.',
     investorsB2: 'Refundable holds show demand before capital locks.',
     investorsB3: 'Inquiries only: info@valhallaco.org.',

@@ -477,7 +477,7 @@ export const companyTies = {
   },
   eagle: {
     title: 'Eagle · Movement · Air',
-    body: 'Clean aviation with SAF and electric propulsion research, including talks toward Spirit Airlines. Feeds Olympus thin-air habitation queues—no flight timetable claims.',
+    body: 'Clean aviation: bird-named jets with active carbon removal, the more you fly the better for the atmosphere. Feeds Olympus thin-air habitation. No flight timetable claims.',
   },
   phenix: {
     title: 'Phenix · Movement · Space',

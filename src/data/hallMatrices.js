@@ -145,10 +145,10 @@ const vikingMatrix = matrix({
   companyId: 'viking',
   title: 'Viking matrix',
   mission: {
-    title: 'What Viking Voyage is building',
-    body: 'Viking Voyage is a water-movement arch: coastal craft, expedition hulls, modular ferry studies, shore logistics, saga cabins, and the Vinland Saga narrative arc available to anyone who boards. Partner-gated.',
+    title: 'What Viking Cruises is building',
+    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships use light-water SMRs and emerging sail. First route Stockholm to London; later a Phenix launch-pad call and a moon leg on the same vacation. Vinland Saga is the narrative arc. Partner-gated.',
     cadence:
-      'Cadence: Knarr 01 leads the coastal craft research queue; Dreki, Saga Cabin, and Vinland Saga follow as partner fleets confirm. No ticketed sailing date on this surface.',
+      'Cadence: Knarr 01 and Stockholm→London diligence lead; Phenix pad and moon-leg arcs follow as partners clear. No ticketed sailing date on this surface.',
   },
   lines: vikingLines,
   rows: [
@@ -369,10 +369,10 @@ const eagleLines = [
     stencil: 'aircraft',
     epithet: 'Long-range concept',
     naming: 'The highest perch, longest legs, latest opacity.',
-    overview: 'Long-range aviation concept including network path studies tied to talks toward acquiring Spirit Airlines. Theoretical until nearer lines clear gates.',
+    overview: 'Long-range aviation concept including network-path research with airline-industry partners (concept stage). Theoretical until nearer lines clear gates.',
     powertrain: true,
-    does: 'Explores long-range partner aviation and Spirit Airlines network-path concepts without schedule claims.',
-    benefits: ['Honest opacity', 'Tiered propulsion and SAF research', 'Spirit Airlines talks as network path'],
+    does: 'Explores long-range partner aviation and network-path concepts without schedule or acquisition claims.',
+    benefits: ['Honest opacity', 'Tiered propulsion and SAF research', 'Long-range network-path research'],
     savings: [],
     addOns: [],
   }),
@@ -382,9 +382,9 @@ const eagleMatrix = matrix({
   companyId: 'eagle',
   title: 'Eagle matrix',
   mission: {
-    title: 'What Eagle Aviation is building',
-    body: 'Eagle Aviation hosts clean planes and jets across types with sustainable aviation fuel and electric propulsion research: Talon utility, Thermal research craft, Aerie regional access, Skyway corridors, Nest ground support with SAF nodes, and Apex long-range concepts including talks toward acquiring Spirit Airlines. Not tickets.',
-    cadence: 'Cadence: access and partner queues first; airframe and SAF concepts stay assumption-labeled. No flight schedule on this surface.',
+    title: 'What Eagle Air is building',
+    body: 'Eagle Air is clean air transportation from private jets to long-distance Earth travel. Every plane is named after a bird species. Every jet carries active carbon removal: the more you fly it, the better it is for the atmosphere. SAF and electric propulsion research sit under the airframes. Not tickets.',
+    cadence: 'Cadence: access and partner queues first; bird-named airframes and carbon-removal concepts stay assumption-labeled. No flight schedule on this surface.',
   },
   lines: eagleLines,
   rows: [
@@ -470,7 +470,7 @@ const eagleMatrix = matrix({
 
 /* ─── Phenix ─── */
 const phenixLines = [
-  line({ id: 'ember', name: 'Hawk Mark 1', stencil: 'rocket', epithet: 'Launch vehicle', naming: 'First heat of the Hawk: the Mark 1 launch vehicle.', overview: 'Hawk Mark 1 launch-vehicle mission-concept workspace for payload inquiry, not a launch booking.', powertrain: true, does: 'Hosts payload inquiry for Hawk Mark 1 suborbital and ascent mission concepts.', benefits: ['Named launch vehicle honesty', 'Partner engineering path'], savings: ['Shared ground systems with Bifröst / Corona'], addOns: [{ id: 'payload-bay', name: 'Payload bay study', text: 'Bay geometry studies for inquiry partners.' }] }),
+  line({ id: 'ember', name: 'Hawk Mark 1', stencil: 'rocket', epithet: 'Launch vehicle', naming: 'First heat of the Hawk: the Mark 1 launch vehicle.', overview: 'Hawk Mark 1 launch-vehicle mission-concept workspace for payload inquiry, not a launch booking. Mark 02 follows for Aether flag planting.', powertrain: true, does: 'Hosts payload inquiry for Hawk Mark 1 suborbital and ascent mission concepts; Mark 02 path supports Aether claim flags.', benefits: ['Named launch vehicle honesty', 'Aether Mark 02 flag adjacency', 'Partner engineering path'], savings: ['Shared ground systems with Bifröst / Corona'], addOns: [{ id: 'payload-bay', name: 'Payload bay study', text: 'Bay geometry studies for inquiry partners.' }] }),
   line({ id: 'ascent', name: 'Ascent', stencil: 'rocket', epithet: 'Payload path', naming: 'The climb through fire.', overview: 'Ascent architecture studies for Hawk Mark 1 payload customers (prospective).', powertrain: true, does: 'Studies ascent paths for prospective Hawk Mark 1 payload partners.', benefits: ['Transparent research status', 'No launch date fiction'], savings: [], addOns: [] }),
   line({ id: 'return', name: 'Return', stencil: 'rocket', epithet: 'Recovery path', naming: 'What goes up must be studied coming home.', overview: 'Recovery architecture studies for Hawk Mark 1 and follow-on vehicles.', does: 'Explores recovery and return architectures.', benefits: ['Recovery-first honesty'], savings: [], addOns: [] }),
   line({ id: 'corona', name: 'Corona', stencil: 'platform', epithet: 'Heat shield study', naming: 'The bright edge of reentry research.', overview: 'Heat-shield and thermal path research for Earth return and Venus entry studies, not tourism.', does: 'Researches thermal protection concepts including Venus-entry adjacency with Zeus.', benefits: ['Materials research framing', 'Venus entry adjacency'], savings: [], addOns: [] }),
@@ -482,9 +482,9 @@ const phenixMatrix = matrix({
   companyId: 'phenix',
   title: 'Phenix matrix',
   mission: {
-    title: 'What Phenix Mission is building',
-    body: 'Phenix is a mission-concept workspace: Hawk Mark 1 launch vehicle, Ascent and Return architectures, Corona thermal paths, Bifröst Base Camp at the lunar south pole, and Zeus toward a crewed Venus cloud city by 2035. Heat, ascent, return, researched without launch-booking fiction.',
-    cadence: 'Cadence: Hawk Mark 1 inquiry and Bifröst base studies lead; Zeus / Venus 2035 stays vision until nearer gates clear.',
+    title: 'What Phenix Aerospace is building',
+    body: 'Phenix Aerospace builds space transportation. Moon routes first; Moon to Venus and Mars second; Alpha Centauri B (Rollo) third. O’Neill spheres on the long road. Hawk Mark 1 opens the vehicle family; Hawk Mark 02 plants Aether claim flags. Bifröst Base Camp at the lunar south pole; Zeus toward Venus. No launch booking on this surface.',
+    cadence: 'Cadence: Hawk Mark 1 inquiry and Bifröst base studies lead; Zeus / Venus, Mars legs, Rollo, and O’Neill spheres stay vision until nearer gates clear.',
   },
   lines: phenixLines,
   rows: [
@@ -497,7 +497,7 @@ const phenixMatrix = matrix({
       'phoenix-gate': cell({ id: 'phoenix-gate-01', status: 'vision', summary: 'Zeus / Venus 2035.', description: 'Zeus 01 queues Venus cloud-city briefings aimed at 2035 when diligence clears.', does: phenixLines[5].does, benefits: phenixLines[5].benefits, savings: [], addOns: [], hostAlias: 'phoenixgate01' }),
     }),
     row02({
-      ember: cell({ id: 'ember-02', status: 'theoretical', summary: 'Hawk Mark follow-on.', description: 'Hawk Mark 1 follow-on refines bay studies.', does: 'Refined Hawk Mark 1 payload bay studies.', benefits: phenixLines[0].benefits, savings: [], addOns: phenixLines[0].addOns, hostAlias: 'ember02' }),
+      ember: cell({ id: 'ember-02', status: 'theoretical', summary: 'Hawk Mark 02.', description: 'Hawk Mark 02: Phenix vehicle tasked with planting flags for Aether claims made on Earth.', does: 'Stages Hawk Mark 02 flag-planting mission concepts with Aether.', benefits: phenixLines[0].benefits, savings: [], addOns: phenixLines[0].addOns, hostAlias: 'ember02' }),
       ascent: cell({ id: 'ascent-02', status: 'theoretical', summary: 'Ascent follow-on.', description: 'Ascent 02 deepens architecture options.', does: 'Deeper ascent options.', benefits: phenixLines[1].benefits, savings: [], addOns: [], hostAlias: 'ascent02' }),
       return: cell({ id: 'return-02', status: 'theoretical', summary: 'Return follow-on.', description: 'Return 02 adds contingency paths.', does: 'Recovery contingency studies.', benefits: phenixLines[2].benefits, savings: [], addOns: [], hostAlias: 'return02' }),
       corona: cell({ id: 'corona-02', status: 'vision', summary: 'Corona follow-on.', description: 'Corona 02 materials vision for Venus entry.', does: 'Advanced thermal materials vision.', benefits: phenixLines[3].benefits, savings: [], addOns: [], hostAlias: 'corona02' }),
@@ -522,9 +522,9 @@ const holmMatrix = matrix({
   companyId: 'holm',
   title: 'Holm matrix',
   mission: {
-    title: 'What Holm Modular Home is building',
-    body: 'Holm lands twelve linkable habitation modules, Timber, Sod, Adobe, Commons, Bridge, and Hearth in 01/02 generations, where the site allows. Log cabin, sod house, or adobe by terrain. Logistics, financing, and real estate sit on the interest path. Not stamped plans or a construction contract.',
-    cadence: 'Cadence: Timber 01 leads; paired modules unlock as site partnerships clear. No false “move-in date” on this surface.',
+    title: 'What Holm is building',
+    body: 'Holm turns first-time home buyers into first-time home builders: courses, financing, real estate, compliance, workshops, and in-person designers. Sod, log, adobe by terrain. Twelve interlocking container Holms: design on the website, we build and place. Not stamped plans alone.',
+    cadence: 'Cadence: Timber 01 and buyer→builder courses lead; paired modules unlock as site partnerships clear. No false “move-in date” on this surface.',
   },
   lines: holmLines,
   rows: [
@@ -554,17 +554,17 @@ const atollLines = [
   line({ id: 'reef', name: 'Reef', stencil: 'habitat', epithet: 'Edge habitat', naming: 'Living on the breaking line.', overview: 'Second-ring habitats that cascade with harbor partnership, bridging Atoll 01 households toward Atoll 02 clusters.', does: 'Extends habitats toward more energetic water edges between family and cluster scales.', benefits: ['Harbor partnership gated', 'Bridge toward Atoll 02'], savings: [], addOns: [] }),
   line({ id: 'tide', name: 'Tide', stencil: 'platform', epithet: 'Tide platform', naming: 'Platforms that rise and fall with honesty.', overview: 'Tide-aware platform studies with Njord adjacency for all Atoll scales.', powertrain: true, does: 'Studies tide-responsive platform energy and structure.', benefits: ['Njord synergy', 'Electric/H₂ platform assists'], savings: [], addOns: [] }),
   line({ id: 'dock', name: 'Harbor Dock', stencil: 'platform', epithet: 'Dock ring', naming: 'Where floating homes meet the shore.', overview: 'Dock and transfer ring for Atoll clusters, including municipal (Atoll 03) shore interfaces.', does: 'Links floating habitats to shore logistics.', benefits: ['Viking/Njord adjacency', 'Atoll 03 municipal shore path'], savings: ['Shared dock kits'], addOns: [] }),
-  line({ id: 'ring', name: 'Atoll Ring', stencil: 'habitat', epithet: 'Atoll 02 · twelve families', naming: 'The circle that makes a village on water.', overview: 'Atoll 02 lineage: cluster ring for twelve families. Tuvalu and peer municipal interest sit on the partner path.', does: 'Arranges habitats into twelve-family community rings (Atoll 02).', benefits: ['Atoll 02 twelve-family scale', 'Community scale', 'Tuvalu adjacency'], savings: [], addOns: [] }),
-  line({ id: 'deep', name: 'Deep Mooring', stencil: 'platform', epithet: 'Atoll 03 · municipal', naming: 'Anchors for the open blue, municipal scale.', overview: 'Atoll 03 lineage: municipal facility and deep-water cluster concepts. First delivery target framing includes Tuvalu government.', does: 'Studies municipal-scale deep-water mooring (Atoll 03).', benefits: ['Atoll 03 municipal scale', 'Tuvalu first-delivery target', 'Honest opacity'], savings: [], addOns: [] }),
+  line({ id: 'ring', name: 'Atoll Ring', stencil: 'habitat', epithet: 'Atoll 02 · twelve person', naming: 'The circle that makes a village on water.', overview: 'Atoll 02 lineage: twelve-person floating modular unit. Sea-level displacement response framing toward 2040; Atlantis subsurface line sits adjacent.', does: 'Arranges habitats into twelve-person community units (Atoll 02).', benefits: ['Atoll 02 twelve-person scale', '2040 displacement framing', 'Atlantis adjacency'], savings: [], addOns: [] }),
+  line({ id: 'deep', name: 'Deep Mooring', stencil: 'platform', epithet: 'Atoll 03 · public infrastructure', naming: 'Anchors for the open blue, municipal scale.', overview: 'Atoll 03 lineage: plug-and-play public infrastructure and deep-water cluster concepts. First objective supports populations facing sea-level rise by 2040.', does: 'Studies municipal-scale plug-and-play public infrastructure (Atoll 03).', benefits: ['Atoll 03 public infrastructure', '2040 displacement framing', 'Honest opacity'], savings: [], addOns: [] }),
 ]
 
 const atollMatrix = matrix({
   companyId: 'atoll',
   title: 'Atoll matrix',
   mission: {
-    title: 'What Atoll Habitat is building',
-    body: 'Atoll builds floating modular habitats at three scales: Atoll 01 single family (Lagoon lineage), Atoll 02 twelve families (Atoll Ring), Atoll 03 municipal facility (Deep Mooring). First delivery target: Tuvalu government. Interest ledger and email first; not a deed. Matrix 01/02 cells are model generations within each line, not the Atoll 01/02/03 scale tiers.',
-    cadence: 'Cadence: Lagoon / Atoll 01 leads; Ring / Atoll 02 cascades with harbor partnership; Deep / Atoll 03 stays theoretical until municipal gates clear.',
+    title: 'What Atoll is building',
+    body: 'Atoll does surface and subsurface water habitation. First objective: help the one billion people facing sea-level displacement by 2040. Atoll 01 single family, Atoll 02 twelve-person unit, Atoll 03 plug-and-play public infrastructure. Second product line: Atlantis (subsurface). Interest first; not a deed.',
+    cadence: 'Cadence: Lagoon / Atoll 01 leads; Ring / Atoll 02 cascades with harbor partnership; Deep / Atoll 03 and Atlantis stay theoretical until municipal gates clear.',
   },
   lines: atollLines,
   rows: [
@@ -590,7 +590,7 @@ const atollMatrix = matrix({
 
 /* ─── Olympus ─── */
 const olympusLines = [
-  line({ id: 'summit', name: 'Summit', stencil: 'habitat', epithet: 'Pressurized cloud city', naming: 'The first home above the clouds.', overview: 'Modular pressurized upper-atmosphere habitation research platform (cloud city lineage), not tourism. Long-range adjacency: Venus at 50 km by 2035 with Phenix Zeus.', does: 'Studies pressurized thin-air habitation platforms for research partners.', benefits: ['Pressurized cloud-city framing', 'Research-not-tourism', 'Venus 2035 adjacency', 'Academic partner path'], savings: [], addOns: [{ id: 'life-kit', name: 'Life support kit', text: 'Research life-support package study.' }] }),
+  line({ id: 'summit', name: 'Summit', stencil: 'habitat', epithet: 'Olympus Mons · cloud city', naming: 'The first home above the clouds.', overview: 'Olympus Mons lineage: first cloud city finishing in 2028 on the program target. Modular pressurized upper-atmosphere habitation. Fly Eagle in; drink through Njord pipes. Not tourism.', does: 'Studies pressurized thin-air habitation for Olympus Mons (2028 target) and follow-on cloud cities.', benefits: ['Olympus Mons 2028 target', 'Eagle + Njord adjacency', 'Research-not-tourism'], savings: [], addOns: [{ id: 'life-kit', name: 'Life support kit', text: 'Research life-support package study.' }] }),
   line({ id: 'veil', name: 'Veil', stencil: 'platform', epithet: 'Veil lab', naming: 'Lab work behind the cloud veil.', overview: 'Longer-duration pressurized research lab concepts.', does: 'Hosts longer-duration atmospheric research concepts.', benefits: ['Duration studies'], savings: [], addOns: [] }),
   line({ id: 'aerie-lab', name: 'Aerie Lab', stencil: 'habitat', epithet: 'High lab', naming: 'Eagle’s nest as laboratory.', overview: 'High-altitude lab modules with Eagle adjacency.', does: 'Pairs lab modules with Eagle research craft concepts.', benefits: ['Eagle synergy'], savings: ['Shared sensors'], addOns: [] }),
   line({ id: 'thin-air', name: 'Thin Air', stencil: 'platform', epithet: 'Pressure systems', naming: 'Pressure and breath as infrastructure.', overview: 'Pressurization and environmental system studies for cloud-city volumes.', does: 'Researches pressure and environmental systems for pressurized habitats.', benefits: ['Systems honesty', 'Pressurized habitat path'], savings: [], addOns: [] }),
@@ -602,9 +602,9 @@ const olympusMatrix = matrix({
   companyId: 'olympus',
   title: 'Olympus matrix',
   mission: {
-    title: 'What Olympus Habitat Research is building',
-    body: 'Olympus studies floating cloud cities: modular pressurized habitats in the thin air across Summit, Veil, Aerie Lab, Thin Air systems, Cloud Deck, and Strat Platform. Long-range target: Venus at roughly 50 km altitude by 2035 (with Phenix Zeus). Research briefings and email queues; not tourism.',
-    cadence: 'Cadence: Summit pressurized research leads; Strat / Venus 2035 stays vision until nearer gates clear.',
+    title: 'What Olympus is building',
+    body: 'Olympus builds cities of the future above the clouds. Fly Eagle to your Olympus Holm; drink through Njord pipes. Olympus Mons, the first cloud city, finishes in 2028 on the program target. Longer Venus adjacency remains with Phenix Zeus.',
+    cadence: 'Cadence: Summit / Olympus Mons 2028 program target leads; Strat / Venus adjacency stays vision until nearer gates clear.',
   },
   lines: olympusLines,
   rows: [
@@ -642,9 +642,9 @@ const aetherMatrix = matrix({
   companyId: 'aether',
   title: 'Aether matrix',
   mission: {
-    title: 'What Aether Claims is building',
-    body: 'Aether is the claims and real estate company beyond Earth: Quiet Room station cells, Ring Study, Solarium volumes, Dock Node, Habitat Spine, and Halo for asteroid rights and planetary surfaces. Phenix marks the territory; Aether claims it. Legal status disclosed. No deed sales on this surface.',
-    cadence: 'Cadence: Quiet Room claim-cell research leads; Halo planetary / asteroid claims stay vision.',
+    title: 'What Aether Real Estate is building',
+    body: 'Aether Real Estate helps you claim land in the galaxy: manage claims, defend claim jumpers, protect territory. Hawk Mark 02 (Phenix) plants flags for claims made on Earth. Goal: a fair regulated system for cosmic expansion. Aether claims property beyond Earth. No deed sales on this surface.',
+    cadence: 'Cadence: Quiet Room claim-cell research leads; Hawk Mark 02 flag path with Phenix; Halo planetary / asteroid claims stay vision.',
   },
   lines: aetherLines,
   rows: [
@@ -682,9 +682,9 @@ const demeterMatrix = matrix({
   companyId: 'demeter',
   title: 'Demeter matrix',
   mission: {
-    title: 'What Demeter Land Energy is building',
-    body: 'Demeter runs California-first land-energy diligence: Field Lattice (agrivoltaic solar), Root Net (geothermal), Canopy (wind), Ethanol Grove (ethanol + green hydrogen), Soil Ledger (including SMR gates), and Season Ring (75-year path toward a Dyson swarm). Soil first. Not an investment offer.',
-    cadence: 'Cadence: Field Lattice diligence leads; Ethanol Grove and hydrogen mature with Wolf powertrain studies; Dyson stays century-scale vision. No capacity claims without reviewed methodology.',
+    title: 'What Demeter is building',
+    body: 'Demeter owns energy production. Flagship: agrivoltaic solar on US farms (goal 2% of US farms by Q4 2027). Machine set includes SMRs, geothermal, Stirling engines, high-altitude and standard wind, ethanol and green hydrogen. The 75-year plan culminates in Earth’s first Dyson swarm. Soil first. Not an investment offer.',
+    cadence: 'Cadence: Field Lattice agrivoltaic diligence leads toward the Q4 2027 farm goal; SMR / geothermal / wind / Stirling mature in parallel; Dyson stays the 75-year culmination. No securities offer.',
   },
   lines: demeterLines,
   rows: [
@@ -722,9 +722,9 @@ const njordMatrix = matrix({
   companyId: 'njord',
   title: 'Njord matrix',
   mission: {
-    title: 'What Njord Water Systems is building',
-    body: 'Njord is the full water energy layer: clean it, reuse it, split it, manufacture it, turn air into water. OTEC Brief, Atmospheric Well, Depth Array (offshore energy + green hydrogen), Tide Mill, Harbor Power, and Brine Path. Research before output promises.',
-    cadence: 'Cadence: OTEC, atmospheric water, and harbor energy diligence lead; green hydrogen and brine manufacture stay method-gated. No water-quality claim here.',
+    title: 'What Njord is building',
+    body: 'Njord owns the H₂O substrate: clean, recycle, develop, split, and transport water on Earth and above. First objective: solve water scarcity on Earth. OTEC, atmospheric wells, offshore energy, harbor power, and manufacture paths sit under that thesis.',
+    cadence: 'Cadence: scarcity-on-Earth diligence leads; above-Earth transport and manufacture stay method-gated. No water-quality claim here.',
   },
   lines: njordLines,
   rows: [
@@ -762,9 +762,9 @@ const aeolusMatrix = matrix({
   companyId: 'aeolus',
   title: 'Aeolus matrix',
   mission: {
-    title: 'What Aeolus Atmosphere is building',
-    body: 'Aeolus is the atmospheric operating system in three phases: Phase 1 fix climate (Wind Gauge, Field Choir, Pressure Net, Jet Stream), Phase 2 oxygen and breathable air for space habitats (Whisper Array with Olympus/Aether), Phase 3 radiation protection (Climate Choir). Aeolus intends to own the atmospheric substrate. Research governance leads Phase 1; no atmospheric-rights sales on this surface.',
-    cadence: 'Cadence: Wind Gauge Phase 1 governance leads; Whisper Phase 2 and Climate Choir Phase 3 stay vision until nearer gates.',
+    title: 'What Aeolus is building',
+    body: 'Aeolus owns the substrate gas: anything gas or small particles. First objective: solve climate change on Earth by 2031. Second: acid shielding for Venus habitats. Intends to own the atmospheric substrate. No atmospheric-rights sales on this surface.',
+    cadence: 'Cadence: Phase 1 climate programs lead toward 2031; Venus acid shielding and full ownership thesis stay gated. No rights sales.',
   },
   lines: aeolusLines,
   rows: [
@@ -803,8 +803,8 @@ const corvusMatrix = matrix({
   title: 'Corvus matrix',
   mission: {
     title: 'What Corvus is building',
-    body: 'Corvus is sovereign AI compute, not a cloud AI company: Raven OS (solar-aware, offline-capable, modular substrate), Odin as the founder consumer product, Corvus Mesh across the halls, Prompt Forge, Badge Path, and Knowledge Nest. Prompt 21 unlocks the Twenty-First Raven badge.',
-    cadence: 'Cadence: Raven OS substrate and Odin consumer product lead; Mesh stays theoretical until early cohort clears.',
+    body: 'Corvus builds equitable intelligence infrastructure: medium solar-powered sovereign computers so you keep your data, space data centers on the long path, and Raven OS for the rest of the empire. Waitlist for early prompts and products. Odin is the founder-facing product on that substrate.',
+    cadence: 'Cadence: Raven OS and sovereign computer waitlist lead; space data centers and Mesh stay theoretical until early cohort clears.',
   },
   lines: corvusLines,
   rows: [

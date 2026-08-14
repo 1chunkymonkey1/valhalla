@@ -56,7 +56,12 @@ export default function HubPage() {
             <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.4em] text-black/35">
               Valhalla
             </p>
-            <p className="text-sm text-black/50">Twelve halls. One civilization.</p>
+            <p className="text-sm text-black/50">
+              Twelve companies across Land, Water, Air, and Space. Each solves a problem and ties into the other eleven.
+            </p>
+            <p className="mt-2 text-xs text-black/40">
+              Everyone is a king. Kings don’t wait for the throne; they build it.
+            </p>
           </div>
         )}
 

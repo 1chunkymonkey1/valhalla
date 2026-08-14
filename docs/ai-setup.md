@@ -1,5 +1,7 @@
 # AI setup (Council + hall Ask)
 
+> **REMIND EASON:** Finish Vercel AI keys (`CURSOR_API_KEY` / `AI_GATEWAY_API_KEY` / `OPENAI_API_KEY`), run `20260814_ai_settings.sql`, redeploy, then Admin → AI setup. You said you’d do this later.
+
 Dead-simple path to turn on AI replies for **Admin → Council** and public **Ask** chat.
 
 ## Tonight: connect a key (numbered)

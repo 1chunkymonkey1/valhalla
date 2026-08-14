@@ -1,16 +1,16 @@
 /**
  * Grounding pack for Ask-the-hall AI replies.
- * Keep claims conservative — research / waitlist / interest only.
+ * Mirror founder brief; keep sales / guaranteed-date guardrails.
  */
 
 const HALLS = {
   hub: {
     name: 'Valhalla',
-    hero: 'Civilization platform across twelve halls plus Meridian materials.',
-    body: 'Valhalla coordinates twelve mosaic companies across land, water, air, and space for movement, habitation, energy, and intelligence, with Meridian as the materials layer beneath. Public pages are research and interest surfaces, not checkout or shipping claims.',
+    hero: 'Everyone is a king. Kings don’t wait for the throne; they build it.',
+    body: 'Valhalla is building twelve companies across the four domains of Land, Water, Air, and Space. Each company solves a specific problem facing humanity and ties into the other eleven so they grow and evolve as a unit. Meridian is the materials layer beneath. Public pages are research and interest surfaces.',
     bullets: [
-      'Twelve mosaic halls unlock on the launch schedule (Pacific time)',
-      'Meridian is the materials layer at /meridian (not a mosaic tile)',
+      'Twelve mosaic halls across Land / Water / Air / Space',
+      'Movement, Habitation, Energy, and Intelligence pillars; Meridian materials at /meridian',
       'Ask widgets reach the Valhalla team',
       'No false “shipping now” or funded reservation claims on this surface',
     ],
@@ -18,98 +18,140 @@ const HALLS = {
   wolf: {
     name: 'Wolf',
     hero: 'The pack moves first.',
-    body: 'Wolf Transit is a land-mobility arch: Fenrir motorcycle, Hati ATV, Sköll car, Geri truck, Freki rescue air, and Dire Wolf rail aiming San Francisco to New York in 5.8 hours. Lines named for wolf species and myth. Transparent research, not checkout.',
+    body: 'Wolf owns land transit. Fenrir is the adventure electric motorcycle; next is a tri-fuel ATV; the sixth product is Dire Wolf, a transcontinental maglev aiming San Francisco to New York in 5.8 hours. Unifying principles: clean, and fixable. By the time Dire Wolf is built, the pack has assembled.',
     bullets: [
-      'Fenrir 01 target January 13, 2027 (research cadence, not a guaranteed ship date)',
-      'Dealer and OEM inquiry routing',
-      'Dire Wolf: SF→NY 5.8-hour network target, phased railroad complete by August 13, 2031',
-      'Bifröst is the Phenix lunar base camp, not the Earth railroad',
+      'Fenrir: adventure electric motorcycle (first product)',
+      'Tri-fuel ATV (second product)',
+      'Dire Wolf maglev: SF→NYC 5.8-hour network target',
+      'Clean + fixable; community wrench culture',
     ],
   },
   viking: {
     name: 'Viking',
     hero: 'Board as yourself. Disembark as Ragnar.',
-    body: 'Viking is a narrative voyage concept. The Vinland Saga is the full arc available to anyone who boards. Tickets wait on licensed operators.',
-    bullets: ['Vinland Saga narrative arc', 'Guest interest registry', 'Charter / operator partner inquiry'],
+    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships use light-water SMRs and emerging sail. First route Stockholm to London; later a Phenix launch-pad call and a moon leg on the vacation arc.',
+    bullets: [
+      'Stockholm → London first route',
+      'Light-water SMR + sail propulsion thesis',
+      'Phenix pad + moon-leg vacation path',
+      'Vinland Saga narrative arc; partner-gated',
+    ],
   },
   eagle: {
     name: 'Eagle',
     hero: 'The more you fly, the better it is for the atmosphere.',
-    body: 'Eagle hosts clean aviation research with SAF and electric propulsion. In talks toward acquiring Spirit Airlines. No flight schedule on this surface.',
-    bullets: ['SAF and electric propulsion research', 'Traveler interest waitlist', 'Spirit Airlines talks as network path'],
+    body: 'Eagle Air is clean air transportation from private jets to long-distance Earth travel. Every plane is named after a bird species. Every Eagle jet has active carbon removal: the more you fly it, the better it is for the atmosphere.',
+    bullets: [
+      'Bird-species aircraft names',
+      'Active carbon removal on every jet',
+      'Private jet through long-haul Earth travel',
+      'No published flight schedule on this surface',
+    ],
   },
   phenix: {
     name: 'Phenix',
     hero: 'Every launch is a death. Every orbit is a resurrection.',
-    body: 'Phenix tracks Hawk Mark 1, Bifröst Base Camp at the lunar south pole, and Zeus toward a crewed Venus cloud city by 2035. No launch booking here.',
-    bullets: ['Hawk Mark 1 launch vehicle', 'Bifröst lunar south-pole base camp', 'Zeus / Venus 2035 north star'],
+    body: 'Phenix Aerospace builds space transportation. Moon routes first; Moon to Venus and Mars second; Alpha Centauri B (Rollo) third. O’Neill spheres on the long road. Hawk Mark vehicles; Hawk Mark 02 supports Aether flag planting for Earth-originated claims.',
+    bullets: [
+      'Moon → Venus/Mars → Rollo (Alpha Centauri B)',
+      'O’Neill sphere program',
+      'Hawk Mark launch family; Mark 02 flag path with Aether',
+      'Bifröst lunar / Zeus Venus adjacency',
+    ],
   },
   holm: {
     name: 'Holm',
     hero: 'Built for the terrain you chose.',
-    body: 'Holm is twelve linkable modules: timber, sod, or adobe by terrain. Logistics, financing, and real estate sit on the interest path. Not stamped plans.',
-    bullets: ['Twelve linkable modules', 'Site feasibility checklist', 'Financing / logistics / real estate partner path'],
+    body: 'Holm turns first-time home buyers into first-time home builders: courses, financing, real estate, compliance, workshops, and in-person designers. Sod, log, adobe by terrain. Twelve interlocking container Holms: design on the website, build and place.',
+    bullets: [
+      'Buyer → builder pathway',
+      'Sod / log / adobe by terrain',
+      'Twelve interlocking container Holms',
+      'Financing, compliance, designers on the path',
+    ],
   },
   atoll: {
     name: 'Atoll',
     hero: 'Where land ends, Atoll begins.',
-    body: 'Atoll 01 single family, Atoll 02 twelve families, Atoll 03 municipal. First delivery target: Tuvalu government. No fund collection on this surface.',
-    bullets: ['Atoll 01 / 02 / 03 scale tiers', 'Tuvalu first-delivery target', 'Partner pipeline intake'],
+    body: 'Atoll does surface and subsurface water habitation. First objective: help the one billion people facing sea-level displacement by 2040. Atoll 01 single family, Atoll 02 twelve-person unit, Atoll 03 plug-and-play public infrastructure. Second line: Atlantis (subsurface).',
+    bullets: [
+      '1B sea-level displacement framing by 2040',
+      'Atoll 01 / 02 / 03 scales',
+      'Atlantis subsurface line',
+      'No deed sales on this surface',
+    ],
   },
   olympus: {
     name: 'Olympus',
     hero: 'The first home above the clouds.',
-    body: 'Olympus studies floating cloud cities as modular pressurized habitats. Long-range target: Venus at 50 km by 2035 with Phenix Zeus.',
-    bullets: ['Pressurized cloud-city research', 'Venus 50 km / 2035 north star', 'Conceptual partner intake'],
+    body: 'Olympus builds cities above the clouds. Fly Eagle to your Olympus Holm; drink through Njord pipes. Olympus Mons, the first cloud city, finishes in 2028 on the program target.',
+    bullets: [
+      'Cloud cities above the weather line',
+      'Eagle + Njord adjacency',
+      'Olympus Mons first cloud city · 2028 target',
+      'Research queues, not tourism tickets',
+    ],
   },
   aether: {
     name: 'Aether',
     hero: 'Phenix marks the territory. Aether claims it.',
-    body: 'Aether is the claims and real estate company beyond Earth: orbital stations, lunar parcels, asteroid rights, planetary surfaces. Legal status disclosed. No deed sales on this surface.',
-    bullets: ['Claims / registry framing', 'Lunar, asteroid, and planetary claim studies', 'Partner interest portal'],
+    body: 'Aether Real Estate helps you claim land in the galaxy: manage claims, defend claim jumpers, protect territory. Hawk Mark 02 plants flags for claims made on Earth. Goal: a fair regulated system for cosmic expansion. Aether claims property beyond Earth.',
+    bullets: [
+      'Galactic claims / registry',
+      'Claim-jumper defense framing',
+      'Hawk Mark 02 flag planting with Phenix',
+      'No deed sales or claim payments on this surface',
+    ],
   },
   demeter: {
     name: 'Demeter',
     hero: 'The same acre feeds a family and powers twenty homes.',
-    body: 'Demeter tracks California-first land energy: agrivoltaics, green hydrogen, geothermal, wind, and SMR on a 75-year path toward a Dyson swarm. Research status only.',
+    body: 'Demeter owns energy production. Flagship: agrivoltaic solar on US farms (goal 2% of US farms by Q4 2027). Also SMRs, geothermal, Stirling engines, high-altitude and standard wind. Seventy-five-year plan culminates in Earth’s first Dyson swarm.',
     bullets: [
-      'Agrivoltaics, geothermal, wind, green hydrogen, SMR diligence',
-      'California-first framing',
-      '75-year / Dyson roadmap (vision)',
-      'No capacity, CO₂, or ROI claims without reviewed methodology',
+      'Agrivoltaics · 2% US farms by Q4 2027 goal',
+      'SMR, geothermal, Stirling, wind stack',
+      '75-year Dyson swarm path',
+      'No securities offer; blueprint targets only',
     ],
   },
   njord: {
     name: 'Njord',
     hero: 'Every molecule of water in the galaxy. Ours.',
-    body: 'Njord is the full water energy layer: clean, reuse, split, manufacture, turn air into water, plus offshore energy, maritime power, and green hydrogen. Research before output promises.',
+    body: 'Njord owns the H₂O substrate: clean, recycle, develop, split, and transport water on Earth and above. First objective: solve water scarcity on Earth.',
     bullets: [
-      'Atmospheric water, OTEC, offshore energy, harbor power',
-      'Green hydrogen from water',
-      'Clean / reuse / manufacture research pathways',
+      'Full H₂O substrate ownership thesis',
+      'Clean / recycle / split / transport',
+      'Earth scarcity first; above-Earth later',
+      'Research before output promises',
     ],
   },
   aeolus: {
     name: 'Aeolus',
     hero: 'Fix the atmosphere. Then own it.',
-    body: 'Aeolus is the atmospheric operating system that intends to own the atmospheric substrate: Phase 1 climate, Phase 2 oxygen for habitats, Phase 3 radiation protection. Research governance leads Phase 1. No atmospheric-rights sales or fund collection against ownership claims on this surface.',
-    bullets: ['Three-phase atmospheric OS', 'Owns-the-substrate thesis', 'Oxygen path for Olympus / Aether', 'Radiation protection in Phase 3'],
+    body: 'Aeolus owns the substrate gas: anything gas or small particles. First objective: solve climate change on Earth by 2031. Second: acid shielding for Venus habitats. Intends to own the atmospheric substrate.',
+    bullets: [
+      'Gas / particulate substrate thesis',
+      'Climate objective by 2031',
+      'Venus acid shielding',
+      'No atmospheric-rights sales on this surface',
+    ],
   },
   corvus: {
     name: 'Corvus',
     hero: 'The mind that runs eleven companies. And counting.',
-    body: 'Corvus is sovereign AI compute: Raven OS (solar-aware, offline-capable, modular substrate) and Odin as the founder consumer product. Prompt ladder is the access path; Prompt 21 unlocks the Twenty-First Raven badge.',
+    body: 'Corvus builds equitable intelligence infrastructure. Sovereign medium solar-powered computers so you keep your data. Space data centers on the long path. Raven OS runs the empire; waitlist for early prompts and products.',
     bullets: [
-      'Sovereign intelligence substrate, not a cloud AI company',
-      'Odin consumer product for founders',
-      'Raven OS phased prompts; Prompt 21 badge',
+      'Sovereign solar computers',
+      'Space data centers (long path)',
+      'Raven OS empire substrate',
+      'Prompt / product waitlist',
     ],
   },
   meridian: {
     name: 'Meridian',
     hero: 'Worn by everyone. Built to last forever.',
-    body: 'Meridian is the materials layer beneath all four domains: Earth garment (self-cleaning polymer pants, September 2026 research target), Venus-rated spacesuit, and Stealth body-armor supply chain.',
-    bullets: ['Earth garment research toward September 2026', 'Venus Suit', 'Stealth Armor supply chain'],
+    body: 'Meridian is the materials layer beneath all four domains: Earth garment systems and space-rated suits including Venus and Stealth armor paths.',
+    bullets: ['Earth garment research', 'Venus Suit', 'Stealth Armor supply chain'],
   },
 }
 
@@ -124,7 +166,7 @@ export function getHallKnowledge(pageId) {
     ...hall,
     schedule: SCHEDULE_BLURB,
     empire:
-      'Valhalla is the umbrella. Each mosaic hall is a company domain (land/water/air/space × movement/habitation/energy/intelligence). Meridian is the materials layer beneath. Interest forms and Ask chat are non-binding.',
+      'Valhalla builds twelve companies across Land, Water, Air, and Space. Each solves a human problem and ties into the other eleven so the mosaic grows as a unit. Meridian is materials beneath. Interest forms and Ask chat are non-binding. Everyone is a king: kings don’t wait for the throne; they build it.',
   }
 }
 
@@ -140,11 +182,12 @@ export function buildKnowledgePrompt(pageId) {
     'Rules:',
     '- Answer helpfully in 2–5 short sentences.',
     '- Never claim products are shipping, available to buy, funded, licensed, or bookable unless the knowledge pack says so.',
+    '- You may state founder goals and program targets from the knowledge pack (including 5.8-hour rail, 2028 Olympus Mons, 2031 climate, Dyson path, Rollo).',
     '- You may state that Aether claims property beyond Earth and that Aeolus intends to own the atmospheric substrate.',
     '- Never say deeds, parcels, territory, or atmospheric rights are for sale, reserved for payment, or that funds are collected against those claims on this site.',
-    '- Never invent prices, capacity, CO₂, ROI, or flight times as proven facts.',
-    '- Never guarantee ship, launch, move-in, or delivery dates.',
-    '- Interest lists, research status, partner inquiries, blueprint targets (including 5.8-hour rail, Venus 2035, Tuvalu), and concept work are OK to mention.',
+    '- Never invent prices, capacity, CO₂, ROI, or flight times as proven measured facts beyond the stated goals.',
+    '- Never guarantee ship, launch, move-in, or delivery dates as locked contracts.',
+    '- Interest lists, research status, partner inquiries, and blueprint targets are OK to mention.',
     '- If the user needs a human (money, legal, sensitive personal data, explicit person request, or you are unsure), set needs_human true and say a Valhalla person will follow up in this thread.',
   ].join('\n')
 }

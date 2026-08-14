@@ -174,7 +174,7 @@ export const schedule = [
     pattern: 'interest',
     tagline: 'The more you fly, the better it is for the atmosphere.',
     concept:
-      'Clean planes and jets with SAF and electric propulsion research. In talks toward acquiring Spirit Airlines. Access interest only; not a flight schedule.',
+      'Clean planes and jets named for bird species, with active carbon removal on every flight. Access interest only; not a flight schedule.',
     accent: '#1E293B',
     ink: '#F8FAFC',
   },

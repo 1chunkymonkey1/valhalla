@@ -1,7 +1,7 @@
 /**
  * Wolf Transit product matrix, deep product docs for the pack.
  * Columns = product lines (L→R). Rows = subsequent models (01, 02, …).
- * Fenrir leads left; Dire Wolf (train) closes the arch.
+ * Fenrir leads left; Dire Wolf (maglev rail) closes the arch.
  */
 
 import { POWERTRAIN_TIERS } from './powertrainTiers'
@@ -39,8 +39,8 @@ const sharedVehicleSavings = [
 
 /** Community / fix-it value-add across Wolf */
 export const wolfCommunity = {
-  title: 'Community building and fixing',
-  body: 'Wolf is built for riders and wrenchers who want the machine to stay theirs. Everything is yours to fix, manuals, modular fasteners, and community shops come before sealed black boxes. The pack grows when neighbors can wrench together.',
+  title: 'Clean, and fixable',
+  body: 'Wolf’s two unifying principles are clean and fixable. Machines stay yours to wrench: manuals, modular fasteners, and community shops before sealed black boxes. The pack grows when neighbors can fix together. By the time Dire Wolf is built, the pack has assembled.',
   addOns: [
     {
       id: 'helmets',
@@ -208,15 +208,15 @@ export const wolfLines = [
     name: 'Dire Wolf',
     stencil: 'train',
     vehicle: 'train',
-    epithet: 'Transcontinental railroad',
+    epithet: 'Transcontinental maglev',
     naming:
-      'Ice-age wolf species, the heavy spine. (Bifröst is the Phenix lunar base camp; Dire Wolf is the Earth railroad.)',
+      'Ice-age wolf species, the heavy spine. (Bifröst is the Phenix lunar base camp; Dire Wolf is the Earth maglev.)',
     overview:
-      'Segmented transcontinental rail program: San Francisco to New York aiming for a 5.8-hour crossing on the network target, built in phases. Right-of-way, energy, and regional partners unlock each segment. Target network completion August 13, 2031.',
+      'Transcontinental maglev program: San Francisco to New York aiming for a 5.8-hour crossing on the network target, built in phases. Right-of-way, energy, and regional partners unlock each segment. Target network completion August 13, 2031. By the time Dire Wolf is built, the pack has assembled.',
     powertrain: true,
-    does: 'Builds a phased San Francisco to New York rail spine aiming for a 5.8-hour crossing so freight and people can move on partner-backed segments, the heavy corridor under the rest of the pack.',
+    does: 'Builds a phased San Francisco to New York maglev spine aiming for a 5.8-hour crossing so freight and people can move on partner-backed segments, the heavy corridor under the rest of the pack.',
     benefits: [
-      'SF→NY 5.8-hour network target',
+      'SF→NYC maglev · 5.8-hour network target',
       'Phased, buildable segments, not a single megabid fantasy',
       'Freight and people mix studies per corridor',
       'Civilization-scale spine for the rest of Wolf Transit',
@@ -326,8 +326,8 @@ export const wolfModelRows = [
         targetDate: '2027-11-13',
         summary: 'Phase I, western rail segment groundbreaking path.',
         description:
-          'Dire Wolf 01 marks Phase I: western corridor planning and first-segment partnerships (Bay Area toward the Sierra / Intermountain approach). Not maglev marketing copy, phased heavy rail and high-speed studies with transparent milestones. Segment work begins on the two-month cadence after Freki 01.',
-        does: 'Opens Phase I of the transcontinental spine, western corridor planning and partnerships.',
+          'Dire Wolf 01 marks Phase I: western maglev corridor planning and first-segment partnerships (Bay Area toward the Sierra / Intermountain approach). Transparent milestones; segment work begins on the two-month cadence after Freki 01.',
+        does: 'Opens Phase I of the transcontinental maglev spine, western corridor planning and partnerships.',
         benefits: wolfLines[5].benefits,
         savings: wolfLines[5].savings,
         addOns: wolfLines[5].addOns,
@@ -520,9 +520,9 @@ export const wolfModelRows = [
 
 export const wolfMission = {
   title: 'What Wolf Transit is building',
-  body: 'Wolf Transit is a land-mobility arch: electric trail machines first, then ATV, car, truck, and rescue air, each named for a wolf species or myth, culminating in Dire Wolf, a phased San Francisco to New York railroad aiming for a 5.8-hour crossing. Community building and fixing sit under every line: everything is yours to fix, with add-ons from helmets and fix-it kits to hydrogen boost power. We publish a product matrix, not a checkout cart. Fenrir 01 targets January 13, 2027; a new line or model lands every two months on that cadence.',
+  body: 'Wolf owns land transit under two principles: clean, and fixable. Fenrir (adventure electric motorcycle) opens the pack; the tri-fuel ATV follows; car, truck, and rescue air assemble next; Dire Wolf closes as a transcontinental maglev aiming San Francisco to New York in 5.8 hours. By the time Dire Wolf is built, the pack has assembled. Add-ons from helmets and fix-it kits to hydrogen boost. Product matrix, not a checkout cart. Fenrir 01 targets January 13, 2027; a new line or model every two months on that cadence.',
   cadence:
-    'Cadence: Fenrir 01 on January 13, 2027 → new product line 01 every two months through Dire Wolf Phase I → model 02/03 generations continue on the same drumbeat. Dire Wolf completes in segments by August 13, 2031, with a 5.8-hour SF→NY network target.',
+    'Cadence: Fenrir 01 on January 13, 2027 → new product line 01 every two months through Dire Wolf Phase I → model 02/03 generations continue on the same drumbeat. Dire Wolf maglev completes in segments by August 13, 2031, with a 5.8-hour SF→NYC network target.',
 }
 
 export const direWolfPhases = [
