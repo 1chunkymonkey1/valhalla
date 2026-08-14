@@ -58,6 +58,25 @@ import {
   setThreadStatus,
 } from '../_lib/siteChat.js'
 import { clientKey, rateLimit } from '../_lib/rateLimit.js'
+import {
+  approveDispatchItem,
+  listDispatchItems,
+  markDispatchSent,
+  prepareSend,
+  unapproveDispatchItem,
+  updateDispatchItem,
+} from '../_lib/dispatchStore.js'
+import {
+  createCouncilThread,
+  getCouncilThread,
+  listCouncilAgents,
+  listCouncilThreads,
+  postFounderMessage,
+  requestAgentReply,
+  runCouncilRound,
+  setCouncilThreadGoal,
+  setCouncilThreadStatus,
+} from '../_lib/councilStore.js'
 
 const COMPANY_SUMMARY = [
   { id: 'wolf', name: 'Wolf', domain: 'land', pillar: 'movement', wave: 1 },
@@ -572,6 +591,159 @@ async function handleInbox(req, res) {
   return json(res, 405, { ok: false, error: 'Method not allowed' })
 }
 
+async function handleDispatch(req, res) {
+  const session = requireAdmin(req, res)
+  if (!session) return
+
+  if (req.method === 'GET') {
+    try {
+      const data = await listDispatchItems()
+      return json(res, 200, { ok: true, ...data })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Dispatch error' })
+    }
+  }
+
+  if (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH') {
+    try {
+      const body = await readBody(req)
+      const id = String(body.id || body.itemId || '').trim()
+      const action = String(body.action || 'save').trim().toLowerCase()
+      if (!id) return json(res, 400, { ok: false, error: 'id required' })
+      const actor = session.email
+
+      if (action === 'save') {
+        const item = await updateDispatchItem(id, body, actor)
+        return json(res, 200, { ok: true, item })
+      }
+      if (action === 'approve') {
+        const item = await approveDispatchItem(id, actor)
+        return json(res, 200, { ok: true, item })
+      }
+      if (action === 'unapprove') {
+        const item = await unapproveDispatchItem(id, actor)
+        return json(res, 200, { ok: true, item })
+      }
+      if (action === 'send') {
+        const data = await prepareSend(id)
+        return json(res, 200, { ok: true, ...data })
+      }
+      if (action === 'mark-sent' || action === 'sent') {
+        const item = await markDispatchSent(id, actor)
+        return json(res, 200, { ok: true, item })
+      }
+      if (action === 'hold' || action === 'unhold') {
+        const item = await updateDispatchItem(id, { held: action === 'hold' }, actor)
+        return json(res, 200, { ok: true, item })
+      }
+      return json(res, 400, { ok: false, error: 'Unknown action' })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
+async function handleCouncil(req, res) {
+  const session = requireAdmin(req, res)
+  if (!session) return
+
+  if (req.method === 'GET') {
+    try {
+      const url = new URL(req.url, `https://${req.headers.host || 'localhost'}`)
+      const view = String(url.searchParams.get('view') || '').trim().toLowerCase()
+      const threadId = String(url.searchParams.get('id') || url.searchParams.get('threadId') || '').trim()
+
+      if (view === 'agents' || (!threadId && view === '')) {
+        // default list: threads + agents summary when no id
+      }
+      if (view === 'agents') {
+        const data = await listCouncilAgents()
+        return json(res, 200, { ok: true, ...data })
+      }
+      if (threadId) {
+        const data = await getCouncilThread(threadId)
+        return json(res, 200, { ok: true, ...data })
+      }
+      const [threads, agents] = await Promise.all([listCouncilThreads(), listCouncilAgents()])
+      return json(res, 200, {
+        ok: true,
+        threads: threads.threads,
+        agents: agents.agents,
+        storage: threads.storage,
+        durabilityNote: threads.durabilityNote,
+        aiConfigured: threads.aiConfigured,
+      })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Council error' })
+    }
+  }
+
+  if (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH') {
+    try {
+      const body = await readBody(req)
+      const action = String(body.action || 'message').trim().toLowerCase()
+
+      if (action === 'create' || action === 'open') {
+        const data = await createCouncilThread({
+          agentId: body.agentId || body.agent,
+          title: body.title,
+          kind: body.kind || 'direct',
+          goal: body.goal,
+          participants: body.participants,
+        })
+        return json(res, 200, { ok: true, ...data })
+      }
+
+      const threadId = String(body.threadId || body.id || '').trim()
+      if (!threadId && action !== 'create') {
+        return json(res, 400, { ok: false, error: 'threadId required' })
+      }
+
+      if (action === 'message' || action === 'say' || action === 'chat') {
+        const data = await postFounderMessage(threadId, body.body || body.message || body.text || '', {
+          replyAgents: body.replyAgents !== false,
+        })
+        return json(res, 200, { ok: true, ...data })
+      }
+      if (action === 'ask' || action === 'reply') {
+        const data = await requestAgentReply(
+          threadId,
+          body.agentId || body.agent,
+          body.body || body.message || body.prompt || '',
+        )
+        return json(res, 200, { ok: true, ...data })
+      }
+      if (action === 'round' || action === 'run-round' || action === 'autonomous') {
+        const data = await runCouncilRound(threadId, {
+          agentIds: body.agentIds || body.agents,
+          goal: body.goal,
+          maxRounds: body.maxRounds || body.rounds || 1,
+        })
+        return json(res, 200, { ok: true, ...data })
+      }
+      if (action === 'goal') {
+        const data = await setCouncilThreadGoal(threadId, body.goal || body.body || '')
+        return json(res, 200, { ok: true, ...data })
+      }
+      if (action === 'close' || action === 'open-thread') {
+        const data = await setCouncilThreadStatus(
+          threadId,
+          action === 'close' ? 'closed' : 'open',
+        )
+        return json(res, 200, { ok: true, ...data })
+      }
+
+      return json(res, 400, { ok: false, error: 'Unknown action' })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'login') return handleLogin(req, res)
@@ -586,5 +758,7 @@ export default async function handler(req, res) {
   if (key === 'pages') return handlePages(req, res)
   if (key === 'pages/upload') return handlePagesUpload(req, res)
   if (key === 'inbox') return handleInbox(req, res)
+  if (key === 'dispatch') return handleDispatch(req, res)
+  if (key === 'council') return handleCouncil(req, res)
   return json(res, 404, { ok: false, error: 'Not found' })
 }

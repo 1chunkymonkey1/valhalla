@@ -24,6 +24,8 @@ export default function SiteChrome() {
       ),
     [],
   )
+  if (location.pathname === '/capital') return null
+
   const tone =
     hostProduct || isCompanyPath(location.pathname) ? 'company' : 'hub'
 

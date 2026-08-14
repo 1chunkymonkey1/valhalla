@@ -24,6 +24,7 @@ Project URL used in production (example): `https://bhivwdibbykbcbdxetob.supabase
 | `supabase/migrations/20260814_chat_ai_flags.sql` | `needs_human`, AI model/meta on chat |
 | `supabase/migrations/20260813_page_layouts.sql` | page layout tables + Storage notes |
 | `supabase/migrations/20260813_auth_user_link.sql` | `team_users.auth_user_id` for Google SSO linkage |
+| `supabase/migrations/20260814_dispatch_queue.sql` | `dispatch_items` founder approve/send queue |
 
 3. Confirm tables under **Table Editor**.
 
@@ -164,6 +165,11 @@ We do **not** store Google passwords. Team seats may have `password_hash` (passw
    - optional: `VH_CHAT_MODEL` (default `openai/gpt-5.4-mini`)
 8. Load test (tagged `[test]`): `BASE_URL=http://127.0.0.1:3000 npm run chat:load-test`
 
+## Council (founder agents)
+
+1. Run `supabase/migrations/20260814_council.sql` in the SQL Editor.
+2. Open `/admin` → **Council**. Same AI env as site chat (`AI_GATEWAY_API_KEY` / `OPENAI_API_KEY`).
+3. Agent source files: `council/agents/*.md`. Usage: [council.md](./council.md).
 
 ## Page layouts (founder visual editor)
 

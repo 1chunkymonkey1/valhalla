@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import AdminRevealControls from '../components/AdminRevealControls'
+import CouncilDesk from '../components/CouncilDesk'
 import { formatUsd } from '../data/payLinks'
 import { HALL_IDS, TEAM_ROLES } from '../data/teamRoles'
 import {
@@ -17,8 +18,32 @@ import {
 import { exitDemoToLive, setDemoAuthorized } from '../lib/simulationClock'
 
 const ADMIN_EMAIL = 'info@valhallaco.org'
+const ADMIN_NEXT_ALLOW = new Set(['/capital'])
+
+function takeAdminNext(searchParams) {
+  const fromQuery = searchParams.get('next')
+  let fromStore = ''
+  try {
+    fromStore = sessionStorage.getItem('vh_admin_next') || ''
+  } catch {
+    fromStore = ''
+  }
+  const next = ADMIN_NEXT_ALLOW.has(fromQuery)
+    ? fromQuery
+    : ADMIN_NEXT_ALLOW.has(fromStore)
+      ? fromStore
+      : ''
+  try {
+    sessionStorage.removeItem('vh_admin_next')
+  } catch {
+    /* ignore */
+  }
+  return next
+}
 
 export default function AdminPage() {
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const [auth, setAuth] = useState({ loading: true, ok: false, email: null })
   const [email, setEmail] = useState(ADMIN_EMAIL)
   const [password, setPassword] = useState('')
@@ -65,6 +90,11 @@ export default function AdminPage() {
     setNeedGoogleTotp(false)
     markAdminSessionOk(adminEmail)
     setDemoAuthorized(true)
+    const next = takeAdminNext(searchParams)
+    if (next) {
+      navigate(next, { replace: true })
+      return
+    }
     await Promise.all([
       loadLedger().catch(() => {}),
       loadPeople().catch(() => {}),
@@ -348,6 +378,14 @@ export default function AdminPage() {
 
   async function continueWithGoogle() {
     setError('')
+    const next = searchParams.get('next')
+    if (ADMIN_NEXT_ALLOW.has(next)) {
+      try {
+        sessionStorage.setItem('vh_admin_next', next)
+      } catch {
+        /* ignore */
+      }
+    }
     setGoogleBusy(true)
     try {
       await startGoogleOAuth(`${window.location.origin}/admin`, { kind: 'admin' })
@@ -446,12 +484,13 @@ export default function AdminPage() {
       <div className="vh-page vh-admin">
         <form className="vh-admin__gate" onSubmit={login} autoComplete="on">
           <p className="vh-admin__mark">Valhalla</p>
-          <h1>Admin</h1>
+          <h1>{searchParams.get('next') === '/capital' ? 'Capital' : 'Admin'}</h1>
           <p className="vh-admin__hint">
             Restricted to {ADMIN_EMAIL}
             {authOptions?.googleRequiresTotp
               ? ' · Google SSO + authenticator, or password + authenticator'
               : ' · Continue with Google, or password + authenticator'}
+            {searchParams.get('next') === '/capital' ? ' · then the capital desk' : ''}
           </p>
           {googleReady && !needGoogleTotp && (
             <>
@@ -638,6 +677,8 @@ export default function AdminPage() {
       <nav className="vh-team__tabs">
         {[
           ['overview', 'Overview'],
+          ['council', 'Council'],
+          ['dispatch', 'Capital'],
           ['reveal', 'Reveal'],
           ['inbox', inboxUnread ? `Inbox (${inboxUnread})` : 'Inbox'],
           ['people', 'People'],
@@ -692,6 +733,20 @@ export default function AdminPage() {
             </p>
           </div>
           <div className="vh-admin__card">
+            <h2>Council</h2>
+            <p className="vh-admin__note">
+              Talk with the 18 Raven agents, @mention peers, run bounded autonomous rounds. Primary AI
+              workspace — open the Council tab.
+            </p>
+          </div>
+          <div className="vh-admin__card">
+            <h2>Capital desk</h2>
+            <p className="vh-admin__note">
+              Demeter raise and person-grants. Approve, then Send. Nothing leaves without both clicks.{' '}
+              <Link to="/capital">Open /capital</Link>
+            </p>
+          </div>
+          <div className="vh-admin__card">
             <h2>Twelve halls</h2>
             <ul className="vh-admin__companies">
               {(ledger?.companies || []).map((c) => (
@@ -704,6 +759,20 @@ export default function AdminPage() {
               ))}
             </ul>
           </div>
+        </section>
+      )}
+
+      {adminTab === 'council' && <CouncilDesk />}
+
+      {adminTab === 'dispatch' && (
+        <section className="vh-admin__card">
+          <h2>Capital desk</h2>
+          <p className="vh-admin__note">
+            Outreach is its own app now. Same queue, same Approve then Send. It does not transmit.
+          </p>
+          <p>
+            <Link to="/capital">Open /capital</Link>
+          </p>
         </section>
       )}
 

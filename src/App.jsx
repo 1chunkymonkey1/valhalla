@@ -6,6 +6,7 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import PressPage from './pages/PressPage'
 import FlowPage from './pages/FlowPage'
 import AdminPage from './pages/AdminPage'
+import CapitalPage from './pages/CapitalPage'
 import PageEditorPage from './pages/PageEditorPage'
 import TeamLoginPage from './pages/TeamLoginPage'
 import TeamJoinPage from './pages/TeamJoinPage'
@@ -61,6 +62,7 @@ export default function App() {
                 <Route path="/partners" element={<PartnersPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/roadmap" element={<RoadmapIndexPage />} />
+                <Route path="/capital" element={<CapitalPage />} />
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/admin/editor" element={<Navigate to="/admin/editor/hub" replace />} />
                 <Route path="/admin/editor/:pageId" element={<PageEditorPage />} />
