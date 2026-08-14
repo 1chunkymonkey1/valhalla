@@ -129,13 +129,13 @@ const vikingLines = [
   }),
   line({
     id: 'midgard',
-    name: 'Midgard Circuit',
+    name: 'Vinland Saga',
     stencil: 'craft',
-    epithet: 'Multi-leg voyage',
-    naming: 'The long circuit that stitches coasts into one saga.',
-    overview: 'Multi-leg voyage program vision, partner fleets, transparent milestones, no false “sailing tomorrow” claim.',
-    does: 'Stitches multi-leg northern circuits once partner fleets and permits clear.',
-    benefits: ['Multi-leg narrative', 'Partner-gated honesty', 'Mosaic water-movement spine'],
+    epithet: 'Full narrative arc',
+    naming: 'The Vinland Saga: board as yourself, disembark as Ragnar.',
+    overview: 'The Vinland Saga is the full narrative cruise arc available to anyone who boards, partner fleets, transparent milestones, no false sailing-tomorrow claim.',
+    does: 'Delivers the Vinland Saga narrative voyage once partner fleets and permits clear.',
+    benefits: ['Full narrative arc for every guest', 'Partner-gated honesty', 'Mosaic water-movement spine'],
     savings: ['Circuit reuse of Knarr/Dreki packages'],
     addOns: [],
   }),
@@ -146,9 +146,9 @@ const vikingMatrix = matrix({
   title: 'Viking matrix',
   mission: {
     title: 'What Viking Voyage is building',
-    body: 'Viking Voyage is a water-movement arch: coastal craft, expedition hulls, modular ferry studies, shore logistics, saga cabins, and a multi-leg Midgard Circuit, all partner-gated.',
+    body: 'Viking Voyage is a water-movement arch: coastal craft, expedition hulls, modular ferry studies, shore logistics, saga cabins, and the Vinland Saga narrative arc available to anyone who boards. Partner-gated.',
     cadence:
-      'Cadence: Knarr 01 leads the coastal craft research queue; Dreki and Saga Cabin follow as partner fleets confirm. No ticketed sailing date on this surface.',
+      'Cadence: Knarr 01 leads the coastal craft research queue; Dreki, Saga Cabin, and Vinland Saga follow as partner fleets confirm. No ticketed sailing date on this surface.',
   },
   lines: vikingLines,
   rows: [
@@ -213,8 +213,8 @@ const vikingMatrix = matrix({
       midgard: cell({
         id: 'midgard-01',
         status: 'vision',
-        summary: 'Multi-leg circuit vision.',
-        description: 'Midgard Circuit 01 sketches multi-leg northern voyages, vision until fleets confirm.',
+        summary: 'Vinland Saga vision.',
+        description: 'Vinland Saga 01 sketches the full narrative cruise arc for anyone who boards, vision until fleets confirm.',
         does: vikingLines[5].does,
         benefits: vikingLines[5].benefits,
         savings: vikingLines[5].savings,
@@ -282,7 +282,7 @@ const vikingMatrix = matrix({
         id: 'midgard-02',
         status: 'vision',
         summary: 'Circuit expansion.',
-        description: 'Midgard Circuit 02 adds secondary coastal legs, vision only.',
+        description: 'Vinland Saga 02 adds secondary coastal legs, vision only.',
         does: 'Secondary circuit legs in vision form.',
         benefits: vikingLines[5].benefits,
         savings: vikingLines[5].savings,
@@ -353,12 +353,15 @@ const eagleLines = [
     stencil: 'platform',
     epithet: 'Ground support',
     naming: 'Where every flight returns.',
-    overview: 'Ground support and charging / hydrogen staging concepts for Eagle craft.',
+    overview: 'Ground support with charging, hydrogen staging, and sustainable aviation fuel (SAF) bunkering concepts for Eagle craft.',
     powertrain: true,
-    does: 'Stages ground energy and support for Eagle airframes.',
-    benefits: ['Electric / H₂ / flex-fuel ground story', 'Freki/Wolf adjacency for rescue staging'],
+    does: 'Stages ground energy and SAF bunkering for Eagle airframes.',
+    benefits: ['Electric / H₂ / SAF / flex-fuel ground story', 'Freki/Wolf adjacency for rescue staging'],
     savings: ['Shared ground energy with Freki concepts'],
-    addOns: [{ id: 'ground-boost', name: 'Ground boost', text: 'Hydrogen ground-boost cart concept.' }],
+    addOns: [
+      { id: 'ground-boost', name: 'Ground boost', text: 'Hydrogen ground-boost cart concept.' },
+      { id: 'saf-node', name: 'SAF node', text: 'Sustainable aviation fuel bunkering study for partner airports.' },
+    ],
   }),
   line({
     id: 'apex',
@@ -366,10 +369,10 @@ const eagleLines = [
     stencil: 'aircraft',
     epithet: 'Long-range concept',
     naming: 'The highest perch, longest legs, latest opacity.',
-    overview: 'Long-range aviation concept, theoretical until nearer lines clear gates.',
+    overview: 'Long-range aviation concept including network path studies tied to talks toward acquiring Spirit Airlines. Theoretical until nearer lines clear gates.',
     powertrain: true,
-    does: 'Explores long-range partner aviation concepts without schedule claims.',
-    benefits: ['Honest opacity', 'Tiered propulsion research'],
+    does: 'Explores long-range partner aviation and Spirit Airlines network-path concepts without schedule claims.',
+    benefits: ['Honest opacity', 'Tiered propulsion and SAF research', 'Spirit Airlines talks as network path'],
     savings: [],
     addOns: [],
   }),
@@ -380,8 +383,8 @@ const eagleMatrix = matrix({
   title: 'Eagle matrix',
   mission: {
     title: 'What Eagle Aviation is building',
-    body: 'Eagle Aviation hosts aviation access interest and partner/route research, Talon utility, Thermal research craft, Aerie regional access, Skyway corridors, Nest ground support, and Apex long-range concepts. Not tickets.',
-    cadence: 'Cadence: access and partner queues first; airframe concepts stay assumption-labeled. No flight schedule on this surface.',
+    body: 'Eagle Aviation hosts clean planes and jets across types with sustainable aviation fuel and electric propulsion research: Talon utility, Thermal research craft, Aerie regional access, Skyway corridors, Nest ground support with SAF nodes, and Apex long-range concepts including talks toward acquiring Spirit Airlines. Not tickets.',
+    cadence: 'Cadence: access and partner queues first; airframe and SAF concepts stay assumption-labeled. No flight schedule on this surface.',
   },
   lines: eagleLines,
   rows: [
@@ -467,12 +470,12 @@ const eagleMatrix = matrix({
 
 /* ─── Phenix ─── */
 const phenixLines = [
-  line({ id: 'ember', name: 'Ember', stencil: 'rocket', epithet: 'Suborbital spark', naming: 'First heat, the spark before ascent.', overview: 'Suborbital mission-concept workspace for payload inquiry, not a launch booking.', powertrain: true, does: 'Hosts payload inquiry for suborbital mission concepts.', benefits: ['Honest non-booking framing', 'Partner engineering path'], savings: ['Shared ground systems with Nest/Corona'], addOns: [{ id: 'payload-bay', name: 'Payload bay study', text: 'Bay geometry studies for inquiry partners.' }] }),
-  line({ id: 'ascent', name: 'Ascent', stencil: 'rocket', epithet: 'Payload path', naming: 'The climb through fire.', overview: 'Ascent architecture studies for payload customers (prospective).', powertrain: true, does: 'Studies ascent paths for prospective payload partners.', benefits: ['Transparent research status', 'No launch date fiction'], savings: [], addOns: [] }),
-  line({ id: 'return', name: 'Return', stencil: 'rocket', epithet: 'Recovery path', naming: 'What goes up must be studied coming home.', overview: 'Recovery architecture studies.', does: 'Explores recovery and return architectures.', benefits: ['Recovery-first honesty'], savings: [], addOns: [] }),
-  line({ id: 'corona', name: 'Corona', stencil: 'platform', epithet: 'Heat shield study', naming: 'The bright edge of reentry research.', overview: 'Heat-shield and thermal path research, not tourism.', does: 'Researches thermal protection concepts.', benefits: ['Materials research framing'], savings: [], addOns: [] }),
-  line({ id: 'ground-nest', name: 'Ground Nest', stencil: 'platform', epithet: 'Mission ops', naming: 'Earthside nest for every spark.', overview: 'Ground mission-ops and energy staging concepts.', powertrain: true, does: 'Stages ground ops and energy for Phenix concepts.', benefits: ['Electric/H₂ ground story'], savings: [], addOns: [{ id: 'h2-pad', name: 'H₂ pad study', text: 'Hydrogen ground pad concept.' }] }),
-  line({ id: 'phoenix-gate', name: 'Phoenix Gate', stencil: 'platform', epithet: 'Mission gate', naming: 'The gate that only opens when diligence clears.', overview: 'Program gate for briefings and collaboration queues.', does: 'Queues partner briefings when gates clear.', benefits: ['Diligence-first access'], savings: [], addOns: [] }),
+  line({ id: 'ember', name: 'Hawk Mark 1', stencil: 'rocket', epithet: 'Launch vehicle', naming: 'First heat of the Hawk: the Mark 1 launch vehicle.', overview: 'Hawk Mark 1 launch-vehicle mission-concept workspace for payload inquiry, not a launch booking.', powertrain: true, does: 'Hosts payload inquiry for Hawk Mark 1 suborbital and ascent mission concepts.', benefits: ['Named launch vehicle honesty', 'Partner engineering path'], savings: ['Shared ground systems with Bifröst / Corona'], addOns: [{ id: 'payload-bay', name: 'Payload bay study', text: 'Bay geometry studies for inquiry partners.' }] }),
+  line({ id: 'ascent', name: 'Ascent', stencil: 'rocket', epithet: 'Payload path', naming: 'The climb through fire.', overview: 'Ascent architecture studies for Hawk Mark 1 payload customers (prospective).', powertrain: true, does: 'Studies ascent paths for prospective Hawk Mark 1 payload partners.', benefits: ['Transparent research status', 'No launch date fiction'], savings: [], addOns: [] }),
+  line({ id: 'return', name: 'Return', stencil: 'rocket', epithet: 'Recovery path', naming: 'What goes up must be studied coming home.', overview: 'Recovery architecture studies for Hawk Mark 1 and follow-on vehicles.', does: 'Explores recovery and return architectures.', benefits: ['Recovery-first honesty'], savings: [], addOns: [] }),
+  line({ id: 'corona', name: 'Corona', stencil: 'platform', epithet: 'Heat shield study', naming: 'The bright edge of reentry research.', overview: 'Heat-shield and thermal path research for Earth return and Venus entry studies, not tourism.', does: 'Researches thermal protection concepts including Venus-entry adjacency with Zeus.', benefits: ['Materials research framing', 'Venus entry adjacency'], savings: [], addOns: [] }),
+  line({ id: 'ground-nest', name: 'Bifröst', stencil: 'platform', epithet: 'Lunar base camp', naming: 'Bifröst Base Camp at the lunar south pole.', overview: 'Bifröst Base Camp: lunar south-pole mission ops, habitat staging, and energy concepts. (Dire Wolf remains the Earth railroad under Wolf; Bifröst is the lunar bridge.)', powertrain: true, does: 'Stages lunar south-pole base-camp ops and energy for Phenix concepts.', benefits: ['Lunar south-pole framing', 'Electric/H₂ ground story', 'Distinct from Dire Wolf rail'], savings: [], addOns: [{ id: 'h2-pad', name: 'H₂ pad study', text: 'Hydrogen ground pad concept for Bifröst staging.' }] }),
+  line({ id: 'phoenix-gate', name: 'Zeus', stencil: 'platform', epithet: 'Venus cloud city', naming: 'Zeus: crewed Venus cloud city by 2035.', overview: 'Zeus is the Venus cloud-city program gate and north star: crewed Venus habitation concepts aimed at 2035, paired with Olympus atmospheric research.', does: 'Queues Zeus / Venus 2035 briefings when diligence clears.', benefits: ['Venus 2035 north star', 'Olympus adjacency', 'Diligence-first access'], savings: [], addOns: [] }),
 ]
 
 const phenixMatrix = matrix({
@@ -480,26 +483,26 @@ const phenixMatrix = matrix({
   title: 'Phenix matrix',
   mission: {
     title: 'What Phenix Mission is building',
-    body: 'Phenix is a mission-concept workspace: Ember, Ascent, Return, Corona, Ground Nest, and Phoenix Gate. Heat, ascent, return, researched without launch-booking fiction.',
-    cadence: 'Cadence: inquiry and recovery studies lead; ascent claims wait on engineering and counsel gates.',
+    body: 'Phenix is a mission-concept workspace: Hawk Mark 1 launch vehicle, Ascent and Return architectures, Corona thermal paths, Bifröst Base Camp at the lunar south pole, and Zeus toward a crewed Venus cloud city by 2035. Heat, ascent, return, researched without launch-booking fiction.',
+    cadence: 'Cadence: Hawk Mark 1 inquiry and Bifröst base studies lead; Zeus / Venus 2035 stays vision until nearer gates clear.',
   },
   lines: phenixLines,
   rows: [
     row01({
-      ember: cell({ id: 'ember-01', status: 'planned', summary: 'Suborbital inquiry lead.', description: 'Ember 01 opens payload inquiry, not a booking.', does: phenixLines[0].does, benefits: phenixLines[0].benefits, savings: phenixLines[0].savings, addOns: phenixLines[0].addOns, hostAlias: 'ember01' }),
-      ascent: cell({ id: 'ascent-01', status: 'planned', summary: 'Ascent architecture.', description: 'Ascent 01 studies payload paths.', does: phenixLines[1].does, benefits: phenixLines[1].benefits, savings: [], addOns: [], hostAlias: 'ascent01' }),
+      ember: cell({ id: 'ember-01', status: 'planned', summary: 'Hawk Mark 1 inquiry lead.', description: 'Hawk Mark 1 opens payload inquiry for the launch vehicle, not a booking.', does: phenixLines[0].does, benefits: phenixLines[0].benefits, savings: phenixLines[0].savings, addOns: phenixLines[0].addOns, hostAlias: 'ember01' }),
+      ascent: cell({ id: 'ascent-01', status: 'planned', summary: 'Ascent architecture.', description: 'Ascent 01 studies Hawk Mark 1 payload paths.', does: phenixLines[1].does, benefits: phenixLines[1].benefits, savings: [], addOns: [], hostAlias: 'ascent01' }),
       return: cell({ id: 'return-01', status: 'planned', summary: 'Recovery studies.', description: 'Return 01 explores recovery architectures.', does: phenixLines[2].does, benefits: phenixLines[2].benefits, savings: [], addOns: [], hostAlias: 'return01' }),
-      corona: cell({ id: 'corona-01', status: 'theoretical', summary: 'Heat shield research.', description: 'Corona 01 is thermal path research.', does: phenixLines[3].does, benefits: phenixLines[3].benefits, savings: [], addOns: [], hostAlias: 'corona01' }),
-      'ground-nest': cell({ id: 'ground-nest-01', status: 'planned', summary: 'Ground ops node.', description: 'Ground Nest 01 stages mission ops energy.', does: phenixLines[4].does, benefits: phenixLines[4].benefits, savings: [], addOns: phenixLines[4].addOns, hostAlias: 'groundnest01' }),
-      'phoenix-gate': cell({ id: 'phoenix-gate-01', status: 'vision', summary: 'Program gate.', description: 'Phoenix Gate 01 queues briefings when diligence clears.', does: phenixLines[5].does, benefits: phenixLines[5].benefits, savings: [], addOns: [], hostAlias: 'phoenixgate01' }),
+      corona: cell({ id: 'corona-01', status: 'theoretical', summary: 'Heat shield research.', description: 'Corona 01 is thermal path research with Venus-entry adjacency.', does: phenixLines[3].does, benefits: phenixLines[3].benefits, savings: [], addOns: [], hostAlias: 'corona01' }),
+      'ground-nest': cell({ id: 'ground-nest-01', status: 'planned', summary: 'Bifröst Base Camp.', description: 'Bifröst 01 stages lunar south-pole base-camp ops and energy.', does: phenixLines[4].does, benefits: phenixLines[4].benefits, savings: [], addOns: phenixLines[4].addOns, hostAlias: 'groundnest01' }),
+      'phoenix-gate': cell({ id: 'phoenix-gate-01', status: 'vision', summary: 'Zeus / Venus 2035.', description: 'Zeus 01 queues Venus cloud-city briefings aimed at 2035 when diligence clears.', does: phenixLines[5].does, benefits: phenixLines[5].benefits, savings: [], addOns: [], hostAlias: 'phoenixgate01' }),
     }),
     row02({
-      ember: cell({ id: 'ember-02', status: 'theoretical', summary: 'Ember follow-on.', description: 'Ember 02 refines bay studies.', does: 'Refined payload bay studies.', benefits: phenixLines[0].benefits, savings: [], addOns: phenixLines[0].addOns, hostAlias: 'ember02' }),
+      ember: cell({ id: 'ember-02', status: 'theoretical', summary: 'Hawk Mark follow-on.', description: 'Hawk Mark 1 follow-on refines bay studies.', does: 'Refined Hawk Mark 1 payload bay studies.', benefits: phenixLines[0].benefits, savings: [], addOns: phenixLines[0].addOns, hostAlias: 'ember02' }),
       ascent: cell({ id: 'ascent-02', status: 'theoretical', summary: 'Ascent follow-on.', description: 'Ascent 02 deepens architecture options.', does: 'Deeper ascent options.', benefits: phenixLines[1].benefits, savings: [], addOns: [], hostAlias: 'ascent02' }),
       return: cell({ id: 'return-02', status: 'theoretical', summary: 'Return follow-on.', description: 'Return 02 adds contingency paths.', does: 'Recovery contingency studies.', benefits: phenixLines[2].benefits, savings: [], addOns: [], hostAlias: 'return02' }),
-      corona: cell({ id: 'corona-02', status: 'vision', summary: 'Corona follow-on.', description: 'Corona 02 materials vision.', does: 'Advanced thermal materials vision.', benefits: phenixLines[3].benefits, savings: [], addOns: [], hostAlias: 'corona02' }),
-      'ground-nest': cell({ id: 'ground-nest-02', status: 'theoretical', summary: 'Ground follow-on.', description: 'Ground Nest 02 expands pad energy.', does: 'Expanded pad energy.', benefits: phenixLines[4].benefits, savings: [], addOns: phenixLines[4].addOns, hostAlias: 'groundnest02' }),
-      'phoenix-gate': cell({ id: 'phoenix-gate-02', status: 'vision', summary: 'Gate expansion.', description: 'Phoenix Gate 02 multi-partner queues.', does: 'Multi-partner briefing queues.', benefits: phenixLines[5].benefits, savings: [], addOns: [], hostAlias: 'phoenixgate02' }),
+      corona: cell({ id: 'corona-02', status: 'vision', summary: 'Corona follow-on.', description: 'Corona 02 materials vision for Venus entry.', does: 'Advanced thermal materials vision.', benefits: phenixLines[3].benefits, savings: [], addOns: [], hostAlias: 'corona02' }),
+      'ground-nest': cell({ id: 'ground-nest-02', status: 'theoretical', summary: 'Bifröst follow-on.', description: 'Bifröst 02 expands lunar south-pole staging.', does: 'Expanded Bifröst pad energy.', benefits: phenixLines[4].benefits, savings: [], addOns: phenixLines[4].addOns, hostAlias: 'groundnest02' }),
+      'phoenix-gate': cell({ id: 'phoenix-gate-02', status: 'vision', summary: 'Zeus expansion.', description: 'Zeus 02 multi-partner Venus queues.', does: 'Multi-partner Venus briefing queues.', benefits: phenixLines[5].benefits, savings: [], addOns: [], hostAlias: 'phoenixgate02' }),
     }),
     mysteryRow(),
   ],
@@ -507,12 +510,12 @@ const phenixMatrix = matrix({
 
 /* ─── Holm ─── */
 const holmLines = [
-  line({ id: 'timber', name: 'Timber', stencil: 'module', epithet: 'Timber volume', naming: 'Forest-born rooms that land where the site allows.', overview: 'Core timber modular dwelling volumes, quiet weather seals, not stamped plans.', does: 'Provides timber habitation modules for site-feasible homes.', benefits: ['Quiet weather seals', 'Linkable volumes', 'Owner-maintainable assemblies'], savings: ['Shared fasteners across Timber/Sod/Adobe', 'Factory repetition aims to cut site waste'], addOns: [{ id: 'hearth-kit', name: 'Hearth kit', text: 'Interior hearth and quiet HVAC package (concept).' }, { id: 'fix-kit', name: 'Site fix-it kit', text: 'Owner tool and fastener kit for module care.' }] }),
-  line({ id: 'sod', name: 'Sod', stencil: 'module', epithet: 'Sod house', naming: 'Earth-backed shelter of the prairie memory.', overview: 'Sod-inspired modular system for land-linked sites.', does: 'Offers sod-inspired modules where site and climate fit.', benefits: ['Thermal mass studies', 'Land-linked aesthetic'], savings: ['Shared utility ring with Commons'], addOns: [] }),
-  line({ id: 'adobe', name: 'Adobe', stencil: 'module', epithet: 'Adobe-inspired', naming: 'Sun-dried memory, modern seals.', overview: 'Adobe-inspired modular volumes for arid and high-desert sites.', does: 'Studies adobe-inspired modules for appropriate climates.', benefits: ['Climate-matched envelopes'], savings: [], addOns: [] }),
-  line({ id: 'commons', name: 'Commons', stencil: 'habitat', epithet: 'Shared ring', naming: 'The courtyard that turns modules into a hamlet.', overview: 'Shared courtyard / utilities ring.', does: 'Links modules with shared utilities and courtyard logic.', benefits: ['Shared infrastructure', 'Community adjacency'], savings: ['One ring serving many modules'], addOns: [{ id: 'utility-spine', name: 'Utility spine', text: 'Shared power/water spine concept.' }] }),
-  line({ id: 'bridge', name: 'Bridge', stencil: 'module', epithet: 'Link module', naming: 'The short hall that makes two homes one.', overview: 'Link modules for double and family configurations.', does: 'Connects dwelling modules into larger homes.', benefits: ['Flexible household growth'], savings: ['Add links instead of full rebuilds'], addOns: [] }),
-  line({ id: 'hearth', name: 'Hearth', stencil: 'habitat', epithet: 'Heart volume', naming: 'Where the household gathers.', overview: 'Central hearth volume concepts for family and studio work.', does: 'Centers the household with a gather volume.', benefits: ['Studio + living flexibility'], savings: [], addOns: [] }),
+  line({ id: 'timber', name: 'Timber', stencil: 'module', epithet: 'Timber volume', naming: 'Forest-born rooms that land where the site allows.', overview: 'Core timber modular dwelling volumes (log-cabin lineage), quiet weather seals, not stamped plans. Part of the twelve-module linkable set.', does: 'Provides timber habitation modules for site-feasible homes.', benefits: ['Quiet weather seals', 'Linkable volumes', 'Owner-maintainable assemblies', 'Logistics path with Bridge/Commons'], savings: ['Shared fasteners across Timber/Sod/Adobe', 'Factory repetition aims to cut site waste'], addOns: [{ id: 'hearth-kit', name: 'Hearth kit', text: 'Interior hearth and quiet HVAC package (concept).' }, { id: 'fix-kit', name: 'Site fix-it kit', text: 'Owner tool and fastener kit for module care.' }] }),
+  line({ id: 'sod', name: 'Sod', stencil: 'module', epithet: 'Sod house', naming: 'Earth-backed shelter of the prairie memory.', overview: 'Sod-inspired modular system for land-linked sites within the twelve-module set.', does: 'Offers sod-inspired modules where site and climate fit.', benefits: ['Thermal mass studies', 'Land-linked aesthetic'], savings: ['Shared utility ring with Commons'], addOns: [] }),
+  line({ id: 'adobe', name: 'Adobe', stencil: 'module', epithet: 'Adobe-inspired', naming: 'Sun-dried memory, modern seals.', overview: 'Adobe-inspired modular volumes for arid and high-desert sites within the twelve-module set.', does: 'Studies adobe-inspired modules for appropriate climates.', benefits: ['Climate-matched envelopes'], savings: [], addOns: [] }),
+  line({ id: 'commons', name: 'Commons', stencil: 'habitat', epithet: 'Shared ring', naming: 'The courtyard that turns modules into a hamlet.', overview: 'Shared courtyard / utilities ring. Real estate and site logistics sit with Commons diligence.', does: 'Links modules with shared utilities, courtyard logic, and site logistics framing.', benefits: ['Shared infrastructure', 'Community adjacency', 'Logistics / real estate path'], savings: ['One ring serving many modules'], addOns: [{ id: 'utility-spine', name: 'Utility spine', text: 'Shared power/water spine concept.' }] }),
+  line({ id: 'bridge', name: 'Bridge', stencil: 'module', epithet: 'Link module', naming: 'The short hall that makes two homes one.', overview: 'Link modules for double and family configurations across the twelve-module set.', does: 'Connects dwelling modules into larger homes.', benefits: ['Flexible household growth'], savings: ['Add links instead of full rebuilds'], addOns: [] }),
+  line({ id: 'hearth', name: 'Hearth', stencil: 'habitat', epithet: 'Heart volume', naming: 'Where the household gathers.', overview: 'Central hearth volume concepts for family and studio work, with financing-partner intake on the interest path.', does: 'Centers the household with a gather volume.', benefits: ['Studio + living flexibility', 'Financing partner path'], savings: [], addOns: [] }),
 ]
 
 const holmMatrix = matrix({
@@ -520,7 +523,7 @@ const holmMatrix = matrix({
   title: 'Holm matrix',
   mission: {
     title: 'What Holm Modular Home is building',
-    body: 'Holm lands linkable habitation modules, Timber, Sod, Adobe, Commons, Bridge, and Hearth, where the site allows. Not stamped plans or a construction contract.',
+    body: 'Holm lands twelve linkable habitation modules, Timber, Sod, Adobe, Commons, Bridge, and Hearth in 01/02 generations, where the site allows. Log cabin, sod house, or adobe by terrain. Logistics, financing, and real estate sit on the interest path. Not stamped plans or a construction contract.',
     cadence: 'Cadence: Timber 01 leads; paired modules unlock as site partnerships clear. No false “move-in date” on this surface.',
   },
   lines: holmLines,
@@ -547,12 +550,12 @@ const holmMatrix = matrix({
 
 /* ─── Atoll ─── */
 const atollLines = [
-  line({ id: 'lagoon', name: 'Lagoon', stencil: 'habitat', epithet: 'Calm-water habitat', naming: 'Still water rooms inside the reef’s arm.', overview: 'Floating modular habitat for sheltered water, Atoll 01 lineage.', does: 'Provides sheltered floating habitation modules.', benefits: ['Sheltered-water first', 'Linkable rings', 'Marine engineer partner path'], savings: ['Shared hull modules across Lagoon/Reef'], addOns: [{ id: 'mooring-kit', name: 'Mooring kit', text: 'Harbor mooring and gangway package (concept).' }] }),
-  line({ id: 'reef', name: 'Reef', stencil: 'habitat', epithet: 'Edge habitat', naming: 'Living on the breaking line.', overview: 'Second-ring habitats that cascade with harbor partnership.', does: 'Extends habitats toward more energetic water edges.', benefits: ['Harbor partnership gated'], savings: [], addOns: [] }),
-  line({ id: 'tide', name: 'Tide', stencil: 'platform', epithet: 'Tide platform', naming: 'Platforms that rise and fall with honesty.', overview: 'Tide-aware platform studies with Njord adjacency.', powertrain: true, does: 'Studies tide-responsive platform energy and structure.', benefits: ['Njord synergy', 'Electric/H₂ platform assists'], savings: [], addOns: [] }),
-  line({ id: 'dock', name: 'Harbor Dock', stencil: 'platform', epithet: 'Dock ring', naming: 'Where floating homes meet the shore.', overview: 'Dock and transfer ring for Atoll clusters.', does: 'Links floating habitats to shore logistics.', benefits: ['Viking/Njord adjacency'], savings: ['Shared dock kits'], addOns: [] }),
-  line({ id: 'ring', name: 'Atoll Ring', stencil: 'habitat', epithet: 'Cluster ring', naming: 'The circle that makes a village on water.', overview: 'Cluster ring concepts for multi-habitat communities.', does: 'Arranges habitats into community rings.', benefits: ['Community scale'], savings: [], addOns: [] }),
-  line({ id: 'deep', name: 'Deep Mooring', stencil: 'platform', epithet: 'Deep-water', naming: 'Anchors for the open blue, latest opacity.', overview: 'Deep-water cluster, theoretical.', does: 'Studies deep-water mooring for future clusters.', benefits: ['Honest opacity'], savings: [], addOns: [] }),
+  line({ id: 'lagoon', name: 'Lagoon', stencil: 'habitat', epithet: 'Atoll 01 · single family', naming: 'Still water rooms inside the reef’s arm.', overview: 'Atoll 01 lineage: single-family floating modular habitat for sheltered water. First delivery target includes Tuvalu government diligence.', does: 'Provides sheltered single-family floating habitation modules (Atoll 01).', benefits: ['Atoll 01 single-family scale', 'Sheltered-water first', 'Tuvalu delivery target framing', 'Marine engineer partner path'], savings: ['Shared hull modules across Lagoon/Reef'], addOns: [{ id: 'mooring-kit', name: 'Mooring kit', text: 'Harbor mooring and gangway package (concept).' }] }),
+  line({ id: 'reef', name: 'Reef', stencil: 'habitat', epithet: 'Edge habitat', naming: 'Living on the breaking line.', overview: 'Second-ring habitats that cascade with harbor partnership, bridging Atoll 01 households toward Atoll 02 clusters.', does: 'Extends habitats toward more energetic water edges between family and cluster scales.', benefits: ['Harbor partnership gated', 'Bridge toward Atoll 02'], savings: [], addOns: [] }),
+  line({ id: 'tide', name: 'Tide', stencil: 'platform', epithet: 'Tide platform', naming: 'Platforms that rise and fall with honesty.', overview: 'Tide-aware platform studies with Njord adjacency for all Atoll scales.', powertrain: true, does: 'Studies tide-responsive platform energy and structure.', benefits: ['Njord synergy', 'Electric/H₂ platform assists'], savings: [], addOns: [] }),
+  line({ id: 'dock', name: 'Harbor Dock', stencil: 'platform', epithet: 'Dock ring', naming: 'Where floating homes meet the shore.', overview: 'Dock and transfer ring for Atoll clusters, including municipal (Atoll 03) shore interfaces.', does: 'Links floating habitats to shore logistics.', benefits: ['Viking/Njord adjacency', 'Atoll 03 municipal shore path'], savings: ['Shared dock kits'], addOns: [] }),
+  line({ id: 'ring', name: 'Atoll Ring', stencil: 'habitat', epithet: 'Atoll 02 · twelve families', naming: 'The circle that makes a village on water.', overview: 'Atoll 02 lineage: cluster ring for twelve families. Tuvalu and peer municipal interest sit on the partner path.', does: 'Arranges habitats into twelve-family community rings (Atoll 02).', benefits: ['Atoll 02 twelve-family scale', 'Community scale', 'Tuvalu adjacency'], savings: [], addOns: [] }),
+  line({ id: 'deep', name: 'Deep Mooring', stencil: 'platform', epithet: 'Atoll 03 · municipal', naming: 'Anchors for the open blue, municipal scale.', overview: 'Atoll 03 lineage: municipal facility and deep-water cluster concepts. First delivery target framing includes Tuvalu government.', does: 'Studies municipal-scale deep-water mooring (Atoll 03).', benefits: ['Atoll 03 municipal scale', 'Tuvalu first-delivery target', 'Honest opacity'], savings: [], addOns: [] }),
 ]
 
 const atollMatrix = matrix({
@@ -560,8 +563,8 @@ const atollMatrix = matrix({
   title: 'Atoll matrix',
   mission: {
     title: 'What Atoll Habitat is building',
-    body: 'Atoll builds floating modular habitats, Lagoon, Reef, Tide, Harbor Dock, Atoll Ring, and Deep Mooring. Interest ledger and email first; not a deed.',
-    cadence: 'Cadence: Lagoon 01 leads; Reef cascades with harbor partnership. Deep Mooring stays theoretical.',
+    body: 'Atoll builds floating modular habitats at three scales: Atoll 01 single family (Lagoon lineage), Atoll 02 twelve families (Atoll Ring), Atoll 03 municipal facility (Deep Mooring). First delivery target: Tuvalu government. Interest ledger and email first; not a deed. Matrix 01/02 cells are model generations within each line, not the Atoll 01/02/03 scale tiers.',
+    cadence: 'Cadence: Lagoon / Atoll 01 leads; Ring / Atoll 02 cascades with harbor partnership; Deep / Atoll 03 stays theoretical until municipal gates clear.',
   },
   lines: atollLines,
   rows: [
@@ -587,12 +590,12 @@ const atollMatrix = matrix({
 
 /* ─── Olympus ─── */
 const olympusLines = [
-  line({ id: 'summit', name: 'Summit', stencil: 'habitat', epithet: 'Thin-air platform', naming: 'Habitation at the edge of breath.', overview: 'Upper-atmosphere habitation research platform, not tourism.', does: 'Studies thin-air habitation platforms for research partners.', benefits: ['Research-not-tourism framing', 'Academic partner path'], savings: [], addOns: [{ id: 'life-kit', name: 'Life support kit', text: 'Research life-support package study.' }] }),
-  line({ id: 'veil', name: 'Veil', stencil: 'platform', epithet: 'Veil lab', naming: 'Lab work behind the cloud veil.', overview: 'Longer-duration research lab concepts.', does: 'Hosts longer-duration atmospheric research concepts.', benefits: ['Duration studies'], savings: [], addOns: [] }),
+  line({ id: 'summit', name: 'Summit', stencil: 'habitat', epithet: 'Pressurized cloud city', naming: 'The first home above the clouds.', overview: 'Modular pressurized upper-atmosphere habitation research platform (cloud city lineage), not tourism. Long-range adjacency: Venus at 50 km by 2035 with Phenix Zeus.', does: 'Studies pressurized thin-air habitation platforms for research partners.', benefits: ['Pressurized cloud-city framing', 'Research-not-tourism', 'Venus 2035 adjacency', 'Academic partner path'], savings: [], addOns: [{ id: 'life-kit', name: 'Life support kit', text: 'Research life-support package study.' }] }),
+  line({ id: 'veil', name: 'Veil', stencil: 'platform', epithet: 'Veil lab', naming: 'Lab work behind the cloud veil.', overview: 'Longer-duration pressurized research lab concepts.', does: 'Hosts longer-duration atmospheric research concepts.', benefits: ['Duration studies'], savings: [], addOns: [] }),
   line({ id: 'aerie-lab', name: 'Aerie Lab', stencil: 'habitat', epithet: 'High lab', naming: 'Eagle’s nest as laboratory.', overview: 'High-altitude lab modules with Eagle adjacency.', does: 'Pairs lab modules with Eagle research craft concepts.', benefits: ['Eagle synergy'], savings: ['Shared sensors'], addOns: [] }),
-  line({ id: 'thin-air', name: 'Thin Air', stencil: 'platform', epithet: 'Pressure systems', naming: 'Pressure and breath as infrastructure.', overview: 'Pressure and environmental system studies.', does: 'Researches pressure and environmental systems.', benefits: ['Systems honesty'], savings: [], addOns: [] }),
-  line({ id: 'cloud-deck', name: 'Cloud Deck', stencil: 'platform', epithet: 'Deck structure', naming: 'Decks among the clouds, structural studies.', overview: 'Structural deck concepts for thin-air platforms.', does: 'Studies structural decks for high platforms.', benefits: [], savings: [], addOns: [] }),
-  line({ id: 'strat', name: 'Strat Platform', stencil: 'platform', epithet: 'Strat concept', naming: 'Highest opacity by design.', overview: 'Stratospheric platform vision.', does: 'Vision register for stratospheric platforms.', benefits: ['Honest opacity'], savings: [], addOns: [] }),
+  line({ id: 'thin-air', name: 'Thin Air', stencil: 'platform', epithet: 'Pressure systems', naming: 'Pressure and breath as infrastructure.', overview: 'Pressurization and environmental system studies for cloud-city volumes.', does: 'Researches pressure and environmental systems for pressurized habitats.', benefits: ['Systems honesty', 'Pressurized habitat path'], savings: [], addOns: [] }),
+  line({ id: 'cloud-deck', name: 'Cloud Deck', stencil: 'platform', epithet: 'Deck structure', naming: 'Decks among the clouds, structural studies.', overview: 'Structural deck concepts for thin-air platforms and floating cloud cities.', does: 'Studies structural decks for high platforms.', benefits: ['Cloud-city structure'], savings: [], addOns: [] }),
+  line({ id: 'strat', name: 'Strat Platform', stencil: 'platform', epithet: 'Venus 2035 path', naming: 'Highest opacity by design, Venus north star.', overview: 'Stratospheric platform vision and Venus 50 km / 2035 long-range target with Phenix Zeus.', does: 'Vision register for stratospheric platforms and Venus 50 km by 2035.', benefits: ['Venus 50 km / 2035 north star', 'Phenix Zeus adjacency', 'Honest opacity'], savings: [], addOns: [] }),
 ]
 
 const olympusMatrix = matrix({
@@ -600,8 +603,8 @@ const olympusMatrix = matrix({
   title: 'Olympus matrix',
   mission: {
     title: 'What Olympus Habitat Research is building',
-    body: 'Olympus studies habitation in the thin air, Summit, Veil, Aerie Lab, Thin Air systems, Cloud Deck, and Strat Platform. Research briefings and email queues; not tourism.',
-    cadence: 'Cadence: Summit research leads; Strat stays vision until nearer gates clear.',
+    body: 'Olympus studies floating cloud cities: modular pressurized habitats in the thin air across Summit, Veil, Aerie Lab, Thin Air systems, Cloud Deck, and Strat Platform. Long-range target: Venus at roughly 50 km altitude by 2035 (with Phenix Zeus). Research briefings and email queues; not tourism.',
+    cadence: 'Cadence: Summit pressurized research leads; Strat / Venus 2035 stays vision until nearer gates clear.',
   },
   lines: olympusLines,
   rows: [
@@ -627,36 +630,36 @@ const olympusMatrix = matrix({
 
 /* ─── Aether ─── */
 const aetherLines = [
-  line({ id: 'quiet-room', name: 'Quiet Room', stencil: 'habitat', epithet: 'Habitation cell', naming: 'Quiet rooms above the curve.', overview: 'Space habitation concept with legal status disclosed, never a territorial claim.', does: 'Offers habitation cell concepts for partner research ledgers.', benefits: ['Legal status disclosed', 'No territorial claim'], savings: [], addOns: [{ id: 'quiet-pack', name: 'Quiet pack', text: 'Acoustic and lighting research pack.' }] }),
-  line({ id: 'ring-study', name: 'Ring Study', stencil: 'platform', epithet: 'Orbital ring', naming: 'A ring studied, not claimed.', overview: 'Orbital ring partner research.', does: 'Studies orbital ring architectures with partners.', benefits: ['Partner research framing'], savings: [], addOns: [] }),
-  line({ id: 'solarium', name: 'Solarium', stencil: 'habitat', epithet: 'Light volume', naming: 'Sun rooms in the dark.', overview: 'Light and radiation-aware volume studies.', does: 'Researches light volumes for habitation concepts.', benefits: [], savings: [], addOns: [] }),
-  line({ id: 'dock-node', name: 'Dock Node', stencil: 'platform', epithet: 'Docking', naming: 'Where visiting craft meet the quiet.', overview: 'Docking node concepts for partner missions.', does: 'Studies docking nodes for habitation stacks.', benefits: ['Phenix adjacency'], savings: [], addOns: [] }),
-  line({ id: 'spine', name: 'Habitat Spine', stencil: 'habitat', epithet: 'Spine structure', naming: 'The backbone that rooms attach to.', overview: 'Structural spine for multi-cell habitats.', does: 'Provides structural spine concepts for cell clusters.', benefits: ['Modular growth'], savings: ['Add cells without full redesign'], addOns: [] }),
-  line({ id: 'halo', name: 'Halo', stencil: 'platform', epithet: 'Halo vision', naming: 'Widest ring, latest opacity.', overview: 'Halo-scale vision, sealed until nearer gates.', does: 'Vision register for large halo architectures.', benefits: ['Honest opacity'], savings: [], addOns: [] }),
+  line({ id: 'quiet-room', name: 'Quiet Room', stencil: 'habitat', epithet: 'Station claim cell', naming: 'Quiet rooms above the curve, claimed as registry cells.', overview: 'Orbital station claim cell: registry instrument for a volume with legal status disclosed. Supports the claims layer; not a deed sale.', does: 'Registers orbital station claim cells for partner research ledgers.', benefits: ['Claims / registry framing', 'Legal status disclosed', 'Not a habitat company thesis'], savings: [], addOns: [{ id: 'quiet-pack', name: 'Quiet pack', text: 'Acoustic and lighting research pack for claim volumes.' }] }),
+  line({ id: 'ring-study', name: 'Ring Study', stencil: 'platform', epithet: 'Orbital claim ring', naming: 'A ring studied so it can be claimed.', overview: 'Orbital ring claim studies: real-estate and rights framing for ring architectures.', does: 'Studies orbital ring claim architectures with partners.', benefits: ['Partner claims research', 'Real-estate framing'], savings: [], addOns: [] }),
+  line({ id: 'solarium', name: 'Solarium', stencil: 'habitat', epithet: 'Light volume claim', naming: 'Sun rooms in the dark.', overview: 'Light-volume claim studies. Radiation protection pathways sit with Aeolus Phase 3; Solarium coordinates volume geometry only.', does: 'Researches light volumes as claimable station packages.', benefits: ['Aeolus radiation-phase adjacency'], savings: [], addOns: [] }),
+  line({ id: 'dock-node', name: 'Dock Node', stencil: 'platform', epithet: 'Docking claim', naming: 'Where visiting craft meet the claim.', overview: 'Docking node concepts tied to Phenix access and Aether claim stacks.', does: 'Studies docking nodes for claim stacks.', benefits: ['Phenix adjacency'], savings: [], addOns: [] }),
+  line({ id: 'spine', name: 'Habitat Spine', stencil: 'habitat', epithet: 'Lunar / parcel spine', naming: 'The backbone that parcels attach to.', overview: 'Structural spine for multi-cell claim clusters, including lunar parcel adjacency.', does: 'Provides structural spine concepts for multi-parcel claim clusters.', benefits: ['Modular claim growth', 'Lunar parcel adjacency'], savings: ['Add cells without full redesign'], addOns: [] }),
+  line({ id: 'halo', name: 'Halo', stencil: 'platform', epithet: 'Planetary / asteroid claims', naming: 'Widest ring: asteroid rights and planetary surfaces.', overview: 'Halo-scale vision for asteroid rights and planetary surface claims, sealed until nearer gates.', does: 'Vision register for asteroid rights and planetary surface claims.', benefits: ['Asteroid and planetary claims framing', 'Honest opacity'], savings: [], addOns: [] }),
 ]
 
 const aetherMatrix = matrix({
   companyId: 'aether',
   title: 'Aether matrix',
   mission: {
-    title: 'What Aether Habitation is building',
-    body: 'Aether studies quiet rooms above the curve, Quiet Room, Ring Study, Solarium, Dock Node, Habitat Spine, and Halo, with legal status disclosed and no territorial claim. Email partner ledger',
-    cadence: 'Cadence: Quiet Room research leads; Halo stays vision.',
+    title: 'What Aether Claims is building',
+    body: 'Aether is the claims and real estate company beyond Earth: Quiet Room station cells, Ring Study, Solarium volumes, Dock Node, Habitat Spine, and Halo for asteroid rights and planetary surfaces. Phenix marks the territory; Aether claims it. Legal status disclosed. No deed sales on this surface.',
+    cadence: 'Cadence: Quiet Room claim-cell research leads; Halo planetary / asteroid claims stay vision.',
   },
   lines: aetherLines,
   rows: [
     row01({
-      'quiet-room': cell({ id: 'quiet-room-01', status: 'planned', summary: 'Habitation cell lead.', description: 'Quiet Room 01 opens habitation cell research.', does: aetherLines[0].does, benefits: aetherLines[0].benefits, savings: [], addOns: aetherLines[0].addOns, hostAlias: 'quietroom01' }),
-      'ring-study': cell({ id: 'ring-study-01', status: 'theoretical', summary: 'Orbital ring study.', description: 'Ring Study 01 partner research.', does: aetherLines[1].does, benefits: aetherLines[1].benefits, savings: [], addOns: [], hostAlias: 'ringstudy01' }),
-      solarium: cell({ id: 'solarium-01', status: 'planned', summary: 'Light volume.', description: 'Solarium 01 light-volume studies.', does: aetherLines[2].does, benefits: [], savings: [], addOns: [], hostAlias: 'solarium01' }),
-      'dock-node': cell({ id: 'dock-node-01', status: 'planned', summary: 'Docking node.', description: 'Dock Node 01 for partner missions.', does: aetherLines[3].does, benefits: aetherLines[3].benefits, savings: [], addOns: [], hostAlias: 'docknode01' }),
-      spine: cell({ id: 'spine-01', status: 'theoretical', summary: 'Habitat spine.', description: 'Habitat Spine 01 structural backbone.', does: aetherLines[4].does, benefits: aetherLines[4].benefits, savings: aetherLines[4].savings, addOns: [], hostAlias: 'spine01' }),
-      halo: cell({ id: 'halo-01', status: 'vision', summary: 'Halo vision.', description: 'Halo 01 sealed large-architecture vision.', does: aetherLines[5].does, benefits: aetherLines[5].benefits, savings: [], addOns: [], hostAlias: 'halo01' }),
+      'quiet-room': cell({ id: 'quiet-room-01', status: 'planned', summary: 'Claim cell lead.', description: 'Quiet Room 01 opens orbital station claim-cell research.', does: aetherLines[0].does, benefits: aetherLines[0].benefits, savings: [], addOns: aetherLines[0].addOns, hostAlias: 'quietroom01' }),
+      'ring-study': cell({ id: 'ring-study-01', status: 'theoretical', summary: 'Orbital claim ring.', description: 'Ring Study 01 partner claims research.', does: aetherLines[1].does, benefits: aetherLines[1].benefits, savings: [], addOns: [], hostAlias: 'ringstudy01' }),
+      solarium: cell({ id: 'solarium-01', status: 'planned', summary: 'Light volume claim.', description: 'Solarium 01 light-volume claim studies; radiation path sits with Aeolus Phase 3.', does: aetherLines[2].does, benefits: aetherLines[2].benefits, savings: [], addOns: [], hostAlias: 'solarium01' }),
+      'dock-node': cell({ id: 'dock-node-01', status: 'planned', summary: 'Docking claim node.', description: 'Dock Node 01 for partner claim stacks.', does: aetherLines[3].does, benefits: aetherLines[3].benefits, savings: [], addOns: [], hostAlias: 'docknode01' }),
+      spine: cell({ id: 'spine-01', status: 'theoretical', summary: 'Parcel spine.', description: 'Habitat Spine 01 structural backbone for multi-parcel claims.', does: aetherLines[4].does, benefits: aetherLines[4].benefits, savings: aetherLines[4].savings, addOns: [], hostAlias: 'spine01' }),
+      halo: cell({ id: 'halo-01', status: 'vision', summary: 'Planetary / asteroid claims.', description: 'Halo 01 sealed vision for asteroid rights and planetary surfaces.', does: aetherLines[5].does, benefits: aetherLines[5].benefits, savings: [], addOns: [], hostAlias: 'halo01' }),
     }),
     row02({
-      'quiet-room': cell({ id: 'quiet-room-02', status: 'theoretical', summary: 'Quiet room follow-on.', description: 'Quiet Room 02 multi-cell clusters.', does: 'Multi-cell quiet clusters.', benefits: aetherLines[0].benefits, savings: [], addOns: aetherLines[0].addOns, hostAlias: 'quietroom02' }),
-      'ring-study': cell({ id: 'ring-study-02', status: 'vision', summary: 'Ring follow-on.', description: 'Ring Study 02 extended partner vision.', does: 'Extended ring vision.', benefits: [], savings: [], addOns: [], hostAlias: 'ringstudy02' }),
-      solarium: cell({ id: 'solarium-02', status: 'theoretical', summary: 'Solarium follow-on.', description: 'Solarium 02 radiation-aware packs.', does: 'Radiation-aware solarium packs.', benefits: [], savings: [], addOns: [], hostAlias: 'solarium02' }),
+      'quiet-room': cell({ id: 'quiet-room-02', status: 'theoretical', summary: 'Quiet room follow-on.', description: 'Quiet Room 02 multi-cell claim clusters.', does: 'Multi-cell claim clusters.', benefits: aetherLines[0].benefits, savings: [], addOns: aetherLines[0].addOns, hostAlias: 'quietroom02' }),
+      'ring-study': cell({ id: 'ring-study-02', status: 'vision', summary: 'Ring follow-on.', description: 'Ring Study 02 extended claims vision.', does: 'Extended ring claim vision.', benefits: [], savings: [], addOns: [], hostAlias: 'ringstudy02' }),
+      solarium: cell({ id: 'solarium-02', status: 'theoretical', summary: 'Solarium follow-on.', description: 'Solarium 02 claim packs; radiation protection remains an Aeolus Phase 3 pathway.', does: 'Extended solarium claim packs.', benefits: aetherLines[2].benefits, savings: [], addOns: [], hostAlias: 'solarium02' }),
       'dock-node': cell({ id: 'dock-node-02', status: 'theoretical', summary: 'Dock follow-on.', description: 'Dock Node 02 multi-craft.', does: 'Multi-craft docking.', benefits: [], savings: [], addOns: [], hostAlias: 'docknode02' }),
       spine: cell({ id: 'spine-02', status: 'vision', summary: 'Spine follow-on.', description: 'Habitat Spine 02 long spine vision.', does: 'Long spine vision.', benefits: aetherLines[4].benefits, savings: [], addOns: [], hostAlias: 'spine02' }),
       halo: cell({ id: 'halo-02', status: 'vision', summary: 'Halo follow-on.', description: 'Halo 02 remains sealed.', does: 'Extended halo vision.', benefits: [], savings: [], addOns: [], hostAlias: 'halo02' }),
@@ -667,12 +670,12 @@ const aetherMatrix = matrix({
 
 /* ─── Demeter ─── */
 const demeterLines = [
-  line({ id: 'field', name: 'Field Lattice', stencil: 'field', epithet: 'Agrivoltaic lattice', naming: 'Fields that work twice, soil and sun.', overview: 'Agrivoltaic diligence pathway, soil first, claims last.', powertrain: true, does: 'Structures agrivoltaic diligence so fields can host energy without abandoning soil.', benefits: ['Soil-first diligence', 'No CO₂/ROI fiction without methodology', 'Ethanol feedstock synergy for Wolf Tier 3'], savings: ['Dual-use land narratives when diligence clears', 'Shared sensors with Root Net'], addOns: [{ id: 'soil-kit', name: 'Soil kit', text: 'Sensor and sampling kit for landowners (concept).' }] }),
-  line({ id: 'root', name: 'Root Net', stencil: 'field', epithet: 'Soil net', naming: 'What the roots know across parcels.', overview: 'Shared soil-sensor and canopy logic across parcels.', does: 'Links soil and canopy sensing across partner parcels.', benefits: ['Parcel network effects'], savings: [], addOns: [] }),
-  line({ id: 'canopy', name: 'Canopy', stencil: 'field', epithet: 'Canopy array', naming: 'Shade that still feeds the ground.', overview: 'Canopy array concepts balanced with crop light budgets.', does: 'Studies canopy arrays with crop-light honesty.', benefits: ['Crop-light budgets labeled'], savings: [], addOns: [] }),
-  line({ id: 'ethanol', name: 'Ethanol Grove', stencil: 'field', epithet: 'Ethanol pathway', naming: 'Crops that can fuel Tier 3 dual injection.', overview: 'Ethanol feedstock pathway, Demeter’s explicit synergy with Wolf / machine Tier 3 dual injection.', powertrain: true, does: 'Develops ethanol feedstock pathways that can feed flexible-fuel machines across the mosaic.', benefits: ['Direct Wolf Tier 3 synergy', 'Regional fuel story', 'Soil-first still applies'], savings: ['Regional fuel shortens some logistics legs in concept models'], addOns: [{ id: 'still-study', name: 'Still study', text: 'Small-batch ethanol processing study, research only.' }] }),
-  line({ id: 'ledger', name: 'Soil Ledger', stencil: 'software', epithet: 'Land ledger', naming: 'The book of what the land can bear.', overview: 'Diligence ledger for landowners and partners, not an investment offer.', does: 'Tracks land-energy diligence status for partners.', benefits: ['Transparent gates'], savings: [], addOns: [] }),
-  line({ id: 'season', name: 'Season Ring', stencil: 'field', epithet: 'Season cycle', naming: 'The year as infrastructure.', overview: 'Seasonal planning ring for agrivoltaic and crop cycles.', does: 'Plans seasonal cycles across energy and crop duties.', benefits: ['Season honesty'], savings: [], addOns: [] }),
+  line({ id: 'field', name: 'Field Lattice', stencil: 'field', epithet: 'Agrivoltaic solar', naming: 'Fields that work twice, soil and sun.', overview: 'California-first agrivoltaic solar diligence pathway, soil first, claims last.', powertrain: true, does: 'Structures California-first agrivoltaic diligence so fields can host solar energy without abandoning soil.', benefits: ['California-first framing', 'Soil-first diligence', 'No CO₂/ROI fiction without methodology', 'Ethanol feedstock synergy for Wolf Tier 3'], savings: ['Dual-use land narratives when diligence clears', 'Shared sensors with Root Net'], addOns: [{ id: 'soil-kit', name: 'Soil kit', text: 'Sensor and sampling kit for landowners (concept).' }] }),
+  line({ id: 'root', name: 'Root Net', stencil: 'field', epithet: 'Geothermal net', naming: 'What the roots know across parcels, including heat below.', overview: 'Shared soil-sensor logic plus geothermal diligence pathways across parcels.', does: 'Links soil sensing and geothermal diligence across partner parcels.', benefits: ['Geothermal pathway', 'Parcel network effects'], savings: [], addOns: [{ id: 'geo-brief', name: 'Geothermal brief', text: 'Site geothermal diligence packet (research only).' }] }),
+  line({ id: 'canopy', name: 'Canopy', stencil: 'field', epithet: 'Wind + canopy', naming: 'Shade and wind that still feed the ground.', overview: 'Canopy array and land-wind diligence concepts balanced with crop light budgets.', does: 'Studies canopy arrays and wind energy pathways with crop-light honesty.', benefits: ['Wind pathway', 'Crop-light budgets labeled'], savings: [], addOns: [{ id: 'wind-brief', name: 'Wind brief', text: 'Land-wind diligence packet (research only).' }] }),
+  line({ id: 'ethanol', name: 'Ethanol Grove', stencil: 'field', epithet: 'Ethanol + green H₂', naming: 'Crops that fuel Tier 3, and hydrogen that splits clean.', overview: 'Ethanol feedstock pathway plus green hydrogen diligence, Demeter’s synergy with Wolf Tier 3 dual injection and Njord water-split adjacency.', powertrain: true, does: 'Develops ethanol and green hydrogen pathways that can feed flexible-fuel machines across the mosaic.', benefits: ['Direct Wolf Tier 3 synergy', 'Green hydrogen pathway', 'Regional fuel story', 'Soil-first still applies'], savings: ['Regional fuel shortens some logistics legs in concept models'], addOns: [{ id: 'still-study', name: 'Still study', text: 'Small-batch ethanol processing study, research only.' }, { id: 'h2-field', name: 'Field H₂ node', text: 'Green hydrogen staging study adjacent to Njord split pathways.' }] }),
+  line({ id: 'ledger', name: 'Soil Ledger', stencil: 'software', epithet: 'Land + SMR ledger', naming: 'The book of what the land can bear, including SMR diligence.', overview: 'Diligence ledger for landowners and partners covering agrivoltaics through SMR pathways. Not an investment offer.', does: 'Tracks land-energy diligence status including SMR research gates for partners.', benefits: ['Transparent gates', 'SMR diligence framing'], savings: [], addOns: [{ id: 'smr-brief', name: 'SMR brief', text: 'Small modular reactor diligence packet (research only, no capacity claim).' }] }),
+  line({ id: 'season', name: 'Season Ring', stencil: 'field', epithet: '75-year · Dyson path', naming: 'The year as infrastructure, the century as a Dyson roadmap.', overview: 'Seasonal planning ring and 75-year roadmap framing toward a Dyson swarm.', does: 'Plans seasonal cycles and the long Demeter roadmap toward a Dyson swarm.', benefits: ['Season honesty', '75-year / Dyson roadmap framing'], savings: [], addOns: [] }),
 ]
 
 const demeterMatrix = matrix({
@@ -680,8 +683,8 @@ const demeterMatrix = matrix({
   title: 'Demeter matrix',
   mission: {
     title: 'What Demeter Land Energy is building',
-    body: 'Demeter runs land-energy diligence: Field Lattice, Root Net, Canopy, Ethanol Grove (Wolf Tier 3 synergy), Soil Ledger, and Season Ring. Soil first. Not an investment offer.',
-    cadence: 'Cadence: Field Lattice diligence leads; Ethanol Grove matures with Wolf powertrain studies. No capacity claims without reviewed methodology.',
+    body: 'Demeter runs California-first land-energy diligence: Field Lattice (agrivoltaic solar), Root Net (geothermal), Canopy (wind), Ethanol Grove (ethanol + green hydrogen), Soil Ledger (including SMR gates), and Season Ring (75-year path toward a Dyson swarm). Soil first. Not an investment offer.',
+    cadence: 'Cadence: Field Lattice diligence leads; Ethanol Grove and hydrogen mature with Wolf powertrain studies; Dyson stays century-scale vision. No capacity claims without reviewed methodology.',
   },
   lines: demeterLines,
   rows: [
@@ -707,12 +710,12 @@ const demeterMatrix = matrix({
 
 /* ─── Njord ─── */
 const njordLines = [
-  line({ id: 'otec', name: 'OTEC Brief', stencil: 'water', epithet: 'Ocean thermal', naming: 'Heat from the deep gradient.', overview: 'OTEC research queue, no output claim on this surface.', powertrain: true, does: 'Queues OTEC research and partner diligence.', benefits: ['Research before promises', 'Municipal/utility path'], savings: [], addOns: [{ id: 'brief-pack', name: 'Brief pack', text: 'Diligence briefing packet for site owners.' }] }),
-  line({ id: 'atmo', name: 'Atmospheric Well', stencil: 'water', epithet: 'Atmospheric water', naming: 'Water pulled from air with humility.', overview: 'Atmospheric water research, quality claims withheld until methods review.', does: 'Studies atmospheric water pathways.', benefits: ['Method-gated claims'], savings: [], addOns: [] }),
-  line({ id: 'depth', name: 'Depth Array', stencil: 'platform', epithet: 'Offshore lattice', naming: 'Arrays in the deep blue.', overview: 'Offshore energy lattice.', powertrain: true, does: 'Studies offshore energy lattices.', benefits: ['Maritime partner path', 'Electric/H₂/flex staging'], savings: [], addOns: [{ id: 'h2-offshore', name: 'Offshore H₂ node', text: 'Hydrogen staging node concept.' }] }),
+  line({ id: 'otec', name: 'OTEC Brief', stencil: 'water', epithet: 'Ocean thermal', naming: 'Heat from the deep gradient.', overview: 'OTEC research queue within the full water energy layer, no output claim on this surface.', powertrain: true, does: 'Queues OTEC research and partner diligence.', benefits: ['Research before promises', 'Municipal/utility path'], savings: [], addOns: [{ id: 'brief-pack', name: 'Brief pack', text: 'Diligence briefing packet for site owners.' }] }),
+  line({ id: 'atmo', name: 'Atmospheric Well', stencil: 'water', epithet: 'Turn air into water', naming: 'Water pulled from air with humility.', overview: 'Atmospheric water generation research (turn air into water). Quality claims withheld until methods review.', does: 'Studies atmospheric water generation pathways.', benefits: ['Turn air into water framing', 'Method-gated claims'], savings: [], addOns: [] }),
+  line({ id: 'depth', name: 'Depth Array', stencil: 'platform', epithet: 'Offshore + green H₂', naming: 'Arrays in the deep blue that also split water.', overview: 'Offshore energy lattice with green hydrogen from water as a first-class pathway.', powertrain: true, does: 'Studies offshore energy lattices and green hydrogen from water.', benefits: ['Maritime partner path', 'Green hydrogen from water', 'Electric/H₂/flex staging'], savings: [], addOns: [{ id: 'h2-offshore', name: 'Offshore H₂ node', text: 'Green hydrogen staging node: split water offshore (concept).' }] }),
   line({ id: 'tide-mill', name: 'Tide Mill', stencil: 'water', epithet: 'Tidal assist', naming: 'Old mill logic, new water.', overview: 'Tidal assist research adjacent to Atoll Tide platforms.', powertrain: true, does: 'Researches tidal assist energy.', benefits: ['Atoll adjacency'], savings: [], addOns: [] }),
-  line({ id: 'harbor-power', name: 'Harbor Power', stencil: 'platform', epithet: 'Harbor energy', naming: 'Power at the pier for Viking and Atoll.', overview: 'Harbor energy nodes for mosaic water halls.', powertrain: true, does: 'Stages harbor energy for Viking/Atoll.', benefits: ['Cross-hall shore power', 'Ethanol bunkering studies with Demeter'], savings: ['Shared Harbor Ring kits'], addOns: [] }),
-  line({ id: 'brine', name: 'Brine Path', stencil: 'water', epithet: 'Brine research', naming: 'What the salt teaches.', overview: 'Brine and concentrate research path, theoretical.', does: 'Studies brine pathways without quality claims.', benefits: ['Honest opacity'], savings: [], addOns: [] }),
+  line({ id: 'harbor-power', name: 'Harbor Power', stencil: 'platform', epithet: 'Harbor energy', naming: 'Power at the pier for Viking and Atoll.', overview: 'Harbor energy nodes for mosaic water halls, including clean and reuse staging studies.', powertrain: true, does: 'Stages harbor energy and clean/reuse water pathways for Viking/Atoll.', benefits: ['Cross-hall shore power', 'Clean and reuse research framing', 'Ethanol bunkering studies with Demeter'], savings: ['Shared Harbor Ring kits'], addOns: [{ id: 'reuse-node', name: 'Reuse node', text: 'Harbor water reuse and reclamation study (research only).' }] }),
+  line({ id: 'brine', name: 'Brine Path', stencil: 'water', epithet: 'Manufacture + purify', naming: 'What the salt teaches: manufacture and purify.', overview: 'Brine, concentrate, purification, and water-manufacture research path. Method-gated; no quality claim on this surface.', does: 'Studies brine, purification, and water-manufacture pathways without quality claims.', benefits: ['Manufacture and purify framing', 'Honest opacity'], savings: [], addOns: [] }),
 ]
 
 const njordMatrix = matrix({
@@ -720,8 +723,8 @@ const njordMatrix = matrix({
   title: 'Njord matrix',
   mission: {
     title: 'What Njord Water Systems is building',
-    body: 'Njord is the water substrate: OTEC Brief, Atmospheric Well, Depth Array, Tide Mill, Harbor Power, and Brine Path. Research before promises.',
-    cadence: 'Cadence: OTEC and harbor energy diligence lead; brine stays theoretical. No water-quality claim here.',
+    body: 'Njord is the full water energy layer: clean it, reuse it, split it, manufacture it, turn air into water. OTEC Brief, Atmospheric Well, Depth Array (offshore energy + green hydrogen), Tide Mill, Harbor Power, and Brine Path. Research before output promises.',
+    cadence: 'Cadence: OTEC, atmospheric water, and harbor energy diligence lead; green hydrogen and brine manufacture stay method-gated. No water-quality claim here.',
   },
   lines: njordLines,
   rows: [
@@ -747,12 +750,12 @@ const njordMatrix = matrix({
 
 /* ─── Aeolus ─── */
 const aeolusLines = [
-  line({ id: 'gauge', name: 'Wind Gauge', stencil: 'wind', epithet: 'Governance gauge', naming: 'Measuring wind as infrastructure.', overview: 'Climate-atmosphere research governance updates, not deployment authority.', does: 'Publishes research governance updates for atmosphere programs.', benefits: ['Governance before deployment claims', 'Policy partner path'], savings: [], addOns: [{ id: 'ethics-pack', name: 'Ethics pack', text: 'Reviewer briefing pack for counsel/NGO partners.' }] }),
-  line({ id: 'choir', name: 'Field Choir', stencil: 'wind', epithet: 'Multi-region sensing', naming: 'Many instruments singing one weather.', overview: 'Multi-region sensing.', does: 'Coordinates multi-region atmospheric sensing concepts.', benefits: ['Eagle Thermal adjacency'], savings: ['Shared sensors'], addOns: [] }),
+  line({ id: 'gauge', name: 'Wind Gauge', stencil: 'wind', epithet: 'Phase 1 climate gauge', naming: 'Measuring wind as infrastructure.', overview: 'Phase 1 climate-atmosphere research governance: fix climate change through measured programs, not deployment authority on this surface.', does: 'Publishes Phase 1 climate research governance updates for atmosphere programs.', benefits: ['Phase 1 climate framing', 'Governance before deployment claims', 'Policy partner path'], savings: [], addOns: [{ id: 'ethics-pack', name: 'Ethics pack', text: 'Reviewer briefing pack for counsel/NGO partners.' }] }),
+  line({ id: 'choir', name: 'Field Choir', stencil: 'wind', epithet: 'Multi-region sensing', naming: 'Many instruments singing one weather.', overview: 'Multi-region sensing for Phase 1 climate work.', does: 'Coordinates multi-region atmospheric sensing concepts.', benefits: ['Eagle Thermal adjacency'], savings: ['Shared sensors'], addOns: [] }),
   line({ id: 'pressure', name: 'Pressure Net', stencil: 'wind', epithet: 'Pressure mesh', naming: 'Pressure as a readable mesh.', overview: 'Pressure mesh research for climate partners.', does: 'Studies pressure meshes across regions.', benefits: [], savings: [], addOns: [] }),
   line({ id: 'jet', name: 'Jet Stream', stencil: 'wind', epithet: 'Jet studies', naming: 'High roads of air.', overview: 'Jet-stream research notes, theoretical.', does: 'Researches jet-stream relevant governance questions.', benefits: [], savings: [], addOns: [] }),
-  line({ id: 'whisper', name: 'Whisper Array', stencil: 'wind', epithet: 'Quiet sensing', naming: 'Listening without shouting claims.', overview: 'Low-impact sensing array concepts.', does: 'Designs low-impact sensing arrays.', benefits: ['Low-impact ethic'], savings: [], addOns: [] }),
-  line({ id: 'climate', name: 'Climate Choir', stencil: 'software', epithet: 'Program choir', naming: 'The wide song, latest opacity.', overview: 'Program-scale climate choir vision.', does: 'Vision register for program-scale coordination.', benefits: ['Honest opacity'], savings: [], addOns: [] }),
+  line({ id: 'whisper', name: 'Whisper Array', stencil: 'wind', epithet: 'Phase 2 oxygen path', naming: 'Listening toward breathable air for habitats.', overview: 'Phase 2 pathway: oxygen and breathable air for space habitats (Olympus and Aether adjacency), low-impact sensing first.', does: 'Designs low-impact sensing arrays and Phase 2 oxygen / breathable-air habitat pathways.', benefits: ['Phase 2 oxygen for habitats', 'Olympus / Aether adjacency', 'Low-impact ethic'], savings: [], addOns: [] }),
+  line({ id: 'climate', name: 'Climate Choir', stencil: 'software', epithet: 'Phase 3 radiation OS', naming: 'The wide song: atmospheric OS including radiation protection.', overview: 'Program-scale atmospheric operating system vision, including Phase 3 radiation protection (moved here from Aether Solarium).', does: 'Vision register for program-scale atmospheric OS coordination and radiation protection.', benefits: ['Full atmospheric OS framing', 'Phase 3 radiation protection', 'Honest opacity'], savings: [], addOns: [] }),
 ]
 
 const aeolusMatrix = matrix({
@@ -760,8 +763,8 @@ const aeolusMatrix = matrix({
   title: 'Aeolus matrix',
   mission: {
     title: 'What Aeolus Atmosphere is building',
-    body: 'Aeolus treats wind as infrastructure under research governance: Wind Gauge, Field Choir, Pressure Net, Jet Stream studies, Whisper Array, and Climate Choir. Updates, not deployment authority. Email consultation queues',
-    cadence: 'Cadence: Wind Gauge governance leads; Climate Choir stays vision.',
+    body: 'Aeolus is the atmospheric operating system in three phases: Phase 1 fix climate (Wind Gauge, Field Choir, Pressure Net, Jet Stream), Phase 2 oxygen and breathable air for space habitats (Whisper Array with Olympus/Aether), Phase 3 radiation protection (Climate Choir). Research governance leads; ownership and deployment authority are not claimed on this surface.',
+    cadence: 'Cadence: Wind Gauge Phase 1 governance leads; Whisper Phase 2 and Climate Choir Phase 3 stay vision until nearer gates.',
   },
   lines: aeolusLines,
   rows: [
@@ -787,11 +790,11 @@ const aeolusMatrix = matrix({
 
 /* ─── Corvus ─── */
 const corvusLines = [
-  line({ id: 'raven-os', name: 'Raven OS', stencil: 'software', epithet: '21 prompts', naming: 'Twenty-one prompts. One badge at the summit.', overview: 'Raven OS, phased prompt tiers. Prompt 21 unlocks the Twenty-First Raven community badge.', does: 'Delivers a phased prompt product for founders and operators, with badge at Prompt 21.', benefits: ['Clear phase pricing when links live', 'Community badge at the summit', 'Odin Discord knowledge path'], savings: ['Phased entry instead of all-upfront enterprise fiction'], addOns: [{ id: 'badge', name: 'Twenty-First Raven badge', text: 'Community badge unlocked at Prompt 21.' }] }),
-  line({ id: 'odin-local', name: 'Odin Local', stencil: 'software', epithet: 'Local workspace', naming: 'Wisdom that stays on your machine.', overview: 'Founder workspace that stays local, cascades after early Raven cohort.', does: 'Keeps founder workspace local-first.', benefits: ['Local-first data', 'Privacy-minded'], savings: [], addOns: [] }),
-  line({ id: 'mesh', name: 'Corvus Mesh', stencil: 'software', epithet: 'Hall mesh', naming: 'Intelligence across the twelve halls.', overview: 'Intelligence layer across halls, theoretical.', does: 'Studies cross-hall intelligence mesh.', benefits: ['Mosaic awareness'], savings: [], addOns: [] }),
+  line({ id: 'raven-os', name: 'Raven OS', stencil: 'software', epithet: 'Sovereign substrate', naming: 'The modular OS that runs the halls.', overview: 'Raven OS is the sovereign intelligence substrate: modular, solar-aware, offline-capable. Phased prompts are the access path; Prompt 21 unlocks the Twenty-First Raven badge.', does: 'Delivers the Raven OS sovereign substrate and phased access path for founders and operators.', benefits: ['Sovereign compute framing', 'Solar / offline / modular thesis', 'Clear phase pricing when links live', 'Community badge at the summit'], savings: ['Phased entry instead of all-upfront enterprise fiction'], addOns: [{ id: 'badge', name: 'Twenty-First Raven badge', text: 'Community badge unlocked at Prompt 21.' }] }),
+  line({ id: 'odin-local', name: 'Odin', stencil: 'software', epithet: 'Consumer product', naming: 'Odin, think locally.', overview: 'Odin is the consumer product for founders: local-first workspace for projects, documents, tasks, and decisions on the Raven OS substrate.', does: 'Ships Odin as the local-first founder consumer product on Raven OS.', benefits: ['Consumer product for founders', 'Local-first data', 'Privacy-minded'], savings: [], addOns: [] }),
+  line({ id: 'mesh', name: 'Corvus Mesh', stencil: 'software', epithet: 'Hall mesh', naming: 'The mind that runs eleven companies.', overview: 'Intelligence layer across the halls, theoretical until Raven cohort clears.', does: 'Studies cross-hall intelligence mesh as the empire spine.', benefits: ['Empire intelligence spine', 'Mosaic awareness'], savings: [], addOns: [] }),
   line({ id: 'forge', name: 'Prompt Forge', stencil: 'software', epithet: 'Prompt tools', naming: 'Where prompts are tempered.', overview: 'Tools for authoring and reviewing prompts inside Raven OS.', does: 'Helps teams forge and review prompts.', benefits: ['Team workflow'], savings: [], addOns: [] }),
-  line({ id: 'badge-path', name: 'Badge Path', stencil: 'software', epithet: 'Community path', naming: 'The climb to the twenty-first raven.', overview: 'Community and badge progression path.', does: 'Tracks community progression toward Prompt 21 badge.', benefits: ['Visible community arc'], savings: [], addOns: [] }),
+  line({ id: 'badge-path', name: 'Badge Path', stencil: 'software', epithet: 'Community path', naming: 'The climb to the twenty-first raven.', overview: 'Community and badge progression path into the sovereign substrate.', does: 'Tracks community progression toward Prompt 21 badge.', benefits: ['Visible community arc'], savings: [], addOns: [] }),
   line({ id: 'knowledge', name: 'Knowledge Nest', stencil: 'software', epithet: 'Knowledge base', naming: 'What Odin answers from.', overview: 'Curated knowledge base feeding Discord Odin, research governance, not omniscience.', does: 'Curates hall knowledge for Odin answers.', benefits: ['Grounded answers', 'No invented ops claims'], savings: [], addOns: [] }),
 ]
 
@@ -800,14 +803,14 @@ const corvusMatrix = matrix({
   title: 'Corvus matrix',
   mission: {
     title: 'What Corvus is building',
-    body: 'Corvus builds Raven OS and the surrounding nest: Odin Local, Corvus Mesh, Prompt Forge, Badge Path, and Knowledge Nest. Prompt 21 unlocks the Twenty-First Raven badge.',
-    cadence: 'Cadence: Raven OS phases lead; Odin Local cascades after early cohort; Mesh stays theoretical.',
+    body: 'Corvus is sovereign AI compute, not a cloud AI company: Raven OS (solar-aware, offline-capable, modular substrate), Odin as the founder consumer product, Corvus Mesh across the halls, Prompt Forge, Badge Path, and Knowledge Nest. Prompt 21 unlocks the Twenty-First Raven badge.',
+    cadence: 'Cadence: Raven OS substrate and Odin consumer product lead; Mesh stays theoretical until early cohort clears.',
   },
   lines: corvusLines,
   rows: [
     row01({
-      'raven-os': cell({ id: 'raven-os-01', status: 'planned', summary: 'Raven OS entry.', description: 'Raven OS 01, phased prompts. Prompt 21 badge at the summit.', does: corvusLines[0].does, benefits: corvusLines[0].benefits, savings: corvusLines[0].savings, addOns: corvusLines[0].addOns, hostAlias: 'ravenos01', corvusPrompts: true }),
-      'odin-local': cell({ id: 'odin-local-01', status: 'planned', summary: 'Local workspace.', description: 'Odin Local 01 founder workspace, local-first.', does: corvusLines[1].does, benefits: corvusLines[1].benefits, savings: [], addOns: [], hostAlias: 'odinlocal01' }),
+      'raven-os': cell({ id: 'raven-os-01', status: 'planned', summary: 'Raven OS substrate.', description: 'Raven OS 01, sovereign substrate with phased access. Prompt 21 badge at the summit.', does: corvusLines[0].does, benefits: corvusLines[0].benefits, savings: corvusLines[0].savings, addOns: corvusLines[0].addOns, hostAlias: 'ravenos01', corvusPrompts: true }),
+      'odin-local': cell({ id: 'odin-local-01', status: 'planned', summary: 'Odin consumer product.', description: 'Odin 01 founder consumer product, local-first on Raven OS.', does: corvusLines[1].does, benefits: corvusLines[1].benefits, savings: [], addOns: [], hostAlias: 'odinlocal01' }),
       mesh: cell({ id: 'mesh-01', status: 'theoretical', summary: 'Hall mesh.', description: 'Corvus Mesh 01 cross-hall intelligence, theoretical.', does: corvusLines[2].does, benefits: corvusLines[2].benefits, savings: [], addOns: [], hostAlias: 'mesh01' }),
       forge: cell({ id: 'forge-01', status: 'planned', summary: 'Prompt forge tools.', description: 'Prompt Forge 01 authoring tools.', does: corvusLines[3].does, benefits: corvusLines[3].benefits, savings: [], addOns: [], hostAlias: 'forge01' }),
       'badge-path': cell({ id: 'badge-path-01', status: 'planned', summary: 'Community badge path.', description: 'Badge Path 01 progression to Prompt 21.', does: corvusLines[4].does, benefits: corvusLines[4].benefits, savings: [], addOns: [], hostAlias: 'badgepath01' }),
@@ -815,7 +818,7 @@ const corvusMatrix = matrix({
     }),
     row02({
       'raven-os': cell({ id: 'raven-os-02', status: 'theoretical', summary: 'Raven OS follow-on.', description: 'Raven OS 02 cohort tools after early prompts.', does: 'Cohort tools for later Raven phases.', benefits: corvusLines[0].benefits, savings: [], addOns: corvusLines[0].addOns, hostAlias: 'ravenos02' }),
-      'odin-local': cell({ id: 'odin-local-02', status: 'theoretical', summary: 'Odin follow-on.', description: 'Odin Local 02 team local sync (concept).', does: 'Team local sync concepts.', benefits: corvusLines[1].benefits, savings: [], addOns: [], hostAlias: 'odinlocal02' }),
+      'odin-local': cell({ id: 'odin-local-02', status: 'theoretical', summary: 'Odin follow-on.', description: 'Odin 02 team local sync (concept).', does: 'Team local sync concepts.', benefits: corvusLines[1].benefits, savings: [], addOns: [], hostAlias: 'odinlocal02' }),
       mesh: cell({ id: 'mesh-02', status: 'vision', summary: 'Mesh follow-on.', description: 'Corvus Mesh 02 vision.', does: 'Extended mesh vision.', benefits: [], savings: [], addOns: [], hostAlias: 'mesh02' }),
       forge: cell({ id: 'forge-02', status: 'theoretical', summary: 'Forge follow-on.', description: 'Prompt Forge 02 review workflows.', does: 'Prompt review workflows.', benefits: [], savings: [], addOns: [], hostAlias: 'forge02' }),
       'badge-path': cell({ id: 'badge-path-02', status: 'theoretical', summary: 'Badge follow-on.', description: 'Badge Path 02 community rituals.', does: 'Community badge rituals.', benefits: [], savings: [], addOns: [], hostAlias: 'badgepath02' }),
@@ -825,7 +828,133 @@ const corvusMatrix = matrix({
   ],
 })
 
-/** All twelve hall matrices */
+/* ─── Meridian (materials layer; not a mosaic tile) ─── */
+const meridianLines = [
+  line({
+    id: 'earth-garment',
+    name: 'Earth Garment',
+    stencil: 'module',
+    epithet: 'Self-cleaning pants',
+    naming: 'Worn by everyone. Built to last forever.',
+    overview:
+      'One pair of self-cleaning white stain-trapping polymer pants meant to replace dozens of purchases a year. Research launch target September 2026.',
+    does: 'Develops the Earth garment system as the everyday materials product.',
+    benefits: ['Materials layer under all domains', 'September 2026 research target', 'Replace-many-purchases framing'],
+    savings: [],
+    addOns: [],
+  }),
+  line({
+    id: 'venus-suit',
+    name: 'Venus Suit',
+    stencil: 'habitat',
+    epithet: 'Venus-rated spacesuit',
+    naming: 'A suit rated for the Venus cloud line.',
+    overview: 'Spacesuit concepts rated for Venus conditions, paired with Phenix Zeus and Olympus thin-air research.',
+    does: 'Studies Venus-rated spacesuit materials and systems.',
+    benefits: ['Venus adjacency', 'Phenix / Olympus synergy'],
+    savings: [],
+    addOns: [],
+  }),
+  line({
+    id: 'stealth-armor',
+    name: 'Stealth Armor',
+    stencil: 'module',
+    epithet: 'Body-armor supply',
+    naming: 'The Stealth body-armor supply chain.',
+    overview: 'Stealth body-armor supply-chain concepts under the Meridian materials layer.',
+    does: 'Maps Stealth body-armor supply-chain research.',
+    benefits: ['Defense materials path'],
+    savings: [],
+    addOns: [],
+  }),
+]
+
+const meridianMatrix = matrix({
+  companyId: 'meridian',
+  title: 'Meridian matrix',
+  mission: {
+    title: 'What Meridian Materials is building',
+    body: 'Meridian is the materials layer beneath all four domains: Earth Garment (self-cleaning polymer pants, September 2026 research target), Venus Suit, and Stealth Armor supply chain. Blueprint and interest only.',
+    cadence: 'Cadence: Earth Garment research leads toward September 2026; Venus Suit and Stealth Armor stay partner-gated.',
+  },
+  lines: meridianLines,
+  rows: [
+    row01({
+      'earth-garment': cell({
+        id: 'earth-garment-01',
+        status: 'planned',
+        targetDate: '2026-09-01',
+        summary: 'Earth garment research lead.',
+        description: 'Earth Garment 01 opens self-cleaning polymer pants research toward September 2026.',
+        does: meridianLines[0].does,
+        benefits: meridianLines[0].benefits,
+        savings: [],
+        addOns: [],
+        hostAlias: 'earthgarment01',
+      }),
+      'venus-suit': cell({
+        id: 'venus-suit-01',
+        status: 'theoretical',
+        summary: 'Venus-rated suit.',
+        description: 'Venus Suit 01 studies Venus-rated spacesuit materials.',
+        does: meridianLines[1].does,
+        benefits: meridianLines[1].benefits,
+        savings: [],
+        addOns: [],
+        hostAlias: 'venussuit01',
+      }),
+      'stealth-armor': cell({
+        id: 'stealth-armor-01',
+        status: 'theoretical',
+        summary: 'Stealth armor supply.',
+        description: 'Stealth Armor 01 maps body-armor supply-chain research.',
+        does: meridianLines[2].does,
+        benefits: meridianLines[2].benefits,
+        savings: [],
+        addOns: [],
+        hostAlias: 'stealtharmor01',
+      }),
+    }),
+    row02({
+      'earth-garment': cell({
+        id: 'earth-garment-02',
+        status: 'theoretical',
+        summary: 'Garment follow-on.',
+        description: 'Earth Garment 02 expands polymer system studies.',
+        does: 'Expanded polymer garment studies.',
+        benefits: meridianLines[0].benefits,
+        savings: [],
+        addOns: [],
+        hostAlias: 'earthgarment02',
+      }),
+      'venus-suit': cell({
+        id: 'venus-suit-02',
+        status: 'vision',
+        summary: 'Suit follow-on.',
+        description: 'Venus Suit 02 vision coupling with Zeus.',
+        does: 'Deeper Venus suit vision.',
+        benefits: meridianLines[1].benefits,
+        savings: [],
+        addOns: [],
+        hostAlias: 'venussuit02',
+      }),
+      'stealth-armor': cell({
+        id: 'stealth-armor-02',
+        status: 'vision',
+        summary: 'Armor follow-on.',
+        description: 'Stealth Armor 02 vision supply depth.',
+        does: 'Extended armor supply vision.',
+        benefits: meridianLines[2].benefits,
+        savings: [],
+        addOns: [],
+        hostAlias: 'stealtharmor02',
+      }),
+    }),
+    mysteryRow(),
+  ],
+})
+
+/** All twelve hall matrices + Meridian materials layer */
 export const hallMatrices = {
   wolf: wolfMatrix,
   viking: vikingMatrix,
@@ -839,6 +968,7 @@ export const hallMatrices = {
   njord: njordMatrix,
   aeolus: aeolusMatrix,
   corvus: corvusMatrix,
+  meridian: meridianMatrix,
 }
 
 export function getHallMatrix(companyId) {

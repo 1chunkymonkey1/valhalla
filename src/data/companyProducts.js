@@ -10,10 +10,10 @@ const emailFirst = {
 export const companyProducts = {
   wolf: {
     product: 'Wolf Transit',
-    headline: 'Ride the path.',
+    headline: 'The pack moves first.',
     support:
-      'Electric adventure motorcycle first, then ATV, car, truck, rescue air, and the Dire Wolf railroad.',
-    body: 'Wolf Transit builds a named pack of land machines under wolf myth and history, culminating in a phased transcontinental rail. Community fix-it culture under every line. Fenrir 01 targets January 13, 2027.',
+      'Electric adventure motorcycle first, then ATV, car, truck, rescue air, and the Dire Wolf railroad: San Francisco to New York in 5.8 hours on the network target.',
+    body: 'Wolf Transit builds a named pack of land machines under wolf species and myth, culminating in Dire Wolf, a phased San Francisco to New York railroad aiming for a 5.8-hour crossing. Community fix-it culture under every line. Fenrir 01 targets January 13, 2027.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -31,9 +31,10 @@ export const companyProducts = {
   },
   holm: {
     product: 'Holm Modular Home',
-    headline: 'A home that lands where the site allows.',
-    support: 'Linkable habitation modules: timber, quiet volumes, real weather.',
-    body: 'Holm is a modular habitation concept: Timber, Sod, Adobe, Commons, Bridge, and Hearth. Not stamped plans or a construction contract.',
+    headline: 'Built for the terrain you chose.',
+    support:
+      'Twelve linkable modules: timber, sod, or adobe by terrain, with logistics, financing, and real estate handled as part of the path.',
+    body: 'Holm is a modular habitation concept: twelve linkable modules across Timber, Sod, Adobe, Commons, Bridge, and Hearth. Log cabin, sod house, or adobe depending on the site. Not stamped plans or a construction contract.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -48,13 +49,15 @@ export const companyProducts = {
       'Builder / installer',
       'Architect / designer',
       'Financing partner',
+      'Logistics / real estate partner',
     ],
   },
   demeter: {
     product: 'Demeter Land Energy',
-    headline: 'Fields that work twice.',
-    support: 'Agrivoltaic pathways and land-energy diligence: soil first, claims last.',
-    body: 'Demeter runs soil-first land-energy diligence including Ethanol Grove synergy for Tier 3 dual-injection machines. Not an investment offer.',
+    headline: 'The same acre feeds a family and powers twenty homes.',
+    support:
+      'California-first land energy: agrivoltaics, green hydrogen, geothermal, wind, and SMR diligence on a 75-year path toward a Dyson swarm.',
+    body: 'Demeter runs soil-first land-energy diligence across agrivoltaic solar, green hydrogen, geothermal, wind, and SMR pathways, California first. Ethanol Grove still feeds Wolf Tier 3 dual injection. Long roadmap ends at a Dyson swarm. Not an investment offer.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -73,9 +76,9 @@ export const companyProducts = {
   },
   viking: {
     product: 'Viking Voyage',
-    headline: 'Board as yourself. Disembark changed.',
-    support: 'Story-led northern voyage: cold water, hard cliffs, quiet cabins.',
-    body: 'Viking Voyage is a water-movement arch: Knarr, Dreki, Skíðblaðnir, Harbor Ring, Saga Cabin, and Midgard Circuit. Partner-gated.',
+    headline: 'Board as yourself. Disembark as Ragnar.',
+    support: 'Clean consumer cruises with a full narrative arc: the Vinland Saga is available to anyone who boards.',
+    body: 'Viking Voyage is a water-movement arch: Knarr, Dreki, Skíðblaðnir, Harbor Ring, Saga Cabin, and the Vinland Saga. Partner-gated. Story first; tickets wait on licensed operators.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -94,9 +97,10 @@ export const companyProducts = {
   },
   atoll: {
     product: 'Atoll Habitat',
-    headline: 'Living on the water line.',
-    support: 'Floating modular habitats: Lagoon, Reef, Tide, and ring concepts.',
-    body: 'Atoll builds floating modular habitats. Not a deed.',
+    headline: 'Where land ends, Atoll begins.',
+    support:
+      'Atoll 01 single family, Atoll 02 twelve families, Atoll 03 municipal. First delivery target: Tuvalu government.',
+    body: 'Atoll builds floating modular habitats at three scales: Atoll 01 for a single family, Atoll 02 for twelve families, Atoll 03 as a municipal facility. First delivery target is the Tuvalu government. Not a deed.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -109,14 +113,16 @@ export const companyProducts = {
       'Harbor / site partner',
       'Marine engineer',
       'Manufacturer',
+      'Government / municipal (Tuvalu and peers)',
       'Investor (info only)',
     ],
   },
   njord: {
     product: 'Njord Water Systems',
-    headline: 'The water substrate.',
-    support: 'OTEC, atmospheric water, and maritime power: research before promises.',
-    body: 'Njord is the water substrate. Research before promises. No output or water-quality claim on this surface.',
+    headline: 'Every molecule of water in the galaxy. Ours.',
+    support:
+      'The full water energy layer: clean, reuse, split, manufacture, and turn air into water, plus offshore energy, maritime power, and green hydrogen.',
+    body: 'Njord is the full water energy layer. Clean it, reuse it, split it, manufacture it, turn air into water. Offshore energy, atmospheric water generation, maritime power, and green hydrogen from water. Research before output promises.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -134,9 +140,10 @@ export const companyProducts = {
   },
   eagle: {
     product: 'Eagle Aviation',
-    headline: 'Above the weather line.',
-    support: 'Aviation access interest: traveler and partner queues, not tickets.',
-    body: 'Eagle hosts aviation access interest and partner/route research. Not a flight schedule.',
+    headline: 'The more you fly, the better it is for the atmosphere.',
+    support:
+      'Clean planes and jets across types, sustainable aviation fuel and electric propulsion, with talks toward acquiring Spirit Airlines.',
+    body: 'Eagle builds clean aviation across craft types with sustainable aviation fuel and electric propulsion research. Access interest and partner queues only: not a flight schedule. Exploring talks toward acquiring Spirit Airlines as a network path.',
     tone: 'air',
     ...emailFirst,
     gallery: [
@@ -148,15 +155,17 @@ export const companyProducts = {
       'Prospective traveler',
       'Airline / operator partner',
       'Airport partner',
+      'SAF / propulsion partner',
       'Advisor / engineer',
       'Press',
     ],
   },
   olympus: {
     product: 'Olympus Habitat Research',
-    headline: 'Habitation in the thin air.',
-    support: 'Upper-atmosphere platforms studied as research, not tourism.',
-    body: 'Olympus studies thin-air habitation research. Briefings and research queues, not tourism.',
+    headline: 'The first home above the clouds.',
+    support:
+      'Floating cloud cities: modular pressurized habitats in the upper atmosphere, with a long-range target of Venus at 50 km by 2035.',
+    body: 'Olympus studies floating cloud cities as modular pressurized habitats in the thin air. Earth research first; long-range north star is Venus at roughly 50 km altitude by 2035. Briefings and research queues, not tourism.',
     tone: 'air',
     ...emailFirst,
     gallery: [
@@ -174,9 +183,10 @@ export const companyProducts = {
   },
   aeolus: {
     product: 'Aeolus Atmosphere',
-    headline: 'Wind as infrastructure.',
-    support: 'Climate-atmosphere research governance: updates, not deployment authority.',
-    body: 'Aeolus publishes research governance updates, not deployment authority.',
+    headline: 'Fix the atmosphere. Then own it.',
+    support:
+      'Atmospheric operating system in three phases: fix climate, then oxygen for space habitats, then radiation protection.',
+    body: 'Aeolus is the atmospheric operating system. Phase 1: fix climate change. Phase 2: oxygen and breathable air for space habitats (Olympus and Aether adjacency). Phase 3: radiation protection. Research governance leads; deployment authority is not claimed on this surface.',
     tone: 'air',
     ...emailFirst,
     gallery: [
@@ -194,9 +204,10 @@ export const companyProducts = {
   },
   phenix: {
     product: 'Phenix Mission',
-    headline: 'Heat. Ascent. Return.',
-    support: 'Mission-concept workspace for payload inquiry, not a launch booking.',
-    body: 'Phenix is a mission-concept workspace, not a launch booking.',
+    headline: 'Every launch is a death. Every orbit is a resurrection.',
+    support:
+      'Hawk Mark 1 launch vehicle, Bifröst Base Camp at the lunar south pole, and Zeus: a crewed Venus cloud city by 2035.',
+    body: 'Phenix is a mission-concept workspace: Hawk Mark 1, ascent and return architectures, Bifröst Base Camp at the lunar south pole, and Zeus aiming at a crewed Venus cloud city by 2035. Heat, ascent, return, researched without launch-booking fiction.',
     tone: 'space',
     ...emailFirst,
     gallery: [
@@ -213,10 +224,11 @@ export const companyProducts = {
     ],
   },
   aether: {
-    product: 'Aether Habitation',
-    headline: 'Quiet rooms above the curve.',
-    support: 'Space habitation concepts with legal status disclosed, never a territorial claim.',
-    body: 'Aether studies quiet rooms above the curve with legal status disclosed, never a territorial claim.',
+    product: 'Aether Claims',
+    headline: 'Phenix marks the territory. Aether claims it.',
+    support:
+      'Space real estate and territorial claims: orbital stations, lunar land claims, asteroid rights, and planetary surfaces.',
+    body: 'Aether is the claims and real estate company beyond Earth: a formal registry for orbital stations, lunar parcels, asteroid rights, and planetary surfaces. Not a habitat company. Station and volume studies support the claims layer; legal status is disclosed. No deed sales on this surface.',
     tone: 'space',
     ...emailFirst,
     gallery: [
@@ -233,11 +245,11 @@ export const companyProducts = {
     ],
   },
   corvus: {
-    product: 'Corvus Raven OS',
-    headline: 'Twenty-one prompts. One badge at the summit.',
+    product: 'Corvus Intelligence',
+    headline: 'The mind that runs eleven companies. And counting.',
     support:
-      'Raven OS: $100, $200, $300… through phased tiers to Prompt 21 at $21,000.',
-    body: 'Raven OS phased prompts with Twenty-First Raven badge at Prompt 21. Odin on Discord answers from the curated knowledge base.',
+      'Sovereign AI compute: solar-powered, offline-capable, modular. Raven OS is the substrate; Odin is the consumer product for founders.',
+    body: 'Corvus is a sovereign intelligence layer, not a cloud AI company. Raven OS is the modular, solar-aware, offline-capable substrate across the halls. Odin is the consumer product for founders. Phased Raven prompts remain the access path; Prompt 21 unlocks the Twenty-First Raven badge.',
     tone: 'space',
     ...emailFirst,
     gallery: [
@@ -252,6 +264,25 @@ export const companyProducts = {
       'Portfolio operator',
       'Security reviewer',
       'Enterprise pilot',
+    ],
+  },
+  meridian: {
+    product: 'Meridian Materials',
+    headline: 'Worn by everyone. Built to last forever.',
+    support:
+      'The materials layer beneath all four domains: Earth garment systems and space-rated suits.',
+    body: 'Meridian is the materials layer under the twelve halls. Earth: one pair of self-cleaning white stain-trapping polymer pants meant to replace dozens of purchases a year, targeting a September 2026 research launch. Space: a spacesuit rated for Venus, plus the Stealth body-armor supply chain. Blueprint and interest only on this surface.',
+    tone: 'land',
+    ...emailFirst,
+    gallery: [
+      { src: '/images/placeholders/default.svg', alt: 'Meridian materials placeholder' },
+    ],
+    interestGroups: [
+      'Consumer / wearer interest',
+      'Textile / materials partner',
+      'Aerospace suit partner',
+      'Defense / armor supply inquiry',
+      'Press / research',
     ],
   },
 }

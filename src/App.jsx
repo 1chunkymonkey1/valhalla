@@ -24,6 +24,9 @@ import {
 import { GRID_ORDER } from './lib/companies'
 import { resolveProductHost } from './lib/productHost'
 
+const EXTRA_COMPANY_ROUTES = ['meridian']
+const COMPANY_ROUTES = [...GRID_ORDER, ...EXTRA_COMPANY_ROUTES]
+
 function HostProductGate({ children }) {
   const hostProduct = useMemo(
     () => resolveProductHost(typeof window !== 'undefined' ? window.location.hostname : ''),
@@ -65,10 +68,10 @@ export default function App() {
                 <Route path="/team" element={<TeamWorkspacePage />} />
                 <Route path="/team/login" element={<TeamLoginPage />} />
                 <Route path="/team/join" element={<TeamJoinPage />} />
-                {GRID_ORDER.map((id) => (
+                {COMPANY_ROUTES.map((id) => (
                   <Route key={id} path={`/${id}`} element={<CompanySitePage slug={id} />} />
                 ))}
-                {GRID_ORDER.map((id) => (
+                {COMPANY_ROUTES.map((id) => (
                   <Route
                     key={`${id}-product`}
                     path={`/${id}/:productSlug`}

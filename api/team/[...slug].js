@@ -43,10 +43,11 @@ const HALL_META = {
   atoll: { name: 'Atoll', domain: 'water', pillar: 'habitation' },
   olympus: { name: 'Olympus', domain: 'air', pillar: 'habitation' },
   aether: { name: 'Aether', domain: 'space', pillar: 'habitation' },
-  demeter: { name: 'Demeter', domain: 'land', pillar: 'substrate' },
-  njord: { name: 'Njord', domain: 'water', pillar: 'substrate' },
-  aeolus: { name: 'Aeolus', domain: 'air', pillar: 'substrate' },
-  corvus: { name: 'Corvus', domain: 'space', pillar: 'substrate' },
+  demeter: { name: 'Demeter', domain: 'land', pillar: 'energy' },
+  njord: { name: 'Njord', domain: 'water', pillar: 'energy' },
+  aeolus: { name: 'Aeolus', domain: 'air', pillar: 'energy' },
+  corvus: { name: 'Corvus', domain: 'space', pillar: 'intelligence' },
+  meridian: { name: 'Meridian', domain: 'land', pillar: 'materials' },
 }
 
 function routeKey(req) {

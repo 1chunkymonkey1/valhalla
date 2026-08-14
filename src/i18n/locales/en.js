@@ -42,7 +42,7 @@ export default {
     boardKicker: 'The board',
     boardTitle: 'Twelve halls. One civilization web.',
     boardBody:
-      'Land, Water, Air, and Space stack Movement → Habitation → Substrate. Pathways carry transit, housing, power, ethanol, supply, and compute. Light a node to read its spiderweb.',
+      'Land, Water, Air, and Space stack Movement → Habitation → Energy / Intelligence. Meridian is the materials layer beneath. Pathways carry transit, housing, power, ethanol, supply, and compute. Light a node to read its spiderweb.',
     pathway: 'Pathway',
     hall: 'Hall',
     enterHall: 'Enter hall →',

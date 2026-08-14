@@ -16,9 +16,11 @@ export default function CompanySitePage({ slug }) {
 
   if (!company) return <Navigate to="/" replace />
 
-  const open = isCompanySiteOpen(company.id, now)
-  const previewAt = getPreviewUnlockAt(company.id)
-  const hubAt = getHubClickAt(company.id)
+  // Materials layer sits outside the mosaic reveal clock.
+  const open = company.mosaic === false || isCompanySiteOpen(company.id, now)
+  const previewAt =
+    company.mosaic === false ? now : getPreviewUnlockAt(company.id)
+  const hubAt = company.mosaic === false ? now : getHubClickAt(company.id)
 
   if (!open) {
     return (
@@ -59,6 +61,7 @@ function mapLegacy(company) {
         'phenix',
         'aether',
         'corvus',
+        'meridian',
       ].indexOf(company.id) + 1,
     slug: company.id,
     name: company.name,

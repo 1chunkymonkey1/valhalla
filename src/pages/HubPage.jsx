@@ -56,7 +56,7 @@ export default function HubPage() {
             <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.4em] text-black/35">
               Valhalla
             </p>
-            <p className="text-sm text-black/50">Twelve companies. One civilization.</p>
+            <p className="text-sm text-black/50">Twelve halls. One civilization.</p>
           </div>
         )}
 

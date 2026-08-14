@@ -210,12 +210,13 @@ export const wolfLines = [
     vehicle: 'train',
     epithet: 'Transcontinental railroad',
     naming:
-      'Ice-age namesake, the heavy spine. Formerly sketched as the Bifröst Line.',
+      'Ice-age wolf species, the heavy spine. (Bifröst is the Phenix lunar base camp; Dire Wolf is the Earth railroad.)',
     overview:
-      'Segmented transcontinental rail program: San Francisco toward New York in buildable phases, not a single overnight claim. Right-of-way, energy, and regional partners unlock each segment. Target network completion August 13, 2031.',
+      'Segmented transcontinental rail program: San Francisco to New York aiming for a 5.8-hour crossing on the network target, built in phases. Right-of-way, energy, and regional partners unlock each segment. Target network completion August 13, 2031.',
     powertrain: true,
-    does: 'Builds a phased coast-to-coast rail spine so freight and people can move on partner-backed segments, the heavy corridor under the rest of the pack.',
+    does: 'Builds a phased San Francisco to New York rail spine aiming for a 5.8-hour crossing so freight and people can move on partner-backed segments, the heavy corridor under the rest of the pack.',
     benefits: [
+      'SF→NY 5.8-hour network target',
       'Phased, buildable segments, not a single megabid fantasy',
       'Freight and people mix studies per corridor',
       'Civilization-scale spine for the rest of Wolf Transit',
@@ -519,9 +520,9 @@ export const wolfModelRows = [
 
 export const wolfMission = {
   title: 'What Wolf Transit is building',
-  body: 'Wolf Transit is a land-mobility arch: electric trail machines first, then ATV, car, truck, and rescue air, each named for a wolf of myth or deep history, culminating in Dire Wolf, a phased transcontinental railroad. Community building and fixing sit under every line: everything is yours to fix, with add-ons from helmets and fix-it kits to hydrogen boost power. We publish a product matrix, not a checkout cart. Fenrir 01 targets January 13, 2027; a new line or model lands every two months on that cadence.',
+  body: 'Wolf Transit is a land-mobility arch: electric trail machines first, then ATV, car, truck, and rescue air, each named for a wolf species or myth, culminating in Dire Wolf, a phased San Francisco to New York railroad aiming for a 5.8-hour crossing. Community building and fixing sit under every line: everything is yours to fix, with add-ons from helmets and fix-it kits to hydrogen boost power. We publish a product matrix, not a checkout cart. Fenrir 01 targets January 13, 2027; a new line or model lands every two months on that cadence.',
   cadence:
-    'Cadence: Fenrir 01 on January 13, 2027 → new product line 01 every two months through Dire Wolf Phase I → model 02/03 generations continue on the same drumbeat. Dire Wolf completes in segments by August 13, 2031.',
+    'Cadence: Fenrir 01 on January 13, 2027 → new product line 01 every two months through Dire Wolf Phase I → model 02/03 generations continue on the same drumbeat. Dire Wolf completes in segments by August 13, 2031, with a 5.8-hour SF→NY network target.',
 }
 
 export const direWolfPhases = [
@@ -547,7 +548,7 @@ export const direWolfPhases = [
     id: 'complete',
     name: 'Network target',
     window: 'August 13, 2031',
-    text: 'Segment spine complete as a researched, partner-backed transcontinental path. Status stays vision until each phase’s permits and capital gates clear.',
+    text: 'Segment spine complete as a researched, partner-backed San Francisco to New York path aiming for a 5.8-hour crossing. Status stays vision until each phase’s permits and capital gates clear.',
   },
 ]
 

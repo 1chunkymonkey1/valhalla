@@ -68,10 +68,11 @@ const COMPANY_SUMMARY = [
   { id: 'atoll', name: 'Atoll', domain: 'water', pillar: 'habitation', wave: 1 },
   { id: 'olympus', name: 'Olympus', domain: 'air', pillar: 'habitation', wave: 2 },
   { id: 'aether', name: 'Aether', domain: 'space', pillar: 'habitation', wave: 2 },
-  { id: 'demeter', name: 'Demeter', domain: 'land', pillar: 'substrate', wave: 1 },
-  { id: 'njord', name: 'Njord', domain: 'water', pillar: 'substrate', wave: 1 },
-  { id: 'aeolus', name: 'Aeolus', domain: 'air', pillar: 'substrate', wave: 2 },
-  { id: 'corvus', name: 'Corvus', domain: 'space', pillar: 'substrate', wave: 2 },
+  { id: 'demeter', name: 'Demeter', domain: 'land', pillar: 'energy', wave: 1 },
+  { id: 'njord', name: 'Njord', domain: 'water', pillar: 'energy', wave: 1 },
+  { id: 'aeolus', name: 'Aeolus', domain: 'air', pillar: 'energy', wave: 2 },
+  { id: 'corvus', name: 'Corvus', domain: 'space', pillar: 'intelligence', wave: 2 },
+  { id: 'meridian', name: 'Meridian', domain: 'land', pillar: 'materials', wave: 0 },
 ]
 
 function routeKey(req) {

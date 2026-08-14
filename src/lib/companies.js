@@ -120,7 +120,7 @@ export const companies = [
     id: 'demeter',
     name: 'Demeter',
     domain: 'land',
-    pillar: 'substrate',
+    pillar: 'energy',
     wave: 1,
     imageSrc: '/images/demeter.png',
     placeholderSrc: '/images/placeholders/default.svg',
@@ -130,7 +130,7 @@ export const companies = [
     id: 'njord',
     name: 'Njord',
     domain: 'water',
-    pillar: 'substrate',
+    pillar: 'energy',
     wave: 1,
     imageSrc: '/images/njord.png',
     placeholderSrc: '/images/placeholders/default.svg',
@@ -140,7 +140,7 @@ export const companies = [
     id: 'aeolus',
     name: 'Aeolus',
     domain: 'air',
-    pillar: 'substrate',
+    pillar: 'energy',
     wave: 2,
     imageSrc: '/images/aeolus.png',
     placeholderSrc: '/images/placeholders/default.svg',
@@ -150,11 +150,26 @@ export const companies = [
     id: 'corvus',
     name: 'Corvus',
     domain: 'space',
-    pillar: 'substrate',
+    pillar: 'intelligence',
     wave: 2,
     imageSrc: '/images/corvus.png',
     placeholderSrc: '/images/placeholders/default.svg',
     frameSeed: 424,
+  },
+  /**
+   * Materials layer beneath the 4×3 mosaic (not a mosaic tile).
+   * Routed at /meridian; excluded from GRID_ORDER / REVEAL_ORDER.
+   */
+  {
+    id: 'meridian',
+    name: 'Meridian',
+    domain: 'land',
+    pillar: 'materials',
+    wave: 0,
+    mosaic: false,
+    imageSrc: '/images/placeholders/default.svg',
+    placeholderSrc: '/images/placeholders/default.svg',
+    frameSeed: 505,
   },
 ]
 

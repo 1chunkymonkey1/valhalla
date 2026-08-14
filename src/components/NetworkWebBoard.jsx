@@ -17,7 +17,7 @@ const DOMAIN_HEADERS = [
 const PILLAR_LABELS = [
   { id: 'movement', label: 'Movement', y: 18 },
   { id: 'habitation', label: 'Habitation', y: 50 },
-  { id: 'substrate', label: 'Substrate', y: 82 },
+  { id: 'energy', label: 'Energy / Intelligence', y: 82 },
 ]
 
 function pct(n, total) {

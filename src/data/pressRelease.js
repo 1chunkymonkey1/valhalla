@@ -13,7 +13,7 @@ export const pressRelease = {
   headline:
     'Valhalla Launches a New Model for Building Civilization Across Land, Water, Air, and Space',
   paragraphs: [
-    'VALHALLA announced its civilization platform composed of 12 companies operating across four physical domains: land, water, air, and space. Valhalla was founded on a simple observation: humanity’s greatest challenges are no longer isolated problems. Energy, housing, transportation, climate resilience, water security, and expansion beyond Earth are deeply interconnected, yet are typically addressed by disconnected industries and organizations. Valhalla’s mission is to build the foundational systems that support civilization itself, creating integrated solutions for movement, habitation, energy production, materials, and intelligence across every environment where people live and operate.',
+    'VALHALLA announced its civilization platform composed of 12 mosaic companies operating across four physical domains: land, water, air, and space, with Meridian as the materials layer beneath. Valhalla was founded on a simple observation: humanity’s greatest challenges are no longer isolated problems. Energy, housing, transportation, climate resilience, water security, and expansion beyond Earth are deeply interconnected, yet are typically addressed by disconnected industries and organizations. Valhalla’s mission is to build the foundational systems that support civilization itself, creating integrated solutions for movement, habitation, energy production, materials, and intelligence across every environment where people live and operate.',
     'Today’s infrastructure challenges are growing faster than the systems designed to solve them. Communities face housing shortages, rising energy demand, water insecurity, transportation bottlenecks, and climate pressures. Meanwhile, organizations often address these issues independently, creating fragmented solutions that fail to work together. Consumers and industries alike are frustrated by systems that are expensive, inefficient, difficult to scale, and disconnected from one another. Housing is often unaffordable or inflexible. Energy infrastructure struggles to meet growing demand sustainably. Transportation networks require modernization. Water scarcity threatens communities around the world. The result is a collection of challenges that cannot be solved in isolation. Valhalla was founded to address these foundational issues at their source by building the infrastructure layers that enable civilization to function, grow, and adapt over the long term. Valhalla was founded to forge an army of champions that don’t back down from these problems.',
     'Valhalla brings together 12 specialized companies under a unified operating framework across four domains:',
   ],
@@ -32,11 +32,11 @@ export const pressRelease = {
     },
     {
       name: 'Space',
-      text: 'launch systems, habitation platforms, intelligence infrastructure, and future expansion capabilities.',
+      text: 'launch systems, claims and habitation platforms, intelligence infrastructure, and future expansion capabilities.',
     },
   ],
   quote: {
-    text: 'Civilizations have always relied on the same foundations: how people move, where they live, how they generate energy, and the systems that connect everything together. Valhalla exists to build those foundations for the next century. We do not create isolated products. We build the infrastructure layers that future generations will depend on.',
+    text: 'Civilizations have always relied on the same foundations: how people move, where they live, how they generate energy, the materials they wear and build with, and the systems that connect everything together. Valhalla exists to build those foundations for the next century. We do not create isolated products. We build the infrastructure layers that future generations will depend on.',
     attribution: 'Eason Greene, Founder of Valhalla',
   },
   closingParagraphs: [

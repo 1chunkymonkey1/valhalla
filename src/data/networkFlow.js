@@ -1,6 +1,6 @@
 /**
  * Network flow — how Valhalla’s twelve halls interconnect and grow.
- * Grid: Land | Water | Air | Space × Movement | Habitation | Substrate.
+ * Grid: Land | Water | Air | Space × Movement | Habitation | Energy / Intelligence.
  */
 
 export const flowDomains = [
@@ -11,7 +11,7 @@ export const flowDomains = [
     companies: [
       { id: 'wolf', name: 'Wolf', pillar: 'Movement' },
       { id: 'holm', name: 'Holm', pillar: 'Habitation' },
-      { id: 'demeter', name: 'Demeter', pillar: 'Substrate' },
+      { id: 'demeter', name: 'Demeter', pillar: 'Energy' },
     ],
   },
   {
@@ -21,7 +21,7 @@ export const flowDomains = [
     companies: [
       { id: 'viking', name: 'Viking', pillar: 'Movement' },
       { id: 'atoll', name: 'Atoll', pillar: 'Habitation' },
-      { id: 'njord', name: 'Njord', pillar: 'Substrate' },
+      { id: 'njord', name: 'Njord', pillar: 'Energy' },
     ],
   },
   {
@@ -31,7 +31,7 @@ export const flowDomains = [
     companies: [
       { id: 'eagle', name: 'Eagle', pillar: 'Movement' },
       { id: 'olympus', name: 'Olympus', pillar: 'Habitation' },
-      { id: 'aeolus', name: 'Aeolus', pillar: 'Substrate' },
+      { id: 'aeolus', name: 'Aeolus', pillar: 'Energy' },
     ],
   },
   {
@@ -41,7 +41,7 @@ export const flowDomains = [
     companies: [
       { id: 'phenix', name: 'Phenix', pillar: 'Movement' },
       { id: 'aether', name: 'Aether', pillar: 'Habitation' },
-      { id: 'corvus', name: 'Corvus', pillar: 'Substrate' },
+      { id: 'corvus', name: 'Corvus', pillar: 'Intelligence' },
     ],
   },
 ]
@@ -67,7 +67,7 @@ export const edgeKinds = [
     id: 'column',
     label: 'Domain stack',
     color: '#5a4634',
-    description: 'Movement → Habitation → Substrate within a domain',
+    description: 'Movement → Habitation → Energy / Intelligence within a domain',
   },
   {
     id: 'transit',
@@ -379,7 +379,7 @@ export const flowEdges = [
     curve: -22,
     label: 'Dire Wolf spine',
     detail:
-      'Wolf’s Dire Wolf railroad (phased SF→NYC, target Aug 2031) ties land movement to national air/rail catch-up—a civilization-scale spine.',
+      'Wolf’s Dire Wolf railroad (phased SF→NY aiming 5.8 hours, target Aug 2031) ties land movement to national air/rail catch-up: a civilization-scale spine.',
   },
 
   // —— Compute / intelligence ——
@@ -430,51 +430,51 @@ export const flowEdges = [
 export const companyTies = {
   wolf: {
     title: 'Wolf · Movement · Land',
-    body: 'The mosaic’s land-mobility spine: Fenrir → Freki → Dire Wolf. Feeds Holm sites, pulls Demeter ethanol for Tier 3, and receives Corvus intelligence. Dire Wolf aims coast-to-coast by Aug 2031.',
+    body: 'The mosaic’s land-mobility spine: Fenrir → Freki → Dire Wolf. Feeds Holm sites, pulls Demeter ethanol for Tier 3, and receives Corvus intelligence. Dire Wolf aims SF→NY in 5.8 hours by Aug 2031.',
   },
   viking: {
     title: 'Viking · Movement · Water',
-    body: 'Narrative voyages that seed Atoll interest and share transit DNA with Wolf and Eagle. Njord Harbor Power and Demeter flex-fuel studies sit under the hull.',
+    body: 'Vinland Saga voyages that seed Atoll interest and share transit DNA with Wolf and Eagle. Njord Harbor Power and Demeter flex-fuel studies sit under the hull.',
   },
   eagle: {
     title: 'Eagle · Movement · Air',
-    body: 'Aviation research climbing from sea patterns toward Phenix rigor. Feeds Olympus thin-air habitation queues—no flight timetable claims.',
+    body: 'Clean aviation with SAF and electric propulsion research, including talks toward Spirit Airlines. Feeds Olympus thin-air habitation queues—no flight timetable claims.',
   },
   phenix: {
     title: 'Phenix · Movement · Space',
-    body: 'Mission concepts that open Aether habitation ledgers. Corvus holds the docs; Eagle discipline is the ladder up.',
+    body: 'Hawk Mark 1, Bifröst lunar base camp, and Zeus Venus 2035. Opens Aether claims ledgers. Corvus holds the docs; Eagle discipline is the ladder up.',
   },
   holm: {
     title: 'Holm · Habitation · Land',
-    body: 'Modular land homes fed by Wolf logistics and Demeter site energy. Shares modular DNA with Atoll; Corvus keeps feasibility honest.',
+    body: 'Twelve linkable modules fed by Wolf logistics and Demeter site energy. Shares modular DNA with Atoll; Corvus keeps feasibility honest.',
   },
   atoll: {
     title: 'Atoll · Habitation · Water',
-    body: 'Floating rings along Viking routes, powered by Njord research, climbing the habitat ladder toward Olympus and Aether.',
+    body: 'Atoll 01/02/03 scales along Viking routes, powered by Njord research, first delivery target Tuvalu, climbing toward Olympus and Aether.',
   },
   olympus: {
     title: 'Olympus · Habitation · Air',
-    body: 'Upper-atmosphere habitation requirements between Eagle access and Aeolus climate fields—bridge to Aether orbit.',
+    body: 'Pressurized cloud cities between Eagle access and Aeolus climate fields—bridge to Aether claims and Venus 50 km / 2035 with Phenix Zeus.',
   },
   aether: {
     title: 'Aether · Habitation · Space',
-    body: 'Orbital habitation research registry. Phenix opens the door; Corvus is the local intelligence layer. No territory deeds.',
+    body: 'Claims and real estate beyond Earth. Phenix marks the territory; Aether claims it. Corvus is the local intelligence layer. No deed sales on this surface.',
   },
   demeter: {
-    title: 'Demeter · Substrate · Land',
-    body: 'Soil-first agrivoltaics and Ethanol Grove. Powers Holm, fuels Wolf Tier 3, and bunkers with Njord—claims last.',
+    title: 'Demeter · Energy · Land',
+    body: 'California-first agrivoltaics, geothermal, wind, green hydrogen, SMR, and a 75-year Dyson roadmap. Powers Holm, fuels Wolf Tier 3, bunkers with Njord.',
   },
   njord: {
-    title: 'Njord · Substrate · Water',
-    body: 'Maritime power and water systems for Atoll and Viking. Links Demeter energy diligence to Aeolus atmospheric sensing.',
+    title: 'Njord · Energy · Water',
+    body: 'Full water energy layer for Atoll and Viking: clean, reuse, split, manufacture, atmospheric water, green hydrogen. Links Demeter diligence to Aeolus sensing.',
   },
   aeolus: {
-    title: 'Aeolus · Substrate · Air',
-    body: 'Atmosphere governance informed by Olympus platforms and Njord sensing. Touched by Dire Wolf ambition and Corvus provenance.',
+    title: 'Aeolus · Energy · Air',
+    body: 'Atmospheric OS: climate, oxygen for habitats, radiation protection. Informed by Olympus platforms and Njord sensing; Corvus holds provenance.',
   },
   corvus: {
-    title: 'Corvus · Substrate · Space',
-    body: 'Raven OS / Odin—the intelligence spine looping knowledge back to Wolf and across halls without false ops claims.',
+    title: 'Corvus · Intelligence · Space',
+    body: 'Raven OS / Odin—the sovereign intelligence spine looping knowledge back to Wolf and across halls without false ops claims.',
   },
 }
 
@@ -492,7 +492,7 @@ export const growthLoops = [
   {
     id: 'domain-reinforcement',
     title: 'Domain reinforcement',
-    text: 'Each column (Land/Water/Air/Space) stacks Movement → Habitation → Substrate so communities, vehicles, and power co-evolve.',
+    text: 'Each column (Land/Water/Air/Space) stacks Movement → Habitation → Energy / Intelligence so communities, vehicles, and power co-evolve. Meridian materials sits beneath.',
   },
   {
     id: 'intelligence-spine',

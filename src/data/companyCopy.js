@@ -7,14 +7,18 @@ export const STATUS_LABELS = {
   operational: 'Operational',
 }
 
+/**
+ * Legacy per-company copy. Only STATUS_LABELS is imported by the live site.
+ * Kept aligned with companyProducts.js / hallKnowledge.js so it does not drift again.
+ */
 export const companyCopy = {
   wolf: {
-    hero: 'Ride the frontier. Research the route.',
-    body: 'Wolf Transit is a land-mobility arch: Fenrir motorcycle, Hati ATV, Sköll car, Geri truck, Freki rescue air, and Dire Wolf rail. Transparent research, not checkout.',
+    hero: 'The pack moves first.',
+    body: 'Wolf Transit is a land-mobility arch culminating in Dire Wolf: San Francisco to New York aiming for a 5.8-hour crossing. Transparent research, not checkout.',
     bullets: [
       'Fenrir 01 (January 13, 2027) and the matrix cadence',
       'Dealer and OEM inquiry routing',
-      'Dire Wolf phased railroad, complete by August 13, 2031',
+      'Dire Wolf SF→NY 5.8 hours, complete by August 13, 2031',
     ],
     formTitle: '',
     formHint: '',
@@ -22,10 +26,10 @@ export const companyCopy = {
     interestOptions: ['Rider interest', 'Dealer / service', 'OEM / vendor', 'Research access'],
   },
   holm: {
-    hero: 'Twelve modules. One home, when the site allows it.',
-    body: 'Holm is a modular habitation concept spanning log cabin, sod house, and adobe-inspired systems. This MVP is a configurator sketch and feasibility intake, not stamped plans or a construction contract.',
+    hero: 'Built for the terrain you chose.',
+    body: 'Holm is twelve linkable modules: timber, sod, or adobe by terrain. Logistics, financing, and real estate sit on the interest path. Not stamped plans.',
     bullets: [
-      'Module concept explorer',
+      'Twelve linkable modules',
       'Site feasibility checklist',
       'Buyer and partner lead capture',
     ],
@@ -35,10 +39,10 @@ export const companyCopy = {
     interestOptions: ['Prospective homeowner', 'Site owner', 'Builder / installer', 'Financing partner'],
   },
   demeter: {
-    hero: 'Land energy, diligence first.',
-    body: 'Demeter tracks energy-project origination across agrivoltaics and related pathways. The public surface here is research status only. Project workspaces stay internal until gates clear.',
+    hero: 'The same acre feeds a family and powers twenty homes.',
+    body: 'Demeter tracks California-first land energy across agrivoltaics, green hydrogen, geothermal, wind, and SMR on a 75-year path toward a Dyson swarm. Research status only.',
     bullets: [
-      'Technology pathway overview (assumption-labeled)',
+      'Agrivoltaics, geothermal, wind, green hydrogen, SMR',
       'Partner / landowner inquiry',
       'No capacity, CO₂, or ROI claims without reviewed methodology',
     ],
@@ -49,9 +53,9 @@ export const companyCopy = {
   },
   viking: {
     hero: 'Board as yourself. Disembark as Ragnar.',
-    body: 'Viking is a narrative voyage concept, destination, story, and guest interest. Tickets and environmental performance claims stay off until licensed operators and reviewed methodologies exist.',
+    body: 'Viking is a narrative voyage concept. The Vinland Saga is available to anyone who boards. Tickets wait on licensed operators.',
     bullets: [
-      'Voyage concept pages',
+      'Vinland Saga narrative arc',
       'Guest interest registry',
       'Charter / operator partner inquiry',
     ],
@@ -61,11 +65,11 @@ export const companyCopy = {
     interestOptions: ['Prospective guest', 'Travel advisor', 'Operator / charter partner'],
   },
   atoll: {
-    hero: 'Atoll 01 · 02 · 03',
-    body: 'Floating modular habitats under controlled interest. Pre-sale language in source material does not authorize fund collection here. Habitability stays gated behind engineering and jurisdictional review.',
+    hero: 'Where land ends, Atoll begins.',
+    body: 'Atoll 01 single family, Atoll 02 twelve families, Atoll 03 municipal. First delivery target: Tuvalu government. No fund collection on this surface.',
     bullets: [
-      'Concept catalogue for Atoll 01 / 02 / 03',
-      'Site-fit questionnaire',
+      'Atoll 01 / 02 / 03 scale tiers',
+      'Tuvalu first-delivery target',
       'Partner pipeline intake',
     ],
     formTitle: 'Express interest',
@@ -74,12 +78,12 @@ export const companyCopy = {
     interestOptions: ['Prospective resident', 'Site / harbor partner', 'Marine engineer', 'Manufacturer'],
   },
   njord: {
-    hero: 'The water substrate.',
-    body: 'Njord maps opportunities across OTEC, atmospheric water generation, and maritime power. Public pages are research registers, never water-quality or energy-output promises.',
+    hero: 'Every molecule of water in the galaxy. Ours.',
+    body: 'Njord is the full water energy layer: clean, reuse, split, manufacture, turn air into water, plus offshore energy, maritime power, and green hydrogen. Research before output promises.',
     bullets: [
-      'Technology research register',
-      'Site / partner intake',
-      'Scenario library with assumption disclosures',
+      'Atmospheric water, OTEC, offshore energy, harbor power',
+      'Green hydrogen from water',
+      'Clean / reuse / manufacture research pathways',
     ],
     formTitle: 'Submit a research or site lead',
     formHint: 'Informational only.',
@@ -87,24 +91,24 @@ export const companyCopy = {
     interestOptions: ['Researcher / engineer', 'Site owner', 'Maritime partner', 'Other'],
   },
   eagle: {
-    hero: 'Aviation research. Not a timetable.',
-    body: 'Eagle hosts aviation innovation research and partner/route opportunity CRM. This page does not claim flight service, acquisitions, customer endorsements, or environmental performance.',
+    hero: 'The more you fly, the better it is for the atmosphere.',
+    body: 'Eagle hosts clean aviation research with SAF and electric propulsion. In talks toward acquiring Spirit Airlines. No flight schedule on this surface.',
     bullets: [
-      'Research and opportunity overview',
+      'SAF and electric propulsion research',
       'Traveler interest waitlist',
-      'Operator / airport partner inquiry',
+      'Spirit Airlines talks as network path',
     ],
     formTitle: 'Register interest',
-    formHint: 'No third-party names or likenesses are used as endorsements.',
+    formHint: 'Interest and partner inquiry only.',
     fields: ['name', 'email', 'interest'],
     interestOptions: ['Prospective traveler', 'Airline / operator partner', 'Airport partner', 'Advisor'],
   },
   olympus: {
-    hero: 'Cloud cities as research problems.',
-    body: 'Olympus maintains a systems-requirements library for upper-atmosphere habitat concepts. Assumptions, hazards, and sources are first-class. Habitability timelines are not.',
+    hero: 'The first home above the clouds.',
+    body: 'Olympus studies floating cloud cities as modular pressurized habitats. Long-range target: Venus at 50 km by 2035.',
     bullets: [
-      'Source-linked research library',
-      'Requirements and hazard framing',
+      'Pressurized cloud-city research',
+      'Venus 50 km / 2035 north star',
       'Conceptual partner intake',
     ],
     formTitle: 'Propose collaboration',
@@ -113,12 +117,12 @@ export const companyCopy = {
     interestOptions: ['Aerospace engineer', 'Academic partner', 'Industrial partner', 'Reviewer'],
   },
   aeolus: {
-    hero: 'Atmosphere research with a risk register.',
-    body: 'Aeolus is a climate-atmosphere research governance workspace. Source vision language is not a claim of ownership, permission, or deployment authority.',
+    hero: 'Fix the atmosphere. Then own it.',
+    body: 'Aeolus is the atmospheric operating system: Phase 1 climate, Phase 2 oxygen for habitats, Phase 3 radiation protection. Research governance leads; deployment authority is not claimed here.',
     bullets: [
-      'Research registry overview',
-      'Hypothesis and model provenance framing',
-      'Stakeholder / ethics review intake',
+      'Three-phase atmospheric OS',
+      'Oxygen path for Olympus / Aether',
+      'Radiation protection in Phase 3',
     ],
     formTitle: 'Request research access',
     formHint: 'No intervention deployment workflow.',
@@ -126,12 +130,12 @@ export const companyCopy = {
     interestOptions: ['Climate scientist', 'Legal / ethics reviewer', 'Policy partner', 'Program staff'],
   },
   phenix: {
-    hero: 'Missions in concept mode.',
-    body: 'Phenix tracks launch-vehicle documentation and mission requirements with high-fidelity status labels. No launch booking or payload acceptance on this surface.',
+    hero: 'Every launch is a death. Every orbit is a resurrection.',
+    body: 'Phenix tracks Hawk Mark 1, Bifröst Base Camp at the lunar south pole, and Zeus toward a crewed Venus cloud city by 2035. No launch booking here.',
     bullets: [
-      'Mission concept overview',
-      'Payload inquiry intake',
-      'Partner coordination (controlled)',
+      'Hawk Mark 1 launch vehicle',
+      'Bifröst lunar south-pole base camp',
+      'Zeus / Venus 2035 north star',
     ],
     formTitle: 'Submit a payload inquiry',
     formHint: 'Concept / research status until licensed.',
@@ -139,29 +143,42 @@ export const companyCopy = {
     interestOptions: ['Payload customer (prospective)', 'Engineering partner', 'Advisor', 'Other'],
   },
   aether: {
-    hero: 'Space habitation, legally disclosed.',
-    body: 'Aether is a research registry for orbital stations and related habitation concepts. It does not sell, grant, or imply valid ownership of lunar, asteroid, orbital, or other extraterrestrial territory.',
+    hero: 'Phenix marks the territory. Aether claims it.',
+    body: 'Aether is the claims and real estate company beyond Earth. Legal status disclosed. No deed sales on this surface.',
     bullets: [
-      'Station / habitat concept pages',
-      'Legal-status disclosures',
+      'Claims / registry framing',
+      'Lunar, asteroid, and planetary claim studies',
       'Partner interest portal',
     ],
     formTitle: 'Partner or research inquiry',
-    formHint: 'No deeds, parcels, or reservation payments.',
+    formHint: 'No deed sales on this surface.',
     fields: ['name', 'email', 'organization', 'interest'],
     interestOptions: ['Mission / station partner', 'Counsel / policy', 'Research staff', 'Other'],
   },
   corvus: {
-    hero: 'Odin, think locally.',
-    body: 'Corvus ships Odin: a local-first founder workspace for projects, documents, tasks, and decision logs. Sovereign infrastructure, solar power, offline capability, and orbital-debris operations are not claimed until demonstrated.',
+    hero: 'The mind that runs eleven companies. And counting.',
+    body: 'Corvus is sovereign AI compute: Raven OS substrate and Odin as the founder consumer product. Prompt ladder is the access path.',
     bullets: [
-      'Local workspace preview',
-      'Projects · docs · tasks · decisions',
-      'Privacy-first posture (export / delete planned)',
+      'Sovereign intelligence substrate',
+      'Odin consumer product for founders',
+      'Raven OS phased prompts; Prompt 21 badge',
     ],
     formTitle: 'Request early access',
     formHint: 'Founder / small-team waitlist.',
     fields: ['name', 'email', 'interest'],
     interestOptions: ['Founder', 'Small team', 'Portfolio operator', 'Security reviewer'],
+  },
+  meridian: {
+    hero: 'Worn by everyone. Built to last forever.',
+    body: 'Meridian is the materials layer: Earth garment (September 2026 research), Venus Suit, and Stealth Armor supply chain.',
+    bullets: [
+      'Earth garment research toward September 2026',
+      'Venus Suit',
+      'Stealth Armor supply chain',
+    ],
+    formTitle: 'Express interest',
+    formHint: 'Blueprint and interest only.',
+    fields: ['name', 'email', 'interest'],
+    interestOptions: ['Consumer / wearer', 'Materials partner', 'Aerospace suit partner', 'Press'],
   },
 }
