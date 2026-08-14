@@ -86,25 +86,6 @@
   opacity: 1;
 }
 
-.vh-hub__brand-corner {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  z-index: 2;
-  display: block;
-  width: 28px;
-  height: 28px;
-}
-
-@media (min-width: 640px) {
-  .vh-hub__brand-corner {
-    top: 1.5rem;
-    right: 1.75rem;
-    width: 32px;
-    height: 32px;
-  }
-}
-
 .vh-hub__mark {
   margin: 0;
   font-family: var(--font-mono);
@@ -112,6 +93,60 @@
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.3);
+}
+
+/* Persistent site chrome: brand left, menu right */
+.vh-chrome {
+  pointer-events: none;
+}
+
+.vh-chrome__brand {
+  pointer-events: auto;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(247, 247, 243, 0.92);
+  backdrop-filter: blur(8px);
+  text-decoration: none;
+}
+
+.vh-chrome__brand img {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
+.vh-chrome__brand:focus-visible {
+  outline: 2px solid #1a1a1a;
+  outline-offset: 2px;
+}
+
+.vh-chrome--company .vh-chrome__brand {
+  background: rgba(247, 247, 243, 0.88);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+@media (min-width: 640px) {
+  .vh-chrome__brand {
+    top: 1.15rem;
+    left: 1.15rem;
+  }
+
+  .vh-chrome__brand img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .vh-menu {
+    top: 1.15rem;
+    right: 1.15rem;
+  }
 }
 
 /* Next mosaic unlock, top of viewport, live hub only */
@@ -126,8 +161,9 @@
   align-items: baseline;
   justify-content: center;
   gap: 0.4rem 0.55rem;
-  max-width: min(92vw, 28rem);
-  padding: 0 3.5rem;
+  max-width: min(calc(100vw - 8.5rem), 28rem);
+  padding: 0 0.35rem;
+  box-sizing: border-box;
   pointer-events: none;
   font-family: var(--font-mono);
   font-size: 10px;
@@ -434,7 +470,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 1.5rem;
+  padding: 4.75rem 1.5rem 1.25rem;
 }
 
 .cs-hero__hub {
@@ -915,6 +951,7 @@
 
 /* -- Hub menu -- */
 .vh-menu {
+  pointer-events: auto;
   position: fixed;
   top: 1rem;
   right: 1rem;
@@ -930,6 +967,15 @@
   cursor: pointer;
   display: grid;
   place-items: center;
+}
+
+.vh-menu__toggle:focus-visible {
+  outline: 2px solid #1a1a1a;
+  outline-offset: 2px;
+}
+
+.vh-menu--company .vh-menu__toggle:focus-visible {
+  outline-color: #f7f4ee;
 }
 
 .vh-menu__bars {
@@ -1022,17 +1068,6 @@
 
 .vh-menu--company .vh-menu__bars i {
   background: #f7f4ee;
-}
-
-.cs-menu-slot {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.cs-menu-slot .vh-menu {
-  pointer-events: auto;
 }
 
 .vh-hub--dormant .vh-hub__inner {
@@ -3586,7 +3621,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 1rem 1.25rem 0.5rem;
+  padding: 4.75rem 1.25rem 0.5rem;
 }
 
 .cs-pub {

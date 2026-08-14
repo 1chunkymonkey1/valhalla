@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom'
-import SiteMenu from '../components/layout/SiteMenu'
 import EmailCapture from '../components/EmailCapture'
 import { CONTACT_EMAIL, DISCORD_INVITE } from '../data/pressRelease'
 
 function AudiencePage({ kind, title, lead, bullets }) {
   return (
     <div className="vh-page">
-      <SiteMenu />
       <header className="vh-aud__hero">
         <p className="vh-aud__mark">Valhalla</p>
         <h1>{title}</h1>
@@ -84,7 +82,6 @@ export function PartnersPage() {
 export function ContactPage() {
   return (
     <div className="vh-page">
-      <SiteMenu />
       <header className="vh-aud__hero">
         <p className="vh-aud__mark">Valhalla</p>
         <h1>Contact</h1>
@@ -111,7 +108,6 @@ export function ContactPage() {
 export function RoadmapIndexPage() {
   return (
     <div className="vh-page">
-      <SiteMenu />
       <header className="vh-aud__hero">
         <p className="vh-aud__mark">Valhalla</p>
         <h1>Roadmap</h1>

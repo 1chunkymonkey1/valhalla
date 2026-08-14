@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import SiteMenu from '../components/layout/SiteMenu'
 import {
   clearBrowserSupabaseSession,
   getGoogleAccessToken,
@@ -108,7 +107,6 @@ export default function TeamLoginPage() {
 
   return (
     <div className="vh-page vh-team">
-      <SiteMenu />
       <div className="vh-team__split">
         <section className="vh-team__explain">
           <p className="vh-team__mark">Valhalla Empire</p>

@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom'
-import SiteMenu from '../components/layout/SiteMenu'
 import { pressRelease, DISCORD_INVITE, CONTACT_EMAIL } from '../data/pressRelease'
 
 export default function PressPage() {
   const p = pressRelease
   return (
     <div className="vh-page">
-      <SiteMenu />
       <article className="vh-press">
         <header className="vh-press__mast">
           <p className="vh-press__org">{p.org}</p>

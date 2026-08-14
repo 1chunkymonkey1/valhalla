@@ -5,7 +5,6 @@ import CountdownClock from './CountdownClock'
 import MosaicGrid from './MosaicGrid'
 import NextUnlockTimer from './NextUnlockTimer'
 import DemoControls from './DemoControls'
-import SiteMenu from '../layout/SiteMenu'
 import EmailCapture from '../EmailCapture'
 import CompanySocialLinks from '../CompanySocialLinks'
 import AskHallWidget from '../AskHallWidget'
@@ -43,17 +42,6 @@ export default function ValhallaHub() {
   return (
     <div className={`vh-hub ${showCountdown ? 'vh-hub--dormant' : ''}`}>
       <div className="vh-hub__grain" aria-hidden />
-      {showCountdown && (
-        <img
-          className="vh-hub__brand-corner"
-          src="/brand-mark.png"
-          alt="Valhalla"
-          width={32}
-          height={32}
-          decoding="async"
-        />
-      )}
-      {!showCountdown && <SiteMenu tone="hub" />}
       {!showCountdown && <NextUnlockTimer now={now} />}
       <div className="vh-hub__inner">
         <DemoControls mode={mode} rate={rate} paused={paused} />

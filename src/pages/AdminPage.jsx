@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import SiteMenu from '../components/layout/SiteMenu'
 import AdminRevealControls from '../components/AdminRevealControls'
 import { formatUsd } from '../data/payLinks'
 import { HALL_IDS, TEAM_ROLES } from '../data/teamRoles'
@@ -402,7 +401,6 @@ export default function AdminPage() {
   if (!auth.ok) {
     return (
       <div className="vh-page vh-admin">
-        <SiteMenu />
         <form className="vh-admin__gate" onSubmit={login} autoComplete="on">
           <p className="vh-admin__mark">Valhalla</p>
           <h1>Admin</h1>
@@ -584,7 +582,6 @@ export default function AdminPage() {
 
   return (
     <div className="vh-page vh-admin vh-admin--in">
-      <SiteMenu />
       <header className="vh-admin__top">
         <div>
           <p className="vh-admin__mark">Valhalla</p>

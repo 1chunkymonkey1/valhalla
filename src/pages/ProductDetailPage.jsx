@@ -5,7 +5,6 @@ import { companyProducts } from '../data/companyProducts'
 import { powertrainNoteForStencil } from '../data/powertrainTiers'
 import ProductStencil from '../components/roadmap/ProductStencils'
 import EmailCapture from '../components/EmailCapture'
-import SiteMenu from '../components/layout/SiteMenu'
 import { formatMatrixDate } from '../data/hallMatrices'
 import { CORVUS_PHASES, corvusPromptPayLinks } from '../data/corvusPricing'
 import { formatUsd } from '../data/payLinks'
@@ -76,10 +75,6 @@ export default function ProductDetailPage({
         '--cs-muted': tone.muted,
       }}
     >
-      <div className="cs-menu-slot">
-        <SiteMenu tone="company" />
-      </div>
-
       <header className="product-detail__header">
         <div className="product-detail__bar">
           <Link to={`/${companyId}`} className="product-detail__back">

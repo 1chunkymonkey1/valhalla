@@ -1,0 +1,42 @@
+import { useMemo } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { GRID_ORDER } from '../../lib/companies'
+import { resolveProductHost } from '../../lib/productHost'
+import SiteMenu from './SiteMenu'
+
+function isCompanyPath(pathname) {
+  return GRID_ORDER.some(
+    (id) => pathname === `/${id}` || pathname.startsWith(`/${id}/`),
+  )
+}
+
+/**
+ * Persistent public chrome: brand mark (home) top-left, hamburger top-right.
+ */
+export default function SiteChrome() {
+  const location = useLocation()
+  const hostProduct = useMemo(
+    () =>
+      resolveProductHost(
+        typeof window !== 'undefined' ? window.location.hostname : '',
+      ),
+    [],
+  )
+  const tone =
+    hostProduct || isCompanyPath(location.pathname) ? 'company' : 'hub'
+
+  return (
+    <div className={`vh-chrome vh-chrome--${tone}`} aria-label="Site chrome">
+      <Link to="/" className="vh-chrome__brand" aria-label="Valhalla home">
+        <img
+          src="/brand-mark.png"
+          alt=""
+          width={32}
+          height={32}
+          decoding="async"
+        />
+      </Link>
+      <SiteMenu tone={tone} />
+    </div>
+  )
+}

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import SiteMenu from '../components/layout/SiteMenu'
 import CompanySocialLinks from '../components/CompanySocialLinks'
 
 export default function TeamWorkspacePage() {
@@ -89,7 +88,6 @@ export default function TeamWorkspacePage() {
 
   return (
     <div className="vh-page vh-team vh-team--in">
-      <SiteMenu />
       <header className="vh-team__top">
         <div>
           <p className="vh-team__mark">Team workspace</p>

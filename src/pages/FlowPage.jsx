@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import NetworkWebBoard from '../components/NetworkWebBoard'
-import SiteMenu from '../components/layout/SiteMenu'
 import {
   allCompanies,
   companyTies,
@@ -69,7 +68,6 @@ export default function FlowPage() {
 
   return (
     <div className="vh-page vh-flow-page">
-      <SiteMenu />
       <header className="vh-flow__hero">
         <p className="vh-flow__mark">Valhalla</p>
         <h1>Empire web</h1>

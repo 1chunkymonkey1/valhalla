@@ -10,6 +10,7 @@ import PageEditorPage from './pages/PageEditorPage'
 import TeamLoginPage from './pages/TeamLoginPage'
 import TeamJoinPage from './pages/TeamJoinPage'
 import TeamWorkspacePage from './pages/TeamWorkspacePage'
+import SiteChrome from './components/layout/SiteChrome'
 import {
   ContactPage,
   ConsumersPage,
@@ -41,6 +42,7 @@ function HostProductGate({ children }) {
 export default function App() {
   return (
     <BrowserRouter>
+      <SiteChrome />
       <HostProductGate>
         <Routes>
           <Route path="/" element={<ValhallaHub />} />

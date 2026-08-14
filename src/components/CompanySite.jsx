@@ -4,7 +4,6 @@ import NextDoor from './NextDoor'
 import ReservationForm from './ReservationForm'
 import EmailCapture from './EmailCapture'
 import ProductRoadmap from './roadmap/ProductRoadmap'
-import SiteMenu from './layout/SiteMenu'
 import CompanySocialLinks from './CompanySocialLinks'
 import AskHallWidget from './AskHallWidget'
 import PublishedBlocks, { fetchPublishedLayout } from './PublishedBlocks'
@@ -108,10 +107,6 @@ export default function CompanySite({ company, now }) {
         '--cs-wash': tone.wash,
       }}
     >
-      <div className="cs-menu-slot">
-        <SiteMenu tone="company" />
-      </div>
-
       {useCustom ? (
         <>
           <div className="cs-pub-bar">

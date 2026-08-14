@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import SiteMenu from '../components/layout/SiteMenu'
 import {
   clearBrowserSupabaseSession,
   getGoogleAccessToken,
@@ -134,7 +133,6 @@ export default function TeamJoinPage() {
 
   return (
     <div className="vh-page vh-team">
-      <SiteMenu />
       <form className="vh-team__gate vh-team__gate--solo" onSubmit={onSubmit}>
         <p className="vh-team__mark">Join Valhalla</p>
         <h1>Accept invite</h1>
