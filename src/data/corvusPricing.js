@@ -25,7 +25,7 @@ export const CORVUS_PHASES = [
     id: 'kindling',
     name: 'Kindling',
     prompts: [4, 5, 6, 7],
-    blurb: 'Commitment steepens — still reachable for early builders.',
+    blurb: 'Commitment steepens, still reachable for early builders.',
   },
   {
     id: 'ember',
@@ -53,7 +53,7 @@ export const CORVUS_PHASES = [
   },
 ]
 
-/** Explicit USD table — source of truth for amounts. */
+/** Explicit USD table, source of truth for amounts. */
 export const CORVUS_PROMPT_PRICES_USD = {
   1: 100,
   2: 200,

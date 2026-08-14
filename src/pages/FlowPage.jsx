@@ -31,7 +31,7 @@ export default function FlowPage() {
       <header className="vh-flow__hero">
         <p className="vh-flow__mark">Valhalla</p>
         <h1>Network flow</h1>
-        <p>Land · Water · Air · Space — movement, habitation, substrate interlocking.</p>
+        <p>Land · Water · Air · Space, movement, habitation, substrate interlocking.</p>
       </header>
 
       <div className="vh-flow">

@@ -10,20 +10,20 @@ export const STATUS_LABELS = {
 export const companyCopy = {
   wolf: {
     hero: 'Ride the frontier. Research the route.',
-    body: 'Wolf Transit is a land-mobility arch: Fenrir motorcycle, Hati ATV, Sköll car, Geri truck, Freki rescue air, and Dire Wolf rail — email interest only until predeposits open. Transparent research, not checkout.',
+    body: 'Wolf Transit is a land-mobility arch: Fenrir motorcycle, Hati ATV, Sköll car, Geri truck, Freki rescue air, and Dire Wolf rail. Transparent research, not checkout.',
     bullets: [
-      'Email list for Fenrir 01 (January 13, 2027) and the matrix cadence',
+      'Fenrir 01 (January 13, 2027) and the matrix cadence',
       'Dealer and OEM inquiry routing',
-      'Dire Wolf phased railroad — complete by August 13, 2031',
+      'Dire Wolf phased railroad, complete by August 13, 2031',
     ],
-    formTitle: 'Join the list',
-    formHint: 'Email only for now. Predeposits opening soon.',
+    formTitle: '',
+    formHint: '',
     fields: ['name', 'email', 'interest'],
     interestOptions: ['Rider interest', 'Dealer / service', 'OEM / vendor', 'Research access'],
   },
   holm: {
-    hero: 'Twelve modules. One home — when the site allows it.',
-    body: 'Holm is a modular habitation concept spanning log cabin, sod house, and adobe-inspired systems. This MVP is a configurator sketch and feasibility intake — not stamped plans or a construction contract.',
+    hero: 'Twelve modules. One home, when the site allows it.',
+    body: 'Holm is a modular habitation concept spanning log cabin, sod house, and adobe-inspired systems. This MVP is a configurator sketch and feasibility intake, not stamped plans or a construction contract.',
     bullets: [
       'Module concept explorer',
       'Site feasibility checklist',
@@ -49,7 +49,7 @@ export const companyCopy = {
   },
   viking: {
     hero: 'Board as yourself. Disembark as Ragnar.',
-    body: 'Viking is a narrative voyage concept — destination, story, and guest interest. Tickets and environmental performance claims stay off until licensed operators and reviewed methodologies exist.',
+    body: 'Viking is a narrative voyage concept, destination, story, and guest interest. Tickets and environmental performance claims stay off until licensed operators and reviewed methodologies exist.',
     bullets: [
       'Voyage concept pages',
       'Guest interest registry',
@@ -75,7 +75,7 @@ export const companyCopy = {
   },
   njord: {
     hero: 'The water substrate.',
-    body: 'Njord maps opportunities across OTEC, atmospheric water generation, and maritime power. Public pages are research registers — never water-quality or energy-output promises.',
+    body: 'Njord maps opportunities across OTEC, atmospheric water generation, and maritime power. Public pages are research registers, never water-quality or energy-output promises.',
     bullets: [
       'Technology research register',
       'Site / partner intake',
@@ -139,7 +139,7 @@ export const companyCopy = {
     interestOptions: ['Payload customer (prospective)', 'Engineering partner', 'Advisor', 'Other'],
   },
   aether: {
-    hero: 'Space habitation — legally disclosed.',
+    hero: 'Space habitation, legally disclosed.',
     body: 'Aether is a research registry for orbital stations and related habitation concepts. It does not sell, grant, or imply valid ownership of lunar, asteroid, orbital, or other extraterrestrial territory.',
     bullets: [
       'Station / habitat concept pages',
@@ -152,7 +152,7 @@ export const companyCopy = {
     interestOptions: ['Mission / station partner', 'Counsel / policy', 'Research staff', 'Other'],
   },
   corvus: {
-    hero: 'Odin — think locally.',
+    hero: 'Odin, think locally.',
     body: 'Corvus ships Odin: a local-first founder workspace for projects, documents, tasks, and decision logs. Sovereign infrastructure, solar power, offline capability, and orbital-debris operations are not claimed until demonstrated.',
     bullets: [
       'Local workspace preview',

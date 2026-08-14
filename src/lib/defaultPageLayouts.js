@@ -1,7 +1,7 @@
 /**
  * Built-in block layouts derived from current company / hub site content.
  * Used when the editor opens a page with no stored layout (empty canvas).
- * enabled: false — live site keeps React defaults until a founder publishes.
+ * enabled: false, live site keeps React defaults until a founder publishes.
  */
 
 import { companyProducts } from '../data/companyProducts'
@@ -349,7 +349,7 @@ function buildCompanyLayout(pageId) {
   blocks.push(
     block(pageId, 'foot_hint', 'text', { x: 40, y, w: 880, h: 48 }, {
       content:
-        'Reservation form and NextDoor stay below this band on the live hall. Product roadmap is part of the default React page — re-add copy here if you publish a custom layout.',
+        'Reservation form and NextDoor stay below this band on the live hall. Product roadmap is part of the default React page, re-add copy here if you publish a custom layout.',
       style: {
         fontFamily: FONTS.body,
         fontSize: 14,
@@ -405,7 +405,7 @@ function buildHubLayout() {
   y += 112
 
   const mission =
-    'Twelve companies across land, water, air, and space — building the infrastructure layers that support civilization: movement, habitation, and substrate.'
+    'Twelve companies across land, water, air, and space, building the infrastructure layers that support civilization: movement, habitation, and substrate.'
   blocks.push(
     block(pageId, 'mission', 'text', { x: 80, y, w: 800, h: 88 }, {
       content: mission,
@@ -425,7 +425,7 @@ function buildHubLayout() {
   for (const domain of pressRelease.domains) {
     blocks.push(
       block(pageId, `dom_${domain.name}`, 'text', { x: 80, y, w: 800, h: 48 }, {
-        content: `${domain.name} — ${domain.text}`,
+        content: `${domain.name}, ${domain.text}`,
         style: {
           fontFamily: FONTS.body,
           fontSize: 16,
@@ -456,7 +456,7 @@ function buildHubLayout() {
 
   blocks.push(
     block(pageId, 'attr', 'text', { x: 80, y, w: 800, h: 32 }, {
-      content: `— ${pressRelease.quote.attribution}`,
+      content: `- ${pressRelease.quote.attribution}`,
       style: {
         fontFamily: FONTS.body,
         fontSize: 14,
@@ -498,7 +498,7 @@ function buildHubLayout() {
   blocks.push(
     block(pageId, 'note', 'text', { x: 80, y, w: 800, h: 64 }, {
       content:
-        'Shown under the Living Mosaic after event start. Countdown, hall unlock codes, and email capture stay outside this band.',
+        'Shown under the Living Mosaic after event start. Countdown and email capture stay outside this band.',
       style: {
         fontFamily: FONTS.body,
         fontSize: 13,

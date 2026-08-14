@@ -270,7 +270,7 @@ export default function AdminPage() {
     try {
       const text = await navigator.clipboard.readText()
       if (!text) {
-        setError('Clipboard is empty — copy the password first, then Paste.')
+        setError('Clipboard is empty, copy the password first, then Paste.')
         return
       }
       setPassword(text.trim())
@@ -675,7 +675,7 @@ export default function AdminPage() {
               Visitors ask via the Ask widget on each company site and the live hub. Replies appear
               in their session. Storage: <strong>{inboxStorage || '…'}</strong>
               {inboxStorage === 'memory'
-                ? ' — run Supabase chat migration for durable threads.'
+                ? ', run Supabase chat migration for durable threads.'
                 : ''}
             </p>
             <label>
@@ -715,12 +715,12 @@ export default function AdminPage() {
                     <span>
                       {t.visitorName || t.visitorEmail || 'Visitor'} · {t.status}
                     </span>
-                    <span className="vh-admin__inbox-preview">{t.preview || '—'}</span>
+                    <span className="vh-admin__inbox-preview">{t.preview || '-'}</span>
                   </button>
                 </li>
               ))}
               {!inboxThreads.length && (
-                <p className="vh-admin__empty">No messages yet — Ask widgets write here.</p>
+                <p className="vh-admin__empty">No messages yet, Ask widgets write here.</p>
               )}
             </ul>
             <div className="vh-admin__inbox-thread">
@@ -873,7 +873,7 @@ export default function AdminPage() {
                 </li>
               ))}
               {!people?.users?.length && (
-                <p className="vh-admin__empty">No seats yet — send the first invite.</p>
+                <p className="vh-admin__empty">No seats yet, send the first invite.</p>
               )}
             </ul>
           </div>
@@ -909,8 +909,8 @@ export default function AdminPage() {
             <p className="vh-admin__note">
               Storage: <strong>{people?.storage || '…'}</strong>
               {people?.storage === 'supabase'
-                ? ' — durable via Supabase.'
-                : ' — memory fallback. Add SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (see docs/supabase-setup.md).'}
+                ? ', durable via Supabase.'
+                : ', memory fallback. Add SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (see docs/supabase-setup.md).'}
             </p>
           </div>
         </section>
@@ -919,10 +919,10 @@ export default function AdminPage() {
       {adminTab === 'codes' && (
         <section className="vh-admin__people">
           <div className="vh-admin__card">
-            <h2>Wave 2 Instagram codes</h2>
+            <h2>Wave 2 hall codes</h2>
             <p className="vh-admin__note">
-              After Njord + the 2:00 PM PDT break, visitors unlock Eagle → Corvus with these codes.
-              Publish each on Instagram. Env fallback: <code>HALL_CODE_EAGLE</code>, etc.
+              Optional archive. Public wave 2 unlocks by schedule after the 2:00 PM PDT break
+              (no visitor code entry). Env fallback: <code>HALL_CODE_EAGLE</code>, etc.
             </p>
             {codesMsg && <p className="vh-admin__note">{codesMsg}</p>}
             <ul className="vh-admin__code-list">
@@ -979,7 +979,7 @@ export default function AdminPage() {
             <h2>Social tower</h2>
             <p className="vh-admin__note">
               LinkedIn, Instagram, X, Discord per hall. Public company pages show these links.
-              Empty rows auto-fill suggested placeholder handles — create/claim the accounts, then
+              Empty rows auto-fill suggested placeholder handles, create/claim the accounts, then
               replace with real URLs (and LinkedIn when ready).
             </p>
             {socialMsg && <p className="vh-admin__note">{socialMsg}</p>}
@@ -1089,7 +1089,7 @@ export default function AdminPage() {
             {(people?.activity || []).map((a) => (
               <li key={a.id}>
                 <strong>
-                  {a.type} · {a.actor || '—'}
+                  {a.type} · {a.actor || '-'}
                 </strong>
                 <span>
                   {a.at}
@@ -1117,7 +1117,7 @@ function SignupList({ rows }) {
         <li key={r.id || `${r.email}-${i}`}>
           <strong>{r.email}</strong>
           <span>
-            {r.audience || r.source || '—'} · {r.receivedAt || r.submittedAt || ''}
+            {r.audience || r.source || '-'} · {r.receivedAt || r.submittedAt || ''}
           </span>
         </li>
       ))}

@@ -173,7 +173,7 @@ export default function AdminRevealControls() {
         <h2>How to use</h2>
         <ol className="vh-admin__reveal-help">
           <li>
-            Click <strong>Watch full reveal</strong> — opens the hub at T−1h in demo mode.
+            Click <strong>Watch full reveal</strong>, opens the hub at T−1h in demo mode.
           </li>
           <li>Adjust speed or pause here; the hub tab follows the same clock.</li>
           <li>Scrub or jump to Wave 2 / Njord / Event open to preview those beats.</li>

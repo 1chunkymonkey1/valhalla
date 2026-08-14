@@ -9,9 +9,8 @@
  *
  * After Njord: break until WAVE2_START (2:00 PM PDT).
  *
- * Wave 2 (Eagle → Corvus): Instagram unlock codes (server-validated).
- * - Codes published on Valhalla Instagram; enter on hub / locked hall page.
- * - Sequential: unlock Eagle before Olympus, etc.
+ * Wave 2 (Eagle → Corvus): same time chain starting at WAVE2_START.
+ * - No visitor unlock codes; halls open by schedule.
  */
 
 import { REVEAL_ORDER } from './companies'
@@ -31,7 +30,7 @@ export const VEIL_DURATION_MS = 2 * 1000
 export const CLICK_DELAY_MS = 0
 export const REVEAL_INTERVAL_MS = PREVIEW_COUNTDOWN_MS
 
-/** Break after Njord ends here — wave-2 Instagram codes become available. */
+/** Break after Njord ends here; wave-2 time chain begins. */
 export const WAVE2_START_ISO = '2026-08-13T14:00:00-07:00'
 
 export const WAVE1_ORDER = ['wolf', 'holm', 'demeter', 'viking', 'atoll', 'njord']
@@ -61,27 +60,36 @@ function revealIndex(companyId) {
   return idx
 }
 
-/**
- * When this company becomes reachable as a link from the previous hall.
- * Wolf has no previous hall — equals event start.
- * Wave-2 halls do not auto-open by time; use code unlocks instead.
- *
- * preview[i] = EVENT_START + i × 60 minutes  (wave 1 only)
- */
-export function getPreviewUnlockAt(companyId) {
-  if (isWave2Hall(companyId)) return getWave2Start()
-  const idx = revealIndex(companyId)
-  return new Date(getEventStart().getTime() + idx * PREVIEW_COUNTDOWN_MS)
+function waveIndex(companyId) {
+  if (isWave2Hall(companyId)) return WAVE2_ORDER.indexOf(companyId)
+  return WAVE1_ORDER.indexOf(companyId)
+}
+
+function waveAnchor(companyId) {
+  return isWave2Hall(companyId) ? getWave2Start() : getEventStart()
 }
 
 /**
- * When this company's mosaic tile becomes clickable (wave 1).
- * Wave 2: returns WAVE2_START as the earliest code-entry time; actual click needs unlock.
+ * When this company becomes reachable as a link from the previous hall.
+ * First hall in each wave equals that wave's anchor time.
+ *
+ * preview[i] = waveAnchor + i × 60 minutes
+ */
+export function getPreviewUnlockAt(companyId) {
+  const idx = waveIndex(companyId)
+  if (idx < 0) throw new Error(`Unknown company schedule: ${companyId}`)
+  return new Date(waveAnchor(companyId).getTime() + idx * PREVIEW_COUNTDOWN_MS)
+}
+
+/**
+ * When this company's mosaic tile becomes clickable.
+ * First hall in each wave unlocks at the wave anchor; later halls are
+ * preview unlock + HUB_AFTER_PREVIEW_MS.
  */
 export function getHubClickAt(companyId) {
-  if (isWave2Hall(companyId)) return getWave2Start()
-  const idx = revealIndex(companyId)
-  if (idx === 0) return getEventStart()
+  const idx = waveIndex(companyId)
+  if (idx < 0) throw new Error(`Unknown company schedule: ${companyId}`)
+  if (idx === 0) return waveAnchor(companyId)
   return new Date(getPreviewUnlockAt(companyId).getTime() + HUB_AFTER_PREVIEW_MS)
 }
 
@@ -99,12 +107,11 @@ export function getNextCompanyId(companyId) {
 
 /**
  * On `fromCompanyId`'s site: when the next hall's name stops being a blank
- * and becomes a clickable word. Wave 2 next halls never auto-unlock by time.
+ * and becomes a clickable word.
  */
 export function getNextPreviewUnlockAt(fromCompanyId) {
   const nextId = getNextCompanyId(fromCompanyId)
   if (!nextId) return null
-  if (isWave2Hall(nextId)) return null
   return getPreviewUnlockAt(nextId)
 }
 
@@ -125,71 +132,32 @@ export function getClickEnabledAt(companyId) {
 }
 
 /**
- * Next wave-2 hall that still needs a code, or null if all unlocked / before window.
- */
-export function getNextCodeHall(unlockedSet, now) {
-  if (now.getTime() < getWave2Start().getTime()) return null
-  const set = unlockedSet instanceof Set ? unlockedSet : new Set(unlockedSet || [])
-  for (const id of WAVE2_ORDER) {
-    if (!set.has(id)) return id
-  }
-  return null
-}
-
-/**
  * Next mosaic unlock for the hub top timer.
  * Returns null before event start (dormant countdown-only hub).
  *
  * kind:
- * - timed — countdown to `at` (wave-1 hub click, or Wave 2 window open)
- * - code — next hall needs an Instagram code
- * - all-open — every hall unlocked
+ * - timed: countdown to `at`
+ * - all-open: every hall unlocked
  */
-export function getNextHubUnlock(now, unlockedSet = new Set()) {
+export function getNextHubUnlock(now) {
   const t = now.getTime()
   if (t < getEventStart().getTime()) return null
 
-  for (const id of WAVE1_ORDER) {
+  for (const id of REVEAL_ORDER) {
     const at = getHubClickAt(id)
     if (t < at.getTime()) {
       return { companyId: id, at, kind: 'timed' }
     }
   }
 
-  if (t < getWave2Start().getTime()) {
-    return { companyId: WAVE2_ORDER[0], at: getWave2Start(), kind: 'timed' }
-  }
-
-  const nextCode = getNextCodeHall(unlockedSet, now)
-  if (nextCode) {
-    return { companyId: nextCode, at: null, kind: 'code' }
-  }
-
   return { companyId: null, at: null, kind: 'all-open' }
-}
-
-export function canAttemptCode(hallId, unlockedSet, now) {
-  if (!isWave2Hall(hallId)) return false
-  if (now.getTime() < getWave2Start().getTime()) return false
-  const set = unlockedSet instanceof Set ? unlockedSet : new Set(unlockedSet || [])
-  const idx = WAVE2_ORDER.indexOf(hallId)
-  for (let i = 0; i < idx; i += 1) {
-    if (!set.has(WAVE2_ORDER[i])) return false
-  }
-  return !set.has(hallId)
 }
 
 /**
  * Portal phases for the mosaic:
  * dormant → constructing → revealed → clickable
- * Wave-2 halls stay dormant until their Instagram code is unlocked.
  */
-export function getPortalPhase(companyId, now, unlockedSet = new Set()) {
-  if (isWave2Hall(companyId)) {
-    const set = unlockedSet instanceof Set ? unlockedSet : new Set(unlockedSet || [])
-    return set.has(companyId) ? 'clickable' : 'dormant'
-  }
-
+export function getPortalPhase(companyId, now) {
   const t = now.getTime()
   const buildStart = getConstructionStartAt(companyId).getTime()
   const reveal = getRevealAt(companyId).getTime()
@@ -201,29 +169,17 @@ export function getPortalPhase(companyId, now, unlockedSet = new Set()) {
   return 'clickable'
 }
 
-/** Site is open once the previous hall's next-door link has unlocked (wave 1) or code (wave 2). */
-export function isCompanySiteOpen(companyId, now, unlockedSet = new Set()) {
-  if (isWave2Hall(companyId)) {
-    const set = unlockedSet instanceof Set ? unlockedSet : new Set(unlockedSet || [])
-    return set.has(companyId)
-  }
+/** Site is open once the previous hall's next-door link has unlocked. */
+export function isCompanySiteOpen(companyId, now) {
   return now.getTime() >= getPreviewUnlockAt(companyId).getTime()
 }
 
-/** Mosaic tile may be clicked only after hub unlock (wave 1) or code (wave 2). */
-export function isHubTileClickable(companyId, now, unlockedSet = new Set()) {
-  if (isWave2Hall(companyId)) {
-    const set = unlockedSet instanceof Set ? unlockedSet : new Set(unlockedSet || [])
-    return set.has(companyId)
-  }
+/** Mosaic tile may be clicked only after hub unlock time. */
+export function isHubTileClickable(companyId, now) {
   return now.getTime() >= getHubClickAt(companyId).getTime()
 }
 
-export function getBuildProgress(companyId, now, unlockedSet = new Set()) {
-  if (isWave2Hall(companyId)) {
-    const set = unlockedSet instanceof Set ? unlockedSet : new Set(unlockedSet || [])
-    return set.has(companyId) ? 1 : 0
-  }
+export function getBuildProgress(companyId, now) {
   const t = now.getTime()
   const start = getConstructionStartAt(companyId).getTime()
   const end = getFrameCompleteAt(companyId).getTime()
@@ -241,6 +197,5 @@ export function enrichCompany(company) {
     constructionStartAt: getConstructionStartAt(company.id).toISOString(),
     previewUnlockAt: getPreviewUnlockAt(company.id).toISOString(),
     hubClickAt: getHubClickAt(company.id).toISOString(),
-    requiresCode: isWave2Hall(company.id),
   }
 }

@@ -41,7 +41,7 @@ export function InvestorsPage() {
     <AudiencePage
       kind="investors"
       title="Investors"
-      lead="Twelve companies across land, water, air, and space. Diligence first — no public securities offer here."
+      lead="Twelve companies across land, water, air, and space. Diligence first, no public securities offer here."
       bullets={[
         'One operating framework across the four domains.',
         'Refundable holds show demand before capital locks.',
@@ -59,7 +59,7 @@ export function ConsumersPage() {
       lead="Hold a place on products you care about. Fully refundable until gates clear."
       bullets={[
         'Watch halls unlock on the mosaic.',
-        'Company sites take refundable holds and email interest.',
+        'Company sites gather interest for each hall.',
         'Discord for drops and questions.',
       ]}
     />
@@ -117,7 +117,7 @@ export function RoadmapIndexPage() {
         <h1>Roadmap</h1>
         <p>
           Each hall has its own product path. Wolf’s later vision includes{' '}
-          <strong>Dire Wolf</strong> — a phased SF→NYC railroad (complete by 2031).
+          <strong>Dire Wolf</strong>, a phased SF→NYC railroad (complete by 2031).
         </p>
       </header>
       <main className="vh-aud__main">

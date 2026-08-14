@@ -34,7 +34,7 @@ export default function ProductMatrix({ companyId }) {
             <ul className="product-matrix__community-addons">
               {community.addOns.map((a) => (
                 <li key={a.id}>
-                  <strong>{a.name}</strong> — {a.text}
+                  <strong>{a.name}</strong>, {a.text}
                 </li>
               ))}
             </ul>
@@ -105,7 +105,7 @@ export default function ProductMatrix({ companyId }) {
                   return (
                     <div key={line.id} role="cell" className="product-matrix__td">
                       <span className="product-matrix__cell wolf-matrix__cell wolf-matrix__cell--mystery">
-                        —
+                        -
                       </span>
                     </div>
                   )

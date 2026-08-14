@@ -197,7 +197,7 @@ export function exitDemoToLive() {
   notifyClockChange()
 }
 
-/** Simulated now — same clock drives countdown, construction, reveal, and click. */
+/** Simulated now, same clock drives countdown, construction, reveal, and click. */
 export function getSimulatedNow(wallNow = Date.now()) {
   if (getClockMode() !== 'demo') return new Date(wallNow)
 
@@ -221,7 +221,7 @@ export function getRevealBookmarks() {
     { id: 'holm', label: 'Holm preview', offsetMs: 60 * 60 * 1000 },
     { id: 'demeter', label: 'Demeter preview', offsetMs: 2 * 60 * 60 * 1000 },
     { id: 'njord', label: 'Njord preview', offsetMs: 5 * 60 * 60 * 1000 },
-    { id: 'wave2', label: 'Wave 2 codes', offsetMs: wave2 - event },
+    { id: 'wave2', label: 'Wave 2 open', offsetMs: wave2 - event },
   ]
 }
 

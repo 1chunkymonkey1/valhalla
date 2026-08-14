@@ -1,4 +1,4 @@
-/** Parchment blueprint stencils — ink-line silhouettes for product docs. */
+/** Parchment blueprint stencils, ink-line silhouettes for product docs. */
 
 const ink = 'currentColor'
 
@@ -95,7 +95,7 @@ function CarStencil() {
         <path d="M138 78 L150 110 H210 L222 78" strokeOpacity="0.5" />
         <path d="M120 110 H248" strokeOpacity="0.35" />
         <path d="M168 78 V68" strokeOpacity="0.45" />
-        {/* outward cameras only — small marks on nose, not cabin */}
+        {/* outward cameras only, small marks on nose, not cabin */}
         <circle cx="252" cy="118" r="3" strokeOpacity="0.55" />
         <circle cx="70" cy="120" r="2.5" strokeOpacity="0.4" />
         <path d="M155 100 H175" strokeOpacity="0.25" />

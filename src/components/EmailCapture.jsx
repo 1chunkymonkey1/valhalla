@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
 export default function EmailCapture({
-  title = 'Get launch notes',
-  hint = 'Product drops and press. No spam.',
-  doneHint = 'We’ll write when the next hall opens.',
+  title = '',
+  hint = '',
+  doneHint = '',
   source = 'hub',
   audience = 'general',
   companyId = null,
@@ -49,7 +49,7 @@ export default function EmailCapture({
       setEmail('')
       setName('')
     } catch (err) {
-      // Local save still succeeded — soft-fail network
+      // Local save still succeeded; soft-fail network
       setStatus('done')
       if (err instanceof Error && err.message && !err.message.includes('fetch')) {
         setError(err.message)
@@ -61,15 +61,15 @@ export default function EmailCapture({
     return (
       <div className="vh-email vh-email--done">
         <p className="vh-email__title">You’re on the list.</p>
-        <p className="vh-email__hint">{doneHint}</p>
+        {doneHint ? <p className="vh-email__hint">{doneHint}</p> : null}
       </div>
     )
   }
 
   return (
     <form className="vh-email" onSubmit={handleSubmit}>
-      <p className="vh-email__title">{title}</p>
-      <p className="vh-email__hint">{hint}</p>
+      {title ? <p className="vh-email__title">{title}</p> : null}
+      {hint ? <p className="vh-email__hint">{hint}</p> : null}
       <div className="vh-email__row">
         <label className="vh-email__field">
           <span className="vh-email__sr">Name</span>

@@ -287,7 +287,7 @@ export default function TeamWorkspacePage() {
               {signups.slice(0, 40).map((r) => (
                 <li key={r.id}>
                   <strong>{r.email}</strong>
-                  <span>{r.audience || r.source || '—'}</span>
+                  <span>{r.audience || r.source || '-'}</span>
                 </li>
               ))}
               {!signups.length && <p className="vh-admin__empty">None yet.</p>}
@@ -340,7 +340,7 @@ export default function TeamWorkspacePage() {
                 !h.social?.instagram &&
                 !h.social?.x &&
                 !h.social?.discord && (
-                  <p className="vh-admin__empty">No links yet — set in /admin → Socials.</p>
+                  <p className="vh-admin__empty">No links yet, set in /admin → Socials.</p>
                 )}
             </div>
           ))}

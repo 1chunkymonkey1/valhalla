@@ -119,7 +119,7 @@ export default function TeamLoginPage() {
           </p>
           <ol>
             <li>Founder invites you from Admin → People</li>
-            <li>Open your invite link — Continue with Google, or choose a password</li>
+            <li>Open your invite link, Continue with Google, or choose a password</li>
             <li>Return here anytime to work your halls, tasks, and inbox</li>
           </ol>
           <p className="vh-team__note">

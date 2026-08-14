@@ -28,7 +28,7 @@ export default function MosaicFrame({ company, now }) {
         data-column={theme.key}
         data-phase={phase}
       >
-        {/* Living frame rim — always visible around content */}
+        {/* Living frame rim, always visible around content */}
         {visible && (
           <div className={`mosaic-rim mosaic-rim--${theme.key}`} aria-hidden>
             {theme.key === 'land' && <Vines />}

@@ -30,7 +30,7 @@
   }
 }
 
-/* —— Phase 1: Valhalla White Hub —— */
+/* -- Phase 1: Valhalla White Hub -- */
 .vh-hub {
   position: relative;
   min-height: 100svh;
@@ -114,7 +114,7 @@
   color: rgba(0, 0, 0, 0.3);
 }
 
-/* Next mosaic unlock — top of viewport, live hub only */
+/* Next mosaic unlock, top of viewport, live hub only */
 .vh-next-timer {
   position: fixed;
   top: 0.9rem;
@@ -391,7 +391,7 @@
   }
 }
 
-/* —— Company sites (photo-led) —— */
+/* -- Company sites (photo-led) -- */
 .cs {
   min-height: 100svh;
   background: var(--cs-paper, #f3f1eb);
@@ -913,7 +913,7 @@
   }
 }
 
-/* —— Hub menu —— */
+/* -- Hub menu -- */
 .vh-menu {
   position: fixed;
   top: 1rem;
@@ -1273,7 +1273,7 @@
   font-size: 0.8rem;
 }
 
-/* —— Shared pages —— */
+/* -- Shared pages -- */
 .vh-page {
   min-height: 100svh;
   background: #f7f7f3;
@@ -1389,7 +1389,7 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-/* —— Flow —— */
+/* -- Flow -- */
 .vh-flow {
   display: grid;
   gap: 2rem;
@@ -1539,14 +1539,14 @@
   font-size: 0.95rem;
 }
 
-/* —— Roadmap ovals —— */
+/* -- Roadmap ovals -- */
 .vh-road {
   max-width: 44rem;
   margin: 0 auto;
   padding: 3.5rem 1.5rem 1rem;
 }
 
-/* —— Product matrix (equal CSS grid) —— */
+/* -- Product matrix (equal CSS grid) -- */
 .wolf-matrix,
 .product-matrix {
   max-width: min(76rem, 100%);
@@ -2383,7 +2383,7 @@
   justify-content: center;
 }
 
-/* —— Admin —— */
+/* -- Admin -- */
 .vh-admin__gate {
   max-width: 22rem;
   margin: 4rem auto;
@@ -2911,7 +2911,7 @@
   }
 }
 
-/* —— Founder page editor + published layouts —— */
+/* -- Founder page editor + published layouts -- */
 .vh-admin__editor-link {
   display: inline-flex;
   align-items: center;

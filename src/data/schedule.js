@@ -4,9 +4,9 @@ export const HUB_REVEAL_DELAY_MS = 30 * 60 * 1000
 export const EVENT_START = `${LAUNCH_DATE}T08:00:00-07:00`
 
 /** Frame build cadence relative to each hall's launch time */
-export const FRAME_BUILD_START_MS = 60 * 60 * 1000 // T-60m — workers appear
-export const FRAME_BUILT_MS = 20 * 60 * 1000 // T-20m — frame complete
-export const CLICK_DELAY_MS = 5 * 1000 // T+5s — "click" appears
+export const FRAME_BUILD_START_MS = 60 * 60 * 1000 // T-60m, workers appear
+export const FRAME_BUILT_MS = 20 * 60 * 1000 // T-20m, frame complete
+export const CLICK_DELAY_MS = 5 * 1000 // T+5s, "click" appears
 
 /**
  * Mosaic display order (row-major for CSS grid-cols-4):
@@ -82,7 +82,7 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T08:00:00-07:00`,
     publicStatus: 'waitlist',
     pattern: 'interest',
-    tagline: 'Electric adventure motorcycles — and the long road ahead.',
+    tagline: 'Electric adventure motorcycles, and the long road ahead.',
     concept:
       'A land-movement hall for electric adventure motorcycles, rider interest, and transparent transport research. No sales or availability claims yet.',
     accent: '#1C1917',
@@ -97,9 +97,9 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T09:00:00-07:00`,
     publicStatus: 'concept',
     pattern: 'interest',
-    tagline: 'Modular homes, configured for the site — not the catalog.',
+    tagline: 'Modular homes, configured for the site, not the catalog.',
     concept:
-      'A habitation hall for modular home concepts, site feasibility intake, and partner coordination. Concepts and checklists only — not engineered plans.',
+      'A habitation hall for modular home concepts, site feasibility intake, and partner coordination. Concepts and checklists only, not engineered plans.',
     accent: '#3F2E1F',
     ink: '#F5F0E8',
   },
@@ -112,7 +112,7 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T10:00:00-07:00`,
     publicStatus: 'research',
     pattern: 'project',
-    tagline: 'Deployable land energy — researched before it is promised.',
+    tagline: 'Deployable land energy, researched before it is promised.',
     concept:
       'An energy-development workspace for agrivoltaics and related pathways. Internal project diligence first. No investor solicitation or dispatch claims.',
     accent: '#14532D',
@@ -142,7 +142,7 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T13:00:00-07:00`,
     publicStatus: 'seeking_partners',
     pattern: 'interest',
-    tagline: 'Floating modular habitats — Atoll 01, 02, 03.',
+    tagline: 'Floating modular habitats, Atoll 01, 02, 03.',
     concept:
       'A concept catalogue and controlled interest ledger for floating habitats. Funds and habitability claims stay gated until counsel and engineering clear.',
     accent: '#164E63',
@@ -157,7 +157,7 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T14:00:00-07:00`,
     publicStatus: 'research',
     pattern: 'project',
-    tagline: 'Water as substrate — OTEC, atmospheric water, maritime power.',
+    tagline: 'Water as substrate, OTEC, atmospheric water, maritime power.',
     concept:
       'A research and opportunity register for water-energy systems. No water-quality or energy-output promises.',
     accent: '#1E3A5F',
@@ -172,7 +172,7 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T15:00:00-07:00`,
     publicStatus: 'research',
     pattern: 'interest',
-    tagline: 'Aviation innovation research — not a flight schedule.',
+    tagline: 'Aviation innovation research, not a flight schedule.',
     concept:
       'A public interest and partner-opportunity surface for aviation research. No flight service, acquisition, endorsement, or emissions claims.',
     accent: '#1E293B',
@@ -189,7 +189,7 @@ export const schedule = [
     pattern: 'research',
     tagline: 'Upper-atmosphere habitat research, assumptions made visible.',
     concept:
-      'A research library for atmospheric habitat concepts, requirements, and hazards. Conceptual interest only — no habitability timeline.',
+      'A research library for atmospheric habitat concepts, requirements, and hazards. Conceptual interest only, no habitability timeline.',
     accent: '#312E81',
     ink: '#EEF2FF',
   },
@@ -217,7 +217,7 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T18:00:00-07:00`,
     publicStatus: 'concept',
     pattern: 'research',
-    tagline: 'Mission concepts and requirements — labeled as such.',
+    tagline: 'Mission concepts and requirements, labeled as such.',
     concept:
       'A mission-concept and payload-interest workspace. No launch booking, payload acceptance, or destination promises.',
     accent: '#431407',
@@ -232,7 +232,7 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T19:00:00-07:00`,
     publicStatus: 'research',
     pattern: 'research',
-    tagline: 'Space habitation concepts — with legal status disclosed.',
+    tagline: 'Space habitation concepts, with legal status disclosed.',
     concept:
       'A research and opportunity registry for space-habitation concepts. Does not sell, grant, or imply ownership of extraterrestrial territory.',
     accent: '#1E1B4B',
@@ -247,7 +247,7 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T20:00:00-07:00`,
     publicStatus: 'concept',
     pattern: 'local',
-    tagline: 'Odin — a local-first founder workspace.',
+    tagline: 'Odin, a local-first founder workspace.',
     concept:
       'Odin: projects, documents, tasks, and decision logs for founders. No sovereign-infrastructure, solar, or orbital-debris claims until demonstrated.',
     accent: '#09090B',
@@ -299,7 +299,7 @@ export function getPhaseName(company, now = new Date()) {
 }
 
 export function isPreviewUnlocked() {
-  // Demo clock owns timing — don't force-unlock frames
+  // Demo clock owns timing, don't force-unlock frames
   try {
     if (typeof window !== 'undefined' && localStorage.getItem('valhalla_demo') === '1') {
       return false

@@ -20,19 +20,18 @@ Admin API needs env (see below). Without it, `/admin` login returns 503.
 
 ## Launch day flow
 
-1. **Before 8:00 AM PDT** — hub shows only Valhalla + countdown (no mosaic, email, or menu chrome).
-2. **8:00 AM** — mosaic + email appear; wave 1 (Wolf → Njord) unlocks on the time chain.
-3. **After Njord** — break until **2:00 PM PDT**.
-4. **Wave 2 (Eagle → Corvus)** — each hall needs an Instagram unlock code (sequential). Enter on the hub or the locked hall page.
+1. **Before 8:00 AM PDT**, hub shows only Valhalla + countdown (no mosaic, email, or menu chrome).
+2. **8:00 AM**, mosaic + email appear; wave 1 (Wolf → Njord) unlocks on the time chain.
+3. **After Njord**, break until **2:00 PM PDT**.
+4. **Wave 2 (Eagle → Corvus)** opens on the same timed chain starting at **2:00 PM PDT** (no visitor unlock codes).
 
 Demo the full clock with `/?demo=1` (100× from T−1h). Founder controls: `/admin` → **Reveal** (watch full reveal, pause, speed, scrub). Same localStorage clock as the hub.
 
-### Hall codes
+### Hall codes (admin optional)
 
-- Founder sets codes in `/admin` → **Hall codes** (stored in Supabase `hall_codes`, or memory fallback).
+- Founder can still manage codes in `/admin` → **Hall codes** (Supabase `hall_codes` or memory fallback).
 - Env fallbacks: `HALL_CODE_EAGLE`, `HALL_CODE_OLYMPUS`, `HALL_CODE_AEOLUS`, `HALL_CODE_PHENIX`, `HALL_CODE_AETHER`, `HALL_CODE_CORVUS`.
-- Public redeem: `POST /api/hub/unlock` → httpOnly unlock cookie.
-- Status: `GET /api/hub/status`.
+- Public experience is schedule-only; visitor code entry UI is removed.
 
 ### Social tower
 
@@ -57,7 +56,7 @@ Set in Vercel → Project → Settings → Environment Variables (Production + P
 | `ADMIN_TOTP_SECRET` | Base32 secret for authenticator 2FA. `npm run admin:totp` |
 | `ADMIN_PASSWORD_HASH` | Optional instead of `ADMIN_PASSWORD`: `salt:hex` from scrypt |
 | `SUPABASE_URL` | Supabase project URL |
-| `SUPABASE_SERVICE_ROLE_KEY` | Server-only — never `VITE_*` |
+| `SUPABASE_SERVICE_ROLE_KEY` | Server-only, never `VITE_*` |
 | `HALL_CODE_*` | Optional wave-2 code fallbacks |
 
 See **[docs/supabase-setup.md](docs/supabase-setup.md)**.
@@ -65,7 +64,7 @@ See **[docs/supabase-setup.md](docs/supabase-setup.md)**.
 Admin email is fixed: **info@valhallaco.org**. Login needs password **and** a 6-digit authenticator code.
 
 ```bash
-npm run admin:totp   # prints ADMIN_TOTP_SECRET — do not commit it
+npm run admin:totp   # prints ADMIN_TOTP_SECRET, do not commit it
 npx vercel env add ADMIN_PASSWORD
 npx vercel env add ADMIN_SESSION_SECRET
 npx vercel env add ADMIN_TOTP_SECRET
@@ -82,7 +81,7 @@ npx vercel --prod
 | `/investors` `/consumers` `/partners` | Audience pages |
 | `/roadmap` | Roadmap index |
 | `/contact` | Contact |
-| `/admin` | Founder control tower (2FA) — reveal clock, people, codes, socials, ledgers |
+| `/admin` | Founder control tower (2FA), reveal clock, people, codes, socials, ledgers |
 | `/team` | Team workspace |
 | `/team/login` | Email + password |
 | `/team/join?token=` | Accept invite |

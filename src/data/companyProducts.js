@@ -2,18 +2,18 @@
 
 const emailFirst = {
   emailOnly: true,
-  ctaPrimary: 'Join the list',
+  ctaPrimary: 'Email',
   ctaSecondary: 'Product path',
-  aboutNote: 'Predeposits opening soon · email list only',
+  aboutNote: '',
 }
 
 export const companyProducts = {
   wolf: {
     product: 'Wolf Transit',
-    headline: 'Join the list. Ride the path.',
+    headline: 'Ride the path.',
     support:
-      'Electric adventure motorcycle first — then ATV, car, truck, rescue air, and the Dire Wolf railroad. Predeposits opening soon.',
-    body: 'Wolf Transit builds a named pack of land machines under wolf myth and history, culminating in a phased transcontinental rail. Community fix-it culture under every line. Fenrir 01 targets January 13, 2027. Today we collect email only — no payment holds.',
+      'Electric adventure motorcycle first, then ATV, car, truck, rescue air, and the Dire Wolf railroad.',
+    body: 'Wolf Transit builds a named pack of land machines under wolf myth and history, culminating in a phased transcontinental rail. Community fix-it culture under every line. Fenrir 01 targets January 13, 2027.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -32,8 +32,8 @@ export const companyProducts = {
   holm: {
     product: 'Holm Modular Home',
     headline: 'A home that lands where the site allows.',
-    support: 'Linkable habitation modules — timber, quiet volumes, real weather.',
-    body: 'Holm is a modular habitation concept — Timber, Sod, Adobe, Commons, Bridge, and Hearth. Email interest only for now. Not stamped plans or a construction contract. Predeposits opening soon.',
+    support: 'Linkable habitation modules: timber, quiet volumes, real weather.',
+    body: 'Holm is a modular habitation concept: Timber, Sod, Adobe, Commons, Bridge, and Hearth. Not stamped plans or a construction contract.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -53,8 +53,8 @@ export const companyProducts = {
   demeter: {
     product: 'Demeter Land Energy',
     headline: 'Fields that work twice.',
-    support: 'Agrivoltaic pathways and land-energy diligence — soil first, claims last.',
-    body: 'Demeter runs soil-first land-energy diligence including Ethanol Grove synergy for Tier 3 dual-injection machines. Email interest — not an investment offer. Predeposits opening soon.',
+    support: 'Agrivoltaic pathways and land-energy diligence: soil first, claims last.',
+    body: 'Demeter runs soil-first land-energy diligence including Ethanol Grove synergy for Tier 3 dual-injection machines. Not an investment offer.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -74,8 +74,8 @@ export const companyProducts = {
   viking: {
     product: 'Viking Voyage',
     headline: 'Board as yourself. Disembark changed.',
-    support: 'Story-led northern voyage — cold water, hard cliffs, quiet cabins.',
-    body: 'Viking Voyage is a water-movement arch: Knarr, Dreki, Skíðblaðnir, Harbor Ring, Saga Cabin, and Midgard Circuit. Partner-gated and email-list first. Predeposits opening soon.',
+    support: 'Story-led northern voyage: cold water, hard cliffs, quiet cabins.',
+    body: 'Viking Voyage is a water-movement arch: Knarr, Dreki, Skíðblaðnir, Harbor Ring, Saga Cabin, and Midgard Circuit. Partner-gated.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -95,8 +95,8 @@ export const companyProducts = {
   atoll: {
     product: 'Atoll Habitat',
     headline: 'Living on the water line.',
-    support: 'Floating modular habitats — Lagoon, Reef, Tide, and ring concepts.',
-    body: 'Atoll builds floating modular habitats. Email interest ledger only for now — not a deed. Predeposits opening soon.',
+    support: 'Floating modular habitats: Lagoon, Reef, Tide, and ring concepts.',
+    body: 'Atoll builds floating modular habitats. Not a deed.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -115,8 +115,8 @@ export const companyProducts = {
   njord: {
     product: 'Njord Water Systems',
     headline: 'The water substrate.',
-    support: 'OTEC, atmospheric water, and maritime power — research before promises.',
-    body: 'Njord is the water substrate. Research before promises. Email follow-up until predeposits open. No output or water-quality claim on this surface.',
+    support: 'OTEC, atmospheric water, and maritime power: research before promises.',
+    body: 'Njord is the water substrate. Research before promises. No output or water-quality claim on this surface.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -135,8 +135,8 @@ export const companyProducts = {
   eagle: {
     product: 'Eagle Aviation',
     headline: 'Above the weather line.',
-    support: 'Aviation access interest — traveler and partner queues, not tickets.',
-    body: 'Eagle hosts aviation access interest and partner/route research. Not a flight schedule. Email list until predeposits open.',
+    support: 'Aviation access interest: traveler and partner queues, not tickets.',
+    body: 'Eagle hosts aviation access interest and partner/route research. Not a flight schedule.',
     tone: 'air',
     ...emailFirst,
     gallery: [
@@ -155,8 +155,8 @@ export const companyProducts = {
   olympus: {
     product: 'Olympus Habitat Research',
     headline: 'Habitation in the thin air.',
-    support: 'Upper-atmosphere platforms studied as research — not tourism.',
-    body: 'Olympus studies thin-air habitation research. Briefings and email queues — not tourism. Predeposits opening soon.',
+    support: 'Upper-atmosphere platforms studied as research, not tourism.',
+    body: 'Olympus studies thin-air habitation research. Briefings and research queues, not tourism.',
     tone: 'air',
     ...emailFirst,
     gallery: [
@@ -175,8 +175,8 @@ export const companyProducts = {
   aeolus: {
     product: 'Aeolus Atmosphere',
     headline: 'Wind as infrastructure.',
-    support: 'Climate-atmosphere research governance — updates, not deployment authority.',
-    body: 'Aeolus publishes research governance updates — not deployment authority. Email consultation queues until predeposits open.',
+    support: 'Climate-atmosphere research governance: updates, not deployment authority.',
+    body: 'Aeolus publishes research governance updates, not deployment authority.',
     tone: 'air',
     ...emailFirst,
     gallery: [
@@ -195,8 +195,8 @@ export const companyProducts = {
   phenix: {
     product: 'Phenix Mission',
     headline: 'Heat. Ascent. Return.',
-    support: 'Mission-concept workspace for payload inquiry — not a launch booking.',
-    body: 'Phenix is a mission-concept workspace — not a launch booking. Email follow-up until predeposits open.',
+    support: 'Mission-concept workspace for payload inquiry, not a launch booking.',
+    body: 'Phenix is a mission-concept workspace, not a launch booking.',
     tone: 'space',
     ...emailFirst,
     gallery: [
@@ -215,8 +215,8 @@ export const companyProducts = {
   aether: {
     product: 'Aether Habitation',
     headline: 'Quiet rooms above the curve.',
-    support: 'Space habitation concepts with legal status disclosed — never a territorial claim.',
-    body: 'Aether studies quiet rooms above the curve with legal status disclosed — never a territorial claim. Email partner ledger until predeposits open.',
+    support: 'Space habitation concepts with legal status disclosed, never a territorial claim.',
+    body: 'Aether studies quiet rooms above the curve with legal status disclosed, never a territorial claim.',
     tone: 'space',
     ...emailFirst,
     gallery: [
@@ -236,8 +236,8 @@ export const companyProducts = {
     product: 'Corvus Raven OS',
     headline: 'Twenty-one prompts. One badge at the summit.',
     support:
-      'Raven OS — $100, $200, $300… through phased tiers to Prompt 21 at $21,000. Pay Links opening soon.',
-    body: 'Raven OS phased prompts with Twenty-First Raven badge at Prompt 21. Email list today; Pay Links opening soon. Odin on Discord answers from the curated knowledge base.',
+      'Raven OS: $100, $200, $300… through phased tiers to Prompt 21 at $21,000.',
+    body: 'Raven OS phased prompts with Twenty-First Raven badge at Prompt 21. Odin on Discord answers from the curated knowledge base.',
     tone: 'space',
     ...emailFirst,
     gallery: [

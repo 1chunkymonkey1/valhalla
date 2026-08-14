@@ -9,7 +9,7 @@ export const TEAM_ROLES = {
   },
   hall_lead: {
     label: 'Hall Lead',
-    blurb: 'Owns one or more company halls — reservations, notes, product drops.',
+    blurb: 'Owns one or more company halls, reservations, notes, product drops.',
   },
   growth: {
     label: 'Growth',

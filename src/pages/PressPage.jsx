@@ -27,7 +27,7 @@ export default function PressPage() {
           <p key={para.slice(0, 48)}>
             {para.startsWith('VALHALLA announced') ? (
               <>
-                <strong>{p.dateline} — </strong>
+                <strong>{p.dateline}, </strong>
                 {para}
               </>
             ) : (
@@ -46,7 +46,7 @@ export default function PressPage() {
 
         <blockquote className="vh-press__quote">
           <p>“{p.quote.text}”</p>
-          <cite>— {p.quote.attribution}</cite>
+          <cite>- {p.quote.attribution}</cite>
         </blockquote>
 
         {p.closingParagraphs.map((para) => (

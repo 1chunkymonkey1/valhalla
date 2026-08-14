@@ -1,7 +1,7 @@
 /**
  * Squarespace Pay Link stubs.
  *
- * Public hall CTAs are email-only until predeposits open (`disabled: true`).
+ * Public hall CTAs use email capture while Pay Links stay disabled.
  * Keep estimate amounts for when Pay Links go live.
  */
 
@@ -13,13 +13,13 @@ export const PAY_LINK_STATUS = {
 const openingSoon = {
   disabled: true,
   payUrl: '',
-  notes: 'Predeposits opening soon. Email list only on the public path.',
+  notes: '',
 }
 
 /** Estimated fully refundable hold amounts by company (USD). */
 export const companyPayLinks = {
   wolf: {
-    label: 'Wolf · Fenrir 01 (predeposits opening soon)',
+    label: 'Wolf · Fenrir 01',
     estimateUsd: 2500,
     ...openingSoon,
   },
@@ -78,12 +78,12 @@ export const companyPayLinks = {
     estimateUsd: 100,
     ...openingSoon,
     notes:
-      'Prompt Pay Links opening soon. Email list only on the public Corvus path today.',
+      '',
   },
 }
 
 /**
- * Corvus Raven OS — 21 prompt tiers.
+ * Corvus Raven OS, 21 prompt tiers.
  * payUrl left empty until Squarespace Pay Links are created.
  */
 export { corvusPromptPayLinks } from './corvusPricing.js'

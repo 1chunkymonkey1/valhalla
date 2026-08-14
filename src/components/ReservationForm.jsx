@@ -114,10 +114,8 @@ export default function ReservationForm({
       <p className="vh-reserve__eyebrow">Fully refundable reservation</p>
       <h3 className="vh-reserve__title">{productName}</h3>
       <p className="vh-reserve__body">
-        Leave phone, ZIP, and email. Choose your interest group. We hold a fully refundable
-        reservation
-        {estimateUsd != null ? ` (estimated hold ${formatUsd(estimateUsd)})` : ''} — no
-        non-refundable deposit on this page.
+        Leave phone, ZIP, and email. Choose your interest group.
+        {estimateUsd != null ? ` Estimated hold ${formatUsd(estimateUsd)}.` : ''}
       </p>
 
       <div className="vh-reserve__grid">
@@ -193,8 +191,7 @@ export default function ReservationForm({
           onChange={(e) => update('refundableAck', e.target.checked)}
         />
         <span>
-          I understand this is a <strong>fully refundable</strong> reservation hold. Terms may
-          require entity and payment gates before any future deposit.
+          I understand this is a <strong>fully refundable</strong> reservation hold.
         </span>
       </label>
 

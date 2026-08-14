@@ -65,7 +65,7 @@ export default function PageEditorPage() {
       if (isEmptyLayout(stored)) {
         setLayout(getDefaultPageLayout(id))
         setDirty(true)
-        setStatus('Loaded · site defaults (unsaved — Save to persist)')
+        setStatus('Loaded · site defaults (unsaved, Save to persist)')
       } else {
         setLayout(stored)
         setDirty(false)
@@ -282,7 +282,7 @@ export default function PageEditorPage() {
       <div className="vh-page vh-admin vh-admin__gate vh-editor">
         <p className="vh-admin__mark">Valhalla</p>
         <h1>Page editor</h1>
-        <p className="vh-admin__hint">Founder 2FA — same session as /admin.</p>
+        <p className="vh-admin__hint">Founder 2FA, same session as /admin.</p>
         <form onSubmit={login}>
           <label>
             Email
@@ -412,7 +412,7 @@ export default function PageEditorPage() {
           </ul>
           <p className="vh-editor__hint">
             Drag blocks on the canvas. Positions snap to an {SNAP}px grid. Reorder is free-move with
-            snap — not a strict vertical stack.
+            snap, not a strict vertical stack.
           </p>
         </aside>
 

@@ -2,7 +2,7 @@
  * Product hostname helpers.
  *
  * Preferred routes (work today): /wolf/fenrir-01
- * Optional hosts: fenrir01.valhallaco.org — needs wildcard DNS *.valhallaco.org
+ * Optional hosts: fenrir01.valhallaco.org, needs wildcard DNS *.valhallaco.org
  * on the same Vercel project. Company path routes are never broken by this.
  */
 

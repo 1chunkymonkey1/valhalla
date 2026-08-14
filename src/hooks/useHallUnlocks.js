@@ -21,7 +21,8 @@ function writeLocal(halls) {
 }
 
 /**
- * Wave-2 Instagram unlock state (cookie + localStorage mirror).
+ * Optional hall unlock cookie/localStorage mirror (admin / legacy API).
+ * Public wave-2 access is schedule-based; visitor UI no longer redeems codes.
  */
 export function useHallUnlocks() {
   const [unlocked, setUnlocked] = useState(() =>

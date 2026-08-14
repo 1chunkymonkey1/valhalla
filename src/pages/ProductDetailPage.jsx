@@ -96,7 +96,6 @@ export default function ProductDetailPage({
           <p className="product-detail__status">
             {cell.status}
             {cell.targetDate ? ` · ${formatMatrixDate(cell.targetDate)}` : ''}
-            {cell.id === 'fenrir-01' ? ' · predeposits opening soon' : ''}
           </p>
         )}
       </header>
@@ -225,9 +224,6 @@ export default function ProductDetailPage({
 
         <section id="reserve" className="product-detail__reserve">
           <EmailCapture
-            title="Join the list"
-            hint={matrix.emailHint}
-            doneHint={matrix.emailDone}
             source={`product:${companyId}:${cell.id}`}
             companyId={companyId}
             audience="roadmap"
@@ -249,7 +245,7 @@ function CorvusPromptSummary() {
       <h2>Raven OS · 21 prompts</h2>
       <p>
         First prompt $100, second $200, third $300. Phases rise to Prompt 21 at $21,000 with the
-        Twenty-First Raven badge. Pay Links opening soon — email list today.
+        Twenty-First Raven badge.
       </p>
       <div className="vh-corvus-price__phases">
         {CORVUS_PHASES.map((phase) => (
@@ -266,7 +262,7 @@ function CorvusPromptSummary() {
                       {n === 21 ? ' · badge' : ''}
                     </span>
                     <span>{formatUsd(tier.estimateUsd)}</span>
-                    <span className="vh-corvus-price__stub">opening soon</span>
+                    <span className="vh-corvus-price__stub">email</span>
                   </li>
                 )
               })}

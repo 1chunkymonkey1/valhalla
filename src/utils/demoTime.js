@@ -52,7 +52,7 @@ export function getDemoNow(wallNow = Date.now()) {
   return new Date(simOrigin + elapsedWall * DEMO_RATE)
 }
 
-/** Slugs with real art installed — others use themed placeholders. */
+/** Slugs with real art installed, others use themed placeholders. */
 export const READY_BRANDS = new Set(['wolf'])
 
 export function hasBrandArt(slug) {

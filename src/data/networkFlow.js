@@ -1,5 +1,5 @@
 /**
- * Network flow — how Valhalla interconnects and grows.
+ * Network flow, how Valhalla interconnects and grows.
  * Land/Water/Air/Space × Movement/Habitation/Substrate + cascade loops.
  */
 
@@ -132,7 +132,7 @@ export const flowEdges = [
     to: 'wolf',
     label: 'Empire intelligence loop',
     detail:
-      'Corvus feeds signal back into Wolf and the mosaic — product drops, moderation, and founder tooling across halls.',
+      'Corvus feeds signal back into Wolf and the mosaic, product drops, moderation, and founder tooling across halls.',
   },
   {
     id: 'loop-dire-wolf',
@@ -140,7 +140,7 @@ export const flowEdges = [
     to: 'aeolus',
     label: 'Dire Wolf ambition',
     detail:
-      'Wolf’s Dire Wolf railroad (phased SF→NYC, target Aug 2031) ties land movement to national air/rail catch-up — a civilization-scale spine.',
+      'Wolf’s Dire Wolf railroad (phased SF→NYC, target Aug 2031) ties land movement to national air/rail catch-up, a civilization-scale spine.',
   },
 ]
 
@@ -153,7 +153,7 @@ export const growthLoops = [
   {
     id: 'reservation-flywheel',
     title: 'Refundable reservation flywheel',
-    text: 'Fully refundable holds gather serious interest without trapping capital — converting later only after entity and payment gates.',
+    text: 'Fully refundable holds gather serious interest without trapping capital, converting later only after entity and payment gates.',
   },
   {
     id: 'domain-reinforcement',
@@ -163,6 +163,6 @@ export const growthLoops = [
   {
     id: 'intelligence-spine',
     title: 'Intelligence spine',
-    text: 'Corvus Raven OS and Discord Odin keep the empire’s knowledge coherent — Q&A without false operational claims.',
+    text: 'Corvus Raven OS and Discord Odin keep the empire’s knowledge coherent, Q&A without false operational claims.',
   },
 ]

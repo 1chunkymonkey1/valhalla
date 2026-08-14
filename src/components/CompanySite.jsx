@@ -50,13 +50,7 @@ const TONES = {
   },
 }
 
-export default function CompanySite({
-  company,
-  now,
-  unlockedSet = new Set(),
-  unlock,
-  unlockError,
-}) {
+export default function CompanySite({ company, now }) {
   const product = companyProducts[company.slug] || {
     product: company.name,
     headline: company.name,
@@ -75,11 +69,9 @@ export default function CompanySite({
   const strip = product.gallery.slice(1)
   const pay = getCompanyPayLink(company.slug)
   const emailOnly = Boolean(product.emailOnly) || Boolean(pay?.disabled)
-  const primaryCta = product.ctaPrimary || (emailOnly ? 'Join the list' : 'Hold a reservation')
+  const primaryCta = product.ctaPrimary || (emailOnly ? 'Email' : 'Hold a reservation')
   const secondaryCta = product.ctaSecondary || 'Product path'
-  const aboutNote =
-    product.aboutNote ||
-    (emailOnly ? 'Predeposits opening soon · email list only' : 'Fully refundable reservations')
+  const aboutNote = product.aboutNote || (emailOnly ? '' : 'Fully refundable reservations')
   const [social, setSocial] = useState(null)
   const [published, setPublished] = useState(null)
 
@@ -135,9 +127,6 @@ export default function CompanySite({
             <section id="reserve" className="cs-reserve">
               {emailOnly ? (
                 <EmailCapture
-                  title="Join the list"
-                  hint="Email only for now. Predeposits opening soon — no payment hold on this page."
-                  doneHint={`You’re on the ${company.name} list. We’ll write when this hall moves or predeposits open.`}
                   source={`site:${company.slug}:reserve`}
                   companyId={company.slug}
                   audience="waitlist"
@@ -155,13 +144,7 @@ export default function CompanySite({
               )}
             </section>
             <div className="cs-next">
-              <NextDoor
-                company={company}
-                now={now}
-                unlockedSet={unlockedSet}
-                unlock={unlock}
-                unlockError={unlockError}
-              />
+              <NextDoor company={company} now={now} />
             </div>
             <footer className="cs-foot">
               <Link to="/?demo=1">← mosaic</Link>
@@ -206,7 +189,7 @@ export default function CompanySite({
           <p className="cs-kicker">{product.product}</p>
           <h2 className="cs-about__title">What this is</h2>
           <p className="cs-about__body">{product.body}</p>
-          <p className="cs-about__note">{aboutNote}</p>
+          {aboutNote ? <p className="cs-about__note">{aboutNote}</p> : null}
           <CompanySocialLinks social={social} className="cs-about__socials" />
         </section>
 
@@ -243,9 +226,6 @@ export default function CompanySite({
         <section id="reserve" className="cs-reserve">
           {emailOnly ? (
             <EmailCapture
-              title="Join the list"
-              hint="Email only for now. Predeposits opening soon — no payment hold on this page. ZIP and interest can wait."
-              doneHint={`You’re on the ${company.name} list. We’ll write when this hall moves or predeposits open.`}
               source={`site:${company.slug}:reserve`}
               companyId={company.slug}
               audience="waitlist"
@@ -264,13 +244,7 @@ export default function CompanySite({
         </section>
 
         <div className="cs-next">
-          <NextDoor
-            company={company}
-            now={now}
-            unlockedSet={unlockedSet}
-            unlock={unlock}
-            unlockError={unlockError}
-          />
+          <NextDoor company={company} now={now} />
         </div>
 
         <footer className="cs-foot">

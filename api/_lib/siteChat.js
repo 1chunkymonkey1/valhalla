@@ -24,7 +24,7 @@ export const CHAT_PAGE_IDS = [
 ]
 
 const GREETING =
-  'Welcome — ask anything about this hall. A person from Valhalla will reply here (not an automated AI).'
+  'Welcome. Ask anything about this hall. A person from Valhalla will reply here (not an automated AI).'
 
 function mem() {
   const g = globalThis

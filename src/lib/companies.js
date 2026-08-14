@@ -32,7 +32,7 @@ export const REVEAL_ORDER = [
 
 /**
  * Company matrix source of truth.
- * Timing fields are derived in launchSchedule.js — do not hard-code clocks in UI.
+ * Timing fields are derived in launchSchedule.js, do not hard-code clocks in UI.
  * Swap Wolf art by setting imageSrc only.
  */
 export const companies = [

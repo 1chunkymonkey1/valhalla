@@ -34,7 +34,7 @@ function saveThreadId(pageId, id) {
 }
 
 /**
- * Compact "ask the hall" widget — human relay to /admin inbox.
+ * Compact "ask the hall" widget, human relay to /admin inbox.
  * Keep off dormant countdown hub (pass dormant).
  */
 export default function AskHallWidget({ pageId, hallName = 'Valhalla', dormant = false }) {
@@ -159,11 +159,11 @@ export default function AskHallWidget({ pageId, hallName = 'Valhalla', dormant =
             </button>
           </header>
           <p className="vh-ask__blurb">
-            Messages go to Valhalla. A person replies here — not an automated chatbot.
+            Messages go to Valhalla. A person replies here, not an automated chatbot.
           </p>
           <div className="vh-ask__msgs" ref={listRef}>
             {!messages.length && (
-              <p className="vh-ask__empty">Say hello — questions, reservations, partnerships.</p>
+              <p className="vh-ask__empty">Say hello: questions, reservations, partnerships.</p>
             )}
             {messages.map((m) => (
               <div
