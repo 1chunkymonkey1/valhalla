@@ -158,17 +158,18 @@ We do **not** store Google passwords. Team seats may have `password_hash` (passw
 4. Messages land in `/admin` → **Inbox** (full transcript: visitor + AI + founder). Founder replies continue the same thread.
 5. Public: `GET|POST /api/hub/chat`. Admin: `GET|POST /api/admin/inbox`.
 6. **Durability:** Without `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`, chat uses in-memory storage. That works for same-instance local testing (`vercel dev`) but **will not** show visitor messages in admin across Vercel serverless instances / cold starts. Supabase is required for multi-instance production durability.
-7. AI env (set on Vercel; any one works):
+7. AI env (set on Vercel; any one works — details in [ai-setup.md](./ai-setup.md)):
    - `AI_GATEWAY_API_KEY` (preferred for Hobby / non-OIDC)
    - or rely on Vercel OIDC (`VERCEL_OIDC_TOKEN` auto on deployments)
    - or `OPENAI_API_KEY` as a fallback credential surface
-   - optional: `VH_CHAT_MODEL` (default `openai/gpt-5.4-mini`)
+   - or `CURSOR_API_KEY` for Cursor Agent API (frontier model switching; slower)
+   - optional: `VH_CHAT_MODEL` (default `openai/gpt-5.4-mini`), `VH_CURSOR_MODEL` (default `composer-2.5`)
 8. Load test (tagged `[test]`): `BASE_URL=http://127.0.0.1:3000 npm run chat:load-test`
 
 ## Council (founder agents)
 
-1. Run `supabase/migrations/20260814_council.sql` in the SQL Editor.
-2. Open `/admin` → **Council**. Same AI env as site chat (`AI_GATEWAY_API_KEY` / `OPENAI_API_KEY`).
+1. Run `supabase/migrations/20260814_council.sql` and `20260814_ai_settings.sql` in the SQL Editor.
+2. Open `/admin` → **Council**. AI status + model picker on Overview and Council ([ai-setup.md](./ai-setup.md)).
 3. Agent source files: `council/agents/*.md`. Usage: [council.md](./council.md).
 
 ## Page layouts (founder visual editor)
@@ -193,10 +194,12 @@ VITE_SUPABASE_ANON_KEY=eyJ...
 ADMIN_SESSION_SECRET=...
 ADMIN_PASSWORD=...
 ADMIN_TOTP_SECRET=...
-# Ask chat AI (pick one)
+# Ask chat AI (pick one or more)
 # AI_GATEWAY_API_KEY=...
 # OPENAI_API_KEY=...
+# CURSOR_API_KEY=...
 # VH_CHAT_MODEL=openai/gpt-5.4-mini
+# VH_CURSOR_MODEL=composer-2.5
 # ADMIN_GOOGLE_EMAILS=you@valhallaco.org
 # ADMIN_GOOGLE_REQUIRE_TOTP=true
 ```

@@ -12,6 +12,17 @@ Founder-only AI workspace in **Admin → Council**. Eighteen Raven agents, each 
 
 Hall **Inbox** (visitor Ask chat) stays separate. Council is the primary internal AI desk.
 
+## Connect AI tonight
+
+Full steps: **[ai-setup.md](./ai-setup.md)**.
+
+Short version:
+
+1. Vercel → Environment Variables → set `AI_GATEWAY_API_KEY` **or** `OPENAI_API_KEY` **or** `CURSOR_API_KEY` (Production + Preview).
+2. Optional: `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` + run `20260814_council.sql` and `20260814_ai_settings.sql`.
+3. Redeploy.
+4. `/admin` → AI setup panel shows **ready** / **missing** per provider. Pick Cursor model to switch frontier models. Save.
+
 ## The 18 agents
 
 | ID | Name | Role |
@@ -44,22 +55,25 @@ Catch-all: `/api/admin/council` (Hobby-safe).
 - `GET` — threads + agents (or `?id=<threadId>`, `?view=agents`)
 - `POST` actions: `create`, `message`, `ask`, `round`, `goal`, `close`, `open-thread`
 
+AI status/prefs: `/api/admin/ai` (`GET` status, `POST` save provider + models).
+
 ## Env
 
-Same AI surface as hall chat:
+See [ai-setup.md](./ai-setup.md). Summary:
 
-- `AI_GATEWAY_API_KEY` (preferred) **or**
+- `CURSOR_API_KEY` (frontier models via Cursor cloud agents) **and/or**
+- `AI_GATEWAY_API_KEY` (preferred fast path) **and/or**
 - `OPENAI_API_KEY` **or**
 - Vercel OIDC on deployment
 
-Optional: `VH_CHAT_MODEL` (default `openai/gpt-5.4-mini`).
+Optional: `VH_CHAT_MODEL`, `VH_CURSOR_MODEL`.
 
 Persistence:
 
 - `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`
-- Run migration `supabase/migrations/20260814_council.sql`
+- Migrations: `supabase/migrations/20260814_council.sql`, `20260814_ai_settings.sql`
 
-Without Supabase, threads live in memory (same instance only).
+Without Supabase, threads + AI prefs live in memory (same instance only).
 
 ## Safety
 

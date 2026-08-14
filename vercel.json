@@ -4,5 +4,13 @@
       "source": "/((?!api/|src/|@vite/|@react-refresh|@id/|@fs/|node_modules/|assets/).*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "functions": {
+    "api/admin/[...slug].js": {
+      "maxDuration": 60
+    },
+    "api/hub/[...slug].js": {
+      "maxDuration": 60
+    }
+  }
 }

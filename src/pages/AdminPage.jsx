@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import AdminRevealControls from '../components/AdminRevealControls'
 import CouncilDesk from '../components/CouncilDesk'
+import AiSetupPanel from '../components/AiSetupPanel'
 import { formatUsd } from '../data/payLinks'
 import { HALL_IDS, TEAM_ROLES } from '../data/teamRoles'
 import {
@@ -739,6 +740,7 @@ export default function AdminPage() {
               workspace — open the Council tab.
             </p>
           </div>
+          <AiSetupPanel />
           <div className="vh-admin__card">
             <h2>Capital desk</h2>
             <p className="vh-admin__note">

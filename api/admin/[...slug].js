@@ -77,6 +77,8 @@ import {
   setCouncilThreadGoal,
   setCouncilThreadStatus,
 } from '../_lib/councilStore.js'
+import { buildAiStatus } from '../_lib/aiStatus.js'
+import { setAiSettings } from '../_lib/aiSettings.js'
 
 const COMPANY_SUMMARY = [
   { id: 'wolf', name: 'Wolf', domain: 'land', pillar: 'movement', wave: 1 },
@@ -744,6 +746,44 @@ async function handleCouncil(req, res) {
   return json(res, 405, { ok: false, error: 'Method not allowed' })
 }
 
+async function handleAi(req, res) {
+  const session = requireAdmin(req, res)
+  if (!session) return
+
+  if (req.method === 'GET') {
+    try {
+      const data = await buildAiStatus()
+      return json(res, 200, data)
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'AI status error' })
+    }
+  }
+
+  if (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH') {
+    try {
+      const body = await readBody(req)
+      const action = String(body.action || 'save').trim().toLowerCase()
+      if (action !== 'save' && action !== 'set' && action !== 'update') {
+        return json(res, 400, { ok: false, error: 'Unknown action' })
+      }
+      const settings = await setAiSettings(
+        {
+          provider: body.provider,
+          cursorModel: body.cursorModel ?? body.cursor_model,
+          chatModel: body.chatModel ?? body.chat_model,
+        },
+        session.email || '',
+      )
+      const status = await buildAiStatus()
+      return json(res, 200, { ok: true, settings, ...status })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'login') return handleLogin(req, res)
@@ -760,5 +800,6 @@ export default async function handler(req, res) {
   if (key === 'inbox') return handleInbox(req, res)
   if (key === 'dispatch') return handleDispatch(req, res)
   if (key === 'council') return handleCouncil(req, res)
+  if (key === 'ai') return handleAi(req, res)
   return json(res, 404, { ok: false, error: 'Not found' })
 }

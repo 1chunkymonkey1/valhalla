@@ -1,27 +1,29 @@
 /**
- * Council agent replies via AI Gateway / OpenAI (same env as hall chat).
+ * Council agent replies via Cursor / AI Gateway / OpenAI (same provider stack as hall chat).
  */
 
 import { generateText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { buildAgentSystemPrompt, getCouncilAgentDef } from './councilAgents.js'
-import { isAiConfigured } from './chatAi.js'
+import {
+  getAiSettings,
+  getCredentialFlags,
+  isAiConfigured,
+  resolveProviderChain,
+} from './aiSettings.js'
+import { generateCursorText } from './cursorAi.js'
 
 export { isAiConfigured }
 
-const DEFAULT_MODEL_ID = process.env.VH_CHAT_MODEL || 'openai/gpt-5.4-mini'
-
-function resolveModel() {
-  const id = DEFAULT_MODEL_ID
-  if (process.env.AI_GATEWAY_API_KEY || (process.env.VERCEL && process.env.VERCEL_OIDC_TOKEN)) {
-    return { model: id, label: id }
+function fallbackReply(agentId, reason) {
+  const agent = getCouncilAgentDef(agentId)
+  const name = agent?.name || agentId
+  return {
+    reply: `${name} standing by. AI credentials are not configured or the model failed (${reason}). Set CURSOR_API_KEY, AI_GATEWAY_API_KEY, or OPENAI_API_KEY, then retry.`,
+    model: 'heuristic',
+    status: 'fallback',
+    reason,
   }
-  if (process.env.OPENAI_API_KEY) {
-    const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
-    const bare = id.includes('/') ? id.split('/').slice(1).join('/') : id
-    return { model: openai(bare), label: `openai:${bare}` }
-  }
-  return { model: id, label: id }
 }
 
 function formatHistory(recentMessages) {
@@ -35,15 +37,12 @@ function formatHistory(recentMessages) {
     .join('\n')
 }
 
-function fallbackReply(agentId, reason) {
-  const agent = getCouncilAgentDef(agentId)
-  const name = agent?.name || agentId
-  return {
-    reply: `${name} standing by. AI credentials are not configured or the model failed (${reason}). Set AI_GATEWAY_API_KEY or OPENAI_API_KEY, then retry.`,
-    model: 'heuristic',
-    status: 'fallback',
-    reason,
+function gatewayOrOpenaiModel(active) {
+  if (active.provider === 'openai') {
+    const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
+    return { model: openai(active.model), label: active.label }
   }
+  return { model: active.model, label: active.label }
 }
 
 /**
@@ -61,30 +60,57 @@ export async function generateCouncilReply({
     return fallbackReply(agentId, 'unknown agent')
   }
 
-  if (!isAiConfigured()) {
+  const flags = getCredentialFlags()
+  if (!isAiConfigured(flags)) {
     return fallbackReply(agentId, 'no AI keys')
   }
 
-  const { model, label } = resolveModel()
+  const settings = await getAiSettings()
+  const chain = resolveProviderChain(settings, flags)
+  if (!chain.length) {
+    return fallbackReply(agentId, 'AI not configured')
+  }
+
   const history = formatHistory(recentMessages)
   const prompt = `Recent council thread:\n${history || '(empty)'}\n\nTrigger:\n${triggerText || '(continue)'}\n\nRespond in character as ${agentId} only. Plain text. No emoji.`
 
-  try {
-    const { text } = await generateText({
-      model,
-      system,
-      prompt,
-      maxOutputTokens: mode === 'autonomous' ? 500 : 700,
-      temperature: mode === 'autonomous' ? 0.5 : 0.4,
-    })
-    const reply = String(text || '').trim()
-    if (!reply) return fallbackReply(agentId, 'empty model reply')
-    return {
-      reply: reply.slice(0, 4000),
-      model: label,
-      status: 'ok',
+  const errors = []
+  for (const active of chain) {
+    try {
+      if (active.provider === 'cursor') {
+        const out = await generateCursorText({
+          system,
+          prompt,
+          modelId: active.model,
+        })
+        const reply = String(out.text || '').trim()
+        if (!reply) throw new Error('empty Cursor reply')
+        return {
+          reply: reply.slice(0, 4000),
+          model: out.model || active.label,
+          status: 'ok',
+        }
+      }
+
+      const { model, label } = gatewayOrOpenaiModel(active)
+      const { text } = await generateText({
+        model,
+        system,
+        prompt,
+        maxOutputTokens: mode === 'autonomous' ? 500 : 700,
+        temperature: mode === 'autonomous' ? 0.5 : 0.4,
+      })
+      const reply = String(text || '').trim()
+      if (!reply) throw new Error('empty model reply')
+      return {
+        reply: reply.slice(0, 4000),
+        model: label,
+        status: 'ok',
+      }
+    } catch (err) {
+      errors.push(`${active.provider}: ${(err?.message || 'failed').slice(0, 120)}`)
     }
-  } catch (err) {
-    return fallbackReply(agentId, (err?.message || 'AI error').slice(0, 200))
   }
+
+  return fallbackReply(agentId, errors.join(' · ') || 'AI error')
 }

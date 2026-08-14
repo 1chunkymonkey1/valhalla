@@ -1,21 +1,31 @@
 /**
  * Immediate AI replies for Ask-the-hall, grounded in hallKnowledge.
- * Uses Vercel AI Gateway via AI SDK when gateway/OIDC auth is present,
- * or @ai-sdk/openai when OPENAI_API_KEY is set.
  *
- * Env (any one):
- * - AI_GATEWAY_API_KEY (best for local + Hobby)
- * - Vercel deployment OIDC (automatic when VERCEL=1)
- * - OPENAI_API_KEY (direct OpenAI-compatible via @ai-sdk/openai)
- * - VH_CHAT_MODEL (default openai/gpt-5.4-mini)
+ * Provider order (when Admin provider = auto):
+ * 1. Cursor cloud agent when CURSOR_API_KEY + cursor model selected
+ * 2. Vercel AI Gateway (AI_GATEWAY_API_KEY or OIDC)
+ * 3. OpenAI (OPENAI_API_KEY)
  */
 
 import { generateText, Output } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
 import { buildKnowledgePrompt, getHallKnowledge } from './hallKnowledge.js'
+import {
+  getAiSettings,
+  getCredentialFlags,
+  isAiConfigured,
+  resolveProviderChain,
+} from './aiSettings.js'
+import { generateCursorText } from './cursorAi.js'
 
-const DEFAULT_MODEL_ID = process.env.VH_CHAT_MODEL || 'openai/gpt-5.4-mini'
+export { isAiConfigured }
+
+const ReplySchema = z.object({
+  reply: z.string().min(1).max(1200),
+  needs_human: z.boolean(),
+  reason: z.string().max(240).optional().default(''),
+})
 
 const HUMAN_PATTERNS = [
   /\b(human|person|founder|someone|agent|manager|call me|speak (to|with)|talk to|real (person|human))\b/i,
@@ -24,34 +34,6 @@ const HUMAN_PATTERNS = [
   /\b(reserv(e|ation)|book(ing)?|purchase|buy now|checkout|pre-?sale)\b/i,
   /\b(ssn|passport|social security|password|secret|confidential)\b/i,
 ]
-
-const ReplySchema = z.object({
-  reply: z.string().min(1).max(1200),
-  needs_human: z.boolean(),
-  reason: z.string().max(240).optional().default(''),
-})
-
-export function isAiConfigured() {
-  return Boolean(
-    process.env.AI_GATEWAY_API_KEY ||
-      process.env.OPENAI_API_KEY ||
-      (process.env.VERCEL && process.env.VERCEL_OIDC_TOKEN),
-  )
-}
-
-function resolveModel() {
-  const id = DEFAULT_MODEL_ID
-  // Gateway path: string model id (provider/model)
-  if (process.env.AI_GATEWAY_API_KEY || (process.env.VERCEL && process.env.VERCEL_OIDC_TOKEN)) {
-    return { model: id, label: id }
-  }
-  if (process.env.OPENAI_API_KEY) {
-    const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
-    const bare = id.includes('/') ? id.split('/').slice(1).join('/') : id
-    return { model: openai(bare), label: `openai:${bare}` }
-  }
-  return { model: id, label: id }
-}
 
 export function heuristicNeedsHuman(text) {
   const body = String(text || '')
@@ -78,36 +60,48 @@ function fallbackReply(pageId, visitorText, needsHuman, reason) {
   }
 }
 
-/**
- * Generate an immediate reply for a visitor message.
- * @returns {{ reply: string, needsHuman: boolean, reason: string, model: string, status: string }}
- */
-export async function generateHallReply({ pageId, visitorText, recentMessages = [] }) {
-  const heur = heuristicNeedsHuman(visitorText)
-
-  if (!isAiConfigured()) {
-    return fallbackReply(
-      pageId,
-      visitorText,
-      true,
-      heur.reason || 'No AI gateway / OpenAI credentials — heuristic reply; needs human review',
-    )
+function gatewayOrOpenaiModel(active) {
+  if (active.provider === 'openai') {
+    const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
+    return { model: openai(active.model), label: active.label }
   }
+  return { model: active.model, label: active.label }
+}
 
-  const { model, label } = resolveModel()
-  const history = recentMessages
-    .slice(-8)
-    .map((m) => `${m.sender}: ${m.body}`)
-    .join('\n')
+async function replyViaCursor(active, { system, prompt, heur }) {
+  const out = await generateCursorText({
+    system: `${system}\n\nReturn plain text only (the visitor-facing reply). If a human should follow up, end with the line: NEEDS_HUMAN: yes — <short reason>`,
+    prompt,
+    modelId: active.model,
+  })
+  const raw = String(out.text || '').trim()
+  const needsLine = raw.match(/NEEDS_HUMAN:\s*(yes|no)\s*[—\-:]?\s*(.*)$/im)
+  let reply = raw
+  let needsHuman = heur.needsHuman
+  let reason = heur.reason || ''
+  if (needsLine) {
+    needsHuman = needsHuman || /^yes$/i.test(needsLine[1])
+    reason = [reason, needsLine[2]].filter(Boolean).join(' · ').slice(0, 240)
+    reply = raw.replace(needsLine[0], '').trim()
+  }
+  if (!reply) throw new Error('Empty Cursor reply')
+  return {
+    reply: reply.slice(0, 1200),
+    needsHuman,
+    reason,
+    model: out.model || active.label,
+    status: 'ok',
+  }
+}
 
+async function replyViaLlm(active, { system, prompt, history, pageId, visitorText, heur }) {
+  const { model, label } = gatewayOrOpenaiModel(active)
   try {
     const { output } = await generateText({
       model,
       output: Output.object({ schema: ReplySchema }),
-      system: `${buildKnowledgePrompt(pageId)}
-
-Respond with JSON matching the schema. Set needs_human true when uncertain, sensitive, money/reservation/legal, or the user asks for a person.`,
-      prompt: `Recent thread:\n${history || '(new thread)'}\n\nVisitor message:\n${visitorText}`,
+      system: `${system}\nRespond with JSON matching the schema.`,
+      prompt,
       maxOutputTokens: 400,
       temperature: 0.4,
     })
@@ -115,9 +109,7 @@ Respond with JSON matching the schema. Set needs_human true when uncertain, sens
     const needsHuman = Boolean(output?.needs_human) || heur.needsHuman
     const reason = [output?.reason, heur.reason].filter(Boolean).join(' · ').slice(0, 240)
     const reply = String(output?.reply || '').trim()
-    if (!reply) {
-      return fallbackReply(pageId, visitorText, true, 'Empty model reply')
-    }
+    if (!reply) throw new Error('Empty model reply')
     return {
       reply: reply.slice(0, 1200),
       needsHuman,
@@ -126,30 +118,73 @@ Respond with JSON matching the schema. Set needs_human true when uncertain, sens
       status: 'ok',
     }
   } catch (err) {
-    try {
-      const { text } = await generateText({
-        model,
-        system: buildKnowledgePrompt(pageId),
-        prompt: `Recent thread:\n${history || '(new thread)'}\n\nVisitor: ${visitorText}\n\nReply in plain text only.`,
-        maxOutputTokens: 350,
-        temperature: 0.4,
-      })
-      const reply = String(text || '').trim()
-      if (!reply) throw new Error('empty')
-      return {
-        reply: reply.slice(0, 1200),
-        needsHuman: heur.needsHuman || /follow up|human|someone from valhalla/i.test(reply),
-        reason: heur.reason || '',
-        model: label,
-        status: 'ok_text',
-      }
-    } catch (err2) {
-      return fallbackReply(
-        pageId,
-        visitorText,
-        true,
-        `AI error: ${err2?.message || err?.message || 'unknown'}`.slice(0, 240),
-      )
+    const { text } = await generateText({
+      model,
+      system: buildKnowledgePrompt(pageId),
+      prompt: `Recent thread:\n${history || '(new thread)'}\n\nVisitor: ${visitorText}\n\nReply in plain text only.`,
+      maxOutputTokens: 350,
+      temperature: 0.4,
+    })
+    const reply = String(text || '').trim()
+    if (!reply) throw err
+    return {
+      reply: reply.slice(0, 1200),
+      needsHuman: heur.needsHuman || /follow up|human|someone from valhalla/i.test(reply),
+      reason: heur.reason || '',
+      model: label,
+      status: 'ok_text',
     }
   }
+}
+
+/**
+ * Generate an immediate reply for a visitor message.
+ * @returns {{ reply: string, needsHuman: boolean, reason: string, model: string, status: string }}
+ */
+export async function generateHallReply({ pageId, visitorText, recentMessages = [] }) {
+  const heur = heuristicNeedsHuman(visitorText)
+  const flags = getCredentialFlags()
+
+  if (!isAiConfigured(flags)) {
+    return fallbackReply(
+      pageId,
+      visitorText,
+      true,
+      heur.reason || 'No AI credentials — heuristic reply; needs human review',
+    )
+  }
+
+  const settings = await getAiSettings()
+  const chain = resolveProviderChain(settings, flags)
+  if (!chain.length) {
+    return fallbackReply(pageId, visitorText, true, 'AI not configured')
+  }
+
+  const history = recentMessages
+    .slice(-8)
+    .map((m) => `${m.sender}: ${m.body}`)
+    .join('\n')
+  const system = `${buildKnowledgePrompt(pageId)}
+
+Respond briefly. Set needs_human true when uncertain, sensitive, money/reservation/legal, or the user asks for a person.`
+  const prompt = `Recent thread:\n${history || '(new thread)'}\n\nVisitor message:\n${visitorText}`
+
+  const errors = []
+  for (const active of chain) {
+    try {
+      if (active.provider === 'cursor') {
+        return await replyViaCursor(active, { system, prompt, heur })
+      }
+      return await replyViaLlm(active, { system, prompt, history, pageId, visitorText, heur })
+    } catch (err) {
+      errors.push(`${active.provider}: ${(err?.message || 'failed').slice(0, 120)}`)
+    }
+  }
+
+  return fallbackReply(
+    pageId,
+    visitorText,
+    true,
+    `AI error: ${errors.join(' · ') || 'unknown'}`.slice(0, 240),
+  )
 }

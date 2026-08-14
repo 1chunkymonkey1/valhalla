@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { COUNCIL_AGENTS } from '../data/councilAgents'
+import AiSetupPanel from './AiSetupPanel'
 
 export default function CouncilDesk() {
   const [agents, setAgents] = useState(COUNCIL_AGENTS)
@@ -231,6 +232,8 @@ export default function CouncilDesk() {
         </div>
         {msg && <p className="vh-admin__note">{msg}</p>}
       </div>
+
+      <AiSetupPanel compact />
 
       <div className="vh-admin__council-grid">
         <div className="vh-admin__council-sidebar">
