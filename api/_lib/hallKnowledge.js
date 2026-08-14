@@ -40,11 +40,12 @@ const HALLS = {
   eagle: {
     name: 'Eagle',
     hero: 'The more you fly, the better it is for the atmosphere.',
-    body: 'Eagle Air is clean air transportation from private jets to long-distance Earth travel. Every plane is named after a bird species. Every Eagle jet has active carbon removal: the more you fly it, the better it is for the atmosphere.',
+    body: 'Eagle Air is clean air transportation from private jets to long-distance Earth travel. Every plane is named after a bird species. Every Eagle jet has active carbon removal: the more you fly it, the better it is for the atmosphere. Near-term work is strategic partnership dialogue (including open conversation with Spirit 2.0 leadership). Implementation on partner fleets waits on FAA-proven tech on a multi-year horizon. No flight schedule and no acquisition claim on this surface.',
     bullets: [
       'Bird-species aircraft names',
       'Active carbon removal on every jet',
-      'Private jet through long-haul Earth travel',
+      'Strategic partnerships first (public-market scrutiny)',
+      'Open dialogue with Spirit 2.0; fleet implement when FAA tech is proven (~years, not tickets today)',
       'No published flight schedule on this surface',
     ],
   },
