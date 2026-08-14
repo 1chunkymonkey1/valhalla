@@ -117,7 +117,7 @@ export default function ProductMatrix({ companyId }) {
                   rows.length,
                 )
                 const href = `/${companyId}/${cell.id}`
-                const imageSrc = resolveProductImage(companyId, cell, line)
+                const imageSrc = resolveProductImage(companyId, cell, line, 'thumb')
                 return (
                   <div key={line.id} role="cell" className="product-matrix__td">
                     <Link
@@ -133,6 +133,8 @@ export default function ProductMatrix({ companyId }) {
                           className="product-matrix__cell-img"
                           src={imageSrc}
                           alt=""
+                          width={320}
+                          height={240}
                           loading="lazy"
                           decoding="async"
                         />

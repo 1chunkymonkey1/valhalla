@@ -33,9 +33,16 @@ function saveThreadId(pageId, id) {
   }
 }
 
+function senderLabel(sender) {
+  if (sender === 'visitor') return 'You'
+  if (sender === 'admin') return 'Valhalla'
+  if (sender === 'ai') return 'Hall guide'
+  return 'Hall'
+}
+
 /**
- * Compact "ask the hall" widget, human relay to /admin inbox.
- * Keep off dormant countdown hub (pass dormant).
+ * Compact "ask the hall" widget → /api/hub/chat → admin Inbox.
+ * Immediate AI reply; humans continue hard questions.
  */
 export default function AskHallWidget({ pageId, hallName = 'Valhalla', dormant = false }) {
   const [open, setOpen] = useState(false)
@@ -48,6 +55,7 @@ export default function AskHallWidget({ pageId, hallName = 'Valhalla', dormant =
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [unread, setUnread] = useState(0)
+  const [aiMeta, setAiMeta] = useState(null)
   const listRef = useRef(null)
 
   const onPoll = useEffectEvent(async () => {
@@ -69,6 +77,7 @@ export default function AskHallWidget({ pageId, hallName = 'Valhalla', dormant =
     setThreadId(loadThreadId(pageId))
     setMessages([])
     setUnread(0)
+    setAiMeta(null)
   }, [pageId])
 
   useEffect(() => {
@@ -116,6 +125,7 @@ export default function AskHallWidget({ pageId, hallName = 'Valhalla', dormant =
         saveThreadId(pageId, data.thread.id)
       }
       setMessages(data.messages || [])
+      setAiMeta(data.ai || null)
       setUnread(0)
       fetch('/api/hub/chat', {
         method: 'POST',
@@ -159,7 +169,8 @@ export default function AskHallWidget({ pageId, hallName = 'Valhalla', dormant =
             </button>
           </header>
           <p className="vh-ask__blurb">
-            Messages go to Valhalla. A person replies here, not an automated chatbot.
+            Instant hall guide answers grounded in Valhalla knowledge. A person continues when the
+            question needs a human.
           </p>
           <div className="vh-ask__msgs" ref={listRef} data-lenis-prevent>
             {!messages.length && (
@@ -170,13 +181,14 @@ export default function AskHallWidget({ pageId, hallName = 'Valhalla', dormant =
                 key={m.id}
                 className={`vh-ask__bubble vh-ask__bubble--${m.sender === 'visitor' ? 'me' : m.sender}`}
               >
-                <span className="vh-ask__who">
-                  {m.sender === 'visitor' ? 'You' : m.sender === 'admin' ? 'Valhalla' : 'Hall'}
-                </span>
+                <span className="vh-ask__who">{senderLabel(m.sender)}</span>
                 <p>{m.body}</p>
               </div>
             ))}
           </div>
+          {aiMeta?.needsHuman && (
+            <p className="vh-ask__escalate">Flagged for a Valhalla person — they can reply here.</p>
+          )}
           <form className="vh-ask__form" onSubmit={send}>
             <div className="vh-ask__meta">
               <input

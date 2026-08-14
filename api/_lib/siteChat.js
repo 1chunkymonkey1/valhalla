@@ -1,11 +1,12 @@
 /**
- * Visitor ↔ founder hall chat (human relay).
- * Supabase when configured; otherwise in-memory (lost on cold start).
+ * Visitor ↔ hall chat with immediate AI reply + human relay.
+ * Supabase when configured; otherwise in-memory (same-instance only — lost on cold start / multi-instance).
  */
 
 import { randomBytes } from 'node:crypto'
 import { getSupabase, isSupabaseConfigured } from './supabase.js'
 import { plainText } from './sanitize.js'
+import { generateHallReply } from './chatAi.js'
 
 export const CHAT_PAGE_IDS = [
   'hub',
@@ -24,7 +25,7 @@ export const CHAT_PAGE_IDS = [
 ]
 
 const GREETING =
-  'Welcome. Ask anything about this hall. A person from Valhalla will reply here (not an automated AI).'
+  'Welcome. Ask anything about this hall — you will get an immediate answer here. Hard or sensitive questions are flagged for a Valhalla person to continue in this thread.'
 
 function mem() {
   const g = globalThis
@@ -56,6 +57,11 @@ function mapThread(row) {
     unreadAdmin: Number(row.unread_admin ?? row.unreadAdmin ?? 0),
     unreadVisitor: Number(row.unread_visitor ?? row.unreadVisitor ?? 0),
     preview: row.preview || '',
+    needsHuman: Boolean(row.needs_human ?? row.needsHuman),
+    needsHumanReason: row.needs_human_reason || row.needsHumanReason || '',
+    isTest: Boolean(row.is_test ?? row.isTest),
+    lastAiModel: row.last_ai_model || row.lastAiModel || '',
+    lastAiStatus: row.last_ai_status || row.lastAiStatus || '',
     createdAt: row.created_at || row.createdAt,
     updatedAt: row.updated_at || row.updatedAt,
     lastMessageAt: row.last_message_at || row.lastMessageAt,
@@ -69,6 +75,8 @@ function mapMessage(row) {
     threadId: row.thread_id || row.threadId,
     sender: row.sender,
     body: row.body,
+    model: row.model || '',
+    meta: row.meta || {},
     createdAt: row.created_at || row.createdAt,
   }
 }
@@ -82,6 +90,7 @@ function publicThread(t) {
     status: t.status,
     unreadVisitor: t.unreadVisitor,
     preview: t.preview,
+    needsHuman: t.needsHuman,
     createdAt: t.createdAt,
     updatedAt: t.updatedAt,
     lastMessageAt: t.lastMessageAt,
@@ -94,6 +103,10 @@ function adminThread(t) {
     ...publicThread(t),
     visitorEmail: t.visitorEmail,
     unreadAdmin: t.unreadAdmin,
+    needsHumanReason: t.needsHumanReason,
+    isTest: t.isTest,
+    lastAiModel: t.lastAiModel,
+    lastAiStatus: t.lastAiStatus,
   }
 }
 
@@ -140,12 +153,31 @@ async function insertThread(thread) {
     unread_admin: thread.unreadAdmin,
     unread_visitor: thread.unreadVisitor,
     preview: thread.preview,
+    needs_human: thread.needsHuman || false,
+    needs_human_reason: thread.needsHumanReason || '',
+    is_test: thread.isTest || false,
+    last_ai_model: thread.lastAiModel || '',
+    last_ai_status: thread.lastAiStatus || '',
     created_at: thread.createdAt,
     updated_at: thread.updatedAt,
     last_message_at: thread.lastMessageAt,
   }
   const { error } = await sb.from('chat_threads').insert(payload)
-  if (error) throw error
+  if (error) {
+    // Migration not applied yet — retry without AI columns
+    if (/needs_human|is_test|last_ai_/i.test(error.message || '')) {
+      const slim = { ...payload }
+      delete slim.needs_human
+      delete slim.needs_human_reason
+      delete slim.is_test
+      delete slim.last_ai_model
+      delete slim.last_ai_status
+      const retry = await sb.from('chat_threads').insert(slim)
+      if (retry.error) throw retry.error
+      return thread
+    }
+    throw error
+  }
   return thread
 }
 
@@ -166,8 +198,27 @@ async function updateThread(threadId, patch) {
   if (patch.unreadVisitor !== undefined) payload.unread_visitor = patch.unreadVisitor
   if (patch.preview !== undefined) payload.preview = patch.preview
   if (patch.lastMessageAt !== undefined) payload.last_message_at = patch.lastMessageAt
+  if (patch.needsHuman !== undefined) payload.needs_human = patch.needsHuman
+  if (patch.needsHumanReason !== undefined) payload.needs_human_reason = patch.needsHumanReason
+  if (patch.isTest !== undefined) payload.is_test = patch.isTest
+  if (patch.lastAiModel !== undefined) payload.last_ai_model = patch.lastAiModel
+  if (patch.lastAiStatus !== undefined) payload.last_ai_status = patch.lastAiStatus
+
   const { error } = await sb.from('chat_threads').update(payload).eq('id', threadId)
-  if (error) throw error
+  if (error) {
+    if (/needs_human|is_test|last_ai_/i.test(error.message || '')) {
+      const slim = { ...payload }
+      delete slim.needs_human
+      delete slim.needs_human_reason
+      delete slim.is_test
+      delete slim.last_ai_model
+      delete slim.last_ai_status
+      const retry = await sb.from('chat_threads').update(slim).eq('id', threadId)
+      if (retry.error) throw retry.error
+      return getThreadRaw(threadId)
+    }
+    throw error
+  }
   return getThreadRaw(threadId)
 }
 
@@ -182,10 +233,26 @@ async function insertMessage(msg) {
     thread_id: msg.threadId,
     sender: msg.sender,
     body: msg.body,
+    model: msg.model || '',
+    meta: msg.meta || {},
     created_at: msg.createdAt,
   }
   const { error } = await sb.from('chat_messages').insert(payload)
-  if (error) throw error
+  if (error) {
+    if (/model|meta/i.test(error.message || '')) {
+      const slim = {
+        id: msg.id,
+        thread_id: msg.threadId,
+        sender: msg.sender,
+        body: msg.body,
+        created_at: msg.createdAt,
+      }
+      const retry = await sb.from('chat_messages').insert(slim)
+      if (retry.error) throw retry.error
+      return msg
+    }
+    throw error
+  }
   return msg
 }
 
@@ -196,6 +263,8 @@ export async function startOrContinueThread({
   visitorName,
   visitorEmail,
   body,
+  isTest = false,
+  skipAi = false,
 }) {
   if (!isValidPageId(pageId)) throw new Error('Unknown page')
   const token = String(visitorToken || '').trim()
@@ -208,6 +277,7 @@ export async function startOrContinueThread({
   const name = plainText(visitorName || '', 80)
   const email = plainText(visitorEmail || '', 160).toLowerCase()
   const now = new Date().toISOString()
+  const testFlag = Boolean(isTest) || /^\[test\]/i.test(text)
 
   let thread = null
   if (threadId) {
@@ -248,6 +318,11 @@ export async function startOrContinueThread({
       unreadAdmin: 0,
       unreadVisitor: 0,
       preview: '',
+      needsHuman: false,
+      needsHumanReason: '',
+      isTest: testFlag,
+      lastAiModel: '',
+      lastAiStatus: '',
       createdAt: now,
       updatedAt: now,
       lastMessageAt: now,
@@ -258,12 +333,19 @@ export async function startOrContinueThread({
       sender: 'system',
       body: GREETING,
       createdAt: now,
+      model: '',
+      meta: {},
     })
-  } else if (name || email) {
-    thread = await updateThread(thread.id, {
-      visitorName: name || thread.visitorName,
-      visitorEmail: email || thread.visitorEmail,
-    })
+  } else {
+    const patch = {}
+    if (name || email) {
+      patch.visitorName = name || thread.visitorName
+      patch.visitorEmail = email || thread.visitorEmail
+    }
+    if (testFlag) patch.isTest = true
+    if (Object.keys(patch).length) {
+      thread = await updateThread(thread.id, patch)
+    }
   }
 
   const msg = await insertMessage({
@@ -272,6 +354,8 @@ export async function startOrContinueThread({
     sender: 'visitor',
     body: text,
     createdAt: new Date().toISOString(),
+    model: '',
+    meta: testFlag ? { test: true } : {},
   })
 
   thread = await updateThread(thread.id, {
@@ -282,12 +366,60 @@ export async function startOrContinueThread({
     status: 'open',
   })
 
+  let aiResult = null
+  if (!skipAi) {
+    const prior = await listMessagesRaw(thread.id)
+    aiResult = await generateHallReply({
+      pageId,
+      visitorText: text,
+      recentMessages: prior.filter((m) => m.sender !== 'system').slice(0, -1),
+    })
+
+    const aiMsg = await insertMessage({
+      id: nid('cmsg'),
+      threadId: thread.id,
+      sender: 'ai',
+      body: aiResult.reply,
+      createdAt: new Date().toISOString(),
+      model: aiResult.model,
+      meta: {
+        status: aiResult.status,
+        needsHuman: aiResult.needsHuman,
+        reason: aiResult.reason || '',
+      },
+    })
+
+    thread = await updateThread(thread.id, {
+      preview: `AI: ${aiResult.reply}`.slice(0, 160),
+      lastMessageAt: aiMsg.createdAt,
+      unreadVisitor: (thread.unreadVisitor || 0) + 1,
+      needsHuman: aiResult.needsHuman || thread.needsHuman,
+      needsHumanReason: aiResult.needsHuman
+        ? aiResult.reason || thread.needsHumanReason || 'AI flagged for human'
+        : thread.needsHumanReason,
+      lastAiModel: aiResult.model,
+      lastAiStatus: aiResult.status,
+      // Keep admin unread so founders see the conversation; bump again if escalated
+      unreadAdmin: aiResult.needsHuman
+        ? Math.max(thread.unreadAdmin || 1, 1)
+        : thread.unreadAdmin,
+    })
+  }
+
   const messages = await listMessagesRaw(thread.id)
   return {
     thread: publicThread(thread),
     messages,
     visitorToken: token,
     created,
+    ai: aiResult
+      ? {
+          model: aiResult.model,
+          status: aiResult.status,
+          needsHuman: aiResult.needsHuman,
+          reason: aiResult.reason,
+        }
+      : null,
     storage: isSupabaseConfigured() ? 'supabase' : 'memory',
   }
 }
@@ -305,16 +437,19 @@ export async function getVisitorThread(threadId, visitorToken) {
   }
 }
 
-export async function listAdminThreads({ pageId, limit = 60 } = {}) {
+export async function listAdminThreads({ pageId, limit = 60, needsHumanOnly = false } = {}) {
   const cap = Math.min(Math.max(Number(limit) || 60, 1), 120)
   let threads
   if (!isSupabaseConfigured()) {
-    threads = [...mem().threads].sort((a, b) =>
-      String(b.lastMessageAt).localeCompare(String(a.lastMessageAt)),
-    )
+    threads = [...mem().threads].sort((a, b) => {
+      const flag = Number(Boolean(b.needsHuman)) - Number(Boolean(a.needsHuman))
+      if (flag) return flag
+      return String(b.lastMessageAt).localeCompare(String(a.lastMessageAt))
+    })
     if (pageId && isValidPageId(pageId)) {
       threads = threads.filter((t) => t.pageId === pageId)
     }
+    if (needsHumanOnly) threads = threads.filter((t) => t.needsHuman)
     threads = threads.slice(0, cap)
   } else {
     const sb = getSupabase()
@@ -324,15 +459,42 @@ export async function listAdminThreads({ pageId, limit = 60 } = {}) {
       .order('last_message_at', { ascending: false })
       .limit(cap)
     if (pageId && isValidPageId(pageId)) q = q.eq('page_id', pageId)
+    if (needsHumanOnly) q = q.eq('needs_human', true)
     const { data, error } = await q
-    if (error) throw error
-    threads = (data || []).map(mapThread)
+    if (error) {
+      // Column missing before migration — fall back
+      if (/needs_human/i.test(error.message || '')) {
+        let q2 = sb
+          .from('chat_threads')
+          .select('*')
+          .order('last_message_at', { ascending: false })
+          .limit(cap)
+        if (pageId && isValidPageId(pageId)) q2 = q2.eq('page_id', pageId)
+        const retry = await q2
+        if (retry.error) throw retry.error
+        threads = (retry.data || []).map(mapThread)
+      } else {
+        throw error
+      }
+    } else {
+      threads = (data || []).map(mapThread)
+    }
+    threads.sort((a, b) => {
+      const flag = Number(Boolean(b.needsHuman)) - Number(Boolean(a.needsHuman))
+      if (flag) return flag
+      return String(b.lastMessageAt).localeCompare(String(a.lastMessageAt))
+    })
   }
   const unreadTotal = threads.reduce((n, t) => n + (t.unreadAdmin > 0 ? 1 : 0), 0)
+  const needsHumanTotal = threads.reduce((n, t) => n + (t.needsHuman ? 1 : 0), 0)
   return {
     threads: threads.map(adminThread),
     unreadTotal,
+    needsHumanTotal,
     storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+    durabilityNote: isSupabaseConfigured()
+      ? 'supabase'
+      : 'memory: same-instance only; set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY for multi-instance durability',
   }
 }
 
@@ -359,6 +521,8 @@ export async function replyAsAdmin(threadId, body) {
     sender: 'admin',
     body: text,
     createdAt: new Date().toISOString(),
+    model: '',
+    meta: {},
   })
 
   const updated = await updateThread(threadId, {
@@ -366,6 +530,8 @@ export async function replyAsAdmin(threadId, body) {
     lastMessageAt: msg.createdAt,
     unreadVisitor: (thread.unreadVisitor || 0) + 1,
     unreadAdmin: 0,
+    needsHuman: false,
+    needsHumanReason: '',
     status: 'open',
   })
 
@@ -399,4 +565,23 @@ export async function setThreadStatus(threadId, status) {
   if (!thread) throw new Error('Thread not found')
   const updated = await updateThread(threadId, { status })
   return { thread: adminThread(updated) }
+}
+
+export async function setNeedsHuman(threadId, needsHuman, reason = '') {
+  const thread = await getThreadRaw(threadId)
+  if (!thread) throw new Error('Thread not found')
+  const updated = await updateThread(threadId, {
+    needsHuman: Boolean(needsHuman),
+    needsHumanReason: needsHuman ? plainText(reason || 'Flagged for human', 240) : '',
+    unreadAdmin: needsHuman ? Math.max(thread.unreadAdmin || 0, 1) : thread.unreadAdmin,
+  })
+  return { thread: adminThread(updated) }
+}
+
+/** Test helper: wipe in-memory chat (no-op on Supabase). */
+export function resetMemoryChatForTests() {
+  if (isSupabaseConfigured()) return false
+  mem().threads.length = 0
+  mem().messages.length = 0
+  return true
 }

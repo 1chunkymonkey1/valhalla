@@ -49,12 +49,15 @@ export default function AdminPage() {
   const [socialMsg, setSocialMsg] = useState('')
   const [inboxThreads, setInboxThreads] = useState([])
   const [inboxUnread, setInboxUnread] = useState(0)
+  const [inboxNeedsHuman, setInboxNeedsHuman] = useState(0)
   const [inboxActive, setInboxActive] = useState(null)
   const [inboxMessages, setInboxMessages] = useState([])
   const [inboxReply, setInboxReply] = useState('')
   const [inboxMsg, setInboxMsg] = useState('')
   const [inboxFilter, setInboxFilter] = useState('')
+  const [inboxNeedsOnly, setInboxNeedsOnly] = useState(false)
   const [inboxStorage, setInboxStorage] = useState('')
+  const [inboxDurability, setInboxDurability] = useState('')
 
   async function enterAuthenticated(adminEmail) {
     setAuth({ loading: false, ok: true, email: adminEmail })
@@ -153,13 +156,18 @@ export default function AdminPage() {
   }
 
   async function loadInbox(pageId = inboxFilter) {
-    const q = pageId ? `?pageId=${encodeURIComponent(pageId)}` : ''
+    const params = new URLSearchParams()
+    if (pageId) params.set('pageId', pageId)
+    if (inboxNeedsOnly) params.set('needsHuman', '1')
+    const q = params.toString() ? `?${params}` : ''
     const res = await fetch(`/api/admin/inbox${q}`, { credentials: 'include' })
     if (!res.ok) return
     const data = await res.json()
     setInboxThreads(data.threads || [])
     setInboxUnread(data.unreadTotal || 0)
+    setInboxNeedsHuman(data.needsHumanTotal || 0)
     setInboxStorage(data.storage || '')
+    setInboxDurability(data.durabilityNote || '')
   }
 
   async function openInboxThread(threadId) {
@@ -201,6 +209,27 @@ export default function AdminPage() {
     setInboxReply('')
     setInboxActive(data.thread || inboxActive)
     setInboxMessages(data.messages || [])
+    await loadInbox()
+  }
+
+  async function setInboxFlag(needsHuman) {
+    if (!inboxActive?.id) return
+    const res = await fetch('/api/admin/inbox', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        threadId: inboxActive.id,
+        action: needsHuman ? 'flag' : 'unflag',
+        reason: needsHuman ? 'Founder flagged' : '',
+      }),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok || !data.ok) {
+      setInboxMsg(data.error || 'Flag update failed')
+      return
+    }
+    setInboxActive(data.thread || inboxActive)
     await loadInbox()
   }
 
@@ -273,7 +302,7 @@ export default function AdminPage() {
     loadInbox()
     const id = setInterval(() => loadInbox(), 8000)
     return () => clearInterval(id)
-  }, [auth.ok, adminTab, inboxFilter])
+  }, [auth.ok, adminTab, inboxFilter, inboxNeedsOnly])
 
   async function pastePassword() {
     setError('')
@@ -657,7 +686,9 @@ export default function AdminPage() {
             <h2>Site inbox</h2>
             <p className="vh-admin__count">{inboxUnread}</p>
             <p className="vh-admin__note">
-              Unread hall chats from Ask widgets. Open the Inbox tab to reply.
+              Unread hall chats from Ask widgets
+              {inboxNeedsHuman ? ` · ${inboxNeedsHuman} need human` : ''}. Open the Inbox tab to
+              review AI answers and reply.
             </p>
           </div>
           <div className="vh-admin__card">
@@ -683,31 +714,47 @@ export default function AdminPage() {
           <div className="vh-admin__card">
             <h2>Hall inbox</h2>
             <p className="vh-admin__note">
-              Visitors ask via the Ask widget on each company site and the live hub. Replies appear
-              in their session. Storage: <strong>{inboxStorage || '…'}</strong>
+              Visitors get an immediate AI reply; you see the full transcript and can continue as a
+              person. Storage: <strong>{inboxStorage || '…'}</strong>
               {inboxStorage === 'memory'
-                ? ', run Supabase chat migration for durable threads.'
+                ? ' — memory is same-instance only; set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY and run chat migrations for durable multi-instance threads.'
                 : ''}
+              {inboxDurability && inboxStorage === 'memory' ? '' : ''}
+              {inboxNeedsHuman ? ` · ${inboxNeedsHuman} need human` : ''}
             </p>
-            <label>
-              Filter hall
-              <select
-                value={inboxFilter}
-                onChange={(e) => {
-                  setInboxFilter(e.target.value)
-                  setInboxActive(null)
-                  setInboxMessages([])
-                }}
-              >
-                <option value="">All pages</option>
-                <option value="hub">hub</option>
-                {HALL_IDS.map((h) => (
-                  <option key={h} value={h}>
-                    {h}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <div className="vh-admin__row">
+              <label>
+                Filter hall
+                <select
+                  value={inboxFilter}
+                  onChange={(e) => {
+                    setInboxFilter(e.target.value)
+                    setInboxActive(null)
+                    setInboxMessages([])
+                  }}
+                >
+                  <option value="">All pages</option>
+                  <option value="hub">hub</option>
+                  {HALL_IDS.map((h) => (
+                    <option key={h} value={h}>
+                      {h}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="vh-admin__check">
+                <input
+                  type="checkbox"
+                  checked={inboxNeedsOnly}
+                  onChange={(e) => {
+                    setInboxNeedsOnly(e.target.checked)
+                    setInboxActive(null)
+                    setInboxMessages([])
+                  }}
+                />
+                Needs human only
+              </label>
+            </div>
             {inboxMsg && <p className="vh-admin__note">{inboxMsg}</p>}
           </div>
           <div className="vh-admin__inbox-split">
@@ -716,15 +763,18 @@ export default function AdminPage() {
                 <li key={t.id}>
                   <button
                     type="button"
-                    className={`vh-admin__inbox-item ${inboxActive?.id === t.id ? 'is-active' : ''} ${t.unreadAdmin ? 'is-unread' : ''}`}
+                    className={`vh-admin__inbox-item ${inboxActive?.id === t.id ? 'is-active' : ''} ${t.unreadAdmin ? 'is-unread' : ''} ${t.needsHuman ? 'needs-human' : ''}`}
                     onClick={() => openInboxThread(t.id)}
                   >
                     <strong>
+                      {t.needsHuman ? '⚑ ' : ''}
                       {t.pageId}
                       {t.unreadAdmin ? ` · ${t.unreadAdmin} new` : ''}
+                      {t.isTest ? ' · test' : ''}
                     </strong>
                     <span>
                       {t.visitorName || t.visitorEmail || 'Visitor'} · {t.status}
+                      {t.lastAiModel ? ` · AI ${t.lastAiStatus || 'ok'}` : ''}
                     </span>
                     <span className="vh-admin__inbox-preview">{t.preview || '-'}</span>
                   </button>
@@ -743,14 +793,38 @@ export default function AdminPage() {
                   <header className="vh-admin__inbox-head">
                     <div>
                       <h2>
+                        {inboxActive.needsHuman ? '⚑ ' : ''}
                         {inboxActive.pageId}
                         {inboxActive.visitorName ? ` · ${inboxActive.visitorName}` : ''}
                       </h2>
                       <p className="vh-admin__note">
                         {inboxActive.visitorEmail || 'No email'} · {inboxActive.status}
+                        {inboxActive.lastAiModel
+                          ? ` · model ${inboxActive.lastAiModel} (${inboxActive.lastAiStatus || '…'})`
+                          : ''}
+                        {inboxActive.needsHumanReason
+                          ? ` · ${inboxActive.needsHumanReason}`
+                          : ''}
                       </p>
                     </div>
                     <div className="vh-admin__row">
+                      {inboxActive.needsHuman ? (
+                        <button
+                          type="button"
+                          className="vh-admin__secondary"
+                          onClick={() => setInboxFlag(false)}
+                        >
+                          Clear flag
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          className="vh-admin__secondary"
+                          onClick={() => setInboxFlag(true)}
+                        >
+                          Flag human
+                        </button>
+                      )}
                       {inboxActive.status === 'open' ? (
                         <button
                           type="button"
@@ -781,7 +855,9 @@ export default function AdminPage() {
                             ? 'Visitor'
                             : m.sender === 'admin'
                               ? 'You'
-                              : 'System'}
+                              : m.sender === 'ai'
+                                ? `AI${m.model ? ` · ${m.model}` : ''}${m.meta?.status ? ` · ${m.meta.status}` : ''}`
+                                : 'System'}
                         </span>
                         <p>{m.body}</p>
                       </div>
@@ -792,7 +868,7 @@ export default function AdminPage() {
                       rows={3}
                       value={inboxReply}
                       onChange={(e) => setInboxReply(e.target.value)}
-                      placeholder="Reply to visitor…"
+                      placeholder="Founder reply continues the thread…"
                       required
                     />
                     <button type="submit" disabled={!inboxReply.trim()}>

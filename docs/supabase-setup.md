@@ -21,6 +21,7 @@ Project URL used in production (example): `https://bhivwdibbykbcbdxetob.supabase
 | `supabase/migrations/20260813_valhalla_empire.sql` | `team_users`, `invites`, `tasks`, `notes`, `activity`, `signups`, `reservations` |
 | `supabase/migrations/20260813_hall_codes_socials.sql` | `hall_codes`, `company_socials` |
 | `supabase/migrations/20260813_site_chat.sql` | `chat_threads`, `chat_messages` |
+| `supabase/migrations/20260814_chat_ai_flags.sql` | `needs_human`, AI model/meta on chat |
 | `supabase/migrations/20260813_page_layouts.sql` | page layout tables + Storage notes |
 | `supabase/migrations/20260813_auth_user_link.sql` | `team_users.auth_user_id` for Google SSO linkage |
 
@@ -150,11 +151,19 @@ We do **not** store Google passwords. Team seats may have `password_hash` (passw
 
 ## Site chat (Ask the hall)
 
-1. Run `supabase/migrations/20260813_site_chat.sql` in the SQL Editor.
+1. Run `supabase/migrations/20260813_site_chat.sql` then `20260814_chat_ai_flags.sql` in the SQL Editor.
 2. Visitors use the compact **Ask** widget on each open company page and on the live (non-dormant) hub.
-3. Messages land in `/admin` → **Inbox**. Founder replies there; the visitor sees replies in the same session/thread.
-4. Public: `GET|POST /api/hub/chat`. Admin: `GET|POST /api/admin/inbox`.
-5. Without Supabase, chat falls back to memory (lost on cold starts) — same pattern as other empire features.
+3. Each visitor message gets an **immediate AI reply** (Vercel AI Gateway / AI SDK). Hard questions are flagged `needs_human` for the founder Inbox.
+4. Messages land in `/admin` → **Inbox** (full transcript: visitor + AI + founder). Founder replies continue the same thread.
+5. Public: `GET|POST /api/hub/chat`. Admin: `GET|POST /api/admin/inbox`.
+6. **Durability:** Without `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`, chat uses in-memory storage. That works for same-instance local testing (`vercel dev`) but **will not** show visitor messages in admin across Vercel serverless instances / cold starts. Supabase is required for multi-instance production durability.
+7. AI env (set on Vercel; any one works):
+   - `AI_GATEWAY_API_KEY` (preferred for Hobby / non-OIDC)
+   - or rely on Vercel OIDC (`VERCEL_OIDC_TOKEN` auto on deployments)
+   - or `OPENAI_API_KEY` as a fallback credential surface
+   - optional: `VH_CHAT_MODEL` (default `openai/gpt-5.4-mini`)
+8. Load test (tagged `[test]`): `BASE_URL=http://127.0.0.1:3000 npm run chat:load-test`
+
 
 ## Page layouts (founder visual editor)
 
@@ -178,6 +187,10 @@ VITE_SUPABASE_ANON_KEY=eyJ...
 ADMIN_SESSION_SECRET=...
 ADMIN_PASSWORD=...
 ADMIN_TOTP_SECRET=...
+# Ask chat AI (pick one)
+# AI_GATEWAY_API_KEY=...
+# OPENAI_API_KEY=...
+# VH_CHAT_MODEL=openai/gpt-5.4-mini
 # ADMIN_GOOGLE_EMAILS=you@valhallaco.org
 # ADMIN_GOOGLE_REQUIRE_TOTP=true
 ```

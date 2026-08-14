@@ -54,6 +54,7 @@ import {
   listAdminThreads,
   markAdminRead,
   replyAsAdmin,
+  setNeedsHuman,
   setThreadStatus,
 } from '../_lib/siteChat.js'
 import { clientKey, rateLimit } from '../_lib/rateLimit.js'
@@ -528,7 +529,13 @@ async function handleInbox(req, res) {
       const pageId = String(url.searchParams.get('pageId') || url.searchParams.get('page') || '')
         .trim()
         .toLowerCase()
-      const data = await listAdminThreads({ pageId: pageId || undefined })
+      const needsHumanOnly =
+        url.searchParams.get('needsHuman') === '1' ||
+        url.searchParams.get('needs_human') === '1'
+      const data = await listAdminThreads({
+        pageId: pageId || undefined,
+        needsHumanOnly,
+      })
       return json(res, 200, { ok: true, ...data })
     } catch (err) {
       return json(res, 500, { ok: false, error: err.message || 'Inbox error' })
@@ -547,6 +554,11 @@ async function handleInbox(req, res) {
       }
       if (action === 'close' || action === 'open') {
         const data = await setThreadStatus(threadId, action === 'close' ? 'closed' : 'open')
+        return json(res, 200, { ok: true, ...data })
+      }
+      if (action === 'flag' || action === 'unflag' || action === 'needs_human') {
+        const on = action === 'unflag' ? false : body.needsHuman !== false
+        const data = await setNeedsHuman(threadId, on, body.reason || body.needsHumanReason || '')
         return json(res, 200, { ok: true, ...data })
       }
       const data = await replyAsAdmin(threadId, body.body || body.message || body.text || '')

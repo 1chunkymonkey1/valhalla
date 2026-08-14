@@ -198,6 +198,8 @@ async function handleChat(req, res) {
         visitorName: body.name || body.visitorName || '',
         visitorEmail: body.email || body.visitorEmail || '',
         body: body.body || body.message || body.text || '',
+        isTest: Boolean(body.test || body.isTest),
+        skipAi: Boolean(body.skipAi),
       })
       return json(res, 200, { ok: true, ...data })
     } catch (err) {
@@ -216,4 +218,8 @@ export default async function handler(req, res) {
   if (key === 'page') return handlePage(req, res)
   if (key === 'chat') return handleChat(req, res)
   return json(res, 404, { ok: false, error: 'Not found' })
+}
+
+export const config = {
+  maxDuration: 20,
 }

@@ -63,7 +63,8 @@ export default function ProductDetailPage({
   const highlights = cell.highlights || line.highlights || []
   const phases =
     cell.phases && matrix.phasesForLineId === line.id ? matrix.phases : null
-  const heroImage = resolveProductImage(companyId, cell, line)
+  const heroImage = resolveProductImage(companyId, cell, line, 'md')
+  const heroFull = resolveProductImage(companyId, cell, line, 'full')
 
   return (
     <div
@@ -101,8 +102,13 @@ export default function ProductDetailPage({
             <img
               src={heroImage}
               alt={`${displayName} in the field`}
+              width={1280}
+              height={720}
               loading="eager"
               decoding="async"
+              {...(heroFull && heroFull !== heroImage
+                ? { srcSet: `${heroImage} 1280w, ${heroFull} 2400w`, sizes: '(max-width: 900px) 100vw, 900px' }
+                : {})}
             />
           </figure>
         )}

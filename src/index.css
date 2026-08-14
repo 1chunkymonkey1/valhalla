@@ -3813,11 +3813,24 @@
   background: rgba(0, 0, 0, 0.06);
 }
 
+.vh-ask__bubble--ai {
+  align-self: flex-start;
+  background: rgba(26, 74, 110, 0.1);
+  border-left: 2px solid rgba(26, 74, 110, 0.35);
+}
+
 .vh-ask__bubble--system {
   align-self: stretch;
   background: transparent;
   border-left: 2px solid rgba(0, 0, 0, 0.12);
   opacity: 0.8;
+}
+
+.vh-ask__escalate {
+  margin: 0;
+  padding: 0 0.9rem;
+  font-size: 0.75rem;
+  opacity: 0.7;
 }
 
 .vh-ask__who {
@@ -4013,6 +4026,24 @@
   opacity: 0.75;
   border-left: 2px solid rgba(0, 0, 0, 0.12);
   background: transparent;
+}
+
+.vh-admin__bubble--ai {
+  align-self: flex-start;
+  max-width: 92%;
+  background: rgba(26, 74, 110, 0.08);
+  border-left: 2px solid rgba(26, 74, 110, 0.35);
+}
+
+.vh-admin__inbox-item.needs-human {
+  border-left: 3px solid #a65d2f;
+}
+
+.vh-admin__check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
 }
 
 .vh-admin__inbox-compose {

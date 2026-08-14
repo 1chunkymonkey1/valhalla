@@ -9,15 +9,21 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "admin:totp": "node scripts/generate-admin-totp.mjs",
-    "sync:product-images": "node scripts/sync-product-images.mjs"
+    "sync:product-images": "node scripts/sync-product-images.mjs",
+    "optimize:product-images": "node scripts/optimize-product-images.mjs",
+    "chat:load-test": "node scripts/chat-load-test.mjs",
+    "chat:inprocess": "node scripts/chat-inprocess-test.mjs"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^4.0.41",
     "@supabase/supabase-js": "^2.112.3",
+    "ai": "^7.0.65",
     "lenis": "^1.3.26",
     "lucide-react": "^1.31.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.2"
+    "react-router-dom": "^7.18.2",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
