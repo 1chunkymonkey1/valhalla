@@ -1,61 +1,94 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import NetworkWebBoard from '../components/NetworkWebBoard'
 import SiteMenu from '../components/layout/SiteMenu'
-import { flowDomains, flowEdges, growthLoops } from '../data/networkFlow'
+import {
+  allCompanies,
+  companyTies,
+  edgesForCompany,
+  flowEdges,
+  growthLoops,
+} from '../data/networkFlow'
 
 export default function FlowPage() {
-  const [active, setActive] = useState(null)
-  const edge = flowEdges.find((e) => e.id === active)
-  const company =
-    active &&
-    flowDomains.flatMap((d) => d.companies).find((c) => c.id === active)
+  const [hoverId, setHoverId] = useState(null)
+  const [selectedId, setSelectedId] = useState(null)
+  const [edgeId, setEdgeId] = useState(null)
 
-  const detail = edge
-    ? { title: edge.label, body: edge.detail }
-    : company
+  const selectedEdge = useMemo(
+    () => (edgeId ? flowEdges.find((e) => e.id === edgeId) : null),
+    [edgeId],
+  )
+
+  const companyBlurb = selectedId ? companyTies[selectedId] : null
+  const companyEdges = selectedId ? edgesForCompany(selectedId) : []
+
+  const detail = selectedEdge
+    ? {
+        kicker: 'Pathway',
+        title: selectedEdge.label,
+        body: selectedEdge.detail,
+        href: null,
+        links: [
+          { id: selectedEdge.from, to: `/${selectedEdge.from}` },
+          { id: selectedEdge.to, to: `/${selectedEdge.to}` },
+        ],
+      }
+    : companyBlurb
       ? {
-          title: `${company.name} · ${company.pillar}`,
-          body: `${company.name} sits in the ${
-            flowDomains.find((d) => d.companies.some((c) => c.id === company.id))?.name
-          } domain. Open the hall for product path and refundable holds.`,
-          href: `/${company.id}`,
+          kicker: 'Hall',
+          title: companyBlurb.title,
+          body: companyBlurb.body,
+          href: `/${selectedId}`,
+          links: companyEdges.slice(0, 6).map((e) => ({
+            id: e.id,
+            label: e.label,
+            onPick: () => {
+              setEdgeId(e.id)
+              setSelectedId(null)
+            },
+          })),
         }
       : {
-          title: 'How the empire grows',
-          body: 'Select a company node or a relationship arc. Columns are domains; rows are Movement, Habitation, Substrate. Loops feed intelligence and product cascades back through the mosaic.',
+          kicker: 'The board',
+          title: 'Twelve halls. One civilization web.',
+          body: 'Land, Water, Air, and Space stack Movement → Habitation → Substrate. Pathways carry transit, housing, power, ethanol, supply, and compute. Light a node to read its spiderweb.',
+          href: null,
+          links: [],
         }
+
+  function selectCompany(id) {
+    setSelectedId(id)
+    setEdgeId(null)
+  }
+
+  function selectEdge(id) {
+    setEdgeId(id)
+    setSelectedId(null)
+  }
 
   return (
     <div className="vh-page vh-flow-page">
       <SiteMenu />
       <header className="vh-flow__hero">
         <p className="vh-flow__mark">Valhalla</p>
-        <h1>Network flow</h1>
-        <p>Land · Water · Air · Space, movement, habitation, substrate interlocking.</p>
+        <h1>Empire web</h1>
+        <p>
+          A game-board spiderweb of how the twelve halls feed each other—pathways, not spaghetti.
+        </p>
       </header>
 
-      <div className="vh-flow">
-        <div className="vh-flow__matrix" role="group" aria-label="Domain matrix">
-          <div className="vh-flow__corner" />
-          {flowDomains.map((d) => (
-            <div key={d.id} className="vh-flow__domain-head" style={{ '--flow-accent': d.accent }}>
-              {d.name}
-            </div>
-          ))}
+      <div className="vh-flow vh-flow--board">
+        <NetworkWebBoard
+          focusId={hoverId}
+          selectedId={selectedId}
+          onHover={setHoverId}
+          onSelect={selectCompany}
+          onSelectEdge={selectEdge}
+        />
 
-          {['Movement', 'Habitation', 'Substrate'].map((pillar, row) => (
-            <FragmentRow
-              key={pillar}
-              pillar={pillar}
-              row={row}
-              active={active}
-              setActive={setActive}
-            />
-          ))}
-        </div>
-
-        <aside className="vh-flow__aside">
-          <p className="vh-flow__aside-kicker">Selected</p>
+        <aside className="vh-flow__aside" aria-live="polite">
+          <p className="vh-flow__aside-kicker">{detail.kicker}</p>
           <h2>{detail.title}</h2>
           <p>{detail.body}</p>
           {detail.href && (
@@ -63,22 +96,56 @@ export default function FlowPage() {
               Enter hall →
             </Link>
           )}
-
-          <div className="vh-flow__arcs">
-            <p className="vh-flow__aside-kicker">Relationships</p>
-            {flowEdges.map((e) => (
-              <button
-                key={e.id}
-                type="button"
-                className={active === e.id ? 'is-active' : ''}
-                onClick={() => setActive(e.id)}
-              >
-                {e.label}
-              </button>
-            ))}
-          </div>
+          {detail.links?.length > 0 && (
+            <div className="vh-flow__arcs">
+              <p className="vh-flow__aside-kicker">
+                {selectedEdge ? 'Halls on this path' : 'Connected pathways'}
+              </p>
+              {selectedEdge
+                ? detail.links.map((l) => (
+                    <Link key={l.id} className="vh-flow__arc-link" to={l.to}>
+                      {l.id}
+                    </Link>
+                  ))
+                : detail.links.map((l) => (
+                    <button key={l.id} type="button" onClick={l.onPick}>
+                      {l.label}
+                    </button>
+                  ))}
+            </div>
+          )}
+          {(selectedId || edgeId) && (
+            <button
+              type="button"
+              className="vh-flow__clear"
+              onClick={() => {
+                setSelectedId(null)
+                setEdgeId(null)
+              }}
+            >
+              Clear selection
+            </button>
+          )}
         </aside>
       </div>
+
+      <section className="vh-flow__mobile-list" aria-label="Hall connections for small screens">
+        <h2>Halls &amp; ties</h2>
+        <ul>
+          {allCompanies().map((company) => {
+            const tie = companyTies[company.id]
+            return (
+              <li key={company.id}>
+                <button type="button" onClick={() => selectCompany(company.id)}>
+                  <strong>{company.name}</strong>
+                  <span>{tie.body}</span>
+                </button>
+                <Link to={`/${company.id}`}>Open {company.name}</Link>
+              </li>
+            )
+          })}
+        </ul>
+      </section>
 
       <section className="vh-flow__loops">
         <h2>Growth loops</h2>
@@ -92,27 +159,5 @@ export default function FlowPage() {
         </ul>
       </section>
     </div>
-  )
-}
-
-function FragmentRow({ pillar, row, active, setActive }) {
-  return (
-    <>
-      <div className="vh-flow__pillar">{pillar}</div>
-      {flowDomains.map((d) => {
-        const company = d.companies[row]
-        return (
-          <button
-            key={company.id}
-            type="button"
-            className={`vh-flow__node ${active === company.id ? 'is-active' : ''}`}
-            style={{ '--flow-accent': d.accent }}
-            onClick={() => setActive(company.id)}
-          >
-            <span>{company.name}</span>
-          </button>
-        )
-      })}
-    </>
   )
 }
