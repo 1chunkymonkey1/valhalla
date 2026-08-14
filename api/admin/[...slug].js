@@ -445,7 +445,7 @@ async function handleInvestorCodes(req, res) {
         codes,
         examples: EXAMPLE_CODES,
         storage: investorCodesStorageLabel(),
-        note: 'P = small investors, E = elephant. Algorithm in docs/investor-codes.md — do not publish on /investors.',
+        note: 'P = small investors, E = elephant. Editor unlock a5861 opens materials editor on /investors (docs/investor-codes.md — do not publish algorithm on /investors).',
       })
     } catch (err) {
       return json(res, 500, { ok: false, error: err.message || 'Investor codes error' })

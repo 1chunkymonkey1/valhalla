@@ -30,6 +30,13 @@ import {
   setInvestorCookie,
   investorCodesStorageLabel,
 } from '../_lib/investorCodes.js'
+import {
+  companyCatalog,
+  getInvestorMaterials,
+  investorMaterialsStorageLabel,
+  uploadInvestorAsset,
+  upsertInvestorMaterials,
+} from '../_lib/investorMaterials.js'
 
 function routeKey(req) {
   const slug = req.query?.slug
@@ -224,6 +231,7 @@ async function handleInvestorCode(req, res) {
       ok: true,
       unlocked: Boolean(session),
       tier: session?.tier || null,
+      canEdit: Boolean(session?.canEdit),
       storage: investorCodesStorageLabel(),
     })
   }
@@ -243,7 +251,7 @@ async function handleInvestorCode(req, res) {
 
       if (action === 'lock' || action === 'logout' || action === 'clear') {
         clearInvestorCookie(res)
-        return json(res, 200, { ok: true, unlocked: false })
+        return json(res, 200, { ok: true, unlocked: false, canEdit: false })
       }
 
       const result = await redeemInvestorCode(body.code, body.note || body.redeemerNote || '')
@@ -256,6 +264,7 @@ async function handleInvestorCode(req, res) {
           tier: result.tier,
           sequence: result.sequence,
           code: result.code,
+          canEdit: Boolean(result.canEdit),
         })
       } catch (err) {
         return json(res, 503, {
@@ -271,9 +280,81 @@ async function handleInvestorCode(req, res) {
         ok: true,
         unlocked: true,
         tier: result.tier,
+        canEdit: Boolean(result.canEdit),
       })
     } catch (err) {
       return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
+async function handleInvestorMaterials(req, res) {
+  const session = parseInvestorCookie(req)
+  if (!session) {
+    return json(res, 401, { ok: false, error: 'Unlock required' })
+  }
+
+  if (req.method === 'GET') {
+    try {
+      const row = await getInvestorMaterials()
+      return json(res, 200, {
+        ok: true,
+        canEdit: Boolean(session.canEdit),
+        materials: row.content,
+        companies: companyCatalog(row.content),
+        updatedAt: row.updatedAt,
+        updatedBy: row.updatedBy,
+        storage: investorMaterialsStorageLabel(),
+      })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Materials error' })
+    }
+  }
+
+  if (req.method === 'PUT' || req.method === 'POST') {
+    if (!session.canEdit) {
+      return json(res, 403, { ok: false, error: 'Editor access required' })
+    }
+
+    const rl = rateLimit(clientKey(req, 'hub-investor-materials'), {
+      limit: 40,
+      windowMs: 15 * 60 * 1000,
+    })
+    if (!rl.ok) {
+      res.setHeader('Retry-After', String(rl.retryAfterSec))
+      return json(res, 429, { ok: false, error: 'Too many saves. Try again later.' })
+    }
+
+    try {
+      const body = await readBody(req)
+      const action = String(body.action || 'save')
+        .trim()
+        .toLowerCase()
+
+      if (action === 'upload') {
+        const uploaded = await uploadInvestorAsset({
+          slot: body.slot || body.key || 'file',
+          dataUrl: body.dataUrl || body.file || '',
+          filename: body.filename || '',
+          updatedBy: session.code || 'editor',
+        })
+        return json(res, 200, { ok: true, ...uploaded })
+      }
+
+      const payload = body.materials || body.content || body
+      const row = await upsertInvestorMaterials(payload, session.code || 'editor')
+      return json(res, 200, {
+        ok: true,
+        materials: row.content,
+        companies: companyCatalog(row.content),
+        updatedAt: row.updatedAt,
+        updatedBy: row.updatedBy,
+        storage: investorMaterialsStorageLabel(),
+      })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Save failed' })
     }
   }
 
@@ -285,6 +366,7 @@ export default async function handler(req, res) {
   if (key === 'status' || key === 'unlocks') return handleStatus(req, res)
   if (key === 'unlock') return handleUnlock(req, res)
   if (key === 'investor-code' || key === 'investor-codes') return handleInvestorCode(req, res)
+  if (key === 'investor-materials' || key === 'investor-material') return handleInvestorMaterials(req, res)
   if (key === 'socials') return handleSocials(req, res)
   if (key === 'page') return handlePage(req, res)
   if (key === 'chat') return handleChat(req, res)

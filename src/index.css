@@ -1683,6 +1683,121 @@
   font-size: 0.88rem;
 }
 
+.vh-inv--editor {
+  max-width: 44rem;
+}
+
+.vh-inv__head-actions {
+  display: flex;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.vh-inv__save {
+  font: inherit;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #1c1814;
+  color: #f7f3ea;
+  cursor: pointer;
+}
+
+.vh-inv__save:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.vh-inv__ok {
+  color: #1f5b34;
+  margin: 0 0 0.75rem;
+  font-size: 0.92rem;
+}
+
+.vh-inv__textarea {
+  width: 100%;
+  font: inherit;
+  line-height: 1.5;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  background: #fff;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.vh-inv__textarea--mono {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.vh-inv__pre {
+  white-space: pre-wrap;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  margin: 0;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.55);
+  overflow-x: auto;
+}
+
+.vh-inv__form-grid {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 0.75rem;
+}
+
+.vh-inv__form-grid--tight {
+  gap: 0.65rem;
+}
+
+.vh-inv__field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.vh-inv__field span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.vh-inv__field input[type='text'],
+.vh-inv__field input:not([type]) {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  background: #fff;
+}
+
+.vh-inv__field input[type='file'] {
+  font-size: 0.85rem;
+}
+
+.vh-inv__edit-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.15rem;
+}
+
+.vh-inv__edit-list > li {
+  display: grid;
+  gap: 0.45rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.vh-inv__edit-list strong span {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.48);
+  font-size: 0.88rem;
+}
+
 @media (max-width: 640px) {
   .vh-inv__open-head {
     flex-direction: column;

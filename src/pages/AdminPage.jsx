@@ -1221,8 +1221,9 @@ export default function AdminPage() {
             <p className="vh-admin__note">
               P = small investors · E = elephant. Generation rules are internal (
               <code>docs/investor-codes.md</code>) — never put the algorithm on{' '}
-              <Link to="/investors">/investors</Link>. Storage:{' '}
-              {investorCodesStorage || '…'}
+              <Link to="/investors">/investors</Link>. Founder editor code{' '}
+              <code>a5861</code> unlocks the materials editor on that page (not listed here).
+              Storage: {investorCodesStorage || '…'}
               {investorCodesStorage === 'memory'
                 ? ' (add Supabase + run 20260814_investor_codes.sql for durable codes)'
                 : ''}

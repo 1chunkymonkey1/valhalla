@@ -82,9 +82,32 @@ Codes beyond the starters are only valid once they have been **generated and sto
 - Path: `/investors`
 - API: `POST /api/hub/investor-code` with `{ "code": "…" }`
 - On success: HttpOnly cookie `vh_investor` (signed with `ADMIN_SESSION_SECRET` or `ADMIN_PASSWORD`) unlocks the fundraising hub UI
-- Status: `GET /api/hub/investor-code`
+- Status: `GET /api/hub/investor-code` → `{ unlocked, tier, canEdit }`
 - If cookie signing fails, unlock returns **503** (do not treat as success)
+
+### Materials editor code (`a5861`)
+
+Constant founder code (not generated from π/e). Entering **`a5861`** on `/investors`:
+
+- Sets the same `vh_investor` cookie with `tier: "admin"` and `canEdit: true`
+- Opens the **Investor materials editor** (elevator pitch, business model, structure note, leads markdown, company blurbs, deck/link overrides, optional PDF upload)
+- Does **not** replace `/admin` 2FA — it only unlocks edit mode for the fundraising pack
+
+P/E codes remain **read-only** materials unlock (`canEdit: false`).
 
 ## Materials
 
-Served from `public/investors/` after unlock (pitch PDF, business model copy, 12 company decks, leads note). Blueprint-honest: MRR is $0; no fabricated terms.
+### Static assets
+
+Served from `public/investors/` (pitch PDF, application copy, 12 company decks, leads note). Blueprint-honest: MRR is $0; no fabricated terms.
+
+### Editable pack (runtime)
+
+- `GET /api/hub/investor-materials` — requires unlock cookie; returns latest stored pack + company catalog
+- `PUT /api/hub/investor-materials` — requires `canEdit`; body `{ "materials": { … } }`
+- `POST /api/hub/investor-materials` with `{ "action": "upload", "slot", "dataUrl", "filename" }` — PDF/md upload (prefer Storage bucket `investor-assets`)
+- Persistence: Supabase table `investor_materials` (single row `id = default`), memory fallback if table missing
+- Migration: `supabase/migrations/20260814_investor_materials.sql`
+- Optional bucket: public Storage `investor-assets` for uploaded PDF overrides
+
+Unlocked P/E sessions read the same stored pack; defaults match the static copy in `src/data/fundraising/materials.js` until the first save.

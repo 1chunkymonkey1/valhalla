@@ -26,6 +26,12 @@ import { getSupabase, isSupabaseConfigured } from './supabase.js'
 const COOKIE = 'vh_investor'
 const COOKIE_TTL_MS = 30 * 24 * 60 * 60 * 1000
 
+/**
+ * Founder materials-editor code (not P/E algorithm).
+ * Unlocks edit mode for fundraising copy on /investors.
+ */
+export const MATERIALS_EDITOR_CODE = 'a5861'
+
 /** Enough digits for many releases (admin-generated sequentially). */
 const E_DECIMALS =
   '718281828459045235360287471352662497757247093699959574966967627724076630353547594571382178525166427427466391932003059921817413596629043572900334295260595630738132328627943490763233829880753195251019011573834187930702154089149934884554845323456848001869606493822656526356370942'
@@ -401,6 +407,17 @@ export async function redeemInvestorCode(attempt, redeemerNote = '') {
   const normalized = normalizeInvestorCode(attempt)
   if (!normalized) return { ok: false, error: 'Enter a code' }
 
+  // Founder editor unlock — constant, not issued via P/E generator.
+  if (normalized === MATERIALS_EDITOR_CODE) {
+    return {
+      ok: true,
+      tier: 'admin',
+      sequence: null,
+      code: MATERIALS_EDITOR_CODE,
+      canEdit: true,
+    }
+  }
+
   // Ensure E1/P1 exist before lookup (cold memory instances + empty Supabase table).
   await ensureStarterCodes()
 
@@ -429,6 +446,7 @@ export async function redeemInvestorCode(attempt, redeemerNote = '') {
     tier: row.tier,
     sequence: row.sequence,
     code: row.code,
+    canEdit: false,
   }
 }
 
@@ -460,20 +478,29 @@ export function parseInvestorCookie(req) {
   try {
     const payload = JSON.parse(fromB64url(body).toString('utf8'))
     if (!payload?.exp || Date.now() > payload.exp) return null
-    if (payload.tier !== 'p' && payload.tier !== 'e') return null
-    return { tier: payload.tier, sequence: payload.sequence || null, code: payload.code || '' }
+    if (payload.tier !== 'p' && payload.tier !== 'e' && payload.tier !== 'admin') return null
+    const canEdit = payload.tier === 'admin' || Boolean(payload.canEdit)
+    return {
+      tier: payload.tier,
+      sequence: payload.sequence || null,
+      code: payload.code || '',
+      canEdit,
+    }
   } catch {
     return null
   }
 }
 
-export function signInvestorCookie({ tier, sequence, code }) {
+export function signInvestorCookie({ tier, sequence, code, canEdit = false }) {
   const secret = sessionSecret()
   if (!secret) throw new Error('ADMIN_SESSION_SECRET not configured')
+  const t = String(tier || '').toLowerCase()
+  const edit = t === 'admin' || Boolean(canEdit)
   const payload = {
-    tier,
+    tier: t,
     sequence: sequence || null,
     code: normalizeInvestorCode(code),
+    canEdit: edit,
     iat: Date.now(),
     exp: Date.now() + COOKIE_TTL_MS,
   }
