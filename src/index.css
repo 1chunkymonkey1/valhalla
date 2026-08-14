@@ -172,8 +172,7 @@
   color: rgba(0, 0, 0, 0.38);
 }
 
-.vh-next-timer__label,
-.vh-next-timer__idle {
+.vh-next-timer__label {
   letter-spacing: 0.16em;
 }
 
@@ -1254,12 +1253,19 @@
 
 .vh-hub__foot {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-bottom: 1.25rem;
+  font-size: 0.85rem;
+}
+
+.vh-hub__foot-nav {
+  display: flex;
   flex-wrap: wrap;
   gap: 1rem 1.5rem;
   justify-content: center;
-  margin-top: 2.5rem;
-  padding-bottom: 1rem;
-  font-size: 0.85rem;
 }
 
 .vh-hub__foot a {
@@ -1269,6 +1275,11 @@
 
 .vh-hub__foot a:hover {
   color: rgba(0, 0, 0, 0.7);
+}
+
+.vh-hub__socials {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.45);
 }
 
 .vh-email {

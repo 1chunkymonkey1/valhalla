@@ -9,9 +9,17 @@ import EmailCapture from '../EmailCapture'
 import CompanySocialLinks from '../CompanySocialLinks'
 import AskHallWidget from '../AskHallWidget'
 import PublishedBlocks, { fetchPublishedLayout } from '../PublishedBlocks'
-import { INSTAGRAM_URL } from '../../lib/launchSchedule'
+import { DISCORD_URL, INSTAGRAM_URL, LINKEDIN_URL } from '../../lib/launchSchedule'
 import { Link } from 'react-router-dom'
 import SimpleCountdown from '../SimpleCountdown'
+
+const HUB_SOCIAL = {
+  companyId: 'hub',
+  linkedin: LINKEDIN_URL,
+  instagram: INSTAGRAM_URL,
+  x: '',
+  discord: DISCORD_URL,
+}
 
 export default function ValhallaHub() {
   const { now, mode, rate, paused } = useSimulationClock()
@@ -21,12 +29,7 @@ export default function ValhallaHub() {
   const njordLive = !showCountdown && now >= getHubClickAt('njord')
   const inWave2Break = njordLive && now < wave2Start
   const [hubLayout, setHubLayout] = useState(null)
-  const [hubSocial] = useState({
-    companyId: 'hub',
-    linkedin: '',
-    instagram: INSTAGRAM_URL,
-    x: '',
-  })
+  const [hubSocial, setHubSocial] = useState(HUB_SOCIAL)
 
   useEffect(() => {
     if (showCountdown) return
@@ -38,6 +41,28 @@ export default function ValhallaHub() {
       cancelled = true
     }
   }, [showCountdown])
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/hub/socials')
+      .then((r) => r.json())
+      .then((data) => {
+        if (cancelled || !data?.socials) return
+        const hit = data.socials.find((s) => s.companyId === 'hub')
+        if (!hit) return
+        setHubSocial({
+          ...HUB_SOCIAL,
+          linkedin: hit.linkedin || HUB_SOCIAL.linkedin,
+          instagram: hit.instagram || HUB_SOCIAL.instagram,
+          x: hit.x || HUB_SOCIAL.x,
+          discord: hit.discord || HUB_SOCIAL.discord,
+        })
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   return (
     <div className={`vh-hub ${showCountdown ? 'vh-hub--dormant' : ''}`}>
@@ -81,9 +106,11 @@ export default function ValhallaHub() {
             </section>
 
             <footer className="vh-hub__foot">
-              <Link to="/press">Press</Link>
-              <Link to="/flow">Flow</Link>
-              <Link to="/contact">Contact</Link>
+              <nav className="vh-hub__foot-nav" aria-label="Hub links">
+                <Link to="/press">Press</Link>
+                <Link to="/flow">Flow</Link>
+                <Link to="/contact">Contact</Link>
+              </nav>
               <CompanySocialLinks social={hubSocial} className="vh-hub__socials" />
             </footer>
             <AskHallWidget pageId="hub" hallName="Valhalla" dormant={false} />

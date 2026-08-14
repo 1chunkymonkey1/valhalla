@@ -39,6 +39,15 @@ export const WAVE2_ORDER = ['eagle', 'olympus', 'aeolus', 'phenix', 'aether', 'c
 /** Empire / Valhalla hub Instagram (real account). */
 export const INSTAGRAM_URL = 'https://www.instagram.com/valhalla__42/'
 
+/**
+ * Empire / Valhalla hub LinkedIn — no live company page in repo seeds yet.
+ * Set this when the Valhalla LinkedIn URL is ready; hub footer only shows the icon when non-empty.
+ */
+export const LINKEDIN_URL = ''
+
+/** Shared Valhalla Discord invite (same as press / hall defaults). */
+export const DISCORD_URL = 'https://discord.gg/JA6wrNg6n'
+
 export function getEventStart() {
   return new Date(EVENT_START_ISO)
 }

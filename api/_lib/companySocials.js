@@ -6,6 +6,7 @@
 import { getSupabase, isSupabaseConfigured } from './supabase.js'
 
 export const SOCIAL_HALLS = [
+  'hub',
   'wolf',
   'viking',
   'eagle',
@@ -23,6 +24,9 @@ export const SOCIAL_HALLS = [
 /** Shared Valhalla Discord — safe default for every hall until hall-specific invites exist. */
 export const VALHALLA_DISCORD = 'https://discord.gg/JA6wrNg6n'
 
+/** Empire hub Instagram (real account). */
+export const VALHALLA_INSTAGRAM = 'https://www.instagram.com/valhalla__42/'
+
 /**
  * Default public socials for empty rows (memory seed + first Supabase write).
  * Wolf / Holm Instagram are live accounts. Other IG/X handles are suggested
@@ -30,6 +34,12 @@ export const VALHALLA_DISCORD = 'https://discord.gg/JA6wrNg6n'
  * Placeholders only fill empty fields.
  */
 export const SOCIAL_PLACEHOLDERS = {
+  hub: {
+    instagram: VALHALLA_INSTAGRAM,
+    x: '',
+    linkedin: '',
+    discord: VALHALLA_DISCORD,
+  },
   wolf: {
     instagram: 'https://www.instagram.com/wolf_transit/',
     x: '',

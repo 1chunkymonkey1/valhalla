@@ -8,15 +8,7 @@ import { formatCountdown } from '../../utils/time'
  */
 export default function NextUnlockTimer({ now }) {
   const next = getNextHubUnlock(now)
-  if (!next) return null
-
-  if (next.kind === 'all-open') {
-    return (
-      <div className="vh-next-timer" aria-live="polite">
-        <span className="vh-next-timer__idle">All open</span>
-      </div>
-    )
-  }
+  if (!next || next.kind === 'all-open') return null
 
   const name = next.companyId ? getCompany(next.companyId)?.name : null
   const ms = next.at.getTime() - now.getTime()
