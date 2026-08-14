@@ -36,8 +36,8 @@ Demo the full clock with `/?demo=1` (100× from T−1h). Founder controls: `/adm
 ### Social tower
 
 - `/admin` → **Socials**: LinkedIn, Instagram, X, Discord (+ follower notes / last-checked) per company.
-- Persists in Supabase `company_socials` (see migration). Empty rows auto-seed suggested placeholder handles.
-- Surfaces on company pages (about + footer), `/team`, and lightly on the live hub.
+- Persists in Supabase `company_socials` (see migration). Empty rows auto-seed defaults (Wolf `wolf_transit`, Holm `holm_development`; other halls may use placeholders). Hub / empire Instagram is `valhalla__42`.
+- Public company pages + hub footer render LinkedIn / Instagram / X as compact icons (only when a URL is set).
 
 ### Site chat
 

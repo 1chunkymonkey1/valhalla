@@ -36,7 +36,8 @@ export const WAVE2_START_ISO = '2026-08-13T14:00:00-07:00'
 export const WAVE1_ORDER = ['wolf', 'holm', 'demeter', 'viking', 'atoll', 'njord']
 export const WAVE2_ORDER = ['eagle', 'olympus', 'aeolus', 'phenix', 'aether', 'corvus']
 
-export const INSTAGRAM_URL = 'https://www.instagram.com/valhallaco/'
+/** Empire / Valhalla hub Instagram (real account). */
+export const INSTAGRAM_URL = 'https://www.instagram.com/valhalla__42/'
 
 export function getEventStart() {
   return new Date(EVENT_START_ISO)

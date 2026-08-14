@@ -978,9 +978,11 @@ export default function AdminPage() {
           <div className="vh-admin__card">
             <h2>Social tower</h2>
             <p className="vh-admin__note">
-              LinkedIn, Instagram, X, Discord per hall. Public company pages show these links.
-              Empty rows auto-fill suggested placeholder handles, create/claim the accounts, then
-              replace with real URLs (and LinkedIn when ready).
+              LinkedIn, Instagram, X, Discord per hall. Public pages show LinkedIn / Instagram / X as
+              icons (only when a URL is set). Wolf →{' '}
+              <code>wolf_transit</code>, Holm → <code>holm_development</code>. Hub / empire Instagram
+              is <code>valhalla__42</code> (site constant). Leave LinkedIn empty until real pages
+              exist; other halls may still show suggested placeholder handles.
             </p>
             {socialMsg && <p className="vh-admin__note">{socialMsg}</p>}
           </div>

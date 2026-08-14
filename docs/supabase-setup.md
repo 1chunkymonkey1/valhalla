@@ -146,7 +146,7 @@ We do **not** store Google passwords. Team seats may have `password_hash` (passw
 - `/admin` → **Hall codes**: set Instagram unlock codes for Eagle → Corvus (or use `HALL_CODE_<HALL>` env vars).
 - `/admin` → **Socials**: LinkedIn / Instagram / X / Discord URLs per company.
 - Public: `GET /api/hub/status`, `POST /api/hub/unlock`, `GET /api/hub/socials`.
-- Empty social rows auto-seed suggested placeholder handles (e.g. `wolf_transit`, `holm_development`, `phenix_aerospace`) plus the shared Discord invite. **Create/claim those accounts**, then replace URLs in Admin → Socials. LinkedIn stays empty until you add real company pages.
+- Empty social rows auto-seed suggested handles. Live Instagram defaults: hub `valhalla__42`, Wolf `wolf_transit`, Holm `holm_development`. Other halls may still use placeholder handles until claimed. LinkedIn stays empty until you add real company pages. Shared Discord invite is stored on rows but public pages show LinkedIn / Instagram / X as icons.
 
 ## Site chat (Ask the hall)
 

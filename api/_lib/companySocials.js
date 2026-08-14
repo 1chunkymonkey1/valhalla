@@ -24,13 +24,15 @@ export const SOCIAL_HALLS = [
 export const VALHALLA_DISCORD = 'https://discord.gg/JA6wrNg6n'
 
 /**
- * Suggested public handles. Accounts may not exist yet — Eason must create/claim
- * and update URLs in /admin → Socials. Placeholders only fill empty fields.
+ * Default public socials for empty rows (memory seed + first Supabase write).
+ * Wolf / Holm Instagram are live accounts. Other IG/X handles are suggested
+ * placeholders until claimed — LinkedIn stays empty until real pages exist.
+ * Placeholders only fill empty fields.
  */
 export const SOCIAL_PLACEHOLDERS = {
   wolf: {
     instagram: 'https://www.instagram.com/wolf_transit/',
-    x: 'https://x.com/wolf_transit',
+    x: '',
     linkedin: '',
     discord: VALHALLA_DISCORD,
   },
@@ -54,7 +56,7 @@ export const SOCIAL_PLACEHOLDERS = {
   },
   holm: {
     instagram: 'https://www.instagram.com/holm_development/',
-    x: 'https://x.com/holm_development',
+    x: '',
     linkedin: '',
     discord: VALHALLA_DISCORD,
   },

@@ -336,10 +336,7 @@ export default function TeamWorkspacePage() {
               {h.social?.followerNotes && (
                 <p className="vh-team__blurb">{h.social.followerNotes}</p>
               )}
-              {!h.social?.linkedin &&
-                !h.social?.instagram &&
-                !h.social?.x &&
-                !h.social?.discord && (
+              {!h.social?.linkedin && !h.social?.instagram && !h.social?.x && (
                   <p className="vh-admin__empty">No links yet, set in /admin → Socials.</p>
                 )}
             </div>

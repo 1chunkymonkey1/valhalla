@@ -10,7 +10,6 @@ import EmailCapture from '../EmailCapture'
 import CompanySocialLinks from '../CompanySocialLinks'
 import AskHallWidget from '../AskHallWidget'
 import PublishedBlocks, { fetchPublishedLayout } from '../PublishedBlocks'
-import { DISCORD_INVITE } from '../../data/pressRelease'
 import { INSTAGRAM_URL } from '../../lib/launchSchedule'
 import { Link } from 'react-router-dom'
 import SimpleCountdown from '../SimpleCountdown'
@@ -23,10 +22,11 @@ export default function ValhallaHub() {
   const njordLive = !showCountdown && now >= getHubClickAt('njord')
   const inWave2Break = njordLive && now < wave2Start
   const [hubLayout, setHubLayout] = useState(null)
-  const [hubSocial, setHubSocial] = useState({
+  const [hubSocial] = useState({
     companyId: 'hub',
+    linkedin: '',
     instagram: INSTAGRAM_URL,
-    discord: DISCORD_INVITE,
+    x: '',
   })
 
   useEffect(() => {
@@ -35,19 +35,6 @@ export default function ValhallaHub() {
     fetchPublishedLayout('hub').then((layout) => {
       if (!cancelled) setHubLayout(layout)
     })
-    fetch('/api/hub/socials')
-      .then((r) => r.json())
-      .then((data) => {
-        if (cancelled || !data?.socials?.length) return
-        const wolf = data.socials.find((s) => s.companyId === 'wolf')
-        setHubSocial({
-          companyId: 'hub',
-          instagram: INSTAGRAM_URL,
-          discord: DISCORD_INVITE,
-          x: wolf?.x || '',
-        })
-      })
-      .catch(() => {})
     return () => {
       cancelled = true
     }
