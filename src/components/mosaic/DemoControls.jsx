@@ -5,8 +5,10 @@ import {
   isDemoPaused,
   toggleDemoPause,
 } from '../../lib/simulationClock'
+import { useI18n } from '../../i18n/I18nProvider'
 
 export default function DemoControls({ mode, rate, paused }) {
+  const { t } = useI18n()
   if (mode !== 'demo') return null
 
   const displayRate = rate || getDemoRate()
@@ -29,16 +31,17 @@ export default function DemoControls({ mode, rate, paused }) {
   return (
     <div className="vh-demo-controls">
       <span>
-        Demo · {displayRate}× · start T−1h{isPaused ? ' · paused' : ''}
+        {t('demo.strip', { rate: displayRate })}
+        {isPaused ? t('demo.paused') : ''}
       </span>
       <button type="button" onClick={onPauseToggle}>
-        {isPaused ? 'Resume' : 'Pause'}
+        {isPaused ? t('demo.resume') : t('demo.pause')}
       </button>
       <button type="button" onClick={restart}>
-        Restart
+        {t('demo.restart')}
       </button>
       <button type="button" onClick={exitDemo}>
-        Live
+        {t('demo.live')}
       </button>
     </div>
   )

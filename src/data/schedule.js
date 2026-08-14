@@ -301,7 +301,11 @@ export function getPhaseName(company, now = new Date()) {
 export function isPreviewUnlocked() {
   // Demo clock owns timing, don't force-unlock frames
   try {
-    if (typeof window !== 'undefined' && localStorage.getItem('valhalla_demo') === '1') {
+    if (
+      typeof window !== 'undefined' &&
+      (localStorage.getItem('valhalla_clock_mode') === 'demo' ||
+        localStorage.getItem('valhalla_demo') === '1')
+    ) {
       return false
     }
   } catch {

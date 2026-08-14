@@ -8,8 +8,10 @@ import {
   flowEdges,
   growthLoops,
 } from '../data/networkFlow'
+import { useI18n } from '../i18n/I18nProvider'
 
 export default function FlowPage() {
+  const { t } = useI18n()
   const [hoverId, setHoverId] = useState(null)
   const [selectedId, setSelectedId] = useState(null)
   const [edgeId, setEdgeId] = useState(null)
@@ -24,7 +26,7 @@ export default function FlowPage() {
 
   const detail = selectedEdge
     ? {
-        kicker: 'Pathway',
+        kicker: t('flow.pathway'),
         title: selectedEdge.label,
         body: selectedEdge.detail,
         href: null,
@@ -35,7 +37,7 @@ export default function FlowPage() {
       }
     : companyBlurb
       ? {
-          kicker: 'Hall',
+          kicker: t('flow.hall'),
           title: companyBlurb.title,
           body: companyBlurb.body,
           href: `/${selectedId}`,
@@ -49,9 +51,9 @@ export default function FlowPage() {
           })),
         }
       : {
-          kicker: 'The board',
-          title: 'Twelve halls. One civilization web.',
-          body: 'Land, Water, Air, and Space stack Movement → Habitation → Substrate. Pathways carry transit, housing, power, ethanol, supply, and compute. Light a node to read its spiderweb.',
+          kicker: t('flow.boardKicker'),
+          title: t('flow.boardTitle'),
+          body: t('flow.boardBody'),
           href: null,
           links: [],
         }
@@ -69,11 +71,9 @@ export default function FlowPage() {
   return (
     <div className="vh-page vh-flow-page">
       <header className="vh-flow__hero">
-        <p className="vh-flow__mark">Valhalla</p>
-        <h1>Empire web</h1>
-        <p>
-          A game-board spiderweb of how the twelve halls feed each other—pathways, not spaghetti.
-        </p>
+        <p className="vh-flow__mark">{t('flow.mark')}</p>
+        <h1>{t('flow.title')}</h1>
+        <p>{t('flow.lead')}</p>
       </header>
 
       <div className="vh-flow vh-flow--board">
@@ -91,13 +91,13 @@ export default function FlowPage() {
           <p>{detail.body}</p>
           {detail.href && (
             <Link className="vh-flow__link" to={detail.href}>
-              Enter hall →
+              {t('flow.enterHall')}
             </Link>
           )}
           {detail.links?.length > 0 && (
             <div className="vh-flow__arcs">
               <p className="vh-flow__aside-kicker">
-                {selectedEdge ? 'Halls on this path' : 'Connected pathways'}
+                {selectedEdge ? t('flow.hallsOnPath') : t('flow.connectedPathways')}
               </p>
               {selectedEdge
                 ? detail.links.map((l) => (
@@ -121,14 +121,14 @@ export default function FlowPage() {
                 setEdgeId(null)
               }}
             >
-              Clear selection
+              {t('flow.clearSelection')}
             </button>
           )}
         </aside>
       </div>
 
-      <section className="vh-flow__mobile-list" aria-label="Hall connections for small screens">
-        <h2>Halls &amp; ties</h2>
+      <section className="vh-flow__mobile-list" aria-label={t('flow.hallsAndTies')}>
+        <h2>{t('flow.hallsAndTies')}</h2>
         <ul>
           {allCompanies().map((company) => {
             const tie = companyTies[company.id]
@@ -138,7 +138,7 @@ export default function FlowPage() {
                   <strong>{company.name}</strong>
                   <span>{tie.body}</span>
                 </button>
-                <Link to={`/${company.id}`}>Open {company.name}</Link>
+                <Link to={`/${company.id}`}>{t('flow.openHall', { name: company.name })}</Link>
               </li>
             )
           })}
@@ -146,7 +146,7 @@ export default function FlowPage() {
       </section>
 
       <section className="vh-flow__loops">
-        <h2>Growth loops</h2>
+        <h2>{t('flow.growthLoops')}</h2>
         <ul>
           {growthLoops.map((loop) => (
             <li key={loop.id}>
@@ -156,6 +156,26 @@ export default function FlowPage() {
           ))}
         </ul>
       </section>
+
+      {/* Secret founder entry — subtle rune in the parchment corner; not advertised in the public menu */}
+      <Link to="/admin" className="vh-flow__rune" aria-label={t('flow.adminRune')} title="">
+        <svg viewBox="0 0 24 28" aria-hidden="true" focusable="false">
+          <path
+            d="M12 2 L20 7.5 L20 18.5 L12 24 L4 18.5 L4 7.5 Z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.1"
+          />
+          <path
+            d="M12 6.5 V17.5 M8.2 10.2 L12 14 L15.8 10.2"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.15"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </Link>
     </div>
   )
 }

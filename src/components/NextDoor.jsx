@@ -22,7 +22,7 @@ export default function NextDoor({ company, now }) {
       <div className="cs-nextdoor">
         <p className="cs-nextdoor__done">
           Sequence complete.{' '}
-          <Link to="/?demo=1" className="cs-nextdoor__hub-link">
+          <Link to="/" className="cs-nextdoor__hub-link">
             View the mosaic
           </Link>
         </p>

@@ -32,7 +32,7 @@ export default function CompanySitePage({ slug }) {
         <p className="mt-4 text-center text-xs text-black/35 max-w-xs">
           Mosaic tile unlocks {formatPDT(hubAt)}, thirty minutes after the link appears next door.
         </p>
-        <Link to="/?demo=1" className="mt-12 text-sm text-black/30 hover:text-black/55">
+        <Link to="/" className="mt-12 text-sm text-black/30 hover:text-black/55">
           ← hub
         </Link>
       </div>

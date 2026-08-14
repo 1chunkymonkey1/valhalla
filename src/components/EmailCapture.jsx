@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useI18n } from '../i18n/I18nProvider'
 
 export default function EmailCapture({
   title = '',
@@ -8,6 +9,7 @@ export default function EmailCapture({
   audience = 'general',
   companyId = null,
 }) {
+  const { t } = useI18n()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [status, setStatus] = useState('idle')
@@ -60,7 +62,7 @@ export default function EmailCapture({
   if (status === 'done') {
     return (
       <div className="vh-email vh-email--done">
-        <p className="vh-email__title">You’re on the list.</p>
+        <p className="vh-email__title">{t('email.done')}</p>
         {doneHint ? <p className="vh-email__hint">{doneHint}</p> : null}
       </div>
     )
@@ -72,30 +74,30 @@ export default function EmailCapture({
       {hint ? <p className="vh-email__hint">{hint}</p> : null}
       <div className="vh-email__row">
         <label className="vh-email__field">
-          <span className="vh-email__sr">Name</span>
+          <span className="vh-email__sr">{t('email.name')}</span>
           <input
             type="text"
             name="name"
             autoComplete="name"
-            placeholder="Name"
+            placeholder={t('email.name')}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </label>
         <label className="vh-email__field vh-email__field--grow">
-          <span className="vh-email__sr">Email</span>
+          <span className="vh-email__sr">{t('email.email')}</span>
           <input
             required
             type="email"
             name="email"
             autoComplete="email"
-            placeholder="Email"
+            placeholder={t('email.email')}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
         <button type="submit" disabled={status === 'saving'}>
-          {status === 'saving' ? '…' : 'Join'}
+          {status === 'saving' ? '…' : t('email.join')}
         </button>
       </div>
       {error && <p className="vh-email__error">{error}</p>}

@@ -1,4 +1,5 @@
 import { EVENT_START } from '../data/schedule'
+import { getClockMode, isDemoAuthorized } from '../lib/simulationClock'
 
 export const DEMO_RATE = 100
 /** Simulated clock starts with 1 hour until Wolf / event open */
@@ -6,23 +7,11 @@ export const DEMO_START_BEFORE_MS = 60 * 60 * 1000
 
 const SESSION_KEY = 'valhalla_demo_session_start'
 
+/** Legacy helper — demo only when founder admin session authorizes the sim clock. */
 export function isDemoMode() {
   if (typeof window === 'undefined') return false
-  try {
-    const params = new URLSearchParams(window.location.search)
-    if (params.get('demo') === '1') {
-      localStorage.setItem('valhalla_demo', '1')
-      return true
-    }
-    if (params.get('demo') === '0') {
-      localStorage.removeItem('valhalla_demo')
-      localStorage.removeItem(SESSION_KEY)
-      return false
-    }
-    return localStorage.getItem('valhalla_demo') === '1'
-  } catch {
-    return false
-  }
+  if (!isDemoAuthorized()) return false
+  return getClockMode() === 'demo'
 }
 
 /** Wall-clock moment when this demo session began */

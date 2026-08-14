@@ -25,7 +25,11 @@ Admin API needs env (see below). Without it, `/admin` login returns 503.
 3. **After Njord**, break until **2:00 PM PDT**.
 4. **Wave 2 (Eagle → Corvus)** opens on the same timed chain starting at **2:00 PM PDT** (no visitor unlock codes).
 
-Demo the full clock with `/?demo=1` (100× from T−1h). Founder controls: `/admin` → **Reveal** (watch full reveal, pause, speed, scrub). Same localStorage clock as the hub.
+Demo / time-travel is **admin-only**. Unauthenticated `/?demo=1` redirects to `/admin` login; leftover demo localStorage is ignored for public visitors. After founder login, use `/admin` → **Reveal** (watch full reveal, pause, speed, scrub) or open `/?demo=1` while the session cookie is active. Same localStorage clock as the hub; live schedule is unchanged for everyone else.
+
+**Founder entry (secret rune):** On `/flow`, a faint runic hex sits in the **bottom-right** corner of the parchment board. Click → `/admin`. The public hamburger no longer lists Admin (Team login remains). Bookmarks to `/admin` still work.
+
+**Locale:** UI chrome (nav, hub countdown labels, flow board chrome, email form, audience pages) auto-detects `navigator.language` (en, es, fr, de, zh, ja, pt). Optional override via `localStorage` key `valhalla_locale` if a picker is added later. Long-form company product copy stays English for now.
 
 ### Hall codes (admin optional)
 
@@ -76,7 +80,7 @@ npx vercel --prod
 | Path | Purpose |
 |---|---|
 | `/` | Hub (countdown-gated, then mosaic) |
-| `/flow` | Network interconnection chart |
+| `/flow` | Network board; secret founder rune (bottom-right) → `/admin` |
 | `/press` | Press release |
 | `/investors` `/consumers` `/partners` | Audience pages |
 | `/roadmap` | Roadmap index |

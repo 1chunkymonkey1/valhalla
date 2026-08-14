@@ -12,6 +12,7 @@ import PublishedBlocks, { fetchPublishedLayout } from '../PublishedBlocks'
 import { DISCORD_URL, INSTAGRAM_URL, LINKEDIN_URL } from '../../lib/launchSchedule'
 import { Link } from 'react-router-dom'
 import SimpleCountdown from '../SimpleCountdown'
+import { useI18n } from '../../i18n/I18nProvider'
 
 const HUB_SOCIAL = {
   companyId: 'hub',
@@ -22,6 +23,7 @@ const HUB_SOCIAL = {
 }
 
 export default function ValhallaHub() {
+  const { t } = useI18n()
   const { now, mode, rate, paused } = useSimulationClock()
   const eventStart = getEventStart()
   const wave2Start = getWave2Start()
@@ -84,32 +86,32 @@ export default function ValhallaHub() {
             <MosaicGrid now={now} />
 
             {hubLayout?.enabled && hubLayout.blocks?.length > 0 && (
-              <section className="vh-hub__pub" aria-label="Hub custom content">
+              <section className="vh-hub__pub" aria-label={t('hub.customContent')}>
                 <PublishedBlocks layout={hubLayout} />
               </section>
             )}
 
             {inWave2Break && (
-              <section className="vh-hub__break" aria-label="Wave 2 break">
-                <p className="vh-hub__break-kicker">After Njord</p>
+              <section className="vh-hub__break" aria-label={t('hub.wave2Label')}>
+                <p className="vh-hub__break-kicker">{t('hub.afterNjord')}</p>
                 <SimpleCountdown
                   targetDate={wave2Start}
                   now={now}
-                  label="Wave 2 · 2:00 PM PDT"
+                  label={t('hub.wave2Label')}
                 />
-                <p className="vh-hub__hint">Eagle through Corvus open on the afternoon schedule.</p>
+                <p className="vh-hub__hint">{t('hub.wave2Hint')}</p>
               </section>
             )}
 
-            <section className="vh-hub__capture" aria-label="Email signup">
+            <section className="vh-hub__capture" aria-label={t('hub.emailSignup')}>
               <EmailCapture source="hub" audience="newsletter" />
             </section>
 
             <footer className="vh-hub__foot">
-              <nav className="vh-hub__foot-nav" aria-label="Hub links">
-                <Link to="/press">Press</Link>
-                <Link to="/flow">Flow</Link>
-                <Link to="/contact">Contact</Link>
+              <nav className="vh-hub__foot-nav" aria-label={t('hub.hubLinks')}>
+                <Link to="/press">{t('hub.press')}</Link>
+                <Link to="/flow">{t('hub.flow')}</Link>
+                <Link to="/contact">{t('hub.contact')}</Link>
               </nav>
               <CompanySocialLinks social={hubSocial} className="vh-hub__socials" />
             </footer>

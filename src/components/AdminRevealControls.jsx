@@ -73,9 +73,10 @@ export default function AdminRevealControls() {
       <div className="vh-admin__card">
         <h2>Launch reveal clock</h2>
         <p className="vh-admin__note">
-          Drives the same demo clock as <code>/?demo=1</code> (shared via localStorage). Open the
-          hub in another tab to watch countdown → unlocks → NextDoor chain. Public visitors stay on
-          live time unless they use the demo query themselves.
+          Drives the shared demo clock (localStorage + <code>/?demo=1</code> while you are logged
+          in). Open the hub in another tab to watch countdown → unlocks → NextDoor chain. Public
+          visitors cannot enable demo or time travel — unauthenticated <code>?demo=1</code> redirects
+          to this admin login.
         </p>
 
         <div className="vh-admin__reveal-status">

@@ -10,6 +10,11 @@ import {
   startGoogleOAuth,
   takeOAuthIntent,
 } from '../lib/supabaseBrowser'
+import {
+  markAdminSessionLoggedOut,
+  markAdminSessionOk,
+} from '../lib/adminSession'
+import { exitDemoToLive, setDemoAuthorized } from '../lib/simulationClock'
 
 const ADMIN_EMAIL = 'info@valhallaco.org'
 
@@ -55,6 +60,8 @@ export default function AdminPage() {
     setAuth({ loading: false, ok: true, email: adminEmail })
     setPendingGoogleToken('')
     setNeedGoogleTotp(false)
+    markAdminSessionOk(adminEmail)
+    setDemoAuthorized(true)
     await Promise.all([
       loadLedger().catch(() => {}),
       loadPeople().catch(() => {}),
@@ -99,9 +106,13 @@ export default function AdminPage() {
       if (data.authenticated) {
         await enterAuthenticated(data.email)
       } else {
+        markAdminSessionLoggedOut()
+        setDemoAuthorized(false)
         setAuth({ loading: false, ok: false, email: null })
       }
     } catch {
+      markAdminSessionLoggedOut()
+      setDemoAuthorized(false)
       setAuth({ loading: false, ok: false, email: null })
     } finally {
       clearTimeout(timer)
@@ -319,6 +330,9 @@ export default function AdminPage() {
 
   async function logout() {
     await fetch('/api/admin/logout', { method: 'POST', credentials: 'include' })
+    exitDemoToLive()
+    markAdminSessionLoggedOut()
+    setDemoAuthorized(false)
     setAuth({ loading: false, ok: false, email: null })
     setLedger(null)
     setCodes([])

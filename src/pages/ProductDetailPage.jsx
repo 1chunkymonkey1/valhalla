@@ -227,7 +227,7 @@ export default function ProductDetailPage({
 
         <footer className="product-detail__foot">
           <Link to={`/${companyId}#roadmap`}>← back to {company.name} matrix</Link>
-          <Link to="/?demo=1">mosaic</Link>
+          <Link to="/">mosaic</Link>
         </footer>
       </main>
     </div>

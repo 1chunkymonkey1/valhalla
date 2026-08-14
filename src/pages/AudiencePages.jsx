@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import EmailCapture from '../components/EmailCapture'
 import { CONTACT_EMAIL, DISCORD_INVITE } from '../data/pressRelease'
+import { useI18n } from '../i18n/I18nProvider'
 
 function AudiencePage({ kind, title, lead, bullets }) {
+  const { t } = useI18n()
   return (
     <div className="vh-page">
       <header className="vh-aud__hero">
@@ -17,17 +19,17 @@ function AudiencePage({ kind, title, lead, bullets }) {
           ))}
         </ul>
         <EmailCapture
-          title="Get updates"
-          hint="Replies come from info@valhallaco.org."
+          title={t('email.getUpdates')}
+          hint={t('email.getUpdatesHint')}
           source={kind}
           audience={kind}
         />
         <p className="vh-aud__links">
-          <Link to="/flow">Network flow</Link>
+          <Link to="/flow">{t('audience.networkFlow')}</Link>
           <a href={DISCORD_INVITE} target="_blank" rel="noreferrer">
-            Discord
+            {t('nav.discord')}
           </a>
-          <a href={`mailto:${CONTACT_EMAIL}`}>Email</a>
+          <a href={`mailto:${CONTACT_EMAIL}`}>{t('email.email')}</a>
         </p>
       </main>
     </div>
@@ -35,56 +37,48 @@ function AudiencePage({ kind, title, lead, bullets }) {
 }
 
 export function InvestorsPage() {
+  const { t } = useI18n()
   return (
     <AudiencePage
       kind="investors"
-      title="Investors"
-      lead="Twelve companies across land, water, air, and space. Diligence first, no public securities offer here."
-      bullets={[
-        'One operating framework across the four domains.',
-        'Refundable holds show demand before capital locks.',
-        'Inquiries only: info@valhallaco.org.',
-      ]}
+      title={t('audience.investorsTitle')}
+      lead={t('audience.investorsLead')}
+      bullets={[t('audience.investorsB1'), t('audience.investorsB2'), t('audience.investorsB3')]}
     />
   )
 }
 
 export function ConsumersPage() {
+  const { t } = useI18n()
   return (
     <AudiencePage
       kind="consumers"
-      title="Consumers"
-      lead="Hold a place on products you care about. Fully refundable until gates clear."
-      bullets={[
-        'Watch halls unlock on the mosaic.',
-        'Company sites gather interest for each hall.',
-        'Discord for drops and questions.',
-      ]}
+      title={t('audience.consumersTitle')}
+      lead={t('audience.consumersLead')}
+      bullets={[t('audience.consumersB1'), t('audience.consumersB2'), t('audience.consumersB3')]}
     />
   )
 }
 
 export function PartnersPage() {
+  const { t } = useI18n()
   return (
     <AudiencePage
       kind="partners"
-      title="Partners"
-      lead="Manufacturers, operators, harbors, landowners, research labs."
-      bullets={[
-        'Each hall lists partner interest groups on its form.',
-        'Flow chart shows how columns and pillars connect.',
-        'Odin on Discord answers from the knowledge base.',
-      ]}
+      title={t('audience.partnersTitle')}
+      lead={t('audience.partnersLead')}
+      bullets={[t('audience.partnersB1'), t('audience.partnersB2'), t('audience.partnersB3')]}
     />
   )
 }
 
 export function ContactPage() {
+  const { t } = useI18n()
   return (
     <div className="vh-page">
       <header className="vh-aud__hero">
         <p className="vh-aud__mark">Valhalla</p>
-        <h1>Contact</h1>
+        <h1>{t('audience.contactTitle')}</h1>
         <p>
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
           <br />
@@ -92,13 +86,12 @@ export function ContactPage() {
         </p>
       </header>
       <main className="vh-aud__main">
-        <EmailCapture source="contact" audience="contact" title="Write us" />
+        <EmailCapture source="contact" audience="contact" title={t('email.writeUs')} />
         <p className="vh-aud__links">
           <a href={DISCORD_INVITE} target="_blank" rel="noreferrer">
-            Discord
+            {t('nav.discord')}
           </a>
-          <Link to="/press">Press release</Link>
-          <Link to="/admin">Admin</Link>
+          <Link to="/press">{t('audience.pressRelease')}</Link>
         </p>
       </main>
     </div>
@@ -106,11 +99,12 @@ export function ContactPage() {
 }
 
 export function RoadmapIndexPage() {
+  const { t } = useI18n()
   return (
     <div className="vh-page">
       <header className="vh-aud__hero">
         <p className="vh-aud__mark">Valhalla</p>
-        <h1>Roadmap</h1>
+        <h1>{t('audience.roadmapTitle')}</h1>
         <p>
           Each hall has its own product path. Wolf’s later vision includes{' '}
           <strong>Dire Wolf</strong>, a phased SF→NYC railroad (complete by 2031).
@@ -118,8 +112,8 @@ export function RoadmapIndexPage() {
       </header>
       <main className="vh-aud__main">
         <p>
-          Open a company from the <Link to="/">mosaic</Link> or the{' '}
-          <Link to="/flow">flow</Link> for its product sequence.
+          Open a company from the <Link to="/">{t('common.mosaic')}</Link> or the{' '}
+          <Link to="/flow">{t('nav.flow')}</Link> for its product sequence.
         </p>
       </main>
     </div>

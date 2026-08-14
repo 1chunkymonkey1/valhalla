@@ -11,6 +11,8 @@ import TeamLoginPage from './pages/TeamLoginPage'
 import TeamJoinPage from './pages/TeamJoinPage'
 import TeamWorkspacePage from './pages/TeamWorkspacePage'
 import SiteChrome from './components/layout/SiteChrome'
+import DemoAccessGate from './components/DemoAccessGate'
+import { I18nProvider } from './i18n/I18nProvider'
 import {
   ContactPage,
   ConsumersPage,
@@ -41,36 +43,40 @@ function HostProductGate({ children }) {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <SiteChrome />
-      <HostProductGate>
-        <Routes>
-          <Route path="/" element={<ValhallaHub />} />
-          <Route path="/press" element={<PressPage />} />
-          <Route path="/flow" element={<FlowPage />} />
-          <Route path="/investors" element={<InvestorsPage />} />
-          <Route path="/consumers" element={<ConsumersPage />} />
-          <Route path="/partners" element={<PartnersPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/roadmap" element={<RoadmapIndexPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/admin/editor" element={<Navigate to="/admin/editor/hub" replace />} />
-          <Route path="/admin/editor/:pageId" element={<PageEditorPage />} />
-          <Route path="/team" element={<TeamWorkspacePage />} />
-          <Route path="/team/login" element={<TeamLoginPage />} />
-          <Route path="/team/join" element={<TeamJoinPage />} />
-          {GRID_ORDER.map((id) => (
-            <Route key={id} path={`/${id}`} element={<CompanySitePage slug={id} />} />
-          ))}
-          {GRID_ORDER.map((id) => (
-            <Route
-              key={`${id}-product`}
-              path={`/${id}/:productSlug`}
-              element={<ProductDetailPage companyId={id} />}
-            />
-          ))}
-        </Routes>
-      </HostProductGate>
-    </BrowserRouter>
+    <I18nProvider>
+      <BrowserRouter>
+        <DemoAccessGate>
+          <SiteChrome />
+          <HostProductGate>
+            <Routes>
+              <Route path="/" element={<ValhallaHub />} />
+              <Route path="/press" element={<PressPage />} />
+              <Route path="/flow" element={<FlowPage />} />
+              <Route path="/investors" element={<InvestorsPage />} />
+              <Route path="/consumers" element={<ConsumersPage />} />
+              <Route path="/partners" element={<PartnersPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/roadmap" element={<RoadmapIndexPage />} />
+              <Route path="/admin" element={<AdminPage />} />
+              <Route path="/admin/editor" element={<Navigate to="/admin/editor/hub" replace />} />
+              <Route path="/admin/editor/:pageId" element={<PageEditorPage />} />
+              <Route path="/team" element={<TeamWorkspacePage />} />
+              <Route path="/team/login" element={<TeamLoginPage />} />
+              <Route path="/team/join" element={<TeamJoinPage />} />
+              {GRID_ORDER.map((id) => (
+                <Route key={id} path={`/${id}`} element={<CompanySitePage slug={id} />} />
+              ))}
+              {GRID_ORDER.map((id) => (
+                <Route
+                  key={`${id}-product`}
+                  path={`/${id}/:productSlug`}
+                  element={<ProductDetailPage companyId={id} />}
+                />
+              ))}
+            </Routes>
+          </HostProductGate>
+        </DemoAccessGate>
+      </BrowserRouter>
+    </I18nProvider>
   )
 }

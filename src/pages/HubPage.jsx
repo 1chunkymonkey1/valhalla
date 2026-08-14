@@ -18,6 +18,7 @@ export default function HubPage() {
   const anyActive = companies.some((c) => getPhaseName(c, now) !== 'idle') || demo
 
   function restartDemo() {
+    if (!demo) return
     resetDemoSession()
     window.location.href = '/?demo=1'
   }

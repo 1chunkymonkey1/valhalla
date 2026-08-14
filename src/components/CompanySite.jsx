@@ -110,7 +110,7 @@ export default function CompanySite({ company, now }) {
       {useCustom ? (
         <>
           <div className="cs-pub-bar">
-            <Link to="/?demo=1" className="cs-hero__hub">
+            <Link to="/" className="cs-hero__hub">
               Valhalla
             </Link>
             <span className="cs-hero__meta">
@@ -142,7 +142,7 @@ export default function CompanySite({ company, now }) {
               <NextDoor company={company} now={now} />
             </div>
             <footer className="cs-foot">
-              <Link to="/?demo=1">← mosaic</Link>
+              <Link to="/">← mosaic</Link>
               <CompanySocialLinks social={social} className="cs-foot__socials" />
               <Link to="/flow">Flow</Link>
             </footer>
@@ -156,7 +156,7 @@ export default function CompanySite({ company, now }) {
         <div className="cs-hero__wash" aria-hidden />
 
         <div className="cs-hero__bar">
-          <Link to="/?demo=1" className="cs-hero__hub">
+          <Link to="/" className="cs-hero__hub">
             Valhalla
           </Link>
           <span className="cs-hero__meta">
@@ -243,7 +243,7 @@ export default function CompanySite({ company, now }) {
         </div>
 
         <footer className="cs-foot">
-          <Link to="/?demo=1">← mosaic</Link>
+          <Link to="/">← mosaic</Link>
           <CompanySocialLinks social={social} className="cs-foot__socials" />
           <Link to="/flow">Flow</Link>
         </footer>

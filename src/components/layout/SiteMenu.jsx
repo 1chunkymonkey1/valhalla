@@ -1,22 +1,24 @@
 import { useEffect, useId, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DISCORD_INVITE } from '../../data/pressRelease'
+import { useI18n } from '../../i18n/I18nProvider'
 
-const LINKS = [
-  { to: '/', label: 'Hub' },
-  { to: '/investors', label: 'Investors' },
-  { to: '/consumers', label: 'Consumers' },
-  { to: '/partners', label: 'Partners' },
-  { to: '/flow', label: 'Flow' },
-  { to: '/roadmap', label: 'Roadmap' },
-  { to: '/press', label: 'Press' },
-  { to: '/contact', label: 'Contact' },
-  { href: DISCORD_INVITE, label: 'Discord', external: true },
+const LINK_DEFS = [
+  { to: '/', key: 'nav.hub' },
+  { to: '/investors', key: 'nav.investors' },
+  { to: '/consumers', key: 'nav.consumers' },
+  { to: '/partners', key: 'nav.partners' },
+  { to: '/flow', key: 'nav.flow' },
+  { to: '/roadmap', key: 'nav.roadmap' },
+  { to: '/press', key: 'nav.press' },
+  { to: '/contact', key: 'nav.contact' },
+  { href: DISCORD_INVITE, key: 'nav.discord', external: true },
 ]
 
 export default function SiteMenu({ tone = 'hub' }) {
   const [open, setOpen] = useState(false)
   const panelId = useId()
+  const { t } = useI18n()
 
   useEffect(() => {
     if (!open) return undefined
@@ -45,7 +47,7 @@ export default function SiteMenu({ tone = 'hub' }) {
           <i />
           <i />
         </span>
-        <span className="vh-menu__sr">Menu</span>
+        <span className="vh-menu__sr">{t('nav.menu')}</span>
       </button>
 
       {open && (
@@ -59,8 +61,8 @@ export default function SiteMenu({ tone = 'hub' }) {
       >
         <p className="vh-menu__brand">Valhalla</p>
         <ul className="vh-menu__list">
-          {LINKS.map((item) => (
-            <li key={item.label}>
+          {LINK_DEFS.map((item) => (
+            <li key={item.key}>
               {item.external ? (
                 <a
                   href={item.href}
@@ -68,11 +70,11 @@ export default function SiteMenu({ tone = 'hub' }) {
                   rel="noreferrer"
                   onClick={() => setOpen(false)}
                 >
-                  {item.label}
+                  {t(item.key)}
                 </a>
               ) : (
                 <Link to={item.to} onClick={() => setOpen(false)}>
-                  {item.label}
+                  {t(item.key)}
                 </Link>
               )}
             </li>
@@ -80,11 +82,7 @@ export default function SiteMenu({ tone = 'hub' }) {
         </ul>
         <p className="vh-menu__fine">
           <Link to="/team/login" onClick={() => setOpen(false)}>
-            Team
-          </Link>
-          {' · '}
-          <Link to="/admin" onClick={() => setOpen(false)}>
-            Admin
+            {t('nav.team')}
           </Link>
         </p>
       </nav>

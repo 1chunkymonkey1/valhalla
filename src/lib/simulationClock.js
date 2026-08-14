@@ -1,4 +1,5 @@
 import { getEventStart, getWave2Start } from './launchSchedule'
+import { getAdminSessionCache } from './adminSession'
 
 export const DEMO_RATE = 100
 export const DEMO_START_BEFORE_MS = 60 * 60 * 1000 // T−01:00:00
@@ -11,6 +12,9 @@ const PAUSED_SIM_KEY = 'valhalla_demo_paused_sim'
 const LEGACY_DEMO_FLAG = 'valhalla_demo'
 
 export const DEMO_RATE_OPTIONS = [1, 10, 50, 100, 500]
+
+/** Demo / time-travel only when founder admin session is known and ok. */
+let demoAuthorized = false
 
 function storageGet(key) {
   if (typeof window === 'undefined') return null
@@ -48,8 +52,54 @@ function notifyClockChange() {
   }
 }
 
+export function isDemoAuthorized() {
+  if (demoAuthorized) return true
+  const cache = getAdminSessionCache()
+  return cache.known && cache.ok
+}
+
+/**
+ * Called after admin session probe. Public visitors stay on live wall time.
+ * @param {boolean} ok
+ */
+export function setDemoAuthorized(ok) {
+  const next = Boolean(ok)
+  if (demoAuthorized === next) return
+  demoAuthorized = next
+  if (!next) {
+    // Drop any leftover demo flags so public never inherits time travel
+    storageSet(MODE_KEY, 'live')
+    storageRemove(LEGACY_DEMO_FLAG)
+    clearPauseState()
+  }
+  notifyClockChange()
+}
+
+/** True when URL asks for demo (caller should redirect unauthenticated users). */
+export function wantsDemoFromQuery() {
+  if (typeof window === 'undefined') return false
+  try {
+    return new URLSearchParams(window.location.search).get('demo') === '1'
+  } catch {
+    return false
+  }
+}
+
+export function clearDemoQueryFromUrl() {
+  if (typeof window === 'undefined') return
+  try {
+    const url = new URL(window.location.href)
+    if (!url.searchParams.has('demo')) return
+    url.searchParams.delete('demo')
+    window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`)
+  } catch {
+    /* ignore */
+  }
+}
+
 export function getClockMode() {
   if (typeof window === 'undefined') return 'live'
+  if (!isDemoAuthorized()) return 'live'
   try {
     const params = new URLSearchParams(window.location.search)
     if (params.get('demo') === '1') {
@@ -72,6 +122,7 @@ export function getClockMode() {
 
 export function setClockMode(mode) {
   if (typeof window === 'undefined') return
+  if (mode === 'demo' && !isDemoAuthorized()) return
   const next = mode === 'demo' ? 'demo' : 'live'
   storageSet(MODE_KEY, next)
   if (next === 'demo') {
@@ -93,6 +144,7 @@ export function getDemoRate() {
 }
 
 export function setDemoRate(rate) {
+  if (!isDemoAuthorized()) return
   const next = Number(rate)
   if (!Number.isFinite(next) || next <= 0) return
   const simNow = getSimulatedNow().getTime()
@@ -102,6 +154,7 @@ export function setDemoRate(rate) {
 }
 
 export function isDemoPaused() {
+  if (!isDemoAuthorized()) return false
   return storageGet(PAUSED_KEY) === '1'
 }
 
@@ -111,6 +164,7 @@ function clearPauseState() {
 }
 
 export function pauseDemoClock() {
+  if (!isDemoAuthorized()) return
   if (getClockMode() !== 'demo') setClockMode('demo')
   const sim = getSimulatedNow().getTime()
   storageSet(PAUSED_KEY, '1')
@@ -119,6 +173,7 @@ export function pauseDemoClock() {
 }
 
 export function resumeDemoClock() {
+  if (!isDemoAuthorized()) return
   const pausedSim = Number(storageGet(PAUSED_SIM_KEY))
   clearPauseState()
   if (Number.isFinite(pausedSim)) {
@@ -149,6 +204,7 @@ function getDemoSessionWall() {
  */
 export function seekToSimulatedTime(simMs) {
   if (typeof window === 'undefined') return
+  if (!isDemoAuthorized()) return
   const rate = getDemoRate()
   const origin = getEventStart().getTime() - DEMO_START_BEFORE_MS
   const wallNow = Date.now()
@@ -169,6 +225,7 @@ export function seekToEventOffsetMs(offsetMs) {
 
 export function resetDemoSession() {
   if (typeof window === 'undefined') return
+  if (!isDemoAuthorized()) return
   clearPauseState()
   storageSet(SESSION_KEY, String(Date.now()))
   storageSet(MODE_KEY, 'demo')
@@ -179,6 +236,7 @@ export function resetDemoSession() {
 
 /** Start (or restart) a full reveal from T−1h at the given rate. */
 export function startFullReveal({ rate = DEMO_RATE, openHub = false } = {}) {
+  if (!isDemoAuthorized()) return
   clearPauseState()
   storageSet(RATE_KEY, String(rate > 0 ? rate : DEMO_RATE))
   storageSet(MODE_KEY, 'demo')
