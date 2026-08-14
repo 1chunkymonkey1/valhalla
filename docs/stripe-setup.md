@@ -1,5 +1,7 @@
 # Stripe setup (Valhalla / valhallaco.org)
 
+> **REMIND EASON:** Finish Vercel Stripe later — set `STRIPE_SECRET_KEY` + `VITE_STRIPE_PUBLISHABLE_KEY`, redeploy, activate Stripe Tax, add webhook + `STRIPE_WEBHOOK_SECRET`. Keep `STRIPE_CHECKOUT_ENABLED` off until ready. You said you’d do this later.
+
 Payments, Invoicing, and Tax for civilization-level interest holds and partner/investor invoices — **without** false “shipping now” claims on public halls.
 
 ## Status

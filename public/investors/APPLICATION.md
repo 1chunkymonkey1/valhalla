@@ -128,12 +128,12 @@ If burn is near $0 and runway is “N/A / founder-funded,” write that plainly 
 
 ### Traction
 ```
-Public launch of the Valhalla Living Mosaic (valhallaco.org): 12 company surfaces across Land, Water, Air, Space; interest lists and research queues. Press materials at /press. MRR $0. No prior institutional capital. Building Hall Lead seats for all 12; dedicated decks per company included in this package.
+Public launch of the Valhalla Living Mosaic (valhallaco.org): 12 company surfaces across Land, Water, Air, Space; interest lists and research queues. Press materials at /press. MRR $0. No prior institutional capital. Named Hall Lead (CEO) seats for all 12; dedicated decks per company included in this package.
 ```
 
 ### Team
 ```
-Eason Greene — Founder / Leader, Valhalla. Advisors and hall contributors in formation; each of the 12 halls has a dedicated Hall Lead seat (see leads.md). Confirm named leads before listing publicly.
+Eason Greene — Founder / Leader, Valhalla; Njord Hall Lead. Hall CEOs: Wolf — Anubis Chavez; Holm — Hestia Barker; Demeter — Ceres Johnson; Viking — Maui Muller; Atoll — Yemoja Williams; Eagle — Garuda Hernandez; Olympus — Amaterasu Tran; Aeolus — Vayu Dubois; Phenix — Bennu Kimura; Aether — Nut Garcia; Corvus — Thoth Martinez (see leads.md).
 ```
 
 ### Why LvlUp / why now
@@ -151,5 +151,5 @@ Single-domain infrastructure startups and vertical deep-tech firms. Valhalla’s
 ## Attachment checklist
 - [ ] Upload `Valhalla-Pitch-Deck.pdf`
 - [ ] Optionally zip `company-decks/*.pdf` (or HTML) and attach / link
-- [ ] Replace all `[[FILL]]` in this file and in `leads.md`
+- [ ] Replace all `[[FILL]]` in this file (leads.md roster is filled; Meridian still optional)
 - [ ] Confirm Stage + Raise + Valuation numbers are coherent
