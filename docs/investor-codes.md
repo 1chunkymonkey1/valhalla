@@ -66,18 +66,24 @@ code = "p" + block + String(k)
 
 1. Sign in at `/admin`
 2. Open the **Investor codes** tab
-3. Generate next **P** or **E** code (stored in Supabase `investor_codes`, or memory fallback)
-4. Share the code privately with the investor
-5. Revoke/disable if needed
+3. Starters **E1 (`e81821`)** and **P1 (`p35891`)** auto-seed on first admin open or first `/investors` unlock attempt (also via **Seed starter codes**)
+4. Generate next **P** or **E** for later releases (stored in Supabase `investor_codes`, or memory fallback)
+5. Share the code privately with the investor
+6. Revoke/disable if needed
 
-Codes are only valid once they have been **generated and stored** (and remain `active`). Knowing the algorithm alone does not unlock materials until admin issues that sequence.
+### Migration
+
+Run `supabase/migrations/20260814_investor_codes.sql` in the Supabase SQL editor if the table is missing. That migration also inserts starter E1/P1 (`on conflict do nothing`). Without the table, the API falls back to **memory** (works per cold instance after auto-seed, but not durable across Vercel instances — prefer Supabase).
+
+Codes beyond the starters are only valid once they have been **generated and stored** (and remain `active`). Knowing the algorithm alone does not unlock materials for unissued sequences.
 
 ## Public unlock
 
 - Path: `/investors`
 - API: `POST /api/hub/investor-code` with `{ "code": "…" }`
-- On success: HttpOnly cookie `vh_investor` (signed) unlocks the fundraising hub UI
+- On success: HttpOnly cookie `vh_investor` (signed with `ADMIN_SESSION_SECRET` or `ADMIN_PASSWORD`) unlocks the fundraising hub UI
 - Status: `GET /api/hub/investor-code`
+- If cookie signing fails, unlock returns **503** (do not treat as success)
 
 ## Materials
 

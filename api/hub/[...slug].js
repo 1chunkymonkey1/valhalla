@@ -28,6 +28,7 @@ import {
   parseInvestorCookie,
   redeemInvestorCode,
   setInvestorCookie,
+  investorCodesStorageLabel,
 } from '../_lib/investorCodes.js'
 
 function routeKey(req) {
@@ -223,7 +224,7 @@ async function handleInvestorCode(req, res) {
       ok: true,
       unlocked: Boolean(session),
       tier: session?.tier || null,
-      storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+      storage: investorCodesStorageLabel(),
     })
   }
 
@@ -256,8 +257,14 @@ async function handleInvestorCode(req, res) {
           sequence: result.sequence,
           code: result.code,
         })
-      } catch {
-        // Cookie signing needs ADMIN_SESSION_SECRET; still return unlock for this response
+      } catch (err) {
+        return json(res, 503, {
+          ok: false,
+          error:
+            err?.message?.includes('ADMIN_SESSION_SECRET')
+              ? 'Server misconfigured: ADMIN_SESSION_SECRET (or ADMIN_PASSWORD) required to unlock.'
+              : 'Could not create investor session cookie.',
+        })
       }
 
       return json(res, 200, {

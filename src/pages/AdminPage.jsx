@@ -464,6 +464,30 @@ export default function AdminPage() {
     }
   }
 
+  async function seedInvestorStarters() {
+    setInvestorCodesMsg('')
+    setInvestorBusy(true)
+    try {
+      const res = await fetch('/api/admin/investor-codes', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'seed-starters' }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setInvestorCodesMsg(data.error || 'Seed failed')
+        return
+      }
+      const codes = (data.seeded || []).map((r) => r.code).join(', ')
+      setInvestorCodesMsg(`Starter codes ready: ${codes || 'e81821, p35891'}`)
+      setInvestorCodes(data.codes || [])
+      setInvestorCodesStorage(data.storage || '')
+    } finally {
+      setInvestorBusy(false)
+    }
+  }
+
   async function setInvestorActive(id, active) {
     setInvestorCodesMsg('')
     setInvestorBusy(true)
@@ -1209,6 +1233,9 @@ export default function AdminPage() {
               </button>
               <button type="button" disabled={investorBusy} onClick={() => generateInvestorCode('e')}>
                 Generate next E
+              </button>
+              <button type="button" disabled={investorBusy} onClick={seedInvestorStarters}>
+                Seed starter codes (E1/P1)
               </button>
             </div>
             {investorCodesMsg && <p className="vh-admin__note">{investorCodesMsg}</p>}

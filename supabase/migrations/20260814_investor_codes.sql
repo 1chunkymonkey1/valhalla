@@ -20,3 +20,10 @@ create index if not exists investor_codes_active_code_idx
 
 alter table public.investor_codes enable row level security;
 -- No anon/authenticated policies — service role only.
+
+-- Starter codes (idempotent). App also auto-seeds these on first list/redeem.
+insert into public.investor_codes (code, tier, sequence_number, created_by, active)
+values
+  ('e81821', 'e', 1, 'migration-seed', true),
+  ('p35891', 'p', 1, 'migration-seed', true)
+on conflict (code) do nothing;

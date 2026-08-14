@@ -42,7 +42,9 @@ import {
 import { listHallCodesAdmin, setHallCode, WAVE2_HALLS } from '../_lib/hallCodes.js'
 import {
   EXAMPLE_CODES,
+  ensureStarterCodes,
   generateInvestorCode,
+  investorCodesStorageLabel,
   listInvestorCodesAdmin,
   setInvestorCodeActive,
 } from '../_lib/investorCodes.js'
@@ -442,7 +444,7 @@ async function handleInvestorCodes(req, res) {
         ok: true,
         codes,
         examples: EXAMPLE_CODES,
-        storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+        storage: investorCodesStorageLabel(),
         note: 'P = small investors, E = elephant. Algorithm in docs/investor-codes.md — do not publish on /investors.',
       })
     } catch (err) {
@@ -471,6 +473,18 @@ async function handleInvestorCodes(req, res) {
         if (!id) return json(res, 400, { ok: false, error: 'id required' })
         const row = await setInvestorCodeActive(id, true)
         return json(res, 200, { ok: true, code: row })
+      }
+
+      if (action === 'seed' || action === 'seed-starters' || action === 'seed-starter') {
+        const seeded = await ensureStarterCodes(session.email || 'admin-seed')
+        const codes = await listInvestorCodesAdmin()
+        return json(res, 200, {
+          ok: true,
+          seeded,
+          codes,
+          examples: EXAMPLE_CODES,
+          storage: investorCodesStorageLabel(),
+        })
       }
 
       const tier = String(body.tier || body.type || '')

@@ -40,6 +40,28 @@ function mem() {
   return g.__vhInvestorCodes
 }
 
+/** When investor_codes table is missing, stay on memory for this process. */
+let forceMemory = false
+
+function useSupabaseStore() {
+  return isSupabaseConfigured() && !forceMemory
+}
+
+function isMissingInvestorTable(err) {
+  if (!err) return false
+  if (err.code === '42P01') return true
+  const msg = `${err.message || ''} ${err.details || ''} ${err.hint || ''}`
+  return /investor_codes/i.test(msg) && /(does not exist|could not find the table|schema cache)/i.test(msg)
+}
+
+function noteMissingTable(err) {
+  if (isMissingInvestorTable(err)) {
+    forceMemory = true
+    return true
+  }
+  return false
+}
+
 function sessionSecret() {
   return process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_PASSWORD || ''
 }
@@ -124,7 +146,7 @@ function publicRow(row) {
 
 async function nextSequence(tier) {
   const t = String(tier).toLowerCase()
-  if (isSupabaseConfigured()) {
+  if (useSupabaseStore()) {
     const sb = getSupabase()
     const { data, error } = await sb
       .from('investor_codes')
@@ -132,9 +154,16 @@ async function nextSequence(tier) {
       .eq('tier', t)
       .order('sequence_number', { ascending: false })
       .limit(1)
-    if (error) throw error
-    const max = data?.[0]?.sequence_number || 0
-    return max + 1
+    if (error) {
+      if (noteMissingTable(error)) {
+        /* fall through to memory */
+      } else {
+        throw error
+      }
+    } else {
+      const max = data?.[0]?.sequence_number || 0
+      return max + 1
+    }
   }
   const m = mem()
   const maxExisting = m.rows
@@ -145,15 +174,113 @@ async function nextSequence(tier) {
   return next
 }
 
+function seedStartersIntoMemory(createdBySafe) {
+  const starters = [
+    { tier: 'e', sequence: 1 },
+    { tier: 'p', sequence: 1 },
+  ]
+  const m = mem()
+  const now = new Date().toISOString()
+  const seeded = []
+  for (const s of starters) {
+    const code = buildInvestorCode(s.tier, s.sequence)
+    let row = m.rows.find((r) => r.code === code)
+    if (!row) {
+      row = {
+        id: `mem-${s.tier}-${s.sequence}`,
+        code,
+        tier: s.tier,
+        sequence: s.sequence,
+        createdAt: now,
+        createdBy: createdBySafe,
+        redeemedAt: null,
+        redeemerNote: '',
+        active: true,
+      }
+      m.rows.push(row)
+      m.seq[s.tier] = Math.max(m.seq[s.tier] || 0, s.sequence)
+    }
+    seeded.push(publicRow(row))
+  }
+  return seeded
+}
+
+/**
+ * Idempotent seed of E#1 (e81821) and P#1 (p35891).
+ * Runs on admin list / redeem / generate so production unlocks without a manual issue
+ * when the table is empty (or memory fallback is cold).
+ */
+export async function ensureStarterCodes(createdBy = 'system-seed') {
+  const starters = [
+    { tier: 'e', sequence: 1 },
+    { tier: 'p', sequence: 1 },
+  ]
+  const createdBySafe = String(createdBy || 'system-seed').slice(0, 120)
+
+  if (useSupabaseStore()) {
+    const sb = getSupabase()
+    const seeded = []
+    for (const s of starters) {
+      const code = buildInvestorCode(s.tier, s.sequence)
+      const { data: existing, error: findErr } = await sb
+        .from('investor_codes')
+        .select('*')
+        .eq('code', code)
+        .maybeSingle()
+      if (findErr) {
+        if (noteMissingTable(findErr)) return seedStartersIntoMemory(createdBySafe)
+        throw findErr
+      }
+      if (existing) {
+        seeded.push(publicRow(rowFromDb(existing)))
+        continue
+      }
+      const { data, error } = await sb
+        .from('investor_codes')
+        .insert({
+          code,
+          tier: s.tier,
+          sequence_number: s.sequence,
+          created_by: createdBySafe,
+          active: true,
+        })
+        .select('*')
+        .maybeSingle()
+      if (error) {
+        if (noteMissingTable(error)) return seedStartersIntoMemory(createdBySafe)
+        // Concurrent seed / unique race — re-read
+        if (error.code === '23505') {
+          const { data: again } = await sb
+            .from('investor_codes')
+            .select('*')
+            .eq('code', code)
+            .maybeSingle()
+          if (again) seeded.push(publicRow(rowFromDb(again)))
+          continue
+        }
+        throw error
+      }
+      if (data) seeded.push(publicRow(rowFromDb(data)))
+    }
+    return seeded
+  }
+
+  return seedStartersIntoMemory(createdBySafe)
+}
+
 export async function listInvestorCodesAdmin() {
-  if (isSupabaseConfigured()) {
+  await ensureStarterCodes()
+  if (useSupabaseStore()) {
     const sb = getSupabase()
     const { data, error } = await sb
       .from('investor_codes')
       .select('*')
       .order('tier', { ascending: true })
       .order('sequence_number', { ascending: true })
-    if (error) throw error
+    if (error) {
+      if (noteMissingTable(error)) return mem().rows.map(publicRow)
+      throw error
+    }
     return (data || []).map((r) => publicRow(rowFromDb(r)))
   }
   return mem().rows.map(publicRow)
@@ -165,12 +292,14 @@ export async function generateInvestorCode(tier, createdBy = '') {
     .toLowerCase()
   if (t !== 'p' && t !== 'e') throw new Error('tier must be p (small) or e (elephant)')
 
+  await ensureStarterCodes(createdBy || 'system-seed')
+
   const sequence = await nextSequence(t)
   const code = buildInvestorCode(t, sequence)
   const now = new Date().toISOString()
   const createdBySafe = String(createdBy || '').slice(0, 120)
 
-  if (!isSupabaseConfigured()) {
+  if (!useSupabaseStore()) {
     const row = {
       id: `mem-${t}-${sequence}`,
       code,
@@ -198,13 +327,30 @@ export async function generateInvestorCode(tier, createdBy = '') {
     })
     .select('*')
     .single()
-  if (error) throw error
+  if (error) {
+    if (noteMissingTable(error)) {
+      const row = {
+        id: `mem-${t}-${sequence}`,
+        code,
+        tier: t,
+        sequence,
+        createdAt: now,
+        createdBy: createdBySafe,
+        redeemedAt: null,
+        redeemerNote: '',
+        active: true,
+      }
+      mem().rows.push(row)
+      return publicRow(row)
+    }
+    throw error
+  }
   return publicRow(rowFromDb(data))
 }
 
 export async function setInvestorCodeActive(id, active) {
   const want = Boolean(active)
-  if (!isSupabaseConfigured()) {
+  if (!useSupabaseStore()) {
     const row = mem().rows.find((r) => r.id === id)
     if (!row) throw new Error('Code not found')
     row.active = want
@@ -217,14 +363,22 @@ export async function setInvestorCodeActive(id, active) {
     .eq('id', id)
     .select('*')
     .maybeSingle()
-  if (error) throw error
+  if (error) {
+    if (noteMissingTable(error)) {
+      const row = mem().rows.find((r) => r.id === id)
+      if (!row) throw new Error('Code not found')
+      row.active = want
+      return publicRow(row)
+    }
+    throw error
+  }
   if (!data) throw new Error('Code not found')
   return publicRow(rowFromDb(data))
 }
 
 async function findActiveByCode(normalized) {
   if (!normalized) return null
-  if (isSupabaseConfigured()) {
+  if (useSupabaseStore()) {
     const sb = getSupabase()
     const { data, error } = await sb
       .from('investor_codes')
@@ -232,7 +386,12 @@ async function findActiveByCode(normalized) {
       .eq('code', normalized)
       .eq('active', true)
       .maybeSingle()
-    if (error) throw error
+    if (error) {
+      if (noteMissingTable(error)) {
+        return mem().rows.find((r) => r.code === normalized && r.active) || null
+      }
+      throw error
+    }
     return rowFromDb(data)
   }
   return mem().rows.find((r) => r.code === normalized && r.active) || null
@@ -242,17 +401,24 @@ export async function redeemInvestorCode(attempt, redeemerNote = '') {
   const normalized = normalizeInvestorCode(attempt)
   if (!normalized) return { ok: false, error: 'Enter a code' }
 
+  // Ensure E1/P1 exist before lookup (cold memory instances + empty Supabase table).
+  await ensureStarterCodes()
+
   const row = await findActiveByCode(normalized)
   if (!row) return { ok: false, error: 'Invalid or inactive code' }
 
   const note = String(redeemerNote || '').slice(0, 280)
   const now = new Date().toISOString()
 
-  if (isSupabaseConfigured()) {
+  if (useSupabaseStore()) {
     const sb = getSupabase()
     const patch = { redeemed_at: row.redeemedAt || now }
     if (note) patch.redeemer_note = note
-    await sb.from('investor_codes').update(patch).eq('id', row.id)
+    const { error } = await sb.from('investor_codes').update(patch).eq('id', row.id)
+    if (error && !noteMissingTable(error)) {
+      // Non-fatal for unlock if redeem stamp fails after a valid match
+      console.error('[investorCodes] redeem stamp failed', error.message || error)
+    }
   } else {
     if (!row.redeemedAt) row.redeemedAt = now
     if (note) row.redeemerNote = note
@@ -351,8 +517,12 @@ export function clearInvestorCookie(res) {
   }
 }
 
-/** Deterministic first codes for docs / smoke checks (algorithm only; not auto-issued). */
+/** Deterministic first codes (also auto-seeded via ensureStarterCodes). */
 export const EXAMPLE_CODES = {
   e1: buildInvestorCode('e', 1),
   p1: buildInvestorCode('p', 1),
+}
+
+export function investorCodesStorageLabel() {
+  return useSupabaseStore() ? 'supabase' : 'memory'
 }
