@@ -13,6 +13,7 @@ import {
   signTeamSession,
 } from '../_lib/auth.js'
 import { isSupabaseConfigured } from '../_lib/supabase.js'
+import { authEmail, getSupabaseAuthUser, isGoogleAuthBackendReady } from '../_lib/supabaseAuth.js'
 import { listReservations, listSignups } from '../_lib/store.js'
 import {
   ROLES,
@@ -22,6 +23,7 @@ import {
   getInviteByToken,
   getUserByEmail,
   hallAccessFor,
+  linkAuthUserId,
   listNotes,
   listTasks,
   logActivity,
@@ -80,8 +82,14 @@ async function handleLogin(req, res) {
       .toLowerCase()
     const password = String(body.password || '')
     const user = await getUserByEmail(email)
-    if (!user || !user.active || !user.passwordHash) {
+    if (!user || !user.active) {
       return json(res, 401, { ok: false, error: 'Invalid email or password' })
+    }
+    if (!user.passwordHash) {
+      return json(res, 401, {
+        ok: false,
+        error: 'This seat uses Google sign-in. Use Continue with Google.',
+      })
     }
     if (!verifyPasswordHash(password, user.passwordHash)) {
       return json(res, 401, { ok: false, error: 'Invalid email or password' })
@@ -101,6 +109,81 @@ async function handleLogin(req, res) {
   } catch (err) {
     return json(res, 400, { ok: false, error: err.message || 'Bad request' })
   }
+}
+
+async function handleLoginGoogle(req, res) {
+  if (req.method !== 'POST') {
+    return json(res, 405, { ok: false, error: 'Method not allowed' })
+  }
+
+  const rl = rateLimit(clientKey(req, 'team-google'), { limit: 30, windowMs: 15 * 60 * 1000 })
+  if (!rl.ok) {
+    res.setHeader('Retry-After', String(rl.retryAfterSec))
+    return json(res, 429, { ok: false, error: 'Too many login attempts. Try again later.' })
+  }
+
+  if (!isGoogleAuthBackendReady()) {
+    return json(res, 503, {
+      ok: false,
+      error: 'Google sign-in needs SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY on Vercel.',
+    })
+  }
+
+  if (!process.env.ADMIN_SESSION_SECRET && !process.env.ADMIN_PASSWORD) {
+    return json(res, 503, {
+      ok: false,
+      error: 'Team auth not configured. Set ADMIN_SESSION_SECRET on Vercel.',
+    })
+  }
+
+  try {
+    const body = await readBody(req)
+    const accessToken = String(body.accessToken || body.access_token || '')
+    const authUser = await getSupabaseAuthUser(accessToken)
+    const email = authEmail(authUser)
+    if (!email) {
+      return json(res, 401, { ok: false, error: 'Google sign-in failed' })
+    }
+
+    const user = await getUserByEmail(email)
+    if (!user || !user.active) {
+      return json(res, 403, {
+        ok: false,
+        error: 'No team seat for this Google account. Ask the founder for an invite first.',
+      })
+    }
+
+    if (authUser.id && user.authUserId !== authUser.id) {
+      await linkAuthUserId(email, authUser.id)
+    }
+
+    const token = signTeamSession(createTeamSessionPayload(user))
+    setTeamSessionCookie(res, token)
+    await logActivity({ type: 'team_login_google', actor: user.email, role: user.role })
+    return json(res, 200, {
+      ok: true,
+      authMethod: 'google',
+      user: {
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        halls: user.halls,
+      },
+    })
+  } catch (err) {
+    return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+  }
+}
+
+async function handleAuthOptions(req, res) {
+  if (req.method !== 'GET') {
+    return json(res, 405, { ok: false, error: 'Method not allowed' })
+  }
+  return json(res, 200, {
+    ok: true,
+    google: isGoogleAuthBackendReady(),
+    storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+  })
 }
 
 async function handleLogout(req, res) {
@@ -171,15 +254,47 @@ async function handleAcceptInvite(req, res) {
 
   try {
     const body = await readBody(req)
-    const result = await acceptInvite(body.token, {
-      name: body.name,
+    const inviteToken = String(body.token || '')
+    const accessToken = String(body.accessToken || body.access_token || '')
+    const name = body.name
+
+    if (accessToken) {
+      if (!isGoogleAuthBackendReady()) {
+        return json(res, 503, {
+          ok: false,
+          error: 'Google sign-in needs SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY on Vercel.',
+        })
+      }
+      const authUser = await getSupabaseAuthUser(accessToken)
+      const email = authEmail(authUser)
+      const inv = await getInviteByToken(inviteToken)
+      if (!inv) return json(res, 400, { ok: false, error: 'Invite invalid or expired' })
+      if (!email || email !== inv.email) {
+        return json(res, 403, {
+          ok: false,
+          error: `Sign in with Google as ${inv.email} to accept this invite.`,
+        })
+      }
+      const result = await acceptInvite(inviteToken, {
+        name,
+        authUserId: authUser.id,
+      })
+      if (!result.ok) return json(res, 400, result)
+      const token = signTeamSession(createTeamSessionPayload(result.user))
+      setTeamSessionCookie(res, token)
+      await logActivity({ type: 'invite_accepted_google', actor: result.user.email, role: result.user.role })
+      return json(res, 200, { ok: true, authMethod: 'google', user: result.user })
+    }
+
+    const result = await acceptInvite(inviteToken, {
+      name,
       password: body.password,
     })
     if (!result.ok) return json(res, 400, result)
 
     const token = signTeamSession(createTeamSessionPayload(result.user))
     setTeamSessionCookie(res, token)
-    return json(res, 200, { ok: true, user: result.user })
+    return json(res, 200, { ok: true, authMethod: 'password', user: result.user })
   } catch (err) {
     return json(res, 400, { ok: false, error: err.message || 'Bad request' })
   }
@@ -351,7 +466,7 @@ async function handleWorkspace(req, res) {
       guides: [
         {
           title: 'Team login',
-          body: 'Open your invite link, set a password, then sign in at /team with email and password.',
+          body: 'Open your invite link, then Continue with Google (or set a password) and sign in at /team.',
         },
         {
           title: 'Halls',
@@ -359,7 +474,7 @@ async function handleWorkspace(req, res) {
         },
         {
           title: 'Founder admin',
-          body: 'Only info@valhallaco.org uses /admin (password + 2FA) for people, codes, socials, and ledgers.',
+          body: 'Only allowlisted founder emails use /admin (Google SSO and/or password + 2FA) for people, codes, socials, and ledgers.',
         },
       ],
     })
@@ -371,6 +486,8 @@ async function handleWorkspace(req, res) {
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'login') return handleLogin(req, res)
+  if (key === 'login-google') return handleLoginGoogle(req, res)
+  if (key === 'auth-options') return handleAuthOptions(req, res)
   if (key === 'logout') return handleLogout(req, res)
   if (key === 'session') return handleSession(req, res)
   if (key === 'accept-invite') return handleAcceptInvite(req, res)

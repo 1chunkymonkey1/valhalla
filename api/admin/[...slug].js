@@ -7,17 +7,20 @@ import {
   clearSessionCookie,
   createSessionPayload,
   getSession,
+  isAdminEmail,
   isTotpConfigured,
   json,
   readBody,
   requireAdmin,
   requirePeopleAdmin,
+  requireTotpForGoogleAdmin,
   setSessionCookie,
   signSession,
   verifyAdminTotp,
   verifyPassword,
 } from '../_lib/auth.js'
 import { isSupabaseConfigured } from '../_lib/supabase.js'
+import { authEmail, getSupabaseAuthUser, isGoogleAuthBackendReady } from '../_lib/supabaseAuth.js'
 import {
   importReservations,
   listReservations,
@@ -112,7 +115,7 @@ async function handleLogin(req, res) {
     const password = String(body.password || '')
     const totp = String(body.totp || body.code || '')
 
-    if (email !== ADMIN_EMAIL) {
+    if (!isAdminEmail(email)) {
       return json(res, 401, { ok: false, error: 'Invalid credentials' })
     }
     if (!verifyPassword(password)) {
@@ -122,12 +125,103 @@ async function handleLogin(req, res) {
       return json(res, 401, { ok: false, error: 'Invalid authenticator code' })
     }
 
-    const token = signSession(createSessionPayload(ADMIN_EMAIL))
+    const token = signSession(createSessionPayload(email))
     setSessionCookie(res, token)
-    return json(res, 200, { ok: true, email: ADMIN_EMAIL })
+    return json(res, 200, { ok: true, email, authMethod: 'password' })
   } catch {
     return json(res, 400, { ok: false, error: 'Bad request' })
   }
+}
+
+/**
+ * Exchange a Supabase Auth access token (Google OAuth) for the admin session cookie.
+ * Does not store Google passwords. Allowlist: info@valhallaco.org + ADMIN_GOOGLE_EMAILS.
+ */
+async function handleLoginGoogle(req, res) {
+  if (req.method !== 'POST') {
+    return json(res, 405, { ok: false, error: 'Method not allowed' })
+  }
+
+  const rl = rateLimit(clientKey(req, 'admin-google'), { limit: 20, windowMs: 15 * 60 * 1000 })
+  if (!rl.ok) {
+    res.setHeader('Retry-After', String(rl.retryAfterSec))
+    return json(res, 429, { ok: false, error: 'Too many login attempts. Try again later.' })
+  }
+
+  if (!isGoogleAuthBackendReady()) {
+    return json(res, 503, {
+      ok: false,
+      error: 'Google sign-in needs SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY on Vercel.',
+    })
+  }
+
+  if (!process.env.ADMIN_SESSION_SECRET && !process.env.ADMIN_PASSWORD) {
+    return json(res, 503, {
+      ok: false,
+      error: 'Set ADMIN_SESSION_SECRET on Vercel to issue admin sessions.',
+    })
+  }
+
+  try {
+    const body = await readBody(req)
+    const accessToken = String(body.accessToken || body.access_token || '')
+    const totp = String(body.totp || body.code || '')
+    const user = await getSupabaseAuthUser(accessToken)
+    const email = authEmail(user)
+
+    if (!email || !isAdminEmail(email)) {
+      return json(res, 403, {
+        ok: false,
+        error: `Google account is not on the founder allowlist (${ADMIN_EMAIL}).`,
+      })
+    }
+
+    if (requireTotpForGoogleAdmin()) {
+      if (!isTotpConfigured()) {
+        return json(res, 503, {
+          ok: false,
+          error: 'ADMIN_GOOGLE_REQUIRE_TOTP is on but ADMIN_TOTP_SECRET is missing.',
+        })
+      }
+      if (!totp) {
+        return json(res, 401, {
+          ok: false,
+          needTotp: true,
+          email,
+          error: 'Enter your authenticator code to finish Google sign-in.',
+        })
+      }
+      if (!verifyAdminTotp(totp)) {
+        return json(res, 401, { ok: false, needTotp: true, error: 'Invalid authenticator code' })
+      }
+    }
+
+    const token = signSession(createSessionPayload(email))
+    setSessionCookie(res, token)
+    return json(res, 200, {
+      ok: true,
+      email,
+      authMethod: 'google',
+      totpRequired: requireTotpForGoogleAdmin(),
+    })
+  } catch (err) {
+    return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+  }
+}
+
+async function handleAuthOptions(req, res) {
+  if (req.method !== 'GET') {
+    return json(res, 405, { ok: false, error: 'Method not allowed' })
+  }
+  return json(res, 200, {
+    ok: true,
+    google: isGoogleAuthBackendReady(),
+    password: Boolean(process.env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD_HASH),
+    totp: isTotpConfigured(),
+    googleRequiresTotp: requireTotpForGoogleAdmin(),
+    storage: isSupabaseConfigured() ? 'supabase' : 'memory',
+    adminEmail: ADMIN_EMAIL,
+  })
 }
 
 async function handleLogout(req, res) {
@@ -468,6 +562,8 @@ async function handleInbox(req, res) {
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'login') return handleLogin(req, res)
+  if (key === 'login-google') return handleLoginGoogle(req, res)
+  if (key === 'auth-options') return handleAuthOptions(req, res)
   if (key === 'logout') return handleLogout(req, res)
   if (key === 'session') return handleSession(req, res)
   if (key === 'ledger') return handleLedger(req, res)

@@ -4,6 +4,13 @@ import SiteMenu from '../components/layout/SiteMenu'
 import AdminRevealControls from '../components/AdminRevealControls'
 import { formatUsd } from '../data/payLinks'
 import { HALL_IDS, TEAM_ROLES } from '../data/teamRoles'
+import {
+  clearBrowserSupabaseSession,
+  getGoogleAccessToken,
+  isSupabaseBrowserConfigured,
+  startGoogleOAuth,
+  takeOAuthIntent,
+} from '../lib/supabaseBrowser'
 
 const ADMIN_EMAIL = 'info@valhallaco.org'
 
@@ -14,6 +21,11 @@ export default function AdminPage() {
   const [totp, setTotp] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
+  const [googleReady, setGoogleReady] = useState(false)
+  const [googleBusy, setGoogleBusy] = useState(false)
+  const [pendingGoogleToken, setPendingGoogleToken] = useState('')
+  const [needGoogleTotp, setNeedGoogleTotp] = useState(false)
+  const [authOptions, setAuthOptions] = useState(null)
   const [ledger, setLedger] = useState(null)
   const [localPreview, setLocalPreview] = useState({ reservations: [], signups: [] })
   const [adminTab, setAdminTab] = useState('overview')
@@ -40,6 +52,42 @@ export default function AdminPage() {
   const [inboxFilter, setInboxFilter] = useState('')
   const [inboxStorage, setInboxStorage] = useState('')
 
+  async function enterAuthenticated(adminEmail) {
+    setAuth({ loading: false, ok: true, email: adminEmail })
+    setPendingGoogleToken('')
+    setNeedGoogleTotp(false)
+    await Promise.all([
+      loadLedger().catch(() => {}),
+      loadPeople().catch(() => {}),
+      loadCodes().catch(() => {}),
+      loadSocials().catch(() => {}),
+      loadInbox().catch(() => {}),
+    ])
+  }
+
+  async function exchangeGoogleToken(accessToken, totpCode = '') {
+    const res = await fetch('/api/admin/login-google', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ accessToken, totp: totpCode }),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (data.needTotp) {
+      setPendingGoogleToken(accessToken)
+      setNeedGoogleTotp(true)
+      setError(data.error || 'Enter your authenticator code to finish Google sign-in.')
+      return false
+    }
+    if (!res.ok) {
+      setError(data.error || 'Google sign-in failed')
+      return false
+    }
+    await clearBrowserSupabaseSession()
+    await enterAuthenticated(data.email)
+    return true
+  }
+
   async function refreshSession() {
     const controller = new AbortController()
     const timer = setTimeout(() => controller.abort(), 8000)
@@ -50,12 +98,7 @@ export default function AdminPage() {
       })
       const data = await res.json().catch(() => ({}))
       if (data.authenticated) {
-        setAuth({ loading: false, ok: true, email: data.email })
-        loadLedger().catch(() => {})
-        loadPeople().catch(() => {})
-        loadCodes().catch(() => {})
-        loadSocials().catch(() => {})
-        loadInbox().catch(() => {})
+        await enterAuthenticated(data.email)
       } else {
         setAuth({ loading: false, ok: false, email: null })
       }
@@ -169,7 +212,38 @@ export default function AdminPage() {
   }
 
   useEffect(() => {
-    refreshSession()
+    let cancelled = false
+    ;(async () => {
+      try {
+        const res = await fetch('/api/admin/auth-options')
+        const data = await res.json().catch(() => ({}))
+        if (!cancelled) {
+          setAuthOptions(data)
+          setGoogleReady(Boolean(data.google && isSupabaseBrowserConfigured()))
+        }
+      } catch {
+        if (!cancelled) setGoogleReady(isSupabaseBrowserConfigured())
+      }
+
+      const intent = takeOAuthIntent()
+      if (intent?.kind === 'admin' && isSupabaseBrowserConfigured()) {
+        setGoogleBusy(true)
+        try {
+          const accessToken = await getGoogleAccessToken()
+          if (accessToken) {
+            const ok = await exchangeGoogleToken(accessToken)
+            if (ok || cancelled) return
+          }
+        } catch (err) {
+          if (!cancelled) setError(err.message || 'Google sign-in failed')
+        } finally {
+          if (!cancelled) setGoogleBusy(false)
+        }
+      }
+
+      if (!cancelled) await refreshSession()
+    })()
+
     try {
       setLocalPreview({
         reservations: JSON.parse(localStorage.getItem('valhalla_reservation_ledger') || '[]'),
@@ -177,6 +251,10 @@ export default function AdminPage() {
       })
     } catch {
       // ignore
+    }
+
+    return () => {
+      cancelled = true
     }
   }, [])
 
@@ -204,6 +282,15 @@ export default function AdminPage() {
   async function login(e) {
     e.preventDefault()
     setError('')
+    if (needGoogleTotp && pendingGoogleToken) {
+      setGoogleBusy(true)
+      try {
+        await exchangeGoogleToken(pendingGoogleToken, totp)
+      } finally {
+        setGoogleBusy(false)
+      }
+      return
+    }
     const res = await fetch('/api/admin/login', {
       method: 'POST',
       credentials: 'include',
@@ -217,12 +304,18 @@ export default function AdminPage() {
     }
     setPassword('')
     setTotp('')
-    setAuth({ loading: false, ok: true, email: data.email })
-    await loadLedger()
-    await loadPeople()
-    await loadCodes()
-    await loadSocials()
-    await loadInbox()
+    await enterAuthenticated(data.email)
+  }
+
+  async function continueWithGoogle() {
+    setError('')
+    setGoogleBusy(true)
+    try {
+      await startGoogleOAuth(`${window.location.origin}/admin`, { kind: 'admin' })
+    } catch (err) {
+      setError(err.message || 'Could not start Google sign-in')
+      setGoogleBusy(false)
+    }
   }
 
   async function logout() {
@@ -296,10 +389,12 @@ export default function AdminPage() {
     }
   }
 
-  if (auth.loading) {
+  if (auth.loading || googleBusy) {
     return (
       <div className="vh-page vh-admin">
-        <p className="vh-admin__loading">Checking session…</p>
+        <p className="vh-admin__loading">
+          {googleBusy ? 'Finishing Google sign-in…' : 'Checking session…'}
+        </p>
       </div>
     )
   }
@@ -312,51 +407,77 @@ export default function AdminPage() {
           <p className="vh-admin__mark">Valhalla</p>
           <h1>Admin</h1>
           <p className="vh-admin__hint">
-            Restricted to {ADMIN_EMAIL} · password + authenticator code
+            Restricted to {ADMIN_EMAIL}
+            {authOptions?.googleRequiresTotp
+              ? ' · Google SSO + authenticator, or password + authenticator'
+              : ' · Continue with Google, or password + authenticator'}
           </p>
-          <label>
-            Email
-            <input
-              type="email"
-              name="username"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="username"
-              inputMode="email"
-            />
-          </label>
-          <label>
-            Password
-            <input
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onPaste={(e) => {
-                const text = e.clipboardData?.getData('text')
-                if (text != null) {
-                  e.preventDefault()
-                  setPassword(text)
-                }
-              }}
-              autoComplete="current-password"
-              spellCheck={false}
-            />
-          </label>
-          <div className="vh-admin__row">
-            <button type="button" className="vh-admin__secondary" onClick={pastePassword}>
-              Paste password
-            </button>
-            <button
-              type="button"
-              className="vh-admin__secondary"
-              onClick={() => setShowPassword((v) => !v)}
-            >
-              {showPassword ? 'Hide' : 'Show'} password
-            </button>
-          </div>
+          {googleReady && !needGoogleTotp && (
+            <>
+              <button
+                type="button"
+                className="vh-admin__google"
+                onClick={continueWithGoogle}
+                disabled={googleBusy}
+              >
+                Continue with Google
+              </button>
+              <p className="vh-admin__divider" aria-hidden="true">
+                or password
+              </p>
+            </>
+          )}
+          {needGoogleTotp ? (
+            <p className="vh-admin__hint">
+              Google verified. Enter your authenticator code to finish.
+            </p>
+          ) : (
+            <>
+              <label>
+                Email
+                <input
+                  type="email"
+                  name="username"
+                  required={!needGoogleTotp}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="username"
+                  inputMode="email"
+                />
+              </label>
+              <label>
+                Password
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  required={!needGoogleTotp}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  onPaste={(e) => {
+                    const text = e.clipboardData?.getData('text')
+                    if (text != null) {
+                      e.preventDefault()
+                      setPassword(text)
+                    }
+                  }}
+                  autoComplete="current-password"
+                  spellCheck={false}
+                />
+              </label>
+              <div className="vh-admin__row">
+                <button type="button" className="vh-admin__secondary" onClick={pastePassword}>
+                  Paste password
+                </button>
+                <button
+                  type="button"
+                  className="vh-admin__secondary"
+                  onClick={() => setShowPassword((v) => !v)}
+                >
+                  {showPassword ? 'Hide' : 'Show'} password
+                </button>
+              </div>
+            </>
+          )}
           <label className="vh-admin__totp">
             6-digit authenticator code
             <input
@@ -384,11 +505,11 @@ export default function AdminPage() {
             </span>
           </label>
           {error && <p className="vh-admin__error">{error}</p>}
-          <button type="submit">Enter</button>
+          <button type="submit">{needGoogleTotp ? 'Finish Google sign-in' : 'Enter'}</button>
           <p className="vh-admin__fine">
-            Needs <code>ADMIN_PASSWORD</code>, <code>ADMIN_SESSION_SECRET</code>, and{' '}
-            <code>ADMIN_TOTP_SECRET</code> on Vercel. Generate the TOTP secret with{' '}
-            <code>npm run admin:totp</code>.
+            Google SSO uses Supabase Auth (no app password stored). Password path still needs{' '}
+            <code>ADMIN_PASSWORD</code>, <code>ADMIN_SESSION_SECRET</code>, and{' '}
+            <code>ADMIN_TOTP_SECRET</code>. See <code>docs/supabase-setup.md</code>.
           </p>
           <Link to="/">← Hub</Link>
         </form>
@@ -679,7 +800,7 @@ export default function AdminPage() {
           <form className="vh-admin__card" onSubmit={sendInvite}>
             <h2>Invite teammate</h2>
             <p className="vh-admin__note">
-              They get a simple email+password seat. Roles: hall lead, empire ops, growth, finance,
+              They get a Google SSO seat (recommended) or email+password. Roles: hall lead, empire ops, growth, finance,
               comms.
             </p>
             <label>

@@ -17,6 +17,34 @@ export function verifyAdminTotp(code) {
   return verifyTotp(code, getTotpSecret())
 }
 
+/** Founder allowlist: info@valhallaco.org plus ADMIN_GOOGLE_EMAILS (comma-separated). */
+export function getAdminEmails() {
+  const extras = String(process.env.ADMIN_GOOGLE_EMAILS || '')
+    .split(',')
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean)
+  return new Set([ADMIN_EMAIL.toLowerCase(), ...extras])
+}
+
+export function isAdminEmail(email) {
+  const e = String(email || '')
+    .trim()
+    .toLowerCase()
+  if (!e) return false
+  return getAdminEmails().has(e)
+}
+
+/**
+ * When true, Google SSO for /admin still requires the authenticator code.
+ * Default false: allowlisted Google email replaces password (and TOTP) for SSO.
+ */
+export function requireTotpForGoogleAdmin() {
+  const v = String(process.env.ADMIN_GOOGLE_REQUIRE_TOTP || '')
+    .trim()
+    .toLowerCase()
+  return v === '1' || v === 'true' || v === 'yes'
+}
+
 function getSecret() {
   return process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_PASSWORD || ''
 }
@@ -84,7 +112,7 @@ export function verifySessionToken(token) {
   try {
     const payload = JSON.parse(fromB64url(body).toString('utf8'))
     if (!payload?.exp || Date.now() > payload.exp) return null
-    if (payload.email !== ADMIN_EMAIL) return null
+    if (!isAdminEmail(payload.email)) return null
     return payload
   } catch {
     return null

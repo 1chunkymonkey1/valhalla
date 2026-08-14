@@ -87,6 +87,7 @@ function mapUser(row) {
     role: row.role,
     halls: row.halls || [],
     passwordHash: row.password_hash ?? row.passwordHash,
+    authUserId: row.auth_user_id ?? row.authUserId ?? null,
     active: row.active !== false,
     createdAt: row.created_at || row.createdAt,
     updatedAt: row.updated_at || row.updatedAt,
@@ -156,6 +157,30 @@ export function sanitizeUser(u) {
   if (!u) return null
   const { passwordHash, ...rest } = u
   return rest
+}
+
+export async function linkAuthUserId(email, authUserId) {
+  const e = String(email || '')
+    .trim()
+    .toLowerCase()
+  const uid = authUserId ? String(authUserId) : null
+  if (!e || !uid) return null
+
+  if (!isSupabaseConfigured()) {
+    const u = mem().users.find((row) => row.email === e)
+    if (!u) return null
+    u.authUserId = uid
+    u.updatedAt = new Date().toISOString()
+    return sanitizeUser(u)
+  }
+
+  const sb = getSupabase()
+  const { error } = await sb
+    .from('team_users')
+    .update({ auth_user_id: uid, updated_at: new Date().toISOString() })
+    .eq('email', e)
+  if (error) throw error
+  return sanitizeUser(await getUserByEmail(e))
 }
 
 export async function logActivity(entry) {
@@ -239,6 +264,7 @@ export async function upsertUser(user) {
     role: user.role || 'hall_lead',
     halls: Array.isArray(user.halls) ? user.halls : [],
     passwordHash: user.passwordHash,
+    authUserId: user.authUserId,
     active: user.active !== false,
     createdAt: user.createdAt || now,
     updatedAt: now,
@@ -247,8 +273,17 @@ export async function upsertUser(user) {
   if (!isSupabaseConfigured()) {
     const bag = mem().users
     const idx = bag.findIndex((u) => u.email === email)
-    if (idx >= 0) bag[idx] = { ...bag[idx], ...row, id: bag[idx].id }
-    else bag.push(row)
+    if (idx >= 0) {
+      const prev = bag[idx]
+      bag[idx] = {
+        ...prev,
+        ...row,
+        id: prev.id,
+        passwordHash:
+          user.passwordHash !== undefined ? user.passwordHash : prev.passwordHash,
+        authUserId: user.authUserId !== undefined ? user.authUserId : prev.authUserId,
+      }
+    } else bag.push(row)
     return sanitizeUser(await getUserByEmail(email))
   }
 
@@ -260,7 +295,12 @@ export async function upsertUser(user) {
     name: row.name,
     role: row.role,
     halls: row.halls,
-    password_hash: row.passwordHash ?? existing?.passwordHash ?? null,
+    password_hash:
+      user.passwordHash !== undefined
+        ? user.passwordHash
+        : (existing?.passwordHash ?? null),
+    auth_user_id:
+      user.authUserId !== undefined ? user.authUserId : (existing?.authUserId ?? null),
     active: row.active,
     created_at: existing?.createdAt || row.createdAt,
     updated_at: now,
@@ -361,10 +401,12 @@ export async function getInviteByToken(token) {
   return inv
 }
 
-export async function acceptInvite(token, { name, password }) {
+export async function acceptInvite(token, { name, password, authUserId } = {}) {
   const inv = await getInviteByToken(token)
   if (!inv) return { ok: false, error: 'Invite invalid or expired' }
-  if (!password || password.length < 8) {
+
+  const viaGoogle = Boolean(authUserId)
+  if (!viaGoogle && (!password || password.length < 8)) {
     return { ok: false, error: 'Password must be at least 8 characters' }
   }
 
@@ -373,7 +415,9 @@ export async function acceptInvite(token, { name, password }) {
     name: name || inv.name || inv.email.split('@')[0],
     role: inv.role,
     halls: inv.halls,
-    passwordHash: hashPassword(password),
+    ...(viaGoogle
+      ? { authUserId }
+      : { passwordHash: hashPassword(password) }),
     active: true,
   })
 
