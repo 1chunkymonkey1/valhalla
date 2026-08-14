@@ -37,6 +37,12 @@ import {
   uploadInvestorAsset,
   upsertInvestorMaterials,
 } from '../_lib/investorMaterials.js'
+import {
+  groupTrackingByTier,
+  investorCodeTrackingStorageLabel,
+  listInvestorCodeTracking,
+  upsertInvestorCodeTracking,
+} from '../_lib/investorCodeTracking.js'
 
 function routeKey(req) {
   const slug = req.query?.slug
@@ -361,12 +367,69 @@ async function handleInvestorMaterials(req, res) {
   return json(res, 405, { ok: false, error: 'Method not allowed' })
 }
 
+async function handleInvestorCodeTracking(req, res) {
+  const session = parseInvestorCookie(req)
+  if (!session) {
+    return json(res, 401, { ok: false, error: 'Unlock required' })
+  }
+  if (!session.canEdit) {
+    return json(res, 403, { ok: false, error: 'Editor access required' })
+  }
+
+  if (req.method === 'GET') {
+    try {
+      const rows = await listInvestorCodeTracking()
+      return json(res, 200, {
+        ok: true,
+        rows,
+        tables: groupTrackingByTier(rows),
+        storage: investorCodeTrackingStorageLabel(),
+      })
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Tracking error' })
+    }
+  }
+
+  if (req.method === 'PUT' || req.method === 'POST') {
+    const rl = rateLimit(clientKey(req, 'hub-investor-tracking'), {
+      limit: 40,
+      windowMs: 15 * 60 * 1000,
+    })
+    if (!rl.ok) {
+      res.setHeader('Retry-After', String(rl.retryAfterSec))
+      return json(res, 429, { ok: false, error: 'Too many saves. Try again later.' })
+    }
+
+    try {
+      const body = await readBody(req)
+      const rows = await upsertInvestorCodeTracking(body)
+      return json(res, 200, {
+        ok: true,
+        rows,
+        tables: groupTrackingByTier(rows),
+        storage: investorCodeTrackingStorageLabel(),
+      })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Save failed' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'status' || key === 'unlocks') return handleStatus(req, res)
   if (key === 'unlock') return handleUnlock(req, res)
   if (key === 'investor-code' || key === 'investor-codes') return handleInvestorCode(req, res)
   if (key === 'investor-materials' || key === 'investor-material') return handleInvestorMaterials(req, res)
+  if (
+    key === 'investor-code-tracking' ||
+    key === 'investor-tracking' ||
+    key === 'investor-code-tracker'
+  ) {
+    return handleInvestorCodeTracking(req, res)
+  }
   if (key === 'socials') return handleSocials(req, res)
   if (key === 'page') return handlePage(req, res)
   if (key === 'chat') return handleChat(req, res)

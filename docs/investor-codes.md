@@ -95,6 +95,23 @@ Constant founder code (not generated from π/e). Entering **`a5861`** on `/inves
 
 P/E codes remain **read-only** materials unlock (`canEdit: false`).
 
+### Code send tracker (a5861)
+
+In the materials editor, two editable tables (4 columns × 12 rows):
+
+| Table | Audience |
+|-------|----------|
+| **E table** | Large / elephant investors (e-codes) |
+| **P table** | Small / retail investors (p-codes) |
+
+Columns: **Code** · **Who it was sent to** · **When it was sent** · **Next step tracker**.
+
+- Codes for sequences **1–12** are prefilled from the π/e generator (`buildInvestorCode`) even if not yet issued via `/admin`.
+- Recipient / sent_at / next_step are free text for founder tracking.
+- API: `GET` / `PUT` `/api/hub/investor-code-tracking` (requires `canEdit`)
+- Persistence: Supabase `investor_code_tracking` (`tier`, `row_index` 1–12, `code`, `recipient`, `sent_at`, `next_step`), memory fallback if table missing
+- Migration: `supabase/migrations/20260814_investor_code_tracking.sql`
+
 ## Materials
 
 ### Static assets

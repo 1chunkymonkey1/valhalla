@@ -29,6 +29,10 @@ const FALLBACK_MATERIALS = {
   companyDeckOverrides: {},
 }
 
+function emptyTrackingTables() {
+  return { e: [], p: [] }
+}
+
 function fileToDataUrl(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
@@ -36,6 +40,79 @@ function fileToDataUrl(file) {
     reader.onerror = () => reject(new Error('Could not read file'))
     reader.readAsDataURL(file)
   })
+}
+
+function TrackingTable({ title, subtitle, rows, tier, onChange, busy }) {
+  return (
+    <div className="vh-inv__track-block">
+      <h3>{title}</h3>
+      <p className="vh-inv__muted">{subtitle}</p>
+      <div className="vh-inv__track-scroll">
+        <table className="vh-inv__track-table">
+          <thead>
+            <tr>
+              <th scope="col">Code</th>
+              <th scope="col">Who it was sent to</th>
+              <th scope="col">When it was sent</th>
+              <th scope="col">Next step tracker</th>
+            </tr>
+          </thead>
+          <tbody>
+            {(rows?.length ? rows : Array.from({ length: 12 }, (_, i) => ({ rowIndex: i + 1 }))).map(
+              (row, idx) => {
+                const rowIndex = row.rowIndex || idx + 1
+                return (
+                  <tr key={`${tier}-${rowIndex}`}>
+                    <td>
+                      <input
+                        className="vh-inv__track-input vh-inv__track-input--code"
+                        value={row.code || ''}
+                        onChange={(e) => onChange(tier, rowIndex, 'code', e.target.value)}
+                        disabled={busy}
+                        spellCheck={false}
+                        autoCapitalize="off"
+                        aria-label={`${tier.toUpperCase()} row ${rowIndex} code`}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="vh-inv__track-input"
+                        value={row.recipient || ''}
+                        onChange={(e) => onChange(tier, rowIndex, 'recipient', e.target.value)}
+                        disabled={busy}
+                        placeholder="Recipient"
+                        aria-label={`${tier.toUpperCase()} row ${rowIndex} recipient`}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="vh-inv__track-input"
+                        value={row.sentAt || ''}
+                        onChange={(e) => onChange(tier, rowIndex, 'sentAt', e.target.value)}
+                        disabled={busy}
+                        placeholder="Date / note"
+                        aria-label={`${tier.toUpperCase()} row ${rowIndex} when sent`}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="vh-inv__track-input"
+                        value={row.nextStep || ''}
+                        onChange={(e) => onChange(tier, rowIndex, 'nextStep', e.target.value)}
+                        disabled={busy}
+                        placeholder="Next step"
+                        aria-label={`${tier.toUpperCase()} row ${rowIndex} next step`}
+                      />
+                    </td>
+                  </tr>
+                )
+              },
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
 }
 
 function MaterialsReadView({ materials, companies, tier, onLock, busy }) {
@@ -152,7 +229,21 @@ function MaterialsReadView({ materials, companies, tier, onLock, busy }) {
   )
 }
 
-function MaterialsEditor({ draft, setDraft, companies, onSave, onUpload, onLock, busy, msg, storage }) {
+function MaterialsEditor({
+  draft,
+  setDraft,
+  companies,
+  onSave,
+  onUpload,
+  onLock,
+  busy,
+  msg,
+  storage,
+  tracking,
+  setTracking,
+  onSaveTracking,
+  trackingStorage,
+}) {
   function setField(key, value) {
     setDraft((d) => ({ ...d, [key]: value }))
   }
@@ -184,6 +275,28 @@ function MaterialsEditor({ draft, setDraft, companies, onSave, onUpload, onLock,
     })
   }
 
+  function setTrackingCell(tier, rowIndex, field, value) {
+    setTracking((prev) => {
+      const list = [...(prev?.[tier] || [])]
+      const idx = list.findIndex((r) => r.rowIndex === rowIndex)
+      if (idx >= 0) {
+        list[idx] = { ...list[idx], [field]: value }
+      } else {
+        list.push({
+          tier,
+          rowIndex,
+          code: '',
+          recipient: '',
+          sentAt: '',
+          nextStep: '',
+          [field]: value,
+        })
+        list.sort((a, b) => a.rowIndex - b.rowIndex)
+      }
+      return { ...prev, [tier]: list }
+    })
+  }
+
   async function handleFile(slot, file, applyUrl) {
     if (!file) return
     await onUpload(slot, file, applyUrl)
@@ -211,6 +324,41 @@ function MaterialsEditor({ draft, setDraft, companies, onSave, onUpload, onLock,
       </header>
 
       {msg ? <p className={msg.ok ? 'vh-inv__ok' : 'vh-inv__error'}>{msg.text}</p> : null}
+
+      <section className="vh-inv__section">
+        <div className="vh-inv__section-head">
+          <div>
+            <h2>Code send tracker</h2>
+            <p className="vh-inv__muted">
+              E = large investors · P = small investors. Codes 1–12 prefilled from the π/e generator.
+              Storage:{' '}
+              {trackingStorage === 'supabase'
+                ? 'Supabase'
+                : 'memory (run 20260814_investor_code_tracking.sql)'}
+              .
+            </p>
+          </div>
+          <button type="button" className="vh-inv__save" onClick={onSaveTracking} disabled={busy}>
+            {busy ? 'Saving…' : 'Save tracker'}
+          </button>
+        </div>
+        <TrackingTable
+          title="E table"
+          subtitle="Elephant / large-allocation codes (e-codes)."
+          rows={tracking?.e}
+          tier="e"
+          onChange={setTrackingCell}
+          busy={busy}
+        />
+        <TrackingTable
+          title="P table"
+          subtitle="Small / retail investor codes (p-codes)."
+          rows={tracking?.p}
+          tier="p"
+          onChange={setTrackingCell}
+          busy={busy}
+        />
+      </section>
 
       <section className="vh-inv__section">
         <h2>Elevator pitch</h2>
@@ -370,6 +518,8 @@ export default function InvestorsPage() {
   const [storage, setStorage] = useState('')
   const [msg, setMsg] = useState(null)
   const [materialsReady, setMaterialsReady] = useState(false)
+  const [tracking, setTracking] = useState(emptyTrackingTables)
+  const [trackingStorage, setTrackingStorage] = useState('')
 
   async function loadMaterials() {
     const res = await fetch('/api/hub/investor-materials', { credentials: 'include' })
@@ -395,6 +545,20 @@ export default function InvestorsPage() {
     setMaterialsReady(true)
   }
 
+  async function loadTracking() {
+    const res = await fetch('/api/hub/investor-code-tracking', { credentials: 'include' })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok || !data.ok) {
+      setTracking(emptyTrackingTables())
+      return
+    }
+    setTracking({
+      e: data.tables?.e || [],
+      p: data.tables?.p || [],
+    })
+    setTrackingStorage(data.storage || '')
+  }
+
   useEffect(() => {
     document.title = 'Investors · Valhalla'
     let cancelled = false
@@ -409,8 +573,10 @@ export default function InvestorsPage() {
           tier: data.tier || null,
           canEdit: Boolean(data.canEdit),
         })
-        if (unlocked) await loadMaterials()
-        else setMaterialsReady(true)
+        if (unlocked) {
+          await loadMaterials()
+          if (data.canEdit) await loadTracking()
+        } else setMaterialsReady(true)
       })
       .catch(() => {
         if (!cancelled) {
@@ -449,6 +615,7 @@ export default function InvestorsPage() {
       setCode('')
       setMaterialsReady(false)
       await loadMaterials()
+      if (data.canEdit) await loadTracking()
     } catch {
       setError('Could not reach the server')
     } finally {
@@ -469,6 +636,7 @@ export default function InvestorsPage() {
       /* ignore */
     }
     setStatus({ loading: false, unlocked: false, tier: null, canEdit: false })
+    setTracking(emptyTrackingTables())
     setMsg(null)
     setBusy(false)
   }
@@ -500,6 +668,38 @@ export default function InvestorsPage() {
       setCompanies(data.companies?.length ? data.companies : COMPANY_DECKS)
       setStorage(data.storage || storage)
       setMsg({ ok: true, text: `Saved${data.storage ? ` (${data.storage})` : ''}.` })
+    } catch {
+      setMsg({ ok: false, text: 'Could not reach the server' })
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function saveTracking() {
+    setBusy(true)
+    setMsg(null)
+    try {
+      const rows = [...(tracking.e || []), ...(tracking.p || [])]
+      const res = await fetch('/api/hub/investor-code-tracking', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rows }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.ok) {
+        setMsg({ ok: false, text: data.error || 'Tracker save failed' })
+        return
+      }
+      setTracking({
+        e: data.tables?.e || [],
+        p: data.tables?.p || [],
+      })
+      setTrackingStorage(data.storage || trackingStorage)
+      setMsg({
+        ok: true,
+        text: `Code tracker saved${data.storage ? ` (${data.storage})` : ''}.`,
+      })
     } catch {
       setMsg({ ok: false, text: 'Could not reach the server' })
     } finally {
@@ -593,6 +793,10 @@ export default function InvestorsPage() {
         busy={busy}
         msg={msg}
         storage={storage}
+        tracking={tracking}
+        setTracking={setTracking}
+        onSaveTracking={saveTracking}
+        trackingStorage={trackingStorage}
       />
     )
   }

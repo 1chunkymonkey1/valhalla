@@ -26,6 +26,8 @@ Project URL used in production (example): `https://bhivwdibbykbcbdxetob.supabase
 | `supabase/migrations/20260813_auth_user_link.sql` | `team_users.auth_user_id` for Google SSO linkage |
 | `supabase/migrations/20260814_dispatch_queue.sql` | `dispatch_items` founder approve/send queue |
 | `supabase/migrations/20260814_investor_codes.sql` | `investor_codes` (P/E access codes for `/investors`) |
+| `supabase/migrations/20260814_investor_materials.sql` | `investor_materials` (editable fundraising pack for a5861 editor) |
+| `supabase/migrations/20260814_investor_code_tracking.sql` | `investor_code_tracking` (E/P send + next-step tables in a5861 editor) |
 
 3. Confirm tables under **Table Editor**.
 

@@ -1798,8 +1798,104 @@
   font-size: 0.88rem;
 }
 
+.vh-inv__section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.vh-inv__section-head h2 {
+  margin: 0;
+}
+
+.vh-inv__section-head .vh-inv__muted {
+  margin: 0.35rem 0 0;
+}
+
+.vh-inv__track-block {
+  margin-top: 1.25rem;
+}
+
+.vh-inv__track-block h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.vh-inv__track-scroll {
+  overflow-x: auto;
+  margin-top: 0.55rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.vh-inv__track-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.vh-inv__track-table th,
+.vh-inv__track-table td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 0.35rem 0.4rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.vh-inv__track-table th:last-child,
+.vh-inv__track-table td:last-child {
+  border-right: none;
+}
+
+.vh-inv__track-table th {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.03);
+  white-space: nowrap;
+}
+
+.vh-inv__track-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.vh-inv__track-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 0.35rem 0.3rem;
+  font: inherit;
+  color: inherit;
+}
+
+.vh-inv__track-input:hover,
+.vh-inv__track-input:focus {
+  border-color: rgba(0, 0, 0, 0.18);
+  background: #fff;
+  outline: none;
+}
+
+.vh-inv__track-input--code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+}
+
 @media (max-width: 640px) {
   .vh-inv__open-head {
+    flex-direction: column;
+  }
+
+  .vh-inv__section-head {
     flex-direction: column;
   }
 
