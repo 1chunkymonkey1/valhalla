@@ -94,6 +94,11 @@ npx vercel --prod
 | `/team/login` | Email + password |
 | `/team/join?token=` | Accept invite |
 | `/{company}` | Company hall |
+| `/aphrodite` | Aphrodite — competition dating MVP ($20/mo) |
+
+### Aphrodite
+
+Competition dating for Valhalla. See **[docs/aphrodite.md](docs/aphrodite.md)** (OAuth Dashboard setup, Stripe subscription, Instagram stub). Menu → fine print **Aphrodite**.
 
 ### Team seats
 

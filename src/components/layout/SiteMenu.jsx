@@ -86,6 +86,10 @@ export default function SiteMenu({ tone = 'hub' }) {
           ))}
         </ul>
         <p className="vh-menu__fine">
+          <Link to="/aphrodite" onClick={() => setOpen(false)}>
+            Aphrodite
+          </Link>
+          <span aria-hidden="true"> · </span>
           <Link to="/team/login" onClick={() => setOpen(false)}>
             {t('nav.team')}
           </Link>

@@ -91,6 +91,13 @@ export const STRIPE_CATALOG = {
     amountCents: 15_000,
     kind: 'hold',
   },
+  aphrodite: {
+    id: 'aphrodite',
+    label: 'Aphrodite · monthly membership',
+    amountCents: 2_000,
+    kind: 'subscription',
+    interval: 'month',
+  },
 }
 
 let stripeSingleton = null

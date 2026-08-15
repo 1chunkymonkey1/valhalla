@@ -22,6 +22,14 @@ import {
   RoadmapIndexPage,
 } from './pages/AudiencePages'
 import InvestorsPage from './pages/InvestorsPage'
+import AphroditeLayout from './pages/aphrodite/AphroditeLayout'
+import AphroditeHomePage from './pages/aphrodite/AphroditeHomePage'
+import AphroditeSignInPage from './pages/aphrodite/AphroditeSignInPage'
+import AphroditeSignUpPage from './pages/aphrodite/AphroditeSignUpPage'
+import AphroditeMatchesPage from './pages/aphrodite/AphroditeMatchesPage'
+import AphroditeProfilePage from './pages/aphrodite/AphroditeProfilePage'
+import AphroditeSettingsPage from './pages/aphrodite/AphroditeSettingsPage'
+import AphroditeSubscribePage from './pages/aphrodite/AphroditeSubscribePage'
 import { EXTRA_COMPANY_ROUTES, GRID_ORDER } from './lib/companies'
 import { resolveProductHost } from './lib/productHost'
 
@@ -69,6 +77,15 @@ export default function App() {
                 <Route path="/team" element={<TeamWorkspacePage />} />
                 <Route path="/team/login" element={<TeamLoginPage />} />
                 <Route path="/team/join" element={<TeamJoinPage />} />
+                <Route path="/aphrodite" element={<AphroditeLayout />}>
+                  <Route index element={<AphroditeHomePage />} />
+                  <Route path="sign-in" element={<AphroditeSignInPage />} />
+                  <Route path="sign-up" element={<AphroditeSignUpPage />} />
+                  <Route path="matches" element={<AphroditeMatchesPage />} />
+                  <Route path="profile" element={<AphroditeProfilePage />} />
+                  <Route path="settings" element={<AphroditeSettingsPage />} />
+                  <Route path="subscribe" element={<AphroditeSubscribePage />} />
+                </Route>
                 {COMPANY_ROUTES.map((id) => (
                   <Route key={id} path={`/${id}`} element={<CompanySitePage slug={id} />} />
                 ))}

@@ -11,10 +11,10 @@ import {
   getStripe,
   isAutomaticTaxEnabled,
   isCheckoutEnabled,
-  isStripeConfigured,
   publicStripeStatus,
   siteOrigin,
 } from '../_lib/stripeClient.js'
+import { setSubscriptionByAuthOrProfile } from '../_lib/aphroditeStore.js'
 
 export const config = {
   api: {
@@ -88,15 +88,6 @@ async function handleCheckout(req, res) {
     return json(res, 429, { ok: false, error: 'Too many attempts. Try again later.' })
   }
 
-  if (!isCheckoutEnabled()) {
-    return json(res, 403, {
-      ok: false,
-      error:
-        'Checkout is not enabled yet. Public halls remain email interest only — no deposits or shipping claims.',
-      checkoutEnabled: false,
-    })
-  }
-
   const stripe = requireStripe(res)
   if (!stripe) return
 
@@ -113,52 +104,101 @@ async function handleCheckout(req, res) {
     return json(res, 400, { ok: false, error: 'Unknown catalog SKU' })
   }
 
+  // Hall interest holds stay gated; Aphrodite subscriptions checkout when Stripe is configured.
+  const isSubscription = item.kind === 'subscription'
+  if (!isSubscription && !isCheckoutEnabled()) {
+    return json(res, 403, {
+      ok: false,
+      error:
+        'Checkout is not enabled yet. Public halls remain email interest only — no deposits or shipping claims.',
+      checkoutEnabled: false,
+    })
+  }
+
   const email = plainText(body.email || '', 200)
   const origin = siteOrigin(req)
   const automaticTax = isAutomaticTaxEnabled()
 
   try {
     const session = await stripe.checkout.sessions.create(
-      {
-        mode: 'payment',
-        customer_email: email || undefined,
-        line_items: [
-          {
-            quantity: 1,
-            price_data: {
-              currency: 'usd',
-              unit_amount: item.amountCents,
-              tax_behavior: 'exclusive',
-              product_data: {
-                name: item.label,
-                description:
-                  'Fully refundable interest hold. Not a product shipment or confirmed delivery date.',
-                tax_code: DEFAULT_TAX_CODE,
-                metadata: {
-                  sku: item.id,
-                  kind: item.kind,
-                  brand: 'valhalla',
+      isSubscription
+        ? {
+            mode: 'subscription',
+            customer_email: email || undefined,
+            line_items: [
+              {
+                quantity: 1,
+                price_data: {
+                  currency: 'usd',
+                  unit_amount: item.amountCents,
+                  recurring: { interval: item.interval || 'month' },
+                  product_data: {
+                    name: item.label,
+                    description: 'Aphrodite competition dating membership — Valhalla ecosystem.',
+                    metadata: {
+                      sku: item.id,
+                      kind: item.kind,
+                      brand: 'valhalla',
+                    },
+                  },
                 },
+              },
+            ],
+            success_url: `${origin}/aphrodite/settings?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${origin}/aphrodite/subscribe?checkout=cancel`,
+            metadata: {
+              sku: item.id,
+              kind: item.kind,
+              source: 'aphrodite',
+              profile_id: plainText(body.profileId || '', 80),
+            },
+            subscription_data: {
+              metadata: {
+                sku: item.id,
+                profile_id: plainText(body.profileId || '', 80),
+              },
+            },
+          }
+        : {
+            mode: 'payment',
+            customer_email: email || undefined,
+            line_items: [
+              {
+                quantity: 1,
+                price_data: {
+                  currency: 'usd',
+                  unit_amount: item.amountCents,
+                  tax_behavior: 'exclusive',
+                  product_data: {
+                    name: item.label,
+                    description:
+                      'Fully refundable interest hold. Not a product shipment or confirmed delivery date.',
+                    tax_code: DEFAULT_TAX_CODE,
+                    metadata: {
+                      sku: item.id,
+                      kind: item.kind,
+                      brand: 'valhalla',
+                    },
+                  },
+                },
+              },
+            ],
+            automatic_tax: { enabled: automaticTax },
+            invoice_creation: { enabled: true },
+            success_url: `${origin}/${item.id}?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${origin}/${item.id}?checkout=cancel`,
+            metadata: {
+              sku: item.id,
+              kind: item.kind,
+              source: 'valhalla-hub',
+            },
+            payment_intent_data: {
+              metadata: {
+                sku: item.id,
+                kind: item.kind,
               },
             },
           },
-        ],
-        automatic_tax: { enabled: automaticTax },
-        invoice_creation: { enabled: true },
-        success_url: `${origin}/${item.id}?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${origin}/${item.id}?checkout=cancel`,
-        metadata: {
-          sku: item.id,
-          kind: item.kind,
-          source: 'valhalla-hub',
-        },
-        payment_intent_data: {
-          metadata: {
-            sku: item.id,
-            kind: item.kind,
-          },
-        },
-      },
       {
         idempotencyKey: plainText(body.idempotencyKey || '', 200) || undefined,
       },
@@ -169,7 +209,7 @@ async function handleCheckout(req, res) {
       id: session.id,
       url: session.url,
       mode: session.mode,
-      automaticTax,
+      automaticTax: isSubscription ? false : automaticTax,
     })
   } catch (err) {
     console.error('[stripe/checkout]', err.message)
@@ -321,9 +361,57 @@ async function handleWebhook(req, res) {
   }
 
   switch (event.type) {
-    case 'checkout.session.completed':
-      console.info('[stripe/webhook] checkout.session.completed', event.data?.object?.id)
+    case 'checkout.session.completed': {
+      const session = event.data?.object
+      console.info('[stripe/webhook] checkout.session.completed', session?.id)
+      if (session?.metadata?.sku === 'aphrodite' || session?.metadata?.source === 'aphrodite') {
+        try {
+          await setSubscriptionByAuthOrProfile({
+            profileId: session.metadata?.profile_id || session.client_reference_id,
+            customerId: session.customer,
+            state: {
+              status: 'active',
+              customerId: session.customer || null,
+              subscriptionId: session.subscription || null,
+              currentPeriodEnd: null,
+            },
+          })
+        } catch (err) {
+          console.error('[stripe/webhook] aphrodite activate failed', err.message)
+        }
+      }
       break
+    }
+    case 'customer.subscription.updated':
+    case 'customer.subscription.deleted': {
+      const sub = event.data?.object
+      const status =
+        event.type === 'customer.subscription.deleted'
+          ? 'canceled'
+          : sub?.status === 'active' || sub?.status === 'trialing'
+            ? sub.status
+            : sub?.status === 'past_due'
+              ? 'past_due'
+              : 'canceled'
+      try {
+        await setSubscriptionByAuthOrProfile({
+          profileId: sub?.metadata?.profile_id,
+          customerId: sub?.customer,
+          state: {
+            status,
+            customerId: sub?.customer || null,
+            subscriptionId: sub?.id || null,
+            currentPeriodEnd: sub?.current_period_end
+              ? new Date(sub.current_period_end * 1000).toISOString()
+              : null,
+          },
+        })
+      } catch (err) {
+        console.error('[stripe/webhook] aphrodite sub sync failed', err.message)
+      }
+      console.info('[stripe/webhook]', event.type, sub?.id, status)
+      break
+    }
     case 'invoice.paid':
       console.info('[stripe/webhook] invoice.paid', event.data?.object?.id)
       break

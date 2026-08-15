@@ -26,6 +26,7 @@ export default function SiteChrome() {
     [],
   )
   if (location.pathname === '/capital') return null
+  if (location.pathname.startsWith('/aphrodite')) return null
 
   const isHome = location.pathname === '/'
   const tone =

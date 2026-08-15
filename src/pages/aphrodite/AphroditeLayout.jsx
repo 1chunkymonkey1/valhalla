@@ -1,0 +1,136 @@
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import {
+  aphroditeFetch,
+  getAphroditeSession,
+  getDemoAccessToken,
+  isAphroditeAuthConfigured,
+  signOutAphrodite,
+  syncAphroditeSession,
+} from '../../lib/aphroditeClient'
+
+export default function AphroditeLayout() {
+  const navigate = useNavigate()
+  const [boot, setBoot] = useState({ loading: true, profile: null, subscribed: false })
+
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        if (isAphroditeAuthConfigured()) {
+          const session = await getAphroditeSession()
+          if (!session) {
+            if (!cancelled) setBoot({ loading: false, profile: null, subscribed: false })
+            return
+          }
+          const data = await syncAphroditeSession()
+          if (!cancelled) {
+            setBoot({
+              loading: false,
+              profile: data.profile,
+              subscribed: Boolean(data.subscribed),
+            })
+          }
+          return
+        }
+
+        if (getDemoAccessToken()) {
+          const data = await aphroditeFetch('me')
+          if (!cancelled) {
+            setBoot({
+              loading: false,
+              profile: data.profile,
+              subscribed: Boolean(data.subscribed),
+            })
+          }
+          return
+        }
+
+        if (!cancelled) setBoot({ loading: false, profile: null, subscribed: false })
+      } catch {
+        if (!cancelled) setBoot({ loading: false, profile: null, subscribed: false })
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  async function onSignOut() {
+    await signOutAphrodite()
+    setBoot({ loading: false, profile: null, subscribed: false })
+    navigate('/aphrodite')
+  }
+
+  async function refreshMe() {
+    try {
+      const data = await aphroditeFetch('me')
+      setBoot((b) => ({
+        ...b,
+        profile: data.profile,
+        subscribed: Boolean(data.subscribed),
+      }))
+      return data
+    } catch {
+      return null
+    }
+  }
+
+  return (
+    <div className="aph">
+      <header className="aph__top">
+        <Link to="/aphrodite" className="aph__mark">
+          <img src="/brand-mark.png" alt="" width={28} height={28} />
+          <span>Aphrodite</span>
+        </Link>
+        <nav className="aph__nav" aria-label="Aphrodite">
+          <NavLink to="/aphrodite" end>
+            Home
+          </NavLink>
+          {boot.profile ? (
+            <>
+              <NavLink to="/aphrodite/matches">Matches</NavLink>
+              <NavLink to="/aphrodite/profile">Profile</NavLink>
+              <NavLink to="/aphrodite/settings">Settings</NavLink>
+              {!boot.subscribed && (
+                <NavLink to="/aphrodite/subscribe" className="aph__nav-cta">
+                  Join · $20
+                </NavLink>
+              )}
+              <button type="button" className="aph__text-btn" onClick={onSignOut}>
+                Sign out
+              </button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/aphrodite/sign-in">Sign in</NavLink>
+              <NavLink to="/aphrodite/sign-up" className="aph__nav-cta">
+                Join
+              </NavLink>
+            </>
+          )}
+        </nav>
+      </header>
+
+      <main className="aph__main">
+        <Outlet
+          context={{
+            boot,
+            setBoot,
+            refreshMe,
+            loading: boot.loading,
+            profile: boot.profile,
+            subscribed: boot.subscribed,
+          }}
+        />
+      </main>
+
+      <footer className="aph__foot">
+        <p>
+          Aphrodite · Valhalla ecosystem · Competition dating ·{' '}
+          <Link to="/">valhallaco.org</Link>
+        </p>
+      </footer>
+    </div>
+  )
+}
