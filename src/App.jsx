@@ -22,6 +22,7 @@ import {
   RoadmapIndexPage,
 } from './pages/AudiencePages'
 import InvestorsPage from './pages/InvestorsPage'
+import PrometheusPortalPage from './pages/PrometheusPortalPage'
 import AphroditeLayout from './pages/aphrodite/AphroditeLayout'
 import AphroditeHomePage from './pages/aphrodite/AphroditeHomePage'
 import AphroditeSignInPage from './pages/aphrodite/AphroditeSignInPage'
@@ -77,6 +78,7 @@ export default function App() {
                 <Route path="/team" element={<TeamWorkspacePage />} />
                 <Route path="/team/login" element={<TeamLoginPage />} />
                 <Route path="/team/join" element={<TeamJoinPage />} />
+                <Route path="/phenix/prometheus" element={<PrometheusPortalPage />} />
                 <Route path="/aphrodite" element={<AphroditeLayout />}>
                   <Route index element={<AphroditeHomePage />} />
                   <Route path="sign-in" element={<AphroditeSignInPage />} />

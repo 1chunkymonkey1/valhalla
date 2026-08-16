@@ -43,6 +43,12 @@ import {
   listInvestorCodeTracking,
   upsertInvestorCodeTracking,
 } from '../_lib/investorCodeTracking.js'
+import {
+  codesMatch,
+  parsePrometheusCookie,
+  prometheusRedirectUrl,
+  setPrometheusCookie,
+} from '../_lib/prometheusGate.js'
 
 function routeKey(req) {
   const slug = req.query?.slug
@@ -433,9 +439,50 @@ export default async function handler(req, res) {
   if (key === 'socials') return handleSocials(req, res)
   if (key === 'page') return handlePage(req, res)
   if (key === 'chat') return handleChat(req, res)
+  if (key === 'prometheus-gate' || key === 'prometheus') return handlePrometheusGate(req, res)
   return json(res, 404, { ok: false, error: 'Not found' })
 }
 
 export const config = {
   maxDuration: 20,
+}
+
+async function handlePrometheusGate(req, res) {
+  if (req.method === 'GET') {
+    const session = parsePrometheusCookie(req)
+    if (!session) return json(res, 200, { ok: true, unlocked: false })
+    return json(res, 200, {
+      ok: true,
+      unlocked: true,
+      redirectUrl: prometheusRedirectUrl(),
+      portal: '/phenix/prometheus',
+    })
+  }
+
+  if (req.method !== 'POST') {
+    return json(res, 405, { ok: false, error: 'Method not allowed' })
+  }
+
+  const limited = rateLimit(clientKey(req, 'prometheus-gate'), { limit: 12, windowMs: 15 * 60 * 1000 })
+  if (!limited.ok) {
+    res.setHeader('Retry-After', String(limited.retryAfterSec))
+    return json(res, 429, { ok: false, error: 'Too many attempts. Try again later.' })
+  }
+
+  try {
+    const body = await readBody(req)
+    const code = String(body.code || body.password || '')
+    if (!codesMatch(code)) {
+      return json(res, 401, { ok: false, error: 'Denied' })
+    }
+    setPrometheusCookie(res)
+    return json(res, 200, {
+      ok: true,
+      unlocked: true,
+      redirectUrl: prometheusRedirectUrl(),
+      portal: '/phenix/prometheus',
+    })
+  } catch (err) {
+    return json(res, 400, { ok: false, error: err.message || 'Gate error' })
+  }
 }

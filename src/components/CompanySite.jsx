@@ -6,6 +6,7 @@ import EmailCapture from './EmailCapture'
 import ProductRoadmap from './roadmap/ProductRoadmap'
 import CompanySocialLinks from './CompanySocialLinks'
 import AskHallWidget from './AskHallWidget'
+import PhenixKenazGate from './PhenixKenazGate'
 import PublishedBlocks, { fetchPublishedLayout } from './PublishedBlocks'
 import { companyProducts } from '../data/companyProducts'
 import { formatUsd, getCompanyPayLink } from '../data/payLinks'
@@ -143,7 +144,11 @@ export default function CompanySite({ company, now }) {
             </div>
             <footer className="cs-foot">
               <Link to="/">← mosaic</Link>
-              <CompanySocialLinks social={social} className="cs-foot__socials" />
+              <CompanySocialLinks
+                social={social}
+                className="cs-foot__socials"
+                extra={company.slug === 'phenix' ? <PhenixKenazGate /> : null}
+              />
               <Link to="/flow">Flow</Link>
             </footer>
           </main>
@@ -185,7 +190,11 @@ export default function CompanySite({ company, now }) {
           <h2 className="cs-about__title">What this is</h2>
           <p className="cs-about__body">{product.body}</p>
           {aboutNote ? <p className="cs-about__note">{aboutNote}</p> : null}
-          <CompanySocialLinks social={social} className="cs-about__socials" />
+          <CompanySocialLinks
+            social={social}
+            className="cs-about__socials"
+            extra={company.slug === 'phenix' ? <PhenixKenazGate /> : null}
+          />
         </section>
 
         {pay && !pay.disabled && !emailOnly && (
@@ -244,7 +253,11 @@ export default function CompanySite({ company, now }) {
 
         <footer className="cs-foot">
           <Link to="/">← mosaic</Link>
-          <CompanySocialLinks social={social} className="cs-foot__socials" />
+          <CompanySocialLinks
+            social={social}
+            className="cs-foot__socials"
+            extra={company.slug === 'phenix' ? <PhenixKenazGate /> : null}
+          />
           <Link to="/flow">Flow</Link>
         </footer>
       </main>

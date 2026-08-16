@@ -5711,3 +5711,148 @@
     animation: none;
   }
 }
+
+/* Kenaz (ᚲ) sits in the Phenix social row — same size/weight as IG / X / Discord */
+.vh-socials__extra {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cs-kenaz {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  opacity: 0.62;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.cs-kenaz svg {
+  display: block;
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.cs-kenaz:hover,
+.cs-kenaz:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+
+.cs-kenaz:focus-visible {
+  box-shadow: 0 0 0 2px color-mix(in srgb, currentColor 35%, transparent);
+}
+
+.cs-kenaz-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+}
+
+.cs-kenaz-modal__scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(6, 6, 6, 0.72);
+}
+
+.cs-kenaz-modal__box {
+  position: relative;
+  z-index: 1;
+  width: min(22rem, calc(100vw - 2rem));
+  padding: 1.75rem 1.5rem 1.4rem;
+  background: #0c0c0c;
+  color: #f4efe8;
+  border: 1px solid rgba(224, 112, 48, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cs-kenaz-modal__rune {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1;
+  color: #e07030;
+}
+
+.cs-kenaz-modal__label {
+  margin: 0;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.cs-kenaz-modal__box input {
+  background: transparent;
+  border: 1px solid rgba(244, 239, 232, 0.2);
+  color: inherit;
+  padding: 0.7rem 0.8rem;
+  font-size: 0.95rem;
+}
+
+.cs-kenaz-modal__box button[type='submit'] {
+  border: 0;
+  background: #e07030;
+  color: #0c0c0c;
+  padding: 0.7rem 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.cs-kenaz-modal__error {
+  margin: 0;
+  color: #e07030;
+  font-size: 0.8rem;
+}
+
+.pm-portal {
+  min-height: 100svh;
+  background: #09090b;
+  color: #ede8da;
+  display: flex;
+  flex-direction: column;
+}
+
+.pm-portal__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(200, 155, 10, 0.15);
+}
+
+.pm-portal__bar a {
+  color: rgba(237, 232, 218, 0.55);
+  text-decoration: none;
+}
+
+.pm-portal__note,
+.pm-portal__locked {
+  margin: auto;
+  padding: 2rem;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.pm-portal__frame {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  min-height: calc(100svh - 3rem);
+}

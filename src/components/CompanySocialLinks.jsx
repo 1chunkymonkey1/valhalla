@@ -49,15 +49,13 @@ const NETWORKS = [
   },
 ]
 
-export default function CompanySocialLinks({ social, className = '' }) {
-  if (!social) return null
-
+export default function CompanySocialLinks({ social, className = '', extra = null }) {
   const links = NETWORKS.map((n) => ({
     ...n,
-    href: social[n.key],
+    href: social?.[n.key],
   })).filter((l) => l.href)
 
-  if (!links.length) return null
+  if (!links.length && !extra) return null
 
   return (
     <ul className={`vh-socials ${className}`.trim()}>
@@ -74,6 +72,7 @@ export default function CompanySocialLinks({ social, className = '' }) {
           </a>
         </li>
       ))}
+      {extra ? <li className="vh-socials__extra">{extra}</li> : null}
     </ul>
   )
 }
