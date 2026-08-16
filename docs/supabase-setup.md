@@ -28,8 +28,13 @@ Project URL used in production (example): `https://bhivwdibbykbcbdxetob.supabase
 | `supabase/migrations/20260814_investor_codes.sql` | `investor_codes` (P/E access codes for `/investors`) |
 | `supabase/migrations/20260814_investor_materials.sql` | `investor_materials` (editable fundraising pack for a5861 editor) |
 | `supabase/migrations/20260814_investor_code_tracking.sql` | `investor_code_tracking` (E/P send + next-step tables in a5861 editor) |
+| `supabase/migrations/20260814_ai_settings.sql` | AI settings / provider flags |
+| `supabase/migrations/20260814_council.sql` | Council desk tables |
+| `supabase/migrations/20260815_aphrodite.sql` | `aphrodite_profiles`, `aphrodite_swipes`, `aphrodite_matches` |
 
 3. Confirm tables under **Table Editor**.
+
+**Aphrodite one-shot:** if earlier migrations already ran, paste and run only `20260815_aphrodite.sql`.
 
 ## 3. Copy API keys
 
@@ -84,10 +89,14 @@ You must paste the client secret in the Supabase dashboard yourself — it is ne
    https://valhallaco.org/admin
    https://valhallaco.org/team/login
    https://valhallaco.org/team/join
+   https://valhallaco.org/aphrodite/sign-in
+   https://valhallaco.org/aphrodite/**
    http://localhost:5173/**
    http://localhost:5173/admin
    http://localhost:5173/team/login
    http://localhost:5173/team/join
+   http://localhost:5173/aphrodite/sign-in
+   http://localhost:5173/aphrodite/**
    ```
 
 ### D. Optional founder TOTP after Google

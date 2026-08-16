@@ -1,6 +1,6 @@
 # Stripe setup (Valhalla / valhallaco.org)
 
-> **REMIND EASON:** Finish Vercel Stripe later — set `STRIPE_SECRET_KEY` + `VITE_STRIPE_PUBLISHABLE_KEY`, redeploy, activate Stripe Tax, add webhook + `STRIPE_WEBHOOK_SECRET`. Keep `STRIPE_CHECKOUT_ENABLED` off until ready. You said you’d do this later.
+> **REMIND EASON:** `VITE_STRIPE_PUBLISHABLE_KEY` is on Vercel (Prod + Preview). Still need: paste `STRIPE_SECRET_KEY` (`sk_test_…`) in Vercel privately, redeploy, activate Stripe Tax, add webhook `https://valhallaco.org/api/stripe/webhook` + `STRIPE_WEBHOOK_SECRET`. Keep `STRIPE_CHECKOUT_ENABLED` off until hall holds are ready. Aphrodite Checkout only needs the secret key (not the hall gate). Full Aphrodite checklist: [docs/aphrodite.md](./aphrodite.md) → **Do this now**.
 
 Payments, Invoicing, and Tax for civilization-level interest holds and partner/investor invoices — **without** false “shipping now” claims on public halls.
 
@@ -73,8 +73,8 @@ STRIPE_SECRET_KEY=sk_test_…   # server via `vercel dev` / local API only
 3. **Preset tax code** — review `txcd_10000000` (general services) used in Checkout; change with counsel if holds/software need a different code.
 4. **Invoicing** — [Invoice template](https://dashboard.stripe.com/settings/billing/invoice) (logo, memo, footer). Enable **automatic tax** on new invoices.
 5. **Customer emails** — ensure Stripe can send invoice/receipt emails (or send hosted invoice links yourself).
-6. **Webhook** — endpoint URL: `https://valhallaco.org/api/stripe/webhook`  
-   Events to start: `checkout.session.completed`, `invoice.paid`, `invoice.payment_failed`, `payment_intent.succeeded`.
+6. **Webhook** — endpoint URL: `https://valhallaco.org/api/stripe/webhook` (shared; Aphrodite subscription sync lives here — not a separate `/api/aphrodite/...` webhook).  
+   Events to start: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.paid`, `invoice.payment_failed`, `payment_intent.succeeded`.
 7. **Business details** — legal entity, statement descriptor, payouts bank account (Schwab / Atlas as applicable).
 
 ## Product plan (honest checkout)
@@ -140,13 +140,13 @@ curl -s -X POST https://valhallaco.org/api/stripe/invoice \
 
 ## Next steps
 
-1. Eason sets `STRIPE_SECRET_KEY` (`sk_test_…`) in Vercel — privately.
-2. Set `VITE_STRIPE_PUBLISHABLE_KEY` to the `pk_test_…` above; redeploy.
+1. ~~Set `VITE_STRIPE_PUBLISHABLE_KEY`~~ — **done** on Vercel Prod + Preview (2026-08-16).
+2. Eason sets `STRIPE_SECRET_KEY` (`sk_test_…`) in Vercel — privately — then redeploy.
 3. Enable Tax + Invoicing in Dashboard; add webhook + `STRIPE_WEBHOOK_SECRET`.
-4. Smoke-test `/api/stripe/status` then a test Checkout with `STRIPE_CHECKOUT_ENABLED=true` on Preview only.
-5. Persist paid sessions (Supabase) from webhook handlers when ledgers need it.
+4. Aphrodite: smoke `/api/aphrodite/status` + `/aphrodite/subscribe` (no `STRIPE_CHECKOUT_ENABLED` needed).
+5. Hall holds: smoke Checkout only with `STRIPE_CHECKOUT_ENABLED=true` on Preview first.
 6. Optionally create Dashboard Products/Prices and switch Checkout from `price_data` to Price IDs.
-7. Flip production checkout only when legal/compliance is ready; keep public copy as interest/holds, not fulfillment.
+7. Flip production hall checkout only when legal/compliance is ready; keep public copy as interest/holds, not fulfillment.
 
 ## Files
 
