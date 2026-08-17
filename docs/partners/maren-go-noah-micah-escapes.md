@@ -2,7 +2,13 @@
 
 **Date:** 2026-08-17  
 **Source:** Founder note (Eason). Not a signed relationship.  
-**Contacts:** Noah and Micah (work at [Maren-go](https://www.maren-go.com/)). Public company contact on that site is Chris Thobaben, CEO, 217-506-2749, contact@maren-go.com. Do not use the company inbox for this thread.  
+**Contacts:** Two doors. Do not mix them in one send.
+
+| Door | Who | Channel | Subject |
+| --- | --- | --- | --- |
+| People | Noah and Micah | A thread Eason already has. Do not invent emails. | Escapes trail-traversability robot |
+| Company | Chris Thobaben, CEO | 217-506-2749 · contact@maren-go.com (published Collaborations CTA, 2026-08-17) | Their three public asks. Do not name Noah, Micah, Escapes, or moonlighting. |
+
 **Valhalla side:** Named lane **Escapes** (Land × Movement neighbor of Wolf). Not a hall. Not Wolf. Not Draco. Not Eagle.
 
 ## What Eason said
@@ -35,7 +41,7 @@ Ask Eason privately. Do not ask Noah or Micah whether they are the Wagners or th
 
 ## Council read (2026-08-17)
 
-- **Hermes:** Lane is **Escapes**. People-relationship, not a vendor intro to Chris Thobaben. Do not copy Maren-go. Do not mention SAFE, Wolf SKUs, or Draco co-founder talk in the first message.
+- **Hermes:** Lane is **Escapes**. That send is Noah/Micah only. Chris is a second door: their published Collaborations CTA. Do not put Escapes, Noah, or Micah in a mail to Chris. Do not mention SAFE, Wolf SKUs, or Draco co-founder talk in either first message.
 - **Thor:** A trail-traversability robot is **not Wolf**. Wolf is the corridor and the pack (Fenrir first). This robot may later feed Wolf as a sensor if it changes a real go/no-go on a named trail. Until then, do not put a wolf stencil on it. Escapes is not a twelfth hall.
 - **Daedalus:** First article is a **scored trail map from an existing ground vehicle**, not a new custom robot. Reuse driving stack and surface-inspection sensors. Output: georeferenced segments (grade, roughness, blockage), calibrated against hikers. Do not ship a binary go/no-go before false-clearance is known. Singletrack under canopy is later. Platforms too wide for the trail they claim to score are ornamental.
 - **Lex:** Noun is **people**, not partner, not vendor. Maren-go IP, CUI, and export-control screens sit on their employment. Mutual NDA before any technical share. Confirm moonlighting and IP assignment in writing before any SOW. Qualified human counsel before action.
@@ -54,9 +60,34 @@ Send only if Eason authorizes, on a channel he already has. Do not invent emails
 
 > Heard you two are looking at a robot that scores hiking-trail traversability for Escapes. That’s a real gap. If you want to talk it through, I’m around. No pitch. Just curious how you’re thinking about the first trail.
 
+## Suggested follow-up (Eason → Chris Thobaben)
+
+Published Collaborations copy (maren-go.com, 2026-08-17):
+
+- You have tasks to automate on your airfield or industrial site?
+- Want to make your vehicle autonomous?
+- Have a R&D project that requires AI and automation?
+- Let’s talk!
+- Chris Thobaben, CEO — 217-506-2749 — contact@maren-go.com
+
+Their third ask is the honest door (R&D / autonomy). We do not have an airfield. Do not name Noah, Micah, Escapes, or any employee side-build. Send only if Eason authorizes. Founder sends.
+
+Subject: R&D / autonomy — Valhalla
+
+> Chris,
+>
+> Saw Maren-go’s collaborations note. We have an R&D problem that needs AI and ground autonomy on unprepared terrain, and a land-vehicle line that will need autonomy later. Not an airfield. Not a pitch deck. If the third door is the right one, I’m around.
+>
+> Eason Greene
+> Valhalla / Edna Capital
+> easongreene@gmail.com
+
+Phone is the same CTA if he prefers a call: 217-506-2749.
+
 ## Next (named, not sent)
 
 1. Eason confirms whether Noah/Micah, the Wagners, and the Noka twins are one set of people (`@lex` only).
-2. If a channel exists and he wants it, he sends the opener.
-3. If they reply, `@athena` + `@thor` decide whether Escapes stays a named lane or sits under Wolf as a sensor. `@daedalus` only after they want to build.
-4. No NDA, SOW, or public line until founder plus counsel say so.
+2. People door: if a channel exists and he wants it, he sends the Noah/Micah opener.
+3. Company door: if he wants the published CTA, he sends or calls Chris. Do not CC Noah/Micah on that mail.
+4. If either replies, `@athena` + `@thor` decide whether Escapes stays a named lane or sits under Wolf as a sensor. `@daedalus` only after they want to build.
+5. No NDA, SOW, or public line until founder plus counsel say so.
