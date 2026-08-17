@@ -599,7 +599,7 @@ export const companyTies = {
   },
   aeolus: {
     title: 'Aeolus · Energy · Air',
-    body: 'Atmospheric OS that intends to own the atmospheric substrate: Phase 1 climate, Phase 2 oxygen for habitats, Phase 3 radiation protection. Informed by Olympus platforms and Njord sensing; Corvus holds provenance. No atmospheric-rights sales on this surface.',
+    body: 'Aeolus presses the sky: Phase 1 climate, Phase 2 oxygen for habitats, Phase 3 radiation protection. Informed by Olympus platforms and Njord sensing; Corvus holds provenance. Present title is not claimed. No atmospheric-rights sales on this surface.',
   },
   corvus: {
     title: 'Corvus · Intelligence · Space',
@@ -619,8 +619,8 @@ export const growthLoops = [
   },
   {
     id: 'reservation-flywheel',
-    title: 'Refundable reservation flywheel',
-    text: 'Fully refundable holds gather serious interest without trapping capital, converting later only after entity and payment gates.',
+    title: 'Email interest flywheel',
+    text: 'Inquiries gather serious interest without trapping capital. Holds convert later only after entity and payment gates.',
   },
   {
     id: 'domain-reinforcement',

@@ -257,7 +257,7 @@ function buildCompanyLayout(pageId) {
 
   blocks.push(
     block(pageId, 'refund_note', 'text', { x: 40, y, w: 720, h: 32 }, {
-      content: 'Fully refundable reservations',
+      content: 'Email until gates clear',
       style: {
         fontFamily: FONTS.body,
         fontSize: 15,

@@ -63,10 +63,10 @@ export default {
     investorsLead:
       'Twelve halls across Land, Water, Air, and Space, each solving a problem and reinforcing the other eleven. Diligence first, no public securities offer here.',
     investorsB1: 'One operating framework across the four domains.',
-    investorsB2: 'Refundable holds show demand before capital locks.',
+    investorsB2: 'Inquiries show demand before capital locks.',
     investorsB3: 'Inquiries only: info@valhallaco.org.',
     consumersTitle: 'Consumers',
-    consumersLead: 'Hold a place on products you care about. Fully refundable until gates clear.',
+    consumersLead: 'Watch halls you care about. Email until gates clear.',
     consumersB1: 'Watch halls unlock on the mosaic.',
     consumersB2: 'Each hall wears Meridian. Merch lives on the hall site as a list, not a cart.',
     consumersB3: 'Discord for drops and questions.',

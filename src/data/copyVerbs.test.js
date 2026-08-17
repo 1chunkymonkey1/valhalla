@@ -93,3 +93,22 @@ test('Water column identity and Atoll deposit drafts are banned on L0', () => {
   assert.equal(findCopyVerbHits('Njord holds the water. Atoll begins. Email only.').length, 0)
   assert.equal(findCopyVerbHits('Brian Sheng / Aquaria is a warm lead.').length, 0)
 })
+
+test('Aeolus ownership speech and live-hold copy are banned on L0', () => {
+  assert.ok(
+    findCopyVerbHits('Aeolus intends to own the atmospheric substrate.').some((h) => h.id === 'owns-atmosphere'),
+  )
+  assert.ok(findCopyVerbHits('toward owning the atmospheric substrate').some((h) => h.id === 'owns-atmosphere'))
+  assert.ok(findCopyVerbHits('Refundable holds show demand.').some((h) => h.id === 'refundable-holds-live'))
+  assert.ok(findCopyVerbHits('Fully refundable until gates clear.').some((h) => h.id === 'refundable-holds-live'))
+  assert.ok(findCopyVerbHits('Douze sociétés sur terre.').some((h) => h.id === 'n-companies-i18n'))
+  assert.ok(findCopyVerbHits('可退款预留展示需求').some((h) => h.id === 'refundable-holds-i18n'))
+  assert.equal(findCopyVerbHits('Aeolus presses the sky. Email until gates clear.').length, 0)
+})
+
+test('App does not stand a public /music route while Apollo Music is interior', () => {
+  assert.equal(APOLLO_MUSIC_PUBLIC, false)
+  const app = readFileSync(join(repoRoot, 'src/App.jsx'), 'utf8')
+  assert.doesNotMatch(app, /path=["']\/music["']/)
+  assert.doesNotMatch(app, /from ['"].*Music/)
+})

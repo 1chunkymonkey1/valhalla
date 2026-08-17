@@ -59,15 +59,15 @@ export default {
   audience: {
     investorsTitle: 'Investisseurs',
     investorsLead:
-      'Douze sociétés sur terre, mer, air et espace. Diligence d’abord ; aucune offre publique ici.',
+      'Douze halls sur terre, mer, air et espace. Diligence d’abord ; aucune offre publique ici.',
     investorsB1: 'Un cadre opérationnel sur les quatre domaines.',
-    investorsB2: 'Les réserves remboursables montrent la demande avant le capital.',
+    investorsB2: 'Les demandes montrent l’intérêt avant le capital.',
     investorsB3: 'Demandes uniquement : info@valhallaco.org.',
     consumersTitle: 'Consommateurs',
     consumersLead:
-      'Réservez une place sur les produits qui vous tiennent à cœur. Entièrement remboursable jusqu’à l’ouverture.',
+      'Suivez les halls qui vous tiennent à cœur. Écrivez jusqu’à l’ouverture des portes.',
     consumersB1: 'Regardez les halls se déverrouiller sur la mosaïque.',
-    consumersB2: 'Les sites des sociétés recueillent l’intérêt par hall.',
+    consumersB2: 'Chaque hall porte Meridian. Le merch vit sur le site du hall, liste et non panier.',
     consumersB3: 'Discord pour les sorties et les questions.',
     partnersTitle: 'Partenaires',
     partnersLead: 'Fabricants, opérateurs, ports, propriétaires, laboratoires.',

@@ -1,7 +1,8 @@
 /**
  * Catalog completeness gate.
  * Fails CI if a mosaic hall loses Meridian merch or an interior Apollo Music mark.
- * Does not assert inventory, checkout, audio files, or a public /music route.
+ * Does not assert inventory, checkout, or audio files.
+ * Public /music stays off while APOLLO_MUSIC_PUBLIC is false (see copyVerbs.test.js).
  */
 
 import assert from 'node:assert/strict'

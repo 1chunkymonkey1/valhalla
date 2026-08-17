@@ -109,6 +109,28 @@ export const BAN_PATTERNS = [
     note: 'Njord holds. Aeolus presses. Owns is not the public identity.',
   },
   {
+    id: 'owns-atmosphere',
+    pattern: /\b(?:owns|intends to own|owning) the atmospheric substrate\b/i,
+    note: 'Aeolus presses the sky. Present title is not claimed.',
+  },
+  {
+    id: 'refundable-holds-live',
+    pattern: /\b(?:fully refundable|refundable holds?)\b/i,
+    note: 'Checkout is off. Public copy is email, not live holds.',
+  },
+  {
+    id: 'n-companies-i18n',
+    pattern:
+      /(?:Douze sociétés|Zwölf Unternehmen|Doce empresas|Doze empresas|十二家公司|十二社)/,
+    note: 'Twelve halls in every locale. Never twelve companies.',
+  },
+  {
+    id: 'refundable-holds-i18n',
+    pattern:
+      /(?:réserves remboursables|Entièrement remboursable|Erstattungsfähige Holds|Voll erstattungsfähig|reservas reembolsables|Totalmente reembolsable|Reservas reembolsáveis|Totalmente reembolsável|可退款预留|全额退款|返金可能なホールド|全額返金)/,
+    note: 'Checkout is off in every locale. Email, not live holds.',
+  },
+  {
     id: 'atoll-charter',
     pattern: /\bCharter Membership\b/,
     note: 'Charter membership is a presentation draft, not L0.',
@@ -128,12 +150,20 @@ export const BAN_PATTERNS = [
 /** L0 surfaces Helios auto-enforces. Interior canon (council/) stays out. */
 export const L0_SCAN_FILES = [
   'src/i18n/locales/en.js',
+  'src/i18n/locales/es.js',
+  'src/i18n/locales/fr.js',
+  'src/i18n/locales/de.js',
+  'src/i18n/locales/pt.js',
+  'src/i18n/locales/zh.js',
+  'src/i18n/locales/ja.js',
   'src/data/pressRelease.js',
   'src/data/companyProducts.js',
   'src/data/meridianMerch.js',
   'src/data/oneCivilizationMarks.js',
   'src/data/schedule.js',
+  'src/data/networkFlow.js',
   'src/data/hallMatrices.js',
+  'src/lib/defaultPageLayouts.js',
   'src/data/wolfMatrix.js',
   'src/data/roadmaps.js',
   'src/data/fundraising/materials.js',

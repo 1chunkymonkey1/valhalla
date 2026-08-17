@@ -72,7 +72,7 @@ export default function CompanySite({ company, now }) {
   const emailOnly = Boolean(product.emailOnly) || Boolean(pay?.disabled)
   const primaryCta = product.ctaPrimary || (emailOnly ? 'Email' : 'Hold a reservation')
   const secondaryCta = product.ctaSecondary || 'Product path'
-  const aboutNote = product.aboutNote || (emailOnly ? '' : 'Fully refundable reservations')
+  const aboutNote = product.aboutNote || ''
   const [social, setSocial] = useState(null)
   const [published, setPublished] = useState(null)
 

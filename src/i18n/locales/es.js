@@ -59,15 +59,15 @@ export default {
   audience: {
     investorsTitle: 'Inversores',
     investorsLead:
-      'Doce empresas en tierra, agua, aire y espacio. Diligence primero; aquí no hay oferta pública de valores.',
+      'Doce salones en tierra, agua, aire y espacio. Diligence primero; aquí no hay oferta pública de valores.',
     investorsB1: 'Un marco operativo en los cuatro dominios.',
-    investorsB2: 'Las reservas reembolsables muestran demanda antes de capital.',
+    investorsB2: 'Las consultas muestran demanda antes de capital.',
     investorsB3: 'Consultas solo: info@valhallaco.org.',
     consumersTitle: 'Consumidores',
     consumersLead:
-      'Reserva un lugar en productos que te importan. Totalmente reembolsable hasta que se abran las puertas.',
+      'Sigue los salones que te importan. Escribe hasta que se abran las puertas.',
     consumersB1: 'Mira cómo se desbloquean los salones en el mosaico.',
-    consumersB2: 'Los sitios de cada empresa recogen interés por salón.',
+    consumersB2: 'Cada salón lleva Meridian. El merch vive en el sitio del salón como lista, no como carrito.',
     consumersB3: 'Discord para lanzamientos y preguntas.',
     partnersTitle: 'Socios',
     partnersLead: 'Fabricantes, operadores, puertos, propietarios, laboratorios.',

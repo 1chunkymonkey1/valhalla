@@ -204,7 +204,7 @@ export const schedule = [
     pattern: 'research',
     tagline: 'Fix the atmosphere. Then own it.',
     concept:
-      'Atmospheric operating system that intends to own the atmospheric substrate: Phase 1 climate, Phase 2 oxygen for habitats, Phase 3 radiation protection. Research governance leads Phase 1. No atmospheric-rights sales on this surface.',
+      'Aeolus presses the sky: Phase 1 climate, Phase 2 oxygen for habitats, Phase 3 radiation protection. Research governance leads Phase 1. Present title to the atmospheric substrate is not claimed here. No atmospheric-rights sales on this surface.',
     accent: '#0F766E',
     ink: '#F0FDFA',
   },
