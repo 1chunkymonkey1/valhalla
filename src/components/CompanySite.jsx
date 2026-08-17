@@ -147,7 +147,13 @@ export default function CompanySite({ company, now }) {
               <CompanySocialLinks
                 social={social}
                 className="cs-foot__socials"
-                extra={company.slug === 'phenix' ? <PhenixKenazGate /> : null}
+                extra={
+                  company.slug === 'phenix' ? (
+                    <li className="vh-socials__extra">
+                      <PhenixKenazGate />
+                    </li>
+                  ) : null
+                }
               />
               <Link to="/flow">Flow</Link>
             </footer>
@@ -193,7 +199,13 @@ export default function CompanySite({ company, now }) {
           <CompanySocialLinks
             social={social}
             className="cs-about__socials"
-            extra={company.slug === 'phenix' ? <PhenixKenazGate /> : null}
+            extra={
+                  company.slug === 'phenix' ? (
+                    <li className="vh-socials__extra">
+                      <PhenixKenazGate />
+                    </li>
+                  ) : null
+                }
           />
         </section>
 
@@ -256,7 +268,13 @@ export default function CompanySite({ company, now }) {
           <CompanySocialLinks
             social={social}
             className="cs-foot__socials"
-            extra={company.slug === 'phenix' ? <PhenixKenazGate /> : null}
+            extra={
+                  company.slug === 'phenix' ? (
+                    <li className="vh-socials__extra">
+                      <PhenixKenazGate />
+                    </li>
+                  ) : null
+                }
           />
           <Link to="/flow">Flow</Link>
         </footer>

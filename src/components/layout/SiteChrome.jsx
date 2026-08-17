@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { EXTRA_COMPANY_ROUTES, GRID_ORDER } from '../../lib/companies'
 import { resolveProductHost } from '../../lib/productHost'
+import { HIDDEN_PORTAL_PATHS } from '../../data/hiddenPortals'
 import SiteMenu from './SiteMenu'
 
 const COMPANY_PATH_IDS = [...GRID_ORDER, ...EXTRA_COMPANY_ROUTES]
@@ -28,6 +29,7 @@ export default function SiteChrome() {
   if (location.pathname === '/capital') return null
   if (location.pathname.startsWith('/aphrodite')) return null
   if (location.pathname.startsWith('/phenix/prometheus')) return null
+  if (HIDDEN_PORTAL_PATHS.includes(location.pathname)) return null
 
   const isHome = location.pathname === '/'
   const tone =

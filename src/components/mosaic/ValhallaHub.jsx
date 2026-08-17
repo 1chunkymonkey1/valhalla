@@ -13,6 +13,7 @@ import { DISCORD_URL, INSTAGRAM_URL, LINKEDIN_URL } from '../../lib/launchSchedu
 import { Link } from 'react-router-dom'
 import SimpleCountdown from '../SimpleCountdown'
 import { useI18n } from '../../i18n/I18nProvider'
+import HiddenPortalMarks from '../portals/HiddenPortalMarks'
 
 const HUB_SOCIAL = {
   companyId: 'hub',
@@ -107,19 +108,27 @@ export default function ValhallaHub() {
             <section className="vh-hub__capture" aria-label={t('hub.emailSignup')}>
               <EmailCapture source="hub" audience="newsletter" />
             </section>
-
-            <footer className="vh-hub__foot">
-              <nav className="vh-hub__foot-nav" aria-label={t('hub.hubLinks')}>
-                <Link to="/press">{t('hub.press')}</Link>
-                <Link to="/flow">{t('hub.flow')}</Link>
-                <Link to="/meridian">{t('hub.meridian')}</Link>
-                <Link to="/contact">{t('hub.contact')}</Link>
-              </nav>
-              <CompanySocialLinks social={hubSocial} className="vh-hub__socials" />
-            </footer>
-            <AskHallWidget pageId="hub" hallName="Valhalla" dormant={false} />
           </>
         )}
+
+        <footer className={`vh-hub__foot ${showCountdown ? 'vh-hub__foot--dormant' : ''}`}>
+          {!showCountdown ? (
+            <nav className="vh-hub__foot-nav" aria-label={t('hub.hubLinks')}>
+              <Link to="/press">{t('hub.press')}</Link>
+              <Link to="/flow">{t('hub.flow')}</Link>
+              <Link to="/meridian">{t('hub.meridian')}</Link>
+              <Link to="/contact">{t('hub.contact')}</Link>
+            </nav>
+          ) : null}
+          <CompanySocialLinks
+            social={hubSocial}
+            className="vh-hub__socials"
+            extra={<HiddenPortalMarks />}
+          />
+        </footer>
+        {!showCountdown ? (
+          <AskHallWidget pageId="hub" hallName="Valhalla" dormant={false} />
+        ) : null}
       </div>
     </div>
   )

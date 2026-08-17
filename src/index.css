@@ -6094,3 +6094,128 @@
   font-size: 0.62rem;
   line-height: 1.45;
 }
+
+/* Hidden founder portals — rune marks + embed shells (no password) */
+.hp-rune {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  color: inherit;
+  opacity: 0.62;
+  border-radius: 0.3rem;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.hp-rune:hover,
+.hp-rune:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+
+.hp-rune:focus-visible {
+  box-shadow: 0 0 0 2px color-mix(in srgb, currentColor 35%, transparent);
+}
+
+.hp-rune svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  display: block;
+}
+
+.vh-hub__foot--dormant {
+  justify-content: center;
+  margin-top: 2.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.hp-embed {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  background: var(--hp-bar-bg, #0a0a0a);
+  color: var(--hp-bar-ink, #f4f4f4);
+}
+
+.hp-embed__bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  background: var(--hp-bar-bg, #0a0a0a);
+  color: var(--hp-bar-ink, #f4f4f4);
+  border-bottom: 1px solid color-mix(in srgb, var(--hp-accent, #c8a86b) 35%, transparent);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hp-embed__back,
+.hp-embed__source {
+  color: color-mix(in srgb, var(--hp-bar-ink, #f4f4f4) 55%, transparent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hp-embed__back:hover,
+.hp-embed__source:hover,
+.hp-embed__back:focus-visible,
+.hp-embed__source:focus-visible {
+  color: var(--hp-accent, #c8a86b);
+  outline: none;
+}
+
+.hp-embed__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--hp-bar-ink, #f4f4f4);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hp-embed__rune {
+  display: inline-flex;
+  color: var(--hp-accent, #c8a86b);
+}
+
+.hp-embed__rune svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.hp-embed__frame {
+  flex: 1 1 auto;
+  width: 100%;
+  border: 0;
+  background: #fff;
+}
+
+.hp-missing {
+  min-height: 100svh;
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+  text-align: center;
+  background: #f7f7f3;
+  color: #1a1a1a;
+}
+
+@media (max-width: 640px) {
+  .hp-embed__bar {
+    padding: 0.55rem 0.75rem;
+    letter-spacing: 0.08em;
+    font-size: 0.65rem;
+  }
+
+  .hp-embed__source {
+    display: none;
+  }
+}
+

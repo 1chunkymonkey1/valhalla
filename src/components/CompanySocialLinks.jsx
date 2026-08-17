@@ -72,7 +72,7 @@ export default function CompanySocialLinks({ social, className = '', extra = nul
           </a>
         </li>
       ))}
-      {extra ? <li className="vh-socials__extra">{extra}</li> : null}
+      {extra}
     </ul>
   )
 }
