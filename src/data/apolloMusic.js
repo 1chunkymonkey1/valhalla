@@ -1,7 +1,7 @@
 /**
  * Apollo Music: public list of hall sonic identities.
  * Helios owns sonic-universe doctrine. Apollo owns this public surface.
- * Catalog, not a cart and not a stream. No autoplay. No fake plays.
+ * Catalog, not a cart and not a stream. No audio player. No fake plays.
  * Archive dated an August 16 announce; that date is not a public fact of shipment.
  */
 

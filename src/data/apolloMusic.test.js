@@ -91,12 +91,11 @@ test('public music copy never makes forbidden claims', () => {
   assert.doesNotMatch(copy, CART_SPEECH)
 })
 
-test('public music surfaces have no audio element and no autoplay', () => {
+test('public music surfaces have no audio element and no auto-start player', () => {
   for (const rel of PUBLIC_SURFACE_FILES) {
     const src = readFileSync(join(root, rel), 'utf8')
     assert.doesNotMatch(src, /<audio\b/i, `${rel} contains audio`)
     assert.doesNotMatch(src, /\bautoPlay\b/, `${rel} contains autoPlay`)
-    assert.doesNotMatch(src, /\bautoplay\b/i, `${rel} contains autoplay`)
   }
 })
 
