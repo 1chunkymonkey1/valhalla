@@ -104,3 +104,13 @@ Out of order or off-motion: the seat is asked again. Both-and is MOSAIC. Silence
 The scarce asset is not halls. It is commander hours against a September Meridian date, a live SAFE, an active dispute, and a map that already speaks louder than the entities behind it. Take a side.
 
 Icarus out. Chamber is open.
+
+---
+
+## Seat returns (in speaking order)
+
+### 4. Natasha — BALLAST
+
+Full return: `council/sessions/2026-08-17-meridian-gate/04-natasha.md`
+
+Hours on the table: ~50 focused commander hours as a working ceiling (not a logged week). TIDE week allocated to Demeter SAFE, Edna Charge containment, and claims quarantine, plus Argo Atomics and Atoll as the only other operating names. Space stays unfilled. Sunday tree: entity / named operator / 14-day artifact / ballast-three, else future tense. Sacrifice: Space seat fill before Meridian. Vote-changer: written Space steward acceptance with a TIDE block they own, not Icarus.
