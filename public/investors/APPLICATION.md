@@ -5,7 +5,8 @@
 **Prepared for:** Eason Greene  
 **Package folder:** `/Users/silver/Desktop/valhalla_fundraising/`
 
-> Paste answers field-by-field. Items marked `[[FILL]]` must be replaced with Eason’s real numbers before submit.  
+> The check, if any, is Demeter Energy. Valhalla is the charter map, not the issuer.  
+> Do not invent burn, runway, cash, or a priced valuation.  
 > Elevator pitch character count is verified below.
 
 ---
@@ -17,7 +18,7 @@
 | Founder / Full name | Eason Greene |
 | Email | easongreene@gmail.com · also info@valhallaco.org |
 | Phone | (209) 768-4306 |
-| LinkedIn / personal | [[FILL: LinkedIn URL]] |
+| LinkedIn / personal | Leave blank unless Eason pastes a live URL |
 | Role | Founder / Leader, Valhalla |
 
 ---
@@ -26,23 +27,23 @@
 
 | Field | Answer |
 |-------|--------|
-| Company name | Valhalla |
+| Company name | Demeter Energy (issuer). Valhalla is charter, not the SAFE. |
 | Website | https://valhallaco.org |
 | Press | https://valhallaco.org/press |
 | Tags / sectors | **DeepTech**, **Other** |
 | Location | United States / California |
 | Founded | 2026 |
 | Legal entity | **No legal entity yet** (forming). Say: “In formation — Delaware/US entity planned.” |
-| One-liner / product | Civilization platform: 12 companies across Land, Water, Air, Space |
+| One-liner / product | Civilization platform: 12 halls across Land, Water, Air, Space |
 
 ---
 
 ## Elevator Pitch (≤300 characters)
 
-**Character count: 290 / 300**
+**Character count: 286 / 300**
 
 ```
-Valhalla builds 12 companies across Land, Water, Air, and Space solving transit, housing, energy, water, clean aviation, atmosphere, space transport, claims, and sovereign compute—as one civilization system. Everyone is a king. Kings don’t wait for the throne; they build it. valhallaco.org
+Valhalla builds 12 halls across Land, Water, Air, and Space solving transit, housing, energy, water, clean aviation, atmosphere, space transport, claims, and sovereign compute—as one civilization system. Everyone is a king. Kings don’t wait for the throne; they build it. valhallaco.org
 ```
 
 *(Original draft was ~362 chars; trimmed to fit the form while keeping credo + domains + URL.)*
@@ -52,7 +53,7 @@ Valhalla builds 12 companies across Land, Water, Air, and Space solving transit,
 ## Business Model
 
 ```
-Valhalla creates value as a holdco + 12 specialized companies (“halls”) across Land, Water, Air, and Space (Meridian materials optional beneath). Today: public mosaic, interest/email lists, and research/partner queues per hall — no fabricated revenue (MRR $0). Future capture: products and services as each hall reaches readiness (mobility, habitation, energy/water, clean aviation, atmosphere systems, space transport, claims/habitation platforms, sovereign compute), with cross-hall demand so each company feeds the other eleven. We do not claim deed sales, booked flights, or capacity/ROI figures that are not diligence-ready.
+Valhalla creates value as a holdco + 12 specialized halls across Land, Water, Air, and Space (Meridian materials optional beneath). Today: public mosaic, interest/email lists, and research/partner queues per hall — no fabricated revenue (MRR $0). Future capture: products and services as each hall reaches readiness (mobility, habitation, energy/water, clean aviation, atmosphere systems, space transport, claims/habitation platforms, sovereign compute), with cross-hall demand so each hall feeds the other eleven. We do not claim deed sales, booked flights, or capacity/ROI figures that are not diligence-ready.
 ```
 
 ---
@@ -65,9 +66,9 @@ Valhalla creates value as a holdco + 12 specialized companies (“halls”) acro
 **Also useful:**  
 - https://valhallaco.org  
 - https://valhallaco.org/press  
-- Company decks folder: `/Users/silver/Desktop/valhalla_fundraising/company-decks/` (zip before upload if a single file is required)
+- Hall charter one-pagers: `https://valhallaco.org/investors/halls.html` (charter, not twelve issuers)
 
-If the form requires a URL and local path is rejected, upload the PDF to Drive/Dropbox and paste the share link here: `[[FILL: Public deck URL]]`
+If the form requires a URL: `https://valhallaco.org/investors/deck.html`
 
 ---
 
@@ -78,7 +79,7 @@ If the form requires a URL and local path is rejected, upload the PDF to Drive/D
 | Option | When to choose | Note |
 |--------|----------------|------|
 | **First Check / Pre-seed** *(recommended default)* | Honest for: no entity yet, $0 raised, $0 MRR, mosaic + lead seats | Best fit for LvlUp First Check Fund |
-| **Seed** | If you want to position the full 12-hall platform as a seed vehicle | Use if raise size / narrative is Seed-scale |
+| **Seed** | Only if the form cannot name a farm SAFE | Do not position twelve halls as the issuer |
 
 **Suggested Stage field answer:** `First Check` (or `Pre-seed` if that’s the closest dropdown)  
 **Alt:** `Seed` — Eason chooses based on raise size.
@@ -89,14 +90,14 @@ If the form requires a URL and local path is rejected, upload the PDF to Drive/D
 
 | Field | Paste / enter | Notes |
 |-------|---------------|-------|
-| Raise Amount | `[[FILL: Raise Amount]]` | Coherent default band: **$500,000 – $2,500,000**. For First Check lean lower; for Seed lean toward upper/mid. |
-| Current Valuation | `[[FILL: Valuation]]` | Planning midpoint often discussed ~**$50M** (e.g. 0.1% conversation math). **Not** a closed priced round — label as target/posture if form allows. |
+| Raise Amount | **$1.0–1.5M SAFE** | Demeter Energy only. Capital desk sourced. Not a Valhalla holdco raise. |
+| Current Valuation | **$8M cap** | YC post-money SAFE. Not a priced round. |
 | VC-Backed | **No** | |
 | Company MRR | **$0** | Do not invent revenue |
-| Company Burn Rate | `[[FILL: Monthly Burn USD]]` | Suggest starting point only after you know real spend, e.g. `[[FILL]]` |
-| Runway (months) | `[[FILL: Runway Months]]` | = cash reserve ÷ burn |
+| Company Burn Rate | **Not claimed** | Do not invent spend |
+| Runway (months) | **Not claimed** | Founder-funded until a desk number exists |
 | Previously Raised Capital | **$0** | Do not invent prior raise |
-| Cash Reserve | `[[FILL: Cash Reserve USD]]` | Enter actual bank/cash on hand |
+| Cash Reserve | **Not claimed** | Do not invent bank cash |
 
 ### Coherence check (fill then verify)
 `Runway months ≈ Cash Reserve ÷ Monthly Burn`  
@@ -128,17 +129,17 @@ If burn is near $0 and runway is “N/A / founder-funded,” write that plainly 
 
 ### Traction
 ```
-Public launch of the Valhalla Living Mosaic (valhallaco.org): 12 company surfaces across Land, Water, Air, Space; interest lists and research queues. Press materials at /press. MRR $0. No prior institutional capital. Named Hall Lead (CEO) seats for all 12; dedicated decks per company included in this package.
+Public launch of the Valhalla Living Mosaic (valhallaco.org): 12 hall surfaces across Land, Water, Air, Space; interest lists and research queues. Press materials at /press. MRR $0. No prior institutional capital. Hall Lead seats are OPEN unless named. Charter one-pagers per hall are in this package. The capital-desk raise is Demeter Energy, not twelve issuers.
 ```
 
 ### Team
 ```
-Eason Greene — Founder / Leader, Valhalla; Njord Hall Lead. Hall CEOs: Wolf — Anubis Chavez; Holm — Hestia Barker; Demeter — Ceres Johnson; Viking — Maui Muller; Atoll — Yemoja Williams; Eagle — Garuda Hernandez; Olympus — Amaterasu Tran; Aeolus — Vayu Dubois; Phénix — Bennu Kimura; Aether — Nut Garcia; Corvus — Thoth Martinez (see leads.md).
+Eason Greene — Founder / Leader, Valhalla. Demeter Energy founder (farm raise). Njord hall founder named. Remaining hall lead seats: OPEN. Do not list unconfirmed officers.
 ```
 
 ### Why LvlUp / why now
 ```
-Valhalla is forming the legal and operating structure to build 12 interconnected DeepTech companies as one civilization system. Seeking a first institutional check and Seed-aligned partners who understand multi-domain deep tech — not CPG or fake-MRR narratives.
+Applying as Demeter Energy: agrivoltaic solar on working land, hydrogen as the second product. First site lead Gothenburg, Nebraska. Land not signed. Entity in formation. $1.0–1.5M SAFE at $8M cap. Valhalla is the twelve-hall charter behind that one instrument, not the company taking the check.
 ```
 
 ### Competitors
@@ -151,5 +152,4 @@ Single-domain infrastructure startups and vertical deep-tech firms. Valhalla’s
 ## Attachment checklist
 - [ ] Upload `Valhalla-Pitch-Deck.pdf`
 - [ ] Optionally zip `company-decks/*.pdf` (or HTML) and attach / link
-- [ ] Replace all `[[FILL]]` in this file (leads.md roster is filled; Meridian still optional)
-- [ ] Confirm Stage + Raise + Valuation numbers are coherent
+- [ ] Confirm Stage + Raise + Valuation numbers are coherent with the Demeter capital desk ($1.0–1.5M SAFE, $8M cap)

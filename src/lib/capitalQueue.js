@@ -15,6 +15,7 @@ export const CAPITAL_POSTURE = {
 
 /** This week, in send order. Skip Thiel unless leaving Berkeley is a live decision. */
 export const NOW_ORDER = [
+  'demeter-investor-signals',
   'fellowship-emergent',
   'fellowship-z',
   'demeter-climate-capital',

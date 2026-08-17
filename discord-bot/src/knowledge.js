@@ -10,22 +10,22 @@ export const knowledge = {
     email: 'info@valhallaco.org',
     discord: 'https://discord.gg/JA6wrNg6n',
     summary:
-      'Valhalla builds twelve companies across Land, Water, Air, and Space. Each solves a human problem and ties into the other eleven. Meridian is materials beneath. Everyone is a king: kings don’t wait for the throne; they build it.',
+      'Valhalla builds twelve halls across Land, Water, Air, and Space. Each solves a human problem and ties into the other eleven. Meridian is materials beneath. Everyone is a king: kings don’t wait for the throne; they build it.',
   },
   companies: [
     { id: 'wolf', domain: 'Land', pillar: 'Movement', blurb: 'Land transit: Fenrir electric motorcycle, tri-fuel ATV, pack through Dire Wolf maglev SF→NYC in 5.8 hours. Clean and fixable.' },
     { id: 'holm', domain: 'Land', pillar: 'Habitation', blurb: 'Buyers become builders: courses, financing, sod/log/adobe, twelve interlocking container Holms.' },
     { id: 'demeter', domain: 'Land', pillar: 'Energy', blurb: 'Energy production: agrivoltaics (2% US farms by Q4 2027 goal), SMR, geothermal, Stirling, wind; 75-year Dyson swarm.' },
     { id: 'viking', domain: 'Water', pillar: 'Movement', blurb: 'Sustainable cruises; SMR + sail; Stockholm→London; Phénix pad + moon leg. Board as yourself; disembark as Ragnar or Leif.' },
-    { id: 'atoll', domain: 'Water', pillar: 'Habitation', blurb: 'Surface/subsurface habitation for sea-level displacement by 2040. Atoll 01/02/03 + Atlantis line.' },
-    { id: 'njord', domain: 'Water', pillar: 'Energy', blurb: 'Owns H₂O substrate: clean, recycle, develop, split, transport. Earth scarcity first.' },
+    { id: 'atoll', domain: 'Water', pillar: 'Habitation', blurb: 'Where land ends, Atoll begins. 01/02/03 + Atlantis are path language, not inventory. No funds on this surface.' },
+    { id: 'njord', domain: 'Water', pillar: 'Energy', blurb: 'Holds the water: clean, recycle, develop, split, transport. Earth scarcity first. MARAD stays Demeter + Argo.' },
     { id: 'eagle', domain: 'Air', pillar: 'Movement', blurb: 'Clean air travel; bird-named jets; active carbon removal. More you fly, better for atmosphere.' },
     { id: 'olympus', domain: 'Air', pillar: 'Habitation', blurb: 'Cloud cities; Eagle in, Njord water. Olympus Mons first cloud city targets 2028.' },
-    { id: 'aeolus', domain: 'Air', pillar: 'Energy', blurb: 'Owns substrate gas; climate by 2031; Venus acid shielding. No atmospheric-rights sales on the public site.' },
+    { id: 'aeolus', domain: 'Air', pillar: 'Energy', blurb: 'Presses the sky; climate by 2031; Venus acid shielding. No atmospheric-rights sales on the public site.' },
     { id: 'phenix', domain: 'Space', pillar: 'Movement', blurb: 'Space transport: Moon, Venus/Mars, Rollo (Alpha Centauri B), O’Neill spheres. Hawk Mark 1/02.' },
     { id: 'aether', domain: 'Space', pillar: 'Habitation', blurb: 'Galactic real estate claims; Hawk Mark 02 plants flags. Phénix marks; Aether claims.' },
     { id: 'corvus', domain: 'Space', pillar: 'Intelligence', blurb: 'Sovereign solar computers, space data centers, Raven OS for the empire. Prompt waitlist.' },
-    { id: 'meridian', domain: 'Materials', pillar: 'Materials', blurb: 'Materials layer: Earth garment, Venus Suit, Stealth Armor.' },
+    { id: 'meridian', domain: 'Materials', pillar: 'Materials', blurb: 'Materials layer: Earth garment, Venus Suit, Hall Mark merch for every hall. List, not a cart.' },
   ],
   reservations:
     'Halls gather email interest on the public site. Do not invent deposit or checkout claims.',
@@ -62,7 +62,7 @@ export function answerQuestion(text) {
       if (/venus|olympus/.test(q) && !/suit/.test(q)) return c.id === 'olympus'
       if (/spirit|saf|eagle/.test(q)) return c.id === 'eagle'
       if (/geothermal|smr|dyson|demeter/.test(q)) return c.id === 'demeter'
-      if (/meridian|garment|armor/.test(q)) return c.id === 'meridian'
+      if (/meridian|garment|merch/.test(q)) return c.id === 'meridian'
       return false
     })
     if (hit) {
@@ -79,7 +79,7 @@ export function answerQuestion(text) {
   }
 
   if (/corvus|raven.?os|prompt|badge|21000|\$21/.test(q)) {
-    return 'Corvus is sovereign AI compute. Raven OS is the substrate; Odin is the founder consumer product. Phased prompts remain the access path: Prompt 1 $100 through Prompt 21 at $21,000 which unlocks the Twenty-First Raven community badge. Holds are fully refundable when Pay Links are live.'
+    return 'Corvus is sovereign AI compute. Raven OS is the substrate; Odin is the founder consumer product. Phased prompts remain the access path: Prompt 1 $100 through Prompt 21 at $21,000 which unlocks the Twenty-First Raven community badge. Email until gates clear. Pay Links are not live.'
   }
 
   if (/discord|invite|community/.test(q)) {

@@ -58,14 +58,14 @@ export default {
   audience: {
     investorsTitle: '投資家',
     investorsLead:
-      '陸・水・空・宇宙にわたる十二社。デューデリジェンス優先。ここでの公募証券はありません。',
+      '陸・水・空・宇宙にわたる十二の館。デューデリジェンス優先。ここでの公募証券はありません。',
     investorsB1: '四領域に共通の運営枠組み。',
-    investorsB2: '返金可能なホールドが資本前の需要を示す。',
+    investorsB2: '照会が資本前の需要を示す。',
     investorsB3: '照会のみ: info@valhallaco.org。',
     consumersTitle: '消費者',
-    consumersLead: '関心のある製品の席を確保。門が開くまで全額返金可能。',
+    consumersLead: '関心のある館を見る。門が開くまでメール。',
     consumersB1: 'モザイクで館の解錠を見る。',
-    consumersB2: '各社サイトが館ごとの関心を集める。',
+    consumersB2: '各館は Meridian を着る。マーチは館サイトのリストであり、カートではない。',
     consumersB3: 'Discord でドロップと質問。',
     partnersTitle: 'パートナー',
     partnersLead: '製造、運営、港湾、土地所有者、研究ラボ。',

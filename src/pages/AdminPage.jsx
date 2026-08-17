@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import AdminRevealControls from '../components/AdminRevealControls'
 import CouncilDesk from '../components/CouncilDesk'
+import FounderTodoDesk from '../components/FounderTodoDesk'
 import AiSetupPanel from '../components/AiSetupPanel'
 import { formatUsd } from '../data/payLinks'
 import { HALL_IDS, TEAM_ROLES } from '../data/teamRoles'
@@ -58,7 +59,7 @@ export default function AdminPage() {
   const [authOptions, setAuthOptions] = useState(null)
   const [ledger, setLedger] = useState(null)
   const [localPreview, setLocalPreview] = useState({ reservations: [], signups: [] })
-  const [adminTab, setAdminTab] = useState('overview')
+  const [adminTab, setAdminTab] = useState('founder')
   const [people, setPeople] = useState(null)
   const [inviteForm, setInviteForm] = useState({
     email: '',
@@ -759,6 +760,7 @@ export default function AdminPage() {
 
       <nav className="vh-team__tabs">
         {[
+          ['founder', 'Founder'],
           ['overview', 'Overview'],
           ['council', 'Council'],
           ['dispatch', 'Capital'],
@@ -785,8 +787,17 @@ export default function AdminPage() {
         </Link>
       </nav>
 
+      {adminTab === 'founder' && <FounderTodoDesk />}
+
       {adminTab === 'overview' && (
         <section className="vh-admin__grid">
+          <div className="vh-admin__card">
+            <h2>Founder queue</h2>
+            <p className="vh-admin__note">
+              08:00 board. Automate first, tools second, todo third. Inbox and /team are other
+              queues. Open the Founder tab.
+            </p>
+          </div>
           <div className="vh-admin__card">
             <h2>Team seats</h2>
             <p className="vh-admin__count">{people?.users?.length ?? 0}</p>
