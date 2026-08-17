@@ -446,7 +446,7 @@ function buildHubLayout() {
   y += 112
 
   const mission =
-    'Twelve mosaic companies across land, water, air, and space, plus Meridian materials, building the infrastructure layers that support civilization: movement, habitation, energy, intelligence, and materials.'
+    'Twelve mosaic halls across land, water, air, and space, plus Meridian materials, building the infrastructure layers that support civilization: movement, habitation, energy, intelligence, and materials.'
   blocks.push(
     block(pageId, 'mission', 'text', { x: 80, y, w: 800, h: 88 }, {
       content: mission,

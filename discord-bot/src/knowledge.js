@@ -79,7 +79,7 @@ export function answerQuestion(text) {
   }
 
   if (/corvus|raven.?os|prompt|badge|21000|\$21/.test(q)) {
-    return 'Corvus is sovereign AI compute. Raven OS is the substrate; Odin is the founder consumer product. Phased prompts remain the access path: Prompt 1 $100 through Prompt 21 at $21,000 which unlocks the Twenty-First Raven community badge. Holds are fully refundable when Pay Links are live.'
+    return 'Corvus is sovereign AI compute. Raven OS is the substrate; Odin is the founder consumer product. Phased prompts remain the access path: Prompt 1 $100 through Prompt 21 at $21,000 which unlocks the Twenty-First Raven community badge. Email until gates clear. Pay Links are not live.'
   }
 
   if (/discord|invite|community/.test(q)) {

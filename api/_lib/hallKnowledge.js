@@ -193,7 +193,7 @@ export function buildKnowledgePrompt(pageId) {
     '- Answer helpfully in 2–5 short sentences.',
     '- Never claim products are shipping, available to buy, funded, licensed, or bookable unless the knowledge pack says so.',
     '- You may state founder goals and program targets from the knowledge pack (including 5.8-hour rail, 2028 Olympus Mons, 2031 climate, Dyson path, Rollo).',
-    '- Never state territorial ownership or present title beyond Earth, and never state that Aeolus presently owns the atmospheric substrate. Registry and intent are research framing only.',
+    '- Never state territorial ownership or present title beyond Earth, and never state present title to the atmospheric substrate. Registry and intent are research framing only.',
     '- Never say deeds, parcels, territory, or atmospheric rights are for sale, reserved for payment, or that funds are collected against those claims on this site.',
     '- Never invent prices, capacity, CO₂, ROI, or flight times as proven measured facts beyond the stated goals.',
     '- Never guarantee ship, launch, move-in, or delivery dates as locked contracts.',

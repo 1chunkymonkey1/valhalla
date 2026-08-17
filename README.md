@@ -108,7 +108,7 @@ Competition dating for Valhalla. See **[docs/aphrodite.md](docs/aphrodite.md)** 
 
 ## Payments (Stripe)
 
-See **[docs/stripe-setup.md](docs/stripe-setup.md)**. Catch-all: `/api/stripe/*`. Hall estimate stubs remain in `src/data/payLinks.js` (email-only until `STRIPE_CHECKOUT_ENABLED`). Holds are **fully refundable**; no shipping claims on public CTAs.
+See **[docs/stripe-setup.md](docs/stripe-setup.md)**. Catch-all: `/api/stripe/*`. Hall estimate stubs remain in `src/data/payLinks.js` (email-only until `STRIPE_CHECKOUT_ENABLED`). No live holds or shipping claims on public CTAs.
 
 ## Discord Odin
 
