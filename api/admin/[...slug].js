@@ -91,7 +91,6 @@ import {
   actOnFounderTodo,
   createFounderTodo,
   listFounderTodos,
-  seedStandingActs,
 } from '../_lib/founderTodoStore.js'
 
 const COMPANY_SUMMARY = [
@@ -899,9 +898,7 @@ async function handleFounderTodo(req, res) {
         return json(res, 200, { ok: true, item })
       }
       if (action === 'seed') {
-        const created = await seedStandingActs(session.email)
-        const data = await listFounderTodos()
-        return json(res, 200, { ok: true, created: created.length, ...data })
+        return json(res, 400, { ok: false, error: 'Sweep does not create. Standing bottlenecks are rules, not todos.' })
       }
       const id = String(body.id || '').trim()
       if (!id) return json(res, 400, { ok: false, error: 'id required' })
