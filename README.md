@@ -89,7 +89,7 @@ npx vercel --prod
 | `/investors` `/consumers` `/partners` | Audience pages |
 | `/roadmap` | Roadmap index |
 | `/contact` | Contact |
-| `/admin` | Founder control tower (2FA), reveal clock, people, codes, socials, ledgers |
+| `/admin` | Founder control tower (2FA): Founder queue at 08:00, Council, reveal, inbox, people, codes, socials, ledgers |
 | `/team` | Team workspace |
 | `/team/login` | Email + password |
 | `/team/join?token=` | Accept invite |

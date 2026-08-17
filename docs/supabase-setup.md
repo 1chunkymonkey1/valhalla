@@ -31,6 +31,7 @@ Project URL used in production (example): `https://bhivwdibbykbcbdxetob.supabase
 | `supabase/migrations/20260814_ai_settings.sql` | AI settings / provider flags |
 | `supabase/migrations/20260814_council.sql` | Council desk tables |
 | `supabase/migrations/20260815_aphrodite.sql` | `aphrodite_profiles`, `aphrodite_swipes`, `aphrodite_matches` |
+| `supabase/migrations/20260817_founder_todo.sql` | `founder_todos` (Admin Founder queue; not team tasks, not inbox) |
 
 3. Confirm tables under **Table Editor**.
 

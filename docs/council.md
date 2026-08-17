@@ -7,7 +7,7 @@ Eighteen Raven agents, each preloaded from Desktop `Valhalla/Council` source fil
 
 ## Cursor chat (primary for building)
 
-Agent defs: `.cursor/agents/<seat>.md` (mirrored to `.claude/agents/` and `.codex/agents/`). Routing rule: `.cursor/rules/valhalla-council.mdc`. Deep knowledge: `council/agents/<seat>.md`. Situation: `docs/valhalla-context.md`.
+Agent defs: `.cursor/agents/<seat>.md` (mirrored to `.claude/agents/` and `.codex/agents/`). Routing rule: `.cursor/rules/valhalla-council.mdc`. Deep knowledge: `council/agents/<seat>.md`. Situation: `docs/valhalla-context.md`. Recorded sessions: `council/sessions/`. Open: [Overnight Bottleneck](../council/sessions/2026-08-17-overnight-bottleneck.md) (17 August 2026). Unencoded BALLAST / Founder Runtime; Council mode; tools due 18 August 08:00 UTC. Meridian Gate (BALLAST 14-3) stays bound.
 
 ### Invoke a seat
 
@@ -49,7 +49,7 @@ Single-domain → one seat. Cross-portfolio → `icarus`. Investor-facing copy �
 4. Type normally. Use `@athena`, `@lex`, `@all` (or `@council`) to route or broadcast.
 5. Set a **Shared goal**, then **Run round** for one bounded autonomous pass (cooldown + caps — not an infinite loop).
 
-Hall **Inbox** (visitor Ask chat) stays separate. Council is the primary internal AI desk.
+Hall **Inbox** (visitor Ask chat) stays separate. **/team** holds teammate tasks. **Founder** is the 08:00 act queue (signature, send, choose, pay, hire, claim, unblock). Council is advice. Capital sends live on `/capital`.
 
 ## Connect AI tonight
 

@@ -4562,6 +4562,88 @@
   resize: vertical;
 }
 
+.vh-admin__founder {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vh-admin__founder-cadence {
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.88rem;
+}
+
+.vh-admin__founder-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.vh-admin__founder-act {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.vh-admin__founder-act p {
+  margin: 0;
+}
+
+.vh-admin__founder-act span {
+  display: block;
+  font-size: 0.78rem;
+  opacity: 0.6;
+}
+
+.vh-admin__founder-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.vh-admin__founder-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.vh-admin__founder-form label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  flex: 1;
+}
+
+.vh-admin__founder-form input,
+.vh-admin__founder-form select {
+  font: inherit;
+  padding: 0.45rem 0.55rem;
+}
+
+.vh-admin__founder-rule,
+.vh-admin__founder-rules span {
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+.vh-admin__founder-rules {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.vh-admin__founder-rules li {
+  display: grid;
+  gap: 0.2rem;
+}
+
 .vh-admin__council {
   display: flex;
   flex-direction: column;
