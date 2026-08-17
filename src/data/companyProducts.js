@@ -272,7 +272,7 @@ export const companyProducts = {
     headline: 'Worn by everyone. Built to last forever.',
     support:
       'The materials layer beneath all four domains: Earth garment systems and space-rated suits.',
-    body: 'Meridian is the materials layer under the twelve halls. Earth: one pair of self-cleaning white stain-trapping polymer pants meant to replace dozens of purchases a year. Space: a spacesuit rated for Venus, plus the Stealth body-armor supply chain. Blueprint and interest only on this surface.',
+    body: 'Meridian is the materials layer under the twelve halls. Earth: one pair of self-cleaning white stain-trapping polymer pants meant to replace dozens of purchases a year. Space: a spacesuit rated for Venus. Every hall wears Meridian merch. Blueprint and interest only on this surface.',
     tone: 'land',
     ...emailFirst,
     gallery: [

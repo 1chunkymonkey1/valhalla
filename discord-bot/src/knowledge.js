@@ -25,7 +25,7 @@ export const knowledge = {
     { id: 'phenix', domain: 'Space', pillar: 'Movement', blurb: 'Space transport: Moon, Venus/Mars, Rollo (Alpha Centauri B), O’Neill spheres. Hawk Mark 1/02.' },
     { id: 'aether', domain: 'Space', pillar: 'Habitation', blurb: 'Galactic real estate claims; Hawk Mark 02 plants flags. Phénix marks; Aether claims.' },
     { id: 'corvus', domain: 'Space', pillar: 'Intelligence', blurb: 'Sovereign solar computers, space data centers, Raven OS for the empire. Prompt waitlist.' },
-    { id: 'meridian', domain: 'Materials', pillar: 'Materials', blurb: 'Materials layer: Earth garment, Venus Suit, Stealth Armor.' },
+    { id: 'meridian', domain: 'Materials', pillar: 'Materials', blurb: 'Materials layer: Earth garment, Venus Suit, merch for every hall. List, not a cart.' },
   ],
   reservations:
     'Halls gather email interest on the public site. Do not invent deposit or checkout claims.',
