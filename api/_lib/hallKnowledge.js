@@ -74,12 +74,12 @@ const HALLS = {
   atoll: {
     name: 'Atoll',
     hero: 'Where land ends, Atoll begins.',
-    body: 'Atoll does surface and subsurface water habitation. First objective: help the one billion people facing sea-level displacement by 2040. Atoll 01 single family, Atoll 02 twelve-person unit, Atoll 03 plug-and-play public infrastructure. Second line: Atlantis (subsurface).',
+    body: 'Atoll begins where land ends. Surface and subsurface habitation is the path, not a floating-home company that ships. First objective: help the one billion people facing sea-level displacement by 2040. Atoll 01 / 02 / 03 and Atlantis are thesis scales, not inventory. No funds on this surface. Email only.',
     bullets: [
       '1B sea-level displacement framing by 2040',
-      'Atoll 01 / 02 / 03 scales',
+      'Atoll 01 / 02 / 03 as path language, not inventory',
       'Atlantis subsurface line',
-      'No deed sales on this surface',
+      'No funds, no deeds, no pre-sale on this surface',
     ],
   },
   olympus: {
@@ -118,9 +118,9 @@ const HALLS = {
   njord: {
     name: 'Njord',
     hero: 'Every molecule of water in the galaxy. Ours.',
-    body: 'Njord owns the H₂O substrate: clean, recycle, develop, split, and transport water on Earth and above. First objective: solve water scarcity on Earth.',
+    body: 'Njord holds the water: clean, recycle, develop, split, and transport on Earth and above. First objective: solve water scarcity on Earth. MARAD-2026-0729 stays with Demeter and Argo.',
     bullets: [
-      'Full H₂O substrate ownership thesis',
+      'The hall holds the molecule; it does not own it as an OpCo',
       'Clean / recycle / split / transport',
       'Earth scarcity first; above-Earth later',
       'Research before output promises',
@@ -129,7 +129,7 @@ const HALLS = {
   aeolus: {
     name: 'Aeolus',
     hero: 'Fix the atmosphere. Then own it.',
-    body: 'Aeolus owns the substrate gas: anything gas or small particles. First objective: solve climate change on Earth by 2031. Second: acid shielding for Venus habitats. Intends to own the atmospheric substrate.',
+    body: 'Aeolus presses the sky: anything gas or small particles. First objective: solve climate change on Earth by 2031. Second: acid shielding for Venus habitats. Present title to the atmospheric substrate is not claimed here.',
     bullets: [
       'Gas / particulate substrate thesis',
       'Climate objective by 2031',

@@ -103,6 +103,26 @@ export const BAN_PATTERNS = [
     pattern: /\bRaising \$5M(?:\s+pre-money)?\s+SAFE\b/i,
     note: 'Raise-size is inconsistent. Do not speak $5M as the public raise.',
   },
+  {
+    id: 'owns-substrate',
+    pattern: /\bowns the (?:H₂O |H2O )?substrate\b/i,
+    note: 'Njord holds. Aeolus presses. Owns is not the public identity.',
+  },
+  {
+    id: 'atoll-charter',
+    pattern: /\bCharter Membership\b/,
+    note: 'Charter membership is a presentation draft, not L0.',
+  },
+  {
+    id: 'atoll-slots',
+    pattern: /\b43 of 50\b/,
+    note: 'Slot counts are not public inventory.',
+  },
+  {
+    id: 'aquaria-closed',
+    pattern: /\b(?:Aquaria|Brian Sheng)\b.{0,48}\b(?:partner(?:ed|ship)?|customer|closed deal|integration)\b/i,
+    note: 'Aquaria / Brian Sheng is a warm lead, not a deal.',
+  },
 ]
 
 /** L0 surfaces Helios auto-enforces. Interior canon (council/) stays out. */

@@ -134,6 +134,9 @@ export function admit(input, { existing = [], now = Date.now() } = {}) {
   if (kind === 'send' && bottleneckId === 'demeter.next-send' && !evidence) {
     return reject('capital', 'Demeter sends live in /capital. This queue may choose the path, not clone the letter.')
   }
+  if (/(appoint|fill|hire).{0,24}space seat|pathfinder/i.test(`${title} ${decision}`)) {
+    return reject('locked', 'Space seat stays OPEN. Encoding the hall, Launch cloth, and interior sound is the work. Recruiting a vacant title ships nothing.')
+  }
 
   if (source === 'inbox-escalation') {
     if (failedLane !== 'inbox') return reject('inbox', 'Inbox escalation must record failedLane=inbox.')

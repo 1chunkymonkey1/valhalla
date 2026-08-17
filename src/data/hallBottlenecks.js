@@ -35,7 +35,7 @@ export const HALL_BOTTLENECKS = [
     name: 'Phénix',
     decision: 'Is Phénix speaking as an entity with operators, or as destination mythology.',
     lockedRule:
-      'Moon, Venus, Rollo, and O’Neill are program path. Hawk Mark is research until entity, ITAR/FAA posture, and a named operator exist. Space seat OPEN is not staffed.',
+      'Moon, Venus, Rollo, and O’Neill are program path. Hawk Mark is research until entity, ITAR/FAA posture, and a named operator exist. Space seat stays OPEN. Do not appoint a Pathfinder. Encoding the hall, Launch cloth, and interior sound is the work.',
   },
   {
     id: 'holm.first-artifact',
@@ -51,7 +51,7 @@ export const HALL_BOTTLENECKS = [
     name: 'Atoll',
     decision: 'Is Atoll a conversation with a named lead, or a hold list that takes money.',
     lockedRule:
-      'Public site accepts no funds. Pre-sale live is false on this surface. Brian Sheng / Aquaria is a warm lead as-of 2026-08-13, not a closed partnership.',
+      'Public site accepts no funds. Pre-sale live is false on this surface. Capture is email. Atoll 01 / 02 / 03 are thesis scales, not inventory. Brian Sheng / Aquaria is a warm lead as-of 2026-08-13, not a closed partnership. Do not speak Charter Membership, slot counts, or lake-kit prices as live SKUs. Coded interior anthem is Shore Tide; founder speech Shoreline stays off L0 until Seshat locks one string.',
   },
   {
     id: 'olympus.tickets-vs-research',
@@ -83,7 +83,7 @@ export const HALL_BOTTLENECKS = [
     name: 'Njord',
     decision: 'What Earth water artifact ships before galactic H2O speech.',
     lockedRule:
-      'Earth scarcity first. MARAD / Argo adjacency does not pull Njord into nuclear-maritime copy before a water artifact exists.',
+      'Earth scarcity first. The hall holds the water; it does not own the molecule as an OpCo. MARAD-2026-0729 stays Demeter + Argo, not Njord.',
   },
   {
     id: 'aeolus.earth-vs-venus',
@@ -110,7 +110,7 @@ export const EXTRA_BOTTLENECKS = [
     name: 'Apollo Music',
     decision: 'Is this a Helios soundtrack, an Apollo public drop, or an entity Eason must form.',
     lockedRule:
-      'Music is not a thirteenth hall. Sonic architecture belongs to Helios. Public voice and drops belong to Apollo. Label/LLC is a one-time founder choose. Until that entity exists, Apollo Music is a soundtrack lane.',
+      'Music is not a thirteenth hall. Sonic architecture belongs to Helios. Public voice and drops belong to Apollo. Label/LLC is a one-time founder choose. Until that entity exists, Apollo Music is a soundtrack lane. Coded Atoll mark is Shore Tide. Do not publish Shoreline or twelve hall scores.',
   },
   {
     id: 'meridian.list-not-cart',
@@ -136,6 +136,14 @@ export const EXTRA_BOTTLENECKS = [
     lockedRule:
       'Keys live in Vercel, not in chat. Admin → AI setup is the tool. A reminder without a provider choice is junk.',
   },
+  {
+    id: 'hub.sunday-three',
+    hall: 'hub',
+    name: 'Sunday three',
+    decision: 'Which three live objects convert founder hours this week.',
+    lockedRule:
+      'Sunday scores Demeter (land, entity, SAFE reply count), Argo Atomics (one regulator step), and Atoll (partner line, no funds). Do not score twelve halls. Do not appoint a Space seat. Sleep is not a todo. Hard stop at twenty-five minutes on the weekday board.',
+  },
 ]
 
 export const BOTTLENECKS = [...HALL_BOTTLENECKS, ...EXTRA_BOTTLENECKS]
@@ -156,13 +164,19 @@ export function isLockedKind(bottleneck, kind, decision) {
   if (bottleneck.id === 'meridian.list-not-cart' && /(checkout|cart|in stock|take funds|sell merch)/i.test(text)) {
     return true
   }
-  if (bottleneck.id === 'atoll.funds-posture' && /(pre-?sale live|take funds|checkout)/i.test(text)) {
+  if (bottleneck.id === 'atoll.funds-posture' && /(pre-?sale live|take funds|checkout|charter membership|43 of 50|deposit)/i.test(text)) {
     return true
   }
   if (bottleneck.id === 'aether.deed-posture' && /(sell deed|deed sale|collect (funds|payment)|claims property beyond earth|present title)/.test(text)) {
     return true
   }
   if (bottleneck.id === 'wolf.first-product' && /(owns land transit|fenrir deposit|pre-order revenue|qj .{0,20}(partner|deal)|shipping sku)/i.test(text)) {
+    return true
+  }
+  if (bottleneck.id === 'phenix.entity-vs-myth' && /(appoint|fill|hire).{0,24}space seat|pathfinder/i.test(text)) {
+    return true
+  }
+  if (bottleneck.id === 'hub.sunday-three' && /(twelve halls? (score|board|pass)|appoint.{0,20}space seat)/i.test(text)) {
     return true
   }
   return false

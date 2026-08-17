@@ -84,3 +84,12 @@ test('Wolf OpCo speech and Fenrir shipping claims are banned on L0', () => {
   assert.equal(findCopyVerbHits('QJ Motor USA via SSR Motorsports is a target.').length, 0)
   assert.equal(findCopyVerbHits('The pack moves. Fenrir is the first product named.').length, 0)
 })
+
+test('Water column identity and Atoll deposit drafts are banned on L0', () => {
+  assert.ok(findCopyVerbHits('Njord owns the H₂O substrate: clean and split.').some((h) => h.id === 'owns-substrate'))
+  assert.ok(findCopyVerbHits('Charter Membership is open.').some((h) => h.id === 'atoll-charter'))
+  assert.ok(findCopyVerbHits('Production Slots 43 of 50 remaining').some((h) => h.id === 'atoll-slots'))
+  assert.ok(findCopyVerbHits('Brian Sheng is our Aquaria partner.').some((h) => h.id === 'aquaria-closed'))
+  assert.equal(findCopyVerbHits('Njord holds the water. Atoll begins. Email only.').length, 0)
+  assert.equal(findCopyVerbHits('Brian Sheng / Aquaria is a warm lead.').length, 0)
+})

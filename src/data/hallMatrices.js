@@ -723,7 +723,7 @@ const njordMatrix = matrix({
   title: 'Njord matrix',
   mission: {
     title: 'What Njord is building',
-    body: 'Njord owns the H₂O substrate: clean, recycle, develop, split, and transport water on Earth and above. First objective: solve water scarcity on Earth. OTEC, atmospheric wells, offshore energy, harbor power, and manufacture paths sit under that thesis.',
+    body: 'Njord holds the water: clean, recycle, develop, split, and transport on Earth and above. First objective: solve water scarcity on Earth. OTEC, atmospheric wells, offshore energy, harbor power, and manufacture paths sit under that thesis. MARAD-2026-0729 stays with Demeter and Argo.',
     cadence: 'Cadence: scarcity-on-Earth diligence leads; above-Earth transport and manufacture stay method-gated. No water-quality claim here.',
   },
   lines: njordLines,
@@ -763,7 +763,7 @@ const aeolusMatrix = matrix({
   title: 'Aeolus matrix',
   mission: {
     title: 'What Aeolus is building',
-    body: 'Aeolus owns the substrate gas: anything gas or small particles. First objective: solve climate change on Earth by 2031. Second: acid shielding for Venus habitats. Intends to own the atmospheric substrate. No atmospheric-rights sales on this surface.',
+    body: 'Aeolus presses the sky: anything gas or small particles. First objective: solve climate change on Earth by 2031. Second: acid shielding for Venus habitats. Present title to the atmospheric substrate is not claimed here. No atmospheric-rights sales on this surface.',
     cadence: 'Cadence: Phase 1 climate programs lead toward 2031; Venus acid shielding and full ownership thesis stay gated. No rights sales.',
   },
   lines: aeolusLines,

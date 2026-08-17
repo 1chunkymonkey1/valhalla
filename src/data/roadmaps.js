@@ -102,7 +102,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Core modular dwelling, timber volumes, quiet weather seals.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'holm-02',
@@ -111,7 +111,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Linked double-module for family and studio work.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'holm-commons',
@@ -142,7 +142,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'California-first agrivoltaic solar diligence, soil first.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'demeter-root',
@@ -173,7 +173,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Story-led northern cabin itinerary.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'voyage-02',
@@ -182,7 +182,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Extended fjord circuit, drops with partner fleet confirmation.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'viking-mystery',
@@ -203,9 +203,9 @@ export const companyRoadmaps = {
         name: 'Atoll 01',
         status: 'visible',
         kind: 'product',
-        summary: 'Single-family floating habitat. First delivery target: Tuvalu government.',
+        summary: 'Single-family floating habitat thesis. Tuvalu government is a first-delivery path, not a booked delivery.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'atoll-02',
@@ -214,7 +214,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Twelve-family cluster ring; cascades with harbor partnership.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
         cascadeWith: ['atoll-03'],
       },
       {
@@ -247,7 +247,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Full water energy layer: clean, reuse, split, manufacture, atmospheric water, green hydrogen.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'njord-depth',
@@ -278,7 +278,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Clean aviation access interest; bird-named jets with active carbon removal. Not tickets.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'eagle-corridor',
@@ -309,7 +309,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Pressurized cloud-city research; Venus 50 km / 2035 north star.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'olympus-veil',
@@ -340,7 +340,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Phase 1 climate governance for the atmospheric OS.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'aeolus-field',
@@ -371,7 +371,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Hawk Mark 1 launch-vehicle workspace for payload inquiry.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'phenix-return',
@@ -402,7 +402,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Orbital claim cell with legal status disclosed. No deed sales here.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'aether-ring',
@@ -435,7 +435,7 @@ export const companyRoadmaps = {
         kind: 'product',
         summary: 'Sovereign AI substrate; phased prompts are the access path.',
         clickable: true,
-        capture: 'pay',
+        capture: 'email',
       },
       {
         id: 'odin-local',

@@ -41,6 +41,8 @@ const HUMAN_PATTERNS = [
   /\bmaren-?go\b/i,
   /\bemail chris\b/i,
   /\b(qj motor|ssr motorsports).{0,40}(partner|deal|signed)\b/i,
+  /\b(aquaria|brian sheng).{0,40}(partner|deal|signed)\b/i,
+  /\bcharter membership\b/i,
 ]
 
 export function heuristicNeedsHuman(text) {

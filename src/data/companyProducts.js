@@ -101,7 +101,7 @@ export const companyProducts = {
     headline: 'Where land ends, Atoll begins.',
     support:
       'Floating modular Atolls for the billion people facing sea-level displacement by 2040, plus the Atlantis subsurface line.',
-    body: 'Atoll does water habitation, surface and subsurface. The first objective is to help the one billion people who will be displaced by sea-level rise by 2040. Floating modular self-sustaining Atolls: Atoll 01 is a single-family dwelling, Atoll 02 is a twelve-person unit, Atoll 03 is plug-and-play public infrastructure. The second product line is Atlantis, subsurface habitation under the same modular logic. Not a deed sale on this surface.',
+    body: 'Atoll begins where land ends. Surface and subsurface habitation is the path, not a floating-home company that ships. First objective: help the one billion people who will be displaced by sea-level rise by 2040. Atoll 01 / 02 / 03 and Atlantis are thesis scales, not inventory. No funds on this surface. Email only. Not a deed sale.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -122,8 +122,8 @@ export const companyProducts = {
     product: 'Njord',
     headline: 'Every molecule of water in the galaxy. Ours.',
     support:
-      'Owns the H₂O substrate: clean, recycle, develop, split, and transport water on Earth and above. First objective: water scarcity on Earth.',
-    body: 'Njord owns the substrate of H₂O. Clean, recycle, develop, split, and transport the molecule, on Earth and above. The first objective is solving water scarcity on Earth. Research and partner paths before output promises.',
+      'The hall holds the water: clean, recycle, develop, split, and transport on Earth and above. First objective: water scarcity on Earth.',
+    body: 'Njord holds the water. Clean, recycle, develop, split, and transport the molecule, on Earth and above. The first objective is solving water scarcity on Earth. Research and partner paths before output promises. MARAD-2026-0729 stays with Demeter and Argo, not this hall.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -186,8 +186,8 @@ export const companyProducts = {
     product: 'Aeolus',
     headline: 'Fix the atmosphere. Then own it.',
     support:
-      'Owns the substrate gas: anything gas or fine particles. Climate on Earth by 2031; acid shielding for Venus habitats next.',
-    body: 'Aeolus owns the substrate gas. Anything that is gas or small particles, Aeolus researches, develops, and builds. The first objective is solving climate change on Earth by 2031. The second is acid shielding for Venus habitats. The company intends to own the atmospheric substrate. No atmospheric-rights sales or fund collection against ownership claims on this surface.',
+      'The hall presses the sky: gas and fine particles. Climate on Earth by 2031; acid shielding for Venus habitats next.',
+    body: 'Aeolus presses the sky. Anything that is gas or small particles, Aeolus researches, develops, and builds. The first objective is solving climate change on Earth by 2031. The second is acid shielding for Venus habitats. Present title to the atmospheric substrate is not claimed here. No atmospheric-rights sales or fund collection against ownership claims on this surface.',
     tone: 'air',
     ...emailFirst,
     gallery: [

@@ -123,6 +123,21 @@ test('locked meridian checkout cannot enter as send', () => {
   assert.equal(change.ok, true)
 })
 
+test('appointing the Space seat cannot enter the founder queue', () => {
+  const blocked = admit(
+    act({
+      kind: 'hire',
+      bottleneckId: 'phenix.entity-vs-myth',
+      title: 'Appoint a Space seat Pathfinder',
+      whyEason: 'Only Eason can hire a war-council seat.',
+      decision: 'Should we appoint a Space seat this week?',
+      options: ['appoint Pathfinder', 'keep OPEN'],
+    }),
+    { now: NOW },
+  )
+  assert.equal(blocked.code, 'locked')
+})
+
 test('duplicate open dedupe is rejected', () => {
   const first = admit(act(), { now: NOW })
   const existing = [{ ...first.item, id: 'a', status: 'open' }]
