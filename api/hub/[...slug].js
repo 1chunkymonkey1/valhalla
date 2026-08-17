@@ -44,6 +44,7 @@ import {
   upsertInvestorCodeTracking,
 } from '../_lib/investorCodeTracking.js'
 import {
+  clearPrometheusCookie,
   codesMatch,
   parsePrometheusCookie,
   prometheusRedirectUrl,
@@ -457,6 +458,11 @@ async function handlePrometheusGate(req, res) {
       redirectUrl: prometheusRedirectUrl(),
       portal: '/phenix/prometheus',
     })
+  }
+
+  if (req.method === 'DELETE') {
+    clearPrometheusCookie(res)
+    return json(res, 200, { ok: true, unlocked: false })
   }
 
   if (req.method !== 'POST') {

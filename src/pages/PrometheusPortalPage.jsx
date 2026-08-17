@@ -1,23 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PhenixKenazGate from '../components/PhenixKenazGate'
+import PrometheusInterior from '../components/PrometheusInterior'
 
 export default function PrometheusPortalPage() {
   const [state, setState] = useState('checking')
-  const [src, setSrc] = useState('')
 
   useEffect(() => {
     let cancelled = false
     fetch('/api/hub/prometheus-gate', { credentials: 'include' })
       .then((r) => r.json())
       .then((data) => {
-        if (cancelled) return
-        if (data?.unlocked && data.redirectUrl) {
-          setSrc(data.redirectUrl)
-          setState('open')
-        } else {
-          setState('locked')
-        }
+        if (!cancelled) setState(data?.unlocked ? 'open' : 'locked')
       })
       .catch(() => {
         if (!cancelled) setState('locked')
@@ -26,6 +20,11 @@ export default function PrometheusPortalPage() {
       cancelled = true
     }
   }, [])
+
+  async function lock() {
+    await fetch('/api/hub/prometheus-gate', { method: 'DELETE', credentials: 'include' })
+    setState('locked')
+  }
 
   return (
     <div className="pm-portal">
@@ -38,12 +37,10 @@ export default function PrometheusPortalPage() {
       {state === 'locked' ? (
         <div className="pm-portal__locked">
           <p>Kenaz is closed.</p>
-          <PhenixKenazGate />
+          <PhenixKenazGate placement="hall" onUnlocked={() => setState('open')} />
         </div>
       ) : null}
-      {state === 'open' ? (
-        <iframe className="pm-portal__frame" title="Prometheus Defense" src={src} />
-      ) : null}
+      {state === 'open' ? <PrometheusInterior onLock={lock} /> : null}
     </div>
   )
 }

@@ -89,18 +89,25 @@ function appendCookie(res, value) {
   else res.setHeader('Set-Cookie', [prev, value])
 }
 
+function cookieFlags() {
+  const secure = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1'
+  const parts = ['Path=/', 'HttpOnly', 'SameSite=Lax']
+  if (secure) parts.push('Secure')
+  return parts
+}
+
 export function setPrometheusCookie(res) {
   const token = signPrometheusCookie()
-  const secure = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1'
-  const parts = [
-    `${COOKIE}=${encodeURIComponent(token)}`,
-    'Path=/',
-    'HttpOnly',
-    'SameSite=Lax',
-    `Max-Age=${Math.floor(COOKIE_TTL_MS / 1000)}`,
-  ]
-  if (secure) parts.push('Secure')
-  appendCookie(res, parts.join('; '))
+  appendCookie(
+    res,
+    [`${COOKIE}=${encodeURIComponent(token)}`, `Max-Age=${Math.floor(COOKIE_TTL_MS / 1000)}`, ...cookieFlags()].join(
+      '; ',
+    ),
+  )
+}
+
+export function clearPrometheusCookie(res) {
+  appendCookie(res, [`${COOKIE}=`, 'Max-Age=0', ...cookieFlags()].join('; '))
 }
 
 export function prometheusRedirectUrl() {

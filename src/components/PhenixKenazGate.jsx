@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function PhenixKenazGate() {
+export default function PhenixKenazGate({ placement = 'social', onUnlocked }) {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const [code, setCode] = useState('')
@@ -25,7 +25,11 @@ export default function PhenixKenazGate() {
         setPending(false)
         return
       }
-      navigate('/phenix/prometheus')
+      setOpen(false)
+      setCode('')
+      setPending(false)
+      if (onUnlocked) onUnlocked()
+      else navigate('/phenix/prometheus')
     } catch {
       setError('Gate unreachable.')
       setPending(false)
@@ -36,21 +40,27 @@ export default function PhenixKenazGate() {
     <>
       <button
         type="button"
-        className="cs-kenaz"
+        className={placement === 'hall' ? 'cs-kenaz cs-kenaz--hall' : 'cs-kenaz'}
         aria-label="Kenaz"
         title=""
         onClick={() => setOpen(true)}
       >
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path
-            d="M18 4 L7 12 L18 20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="square"
-            strokeLinejoin="miter"
-          />
-        </svg>
+        {placement === 'hall' ? (
+          <>
+            <span aria-hidden>ᚲ</span> Kenaz
+          </>
+        ) : (
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M18 4 L7 12 L18 20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="square"
+              strokeLinejoin="miter"
+            />
+          </svg>
+        )}
       </button>
 
       {open ? (
