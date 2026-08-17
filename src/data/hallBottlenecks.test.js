@@ -26,3 +26,9 @@ test('Apollo Music and Meridian Apparel are extra bottlenecks, not halls', () =>
   assert.equal(GRID_ORDER.includes('apollo'), false)
   assert.equal(GRID_ORDER.includes('meridian'), false)
 })
+
+test('Sunday three is a standing scoreboard, not twelve hall todos', () => {
+  const sunday = EXTRA_BOTTLENECKS.find((b) => b.id === 'hub.sunday-three')
+  assert.match(sunday.lockedRule, /Do not score twelve halls/)
+  assert.match(sunday.lockedRule, /Sleep is not a todo/)
+})

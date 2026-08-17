@@ -225,4 +225,13 @@ test('morning view sorts clock-bound first and keeps counts off the todo list', 
   assert.equal(view.counts.founderOpen, 2)
   assert.equal(view.waiting.length, 1)
   assert.match(view.policy, /Todo third/)
+  assert.equal(view.sundayBoards.length, 3)
+  assert.deepEqual(
+    view.sundayBoards.map((b) => b.id),
+    ['demeter', 'argo', 'atoll'],
+  )
+  assert.equal(
+    view.cadence.some((line) => /Sunday scores three/.test(line)),
+    true,
+  )
 })

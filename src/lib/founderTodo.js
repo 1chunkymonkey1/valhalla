@@ -4,7 +4,7 @@
  * This queue is founder-only acts with a kill condition.
  */
 
-import { getBottleneck, isLockedKind } from '../data/hallBottlenecks.js'
+import { getBottleneck, isLockedKind, SUNDAY_BOARDS } from '../data/hallBottlenecks.js'
 
 export const KINDS = ['sign', 'send', 'choose', 'pay', 'hire', 'claim', 'unblock']
 export const STATUSES = ['open', 'waiting', 'decided', 'swept']
@@ -36,6 +36,8 @@ export const CADENCE_0800 = [
   'If Inbox needsHuman > 0, reply in the thread. Promote here only when the visitor needs a signature, money movement, or a legal claim.',
   'Open Council only when this list is empty or waiting.',
   'Hard stop at seven acts or twenty-five minutes, whichever first. The rest is TIDE.',
+  'Sunday scores three objects only: Demeter raise, Argo regulator step, Atoll partner and no-funds. Do not score twelve halls.',
+  'Sleep is not a todo. Do not reopen this board after lights-out.',
 ]
 
 export function slugDecision(decision) {
@@ -285,6 +287,7 @@ export function morningView(items, counts = {}, now = Date.now()) {
   return {
     policy: 'Automate first. Tools second. Todo third. Founder-only.',
     cadence: CADENCE_0800,
+    sundayBoards: SUNDAY_BOARDS,
     open,
     waiting,
     counts: {

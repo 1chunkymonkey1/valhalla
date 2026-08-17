@@ -146,6 +146,28 @@ export const EXTRA_BOTTLENECKS = [
   },
 ]
 
+/** Victory scoreboard. Three live objects. Not twelve hall-counts. Not todos. */
+export const SUNDAY_BOARDS = [
+  {
+    id: 'demeter',
+    name: 'Demeter',
+    metric:
+      'Land unsigned vs signed. Entity in formation. SAFE replies this week (count, not dollars). Capital lock: $1.0–1.5M YC post-money SAFE, $8M cap, into Demeter only.',
+  },
+  {
+    id: 'argo',
+    name: 'Argo Atomics',
+    metric:
+      'One regulator next action. MARAD-2026-0729. Delaware LLC. Not a mosaic tile. No merch brand. No hall anthem.',
+  },
+  {
+    id: 'atoll',
+    name: 'Atoll',
+    metric:
+      'Partner conversation yes/no. Public surface takes no funds. 01 / 02 / 03 are thesis, not inventory.',
+  },
+]
+
 export const BOTTLENECKS = [...HALL_BOTTLENECKS, ...EXTRA_BOTTLENECKS]
 
 const BY_ID = new Map(BOTTLENECKS.map((b) => [b.id, b]))

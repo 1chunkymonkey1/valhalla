@@ -121,6 +121,24 @@ export default function FounderTodoDesk() {
         </ol>
       </div>
 
+      {(data?.sundayBoards || []).length > 0 && (
+        <div className="vh-admin__card">
+          <h2>Sunday three</h2>
+          <p className="vh-admin__note">
+            Score these objects. Not twelve halls. Not todos. Green is an honest status line. Red is
+            capacity, ROI, closed-farm, or funds-on-Atoll language.
+          </p>
+          <div className="vh-admin__grid">
+            {(data.sundayBoards || []).map((board) => (
+              <div key={board.id}>
+                <h2>{board.name}</h2>
+                <p className="vh-admin__note">{board.metric}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="vh-admin__grid">
         <div className="vh-admin__card">
           <h2>Capital remaining</h2>
