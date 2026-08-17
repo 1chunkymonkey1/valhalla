@@ -88,6 +88,10 @@ export default function AdminPage() {
   const [inboxNeedsOnly, setInboxNeedsOnly] = useState(false)
   const [inboxStorage, setInboxStorage] = useState('')
   const [inboxDurability, setInboxDurability] = useState('')
+  const [bnData, setBnData] = useState(null)
+  const [bnMsg, setBnMsg] = useState('')
+  const [bnBusy, setBnBusy] = useState(false)
+  const [bnFilter, setBnFilter] = useState('needs_eason')
 
   async function enterAuthenticated(adminEmail) {
     setAuth({ loading: false, ok: true, email: adminEmail })
@@ -107,6 +111,7 @@ export default function AdminPage() {
       loadInvestorCodes().catch(() => {}),
       loadSocials().catch(() => {}),
       loadInbox().catch(() => {}),
+      loadBottlenecks(false).catch(() => {}),
     ])
   }
 
@@ -212,6 +217,22 @@ export default function AdminPage() {
     setInboxNeedsHuman(data.needsHumanTotal || 0)
     setInboxStorage(data.storage || '')
     setInboxDurability(data.durabilityNote || '')
+  }
+
+  async function loadBottlenecks(sweep = false) {
+    const res = await fetch('/api/admin/bottlenecks', {
+      method: sweep ? 'POST' : 'GET',
+      credentials: 'include',
+      headers: sweep ? { 'Content-Type': 'application/json' } : undefined,
+      body: sweep ? JSON.stringify({ action: 'sweep' }) : undefined,
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      setBnMsg(data.error || 'Bottleneck engine failed')
+      return
+    }
+    setBnData(data)
+    setBnMsg('')
   }
 
   async function openInboxThread(threadId) {
@@ -764,6 +785,7 @@ export default function AdminPage() {
           ['dispatch', 'Capital'],
           ['reveal', 'Reveal'],
           ['inbox', inboxUnread ? `Inbox (${inboxUnread})` : 'Inbox'],
+          ['bottlenecks', bnData?.counts?.needsEason ? `Gate (${bnData.counts.needsEason})` : 'Gate'],
           ['people', 'People'],
           ['codes', 'Hall codes'],
           ['investor-codes', 'Investor codes'],
@@ -817,6 +839,13 @@ export default function AdminPage() {
             </p>
           </div>
           <div className="vh-admin__card">
+            <h2>Founder gate</h2>
+            <p className="vh-admin__count">{bnData?.counts?.needsEason ?? '—'}</p>
+            <p className="vh-admin__note">
+              Sweep automates first. This count is only what still needs you. Open the Gate tab.
+            </p>
+          </div>
+          <div className="vh-admin__card">
             <h2>Council</h2>
             <p className="vh-admin__note">
               Talk with the 18 Raven agents, @mention peers, run bounded autonomous rounds. Primary AI
@@ -862,6 +891,98 @@ export default function AdminPage() {
       )}
 
       {adminTab === 'reveal' && <AdminRevealControls />}
+
+      {adminTab === 'bottlenecks' && (
+        <section className="vh-admin__queue">
+          <div className="vh-admin__card">
+            <h2>Founder gate</h2>
+            <p className="vh-admin__note">
+              {bnData?.unifying?.statement ||
+                'Sweep detects recurrent gates, automates catalogs and claims quarantine, then queues only what still needs you.'}
+            </p>
+            <p className="vh-admin__note">
+              Storage: <strong>{bnData?.storage || '…'}</strong>
+              {bnData?.counts
+                ? ` · ${bnData.counts.needsEason} need you · ${bnData.counts.automated} automated · ${bnData.counts.deduped || 0} deduped`
+                : ''}
+            </p>
+            <div className="vh-admin__row">
+              <button
+                type="button"
+                className="vh-admin__secondary"
+                disabled={bnBusy}
+                onClick={async () => {
+                  setBnBusy(true)
+                  try {
+                    await loadBottlenecks(true)
+                  } finally {
+                    setBnBusy(false)
+                  }
+                }}
+              >
+                {bnBusy ? 'Sweeping…' : 'Run sweep'}
+              </button>
+              <label>
+                Filter
+                <select value={bnFilter} onChange={(e) => setBnFilter(e.target.value)}>
+                  <option value="needs_eason">Needs Eason</option>
+                  <option value="done">Done</option>
+                  <option value="all">All queued</option>
+                </select>
+              </label>
+            </div>
+            {bnMsg ? <p className="vh-admin__note">{bnMsg}</p> : null}
+            <p className="vh-admin__note">
+              Merch missing: {(bnData?.completeness?.merchMissing || []).join(', ') || 'none'}. Apollo
+              Music interior: {bnData?.completeness?.apolloOk ? 'yes' : 'check catalog'}.
+            </p>
+          </div>
+          <ul className="vh-admin__queue-list">
+            {(bnData?.items || [])
+              .filter((item) => (bnFilter === 'all' ? true : item.status === bnFilter))
+              .map((item) => (
+                <li key={item.id} className={`vh-admin__queue-item is-${item.status}`}>
+                  <strong>
+                    {item.hall || 'hub'} · {item.title}
+                  </strong>
+                  <span className="vh-admin__bn-key">{item.bottleneckId}</span>
+                  <p>{item.body}</p>
+                  {item.status === 'needs_eason' ? (
+                    <button
+                      type="button"
+                      className="vh-admin__secondary"
+                      onClick={async () => {
+                        const res = await fetch('/api/admin/bottlenecks', {
+                          method: 'POST',
+                          credentials: 'include',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ action: 'resolve', id: item.id }),
+                        })
+                        const json = await res.json().catch(() => ({}))
+                        if (!res.ok) {
+                          setBnMsg(json.error || 'Resolve failed')
+                          return
+                        }
+                        await loadBottlenecks(false)
+                      }}
+                    >
+                      Mark done
+                    </button>
+                  ) : null}
+                </li>
+              ))}
+          </ul>
+          {!(bnData?.items || []).filter((item) =>
+            bnFilter === 'all' ? true : item.status === bnFilter,
+          ).length ? (
+            <p className="vh-admin__empty">
+              {bnFilter === 'needs_eason'
+                ? 'Nothing needs you. Run a sweep or automation closed the loop.'
+                : 'No items in this filter.'}
+            </p>
+          ) : null}
+        </section>
+      )}
 
       {adminTab === 'inbox' && (
         <section className="vh-admin__inbox">

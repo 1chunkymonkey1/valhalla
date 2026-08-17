@@ -87,6 +87,12 @@ import {
 } from '../_lib/councilStore.js'
 import { buildAiStatus } from '../_lib/aiStatus.js'
 import { setAiSettings } from '../_lib/aiSettings.js'
+import {
+  createManualQueueItem,
+  getBottleneckState,
+  resolveQueueItem,
+  runSweep,
+} from '../_lib/bottleneckEngine.js'
 
 const COMPANY_SUMMARY = [
   { id: 'wolf', name: 'Wolf', domain: 'land', pillar: 'movement', wave: 1 },
@@ -871,6 +877,52 @@ async function handleAi(req, res) {
   return json(res, 405, { ok: false, error: 'Method not allowed' })
 }
 
+async function handleBottlenecks(req, res) {
+  const session = requireAdmin(req, res)
+  if (!session) return
+
+  if (req.method === 'GET') {
+    try {
+      const data = await getBottleneckState()
+      return json(res, 200, data)
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Bottleneck error' })
+    }
+  }
+
+  if (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH') {
+    try {
+      const body = await readBody(req)
+      const action = String(body.action || 'sweep').trim().toLowerCase()
+      if (action === 'sweep') {
+        const data = await runSweep({ actor: session.email || 'admin' })
+        return json(res, 200, data)
+      }
+      if (action === 'resolve' || action === 'done' || action === 'update') {
+        const id = String(body.id || '').trim()
+        if (!id) return json(res, 400, { ok: false, error: 'id required' })
+        const item = await resolveQueueItem(id, session.email, body.resolution || body.note || '')
+        if (!item) return json(res, 404, { ok: false, error: 'Not found' })
+        return json(res, 200, { ok: true, item })
+      }
+      if (action === 'create') {
+        const data = await createManualQueueItem({
+          title: body.title,
+          body: body.body || body.note || '',
+          hall: body.hall || body.surface || 'hub',
+          actor: session.email,
+        })
+        return json(res, 200, { ok: true, ...data })
+      }
+      return json(res, 400, { ok: false, error: 'Unknown action' })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'login') return handleLogin(req, res)
@@ -889,5 +941,6 @@ export default async function handler(req, res) {
   if (key === 'dispatch') return handleDispatch(req, res)
   if (key === 'council') return handleCouncil(req, res)
   if (key === 'ai') return handleAi(req, res)
+  if (key === 'bottlenecks' || key === 'founder-queue') return handleBottlenecks(req, res)
   return json(res, 404, { ok: false, error: 'Not found' })
 }
