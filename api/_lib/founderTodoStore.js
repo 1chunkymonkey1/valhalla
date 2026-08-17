@@ -232,68 +232,7 @@ export async function createFounderTodo(input, actor) {
   return row
 }
 
-export async function seedStandingActs(actor = 'sweep') {
-  const expires = new Date(Date.now() + 7 * 86400000).toISOString()
-  const standing = [
-    {
-      kind: 'choose',
-      bottleneckId: 'demeter.next-send',
-      title: 'Pick this week’s Demeter capital path',
-      whyEason: 'Only Eason can authorize the next investor send.',
-      decision: 'Which capital path is this week’s send?',
-      options: ['SAFE desk', 'fellowship', 'farm lead'],
-      failedLane: 'capital',
-      source: 'founder',
-      evidenceRef: 'note:path-choice',
-      expiresAt: expires,
-    },
-    {
-      kind: 'choose',
-      bottleneckId: 'apollo.music-lane',
-      title: 'Keep Apollo Music interior or authorize a list',
-      whyEason: 'Only Eason can authorize a public music surface.',
-      decision: 'Authorize a public Apollo Music list this week?',
-      options: ['keep interior', 'authorize identity list'],
-      failedLane: 'tool',
-      source: 'founder',
-      evidenceRef: 'note:apollo-music-public-flag',
-      expiresAt: expires,
-    },
-    {
-      kind: 'hire',
-      bottleneckId: 'meridian.list-not-cart',
-      title: 'Appoint Meridian lead',
-      whyEason: 'Roster is still FILL. Only Eason appoints.',
-      decision: 'Appoint a Meridian lead this week?',
-      options: ['leave FILL', 'name a lead privately'],
-      failedLane: 'tool',
-      source: 'founder',
-      evidenceRef: 'note:meridian-lead',
-      expiresAt: expires,
-    },
-    {
-      kind: 'choose',
-      bottleneckId: 'eagle.spirit-language',
-      title: 'Lock Eagle Spirit sentence',
-      whyEason: 'Only Eason can lock the public claim sentence.',
-      decision: 'Which Spirit sentence is allowed this week?',
-      options: ['open dialogue only', 'silent'],
-      failedLane: 'automate',
-      source: 'founder',
-      evidenceRef: 'note:eagle-spirit-quarantine',
-      expiresAt: expires,
-    },
-  ]
-  const created = []
-  for (const act of standing) {
-    try {
-      created.push(await createFounderTodo(act, actor))
-    } catch {
-      // Dedupe / cap / locked — skip.
-    }
-  }
-  return created
-}
+export async function actOnFounderTodo(id, action, body, actor) {
   const items = await sweepFounderTodos()
   const item = items.find((i) => i.id === id)
   if (!item) throw new Error('Founder act not found')
