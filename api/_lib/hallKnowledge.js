@@ -7,7 +7,7 @@ const HALLS = {
   hub: {
     name: 'Valhalla',
     hero: 'Everyone is a king. Kings don’t wait for the throne; they build it.',
-    body: 'Valhalla is building twelve companies across the four domains of Land, Water, Air, and Space. Each company solves a specific problem facing humanity and ties into the other eleven so they grow and evolve as a unit. Meridian is the materials layer beneath. Public pages are research and interest surfaces.',
+    body: 'Valhalla is building twelve halls across the four domains of Land, Water, Air, and Space. Each hall solves a specific problem facing humanity and ties into the other eleven so they grow and evolve as a unit. Meridian is the materials layer beneath. Public pages are research and interest surfaces.',
     bullets: [
       'Twelve mosaic halls across Land / Water / Air / Space',
       'Movement, Habitation, Energy, and Intelligence pillars; Meridian materials at /meridian',
@@ -139,7 +139,7 @@ const HALLS = {
   },
   corvus: {
     name: 'Corvus',
-    hero: 'The mind that runs eleven companies. And counting.',
+    hero: 'The mind that runs the mosaic. And counting.',
     body: 'Corvus builds equitable intelligence infrastructure. Sovereign medium solar-powered computers so you keep your data. Space data centers on the long path. Raven OS runs the empire; waitlist for early prompts and products.',
     bullets: [
       'Sovereign solar computers',
@@ -176,7 +176,7 @@ export function getHallKnowledge(pageId) {
     bullets: hasMerch ? hall.bullets : [...hall.bullets, MERCH_BULLET],
     schedule: SCHEDULE_BLURB,
     empire:
-      'Valhalla builds twelve companies across Land, Water, Air, and Space. Each solves a human problem and ties into the other eleven so the mosaic grows as a unit. Meridian is materials beneath. Every hall wears Meridian merch. Interest forms and Ask chat are non-binding. Everyone is a king: kings don’t wait for the throne; they build it.',
+      'Valhalla builds twelve halls across Land, Water, Air, and Space. Each solves a human problem and ties into the other eleven so the mosaic grows as a unit. Meridian is materials beneath. Every hall wears Meridian merch. Interest forms and Ask chat are non-binding. Everyone is a king: kings don’t wait for the throne; they build it.',
   }
 }
 

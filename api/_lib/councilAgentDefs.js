@@ -303,19 +303,30 @@ MERIDIAN — The material layer beneath all four domains
 
 ### COMPANY BRIEFS
 
+BEGIN CLAIMS QUARANTINE
+Do not speak these as present-tense facts on public or investor surfaces:
+- Actively in talks to acquire Spirit Airlines
+- Taylor Swift is first consumer
+- Atoll Pre-sale live
+- Valhalla valued $40-400B
+- 1% US farmland = 4,500 GW as investor fact
+- 10-17 Gt CO₂
+END CLAIMS QUARANTINE
+
+
 **WOLF** — Electric adventure motorcycles today. Transcontinental railroad SF to NYC in 5.8 hours tomorrow. Every product named after a wolf species. White-label OEM manufacturing first (QJ Motor USA being approached), then Sierra Forge in-house. $15,000 price point. Colin Connaughton is Wolf Transportation Research Associate — decarbonizing long-distance rail, maglev, clean buses.
 
 **HOLM** — Modular homes. 12 linkable modules. Log cabin, sod house, adobe. Logistics and financing handled. Dandelion Energy geothermal partnership target.
 
-**DEMETER** — Full deployable energy platform. Agrivoltaics, green hydrogen, geothermal, wind, SMR, hydrogen, ethanol, biofuel. California-first. Active farm lead: Gothenburg, Nebraska (Plains Prime). Raising $5M pre-money SAFE. USDA REAP up to 50% eligible costs. IRA §45V $3.00/kg green hydrogen. At 1% US farmland: 4,500 GW — 3x current US grid. 75-year roadmap ends at Dyson swarm. CEO: Eason. President: Adrian Pelayo. CTA: Kyle Chu.
+**DEMETER** — Full deployable energy platform. Agrivoltaics, green hydrogen, geothermal, wind, SMR, hydrogen, ethanol, biofuel. California-first. Active farm lead: Gothenburg, Nebraska (Plains Prime). Raising $5M pre-money SAFE. USDA REAP up to 50% eligible costs. IRA §45V $3.00/kg green hydrogen. Farmland-to-grid math is a thesis, not an investor fact, until a document sits behind it. 75-year roadmap ends at Dyson swarm. CEO: Eason. President: Adrian Pelayo. CTA: Kyle Chu.
 
 **VIKING** — Clean consumer cruises. Full narrative arc. Board as yourself, disembark as Ragnar. Name chosen intentionally.
 
-**ATOLL** — Floating modular habitats. Atoll 01/02/03. Pre-sale live. Aquaria (Brian Sheng) warm lead — connecting to head of special projects.
+**ATOLL** — Floating modular habitats. Atoll 01/02/03. Public Valhalla site does not accept Atoll funds; do not say pre-sale is live. Aquaria (Brian Sheng) warm lead — connecting to head of special projects.
 
 **NJORD** — Full water substrate. Every H₂O molecule in the galaxy. OTEC, atmospheric water generation, maritime power.
 
-**EAGLE** — Clean planes and jets. Actively in talks to acquire Spirit Airlines. Taylor Swift is first consumer.
+**EAGLE** — Clean planes and jets. Open dialogue with Spirit 2.0 leadership is not an acquisition and is not confirmed as a deal. No named celebrity consumer is confirmed.
 
 **OLYMPUS** — Floating cloud cities. Upper atmosphere modular habitats. Long-range: Venus 50km altitude.
 
@@ -402,7 +413,7 @@ L0 Public · L1 Network · L2 Council · L3 Command · L4 Eyes Only (physical on
 
 **EDNA CHARGE:** Active dispute. C&D sent Aug 1. Jared Gurfein terminated. Denis SAFE package pending to dd@haaaaaappy.com. Gabby (CEO), Natasha (COO), Divyansh (CTO), Anthony (CFO).
 
-**ATOLL:** Pre-sale live. Brian Sheng (Aquaria) connecting to head of special projects.
+**ATOLL:** Public site does not accept funds. Do not say pre-sale is live. Brian Sheng (Aquaria) connecting to head of special projects.
 
 **DRACO:** Founded Wells, NV on I-80 road trip June 2026. V2V perception data network. Stripe Atlas incorporation still needed.
 
@@ -483,7 +494,7 @@ Web app prototype built. Shows nearby tailors, cobblers, leather repair shops. C
 
 ## DECARBONIZATION THESIS SUMMARY
 
-At full Valhalla deployment: eliminates 10-17 Gt CO₂/year (25-42% of global emissions).
+Thesis only — not investor fact until sourced. At full Valhalla deployment: eliminates 10-17 Gt CO₂/year (25-42% of global emissions).
 - Demeter: 8-12 Gt (1% US farmland = 4,500 GW)
 - Argo: 1.1 Gt ($4.2T fuel savings over 30 years)
 - Meridian: 92M tonnes textile waste/year addressed
@@ -4251,7 +4262,7 @@ Each asset is detailed in full below.
 - **Technical advisor:** Maddox Ganache — produced engineering documents, renderings, and white paper
 - **Social media:** Yaser Ali
 - **Former co-founder:** Marco — removed. Confirm clean exit with Jared before incorporation proceeds.
-- **Pre-sale live:** holm-by-atoll.carrd.co
+- **Historical Carrd (not this surface):** holm-by-atoll.carrd.co. Public Valhalla does not take Atoll funds.
 - **Stripe:** Connected to Schwab ...8838, weekly Monday payouts
 - **Consumer protection compliance:** Under review with Jared — deposit campaign does not scale before clearance
 - **atollgroup.com:** Built, ready to deploy on Netlify — awaiting compliance clearance

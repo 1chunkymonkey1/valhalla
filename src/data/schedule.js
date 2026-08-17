@@ -247,7 +247,7 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T20:00:00-07:00`,
     publicStatus: 'concept',
     pattern: 'local',
-    tagline: 'The mind that runs eleven companies. And counting.',
+    tagline: 'The mind that runs the mosaic. And counting.',
     concept:
       'Sovereign AI compute: solar-powered, offline-capable, modular. Raven OS is the substrate; Odin is the consumer product for founders. Prompt ladder is the access path.',
     accent: '#09090B',

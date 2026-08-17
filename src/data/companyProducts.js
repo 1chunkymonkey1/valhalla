@@ -247,7 +247,7 @@ export const companyProducts = {
   },
   corvus: {
     product: 'Corvus',
-    headline: 'The mind that runs eleven companies. And counting.',
+    headline: 'The mind that runs the mosaic. And counting.',
     support:
       'Equitable intelligence infrastructure: sovereign solar computers, space data centers, and Raven OS for the empire. Waitlist for early prompts.',
     body: 'Corvus builds the equitable intelligence infrastructure life on Earth will use to thrive. Sovereign computers: medium-sized, solar-powered machines so you can access intelligence without giving your data to giant tech. Space data centers sit on the long path. Corvus Raven OS is what the rest of the empire runs on. Join the waitlist for early access to prompts and other products.',

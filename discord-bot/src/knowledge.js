@@ -10,7 +10,7 @@ export const knowledge = {
     email: 'info@valhallaco.org',
     discord: 'https://discord.gg/JA6wrNg6n',
     summary:
-      'Valhalla builds twelve companies across Land, Water, Air, and Space. Each solves a human problem and ties into the other eleven. Meridian is materials beneath. Everyone is a king: kings don’t wait for the throne; they build it.',
+      'Valhalla builds twelve halls across Land, Water, Air, and Space. Each solves a human problem and ties into the other eleven. Meridian is materials beneath. Everyone is a king: kings don’t wait for the throne; they build it.',
   },
   companies: [
     { id: 'wolf', domain: 'Land', pillar: 'Movement', blurb: 'Land transit: Fenrir electric motorcycle, tri-fuel ATV, pack through Dire Wolf maglev SF→NYC in 5.8 hours. Clean and fixable.' },

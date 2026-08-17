@@ -5,6 +5,7 @@
  */
 
 import { GRID_ORDER, getCompany } from '../lib/companies.js'
+import { getHallMarks } from './oneCivilizationMarks.js'
 
 export const MERCH_STATUS = 'Earth Line · September 2026 target'
 export const MERCH_POSTURE =
@@ -114,11 +115,11 @@ export const hallMerch = {
   },
   aether: {
     statement: 'Aether wears Meridian.',
-    body: 'Claim merch is cut from the materials layer. Shirt and jacket, hall-marked.',
-    shirtName: 'Claim Shirt',
-    jacketName: 'Claim Jacket',
-    shirtDoes: 'Cotton-modal shirt for the claim. Aether mark on the cloth.',
-    jacketDoes: 'Field jacket for quiet orbit. Waxed twill, Dyneema inside, Aether mark.',
+    body: 'Orbit merch is cut from the materials layer. Shirt and jacket, hall-marked. The garment name is Orbit, not Claim.',
+    shirtName: 'Orbit Shirt',
+    jacketName: 'Orbit Jacket',
+    shirtDoes: 'Cotton-modal shirt for quiet orbit. Aether mark on the cloth. Not a deed.',
+    jacketDoes: 'Field jacket for quiet orbit. Waxed twill, Dyneema inside, Aether mark. Not a title.',
   },
   corvus: {
     statement: 'Corvus wears Meridian.',
@@ -156,6 +157,7 @@ function hallItem(companyId, piece) {
     href: `/${companyId}/merch/${piece}`,
     cutter: 'Meridian',
     status: MERCH_STATUS,
+    musicMark: getHallMarks(companyId)?.musicMark || null,
   }
 }
 

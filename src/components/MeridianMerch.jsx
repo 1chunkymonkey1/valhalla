@@ -75,6 +75,9 @@ export function MerchCard({ item }) {
       <p className="cs-merch-card__kicker">{t('merch.madeBy')}</p>
       <h3>{item.name}</h3>
       <p>{item.does}</p>
+      {item.musicMark ? (
+        <p className="cs-merch-card__anthem">Interior anthem: {item.musicMark}. Not a public drop.</p>
+      ) : null}
       <span className="cs-merch-card__cue">{t('merch.viewPiece')}</span>
     </Link>
   )
