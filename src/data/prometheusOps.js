@@ -8,6 +8,8 @@ export const TABS = [
   { id: 'money', label: 'Unit economics' },
   { id: 'risk', label: 'Risk' },
   { id: 'plan', label: '90 days' },
+  { id: 'install', label: 'Install' },
+  { id: 'privacy', label: 'Privacy' },
   { id: 'outreach', label: 'Outreach' },
   { id: 'log', label: 'Night log' },
 ]
@@ -59,8 +61,8 @@ export const founderTodos = [
     owner: 'Eason',
     need: 'You',
     title: 'SAM.gov + NSF Project Pitch',
-    why: 'Phase I ceiling is $305k, no equity. Pitch is rolling; full proposals 27 Jul and 4 Nov 2026. Needs EIN.',
-    do: 'After entity: SAM.gov, then seedfund.nsf.gov Project Pitch. Draft is in Capital. You submit. Agent cannot.',
+    why: 'NSF 26-510 Phase I is up to $305k, no equity. The 27 Jul 2026 full-proposal deadline is already past. Next is 4 Nov 2026. Pitches are rolling; NSF says a response typically takes 1–2 months. Two pitches per company per 12 months. Do not invent eligibility.',
+    do: 'Incorporate first. Do not submit the pitch as if Prometheus Defense already exists. Pitch does not require SAM.gov; a full proposal does (SAM UEI, Research.gov, SBA Company Registry). PI must be >50% employed by the small business for the duration of the award — NSF treats other employment above 19.6 hours/week as conflicting. Student status may collide with that. Paste-ready fields are in Capital. You submit. Agent cannot.',
   },
   {
     id: 'e-broker',
@@ -76,7 +78,7 @@ export const founderTodos = [
     need: 'You',
     title: 'Authorize the garden-hose mule',
     why: 'A hose mule is a lab. It is not Sentinel. Confusing the two in a pitch is fatal.',
-    do: 'Yes/no: spend ~$800 on Lepton + Pi + solenoid + 12V pump on a hose bibb at the Sierra house. If yes, agent will spec the cart next.',
+    do: 'Yes/no on the Forge cart (~$800–850, vendor URLs verified 17 Aug 2026). If yes, buy it. Do not connect the mule to interior potable plumbing. Do not leave it armed unattended.',
   },
   {
     id: 'e-utah',
@@ -314,7 +316,7 @@ export const capital = [
   {
     name: 'NSF SBIR Phase I',
     amount: 'Up to $305k',
-    timing: 'Pitch rolling; full proposals 27 Jul & 4 Nov 2026',
+    timing: 'Pitch rolling; 27 Jul 2026 full-proposal window closed; next 4 Nov 2026, then 4 Mar and 7 Jul 2027',
     fit: 'Thermal+valve targeting, dual-cue FSM, water-mist for WUI dwellings. Deep tech, not an app.',
     catch: 'Needs small-business entity, SAM.gov, Project Pitch invitation. 10–20% historical hit rate.',
   },
@@ -369,13 +371,78 @@ export const capital = [
   },
 ]
 
-export const nsfPitch = `Company: Prometheus Defense (to be incorporated)
-Technology: Dual-cue (radiometric LWIR + listed-smoke interconnect) wall unit that confirms a residential fire and opens a directed, normally-unpressurized water circuit in under three seconds.
-Problem: NFPA 13D heads wait for a fusible element in the plume. In WUI ember attack and fast interior growth, that wait is the house. Notification cameras do not put water on the seat.
-Why NSF: The uncertainty is not “can a solenoid open.” It is reliable confirmation against cooking, sunlight, and pets, with a fail-closed valve, on household pressure, in a form an AHJ can someday list under UL 2167A / NFPA 750.
-Not claiming: We do not replace 13D. We do not replace UL 217 alarms. We do not humanoid-rescue in this award.
-Work: (1) Lepton 3.5 + visible false-alarm study, (2) formal FSM with lockout, (3) hose-bibb then plumbing mule, (4) FPE-scoped listing gap analysis vs Automist.
-Commercial: Direct to CA WUI homeowners and HOAs. Line two (Titan) and line three (Atlas) are out of scope.`
+/** NSF 26-510 Project Pitch fields. Limits from seedfund.nsf.gov/apply/project-pitch/ (characters, not words). */
+export const nsfMeta = {
+  solicitation: 'NSF 26-510',
+  solicitationUrl:
+    'https://www.nsf.gov/funding/opportunities/small-business-innovation-research-small-business-technology/nsf26-510/solicitation',
+  pitchUrl: 'https://seedfund.nsf.gov/apply/project-pitch/',
+  eligibilityUrl: 'https://seedfund.nsf.gov/solicitation-eligibility/',
+  phaseI: 'Up to $305,000 for 6–18 months, inclusive of TABA, I-Corps, fee, and indirects. Funds availability applies.',
+  deadlines:
+    'Full proposals due 5 p.m. submitting-organization local time: 27 Jul 2026 (passed), 4 Nov 2026, 4 Mar 2027, 7 Jul 2027.',
+  pitchRules:
+    'Invitation required before a Phase I proposal. Invitation valid for the next two deadlines after the invitation date. Typically 1–2 months for a pitch decision. One pitch under review at a time. Two pitches per company per 12 months. Three pitches total for the same project. SAM.gov is not required to pitch; it is required to submit a full proposal.',
+}
+
+export const nsfGates = [
+  'Do not submit until a U.S. for-profit small business exists. Do not type a company that is not incorporated.',
+  'Do not claim we are eligible. NSF: <500 employees including affiliates; ≥51% owned by U.S. citizens or permanent residents (or by such small businesses); R&D in the U.S.; no majority VC/PE/hedge ownership.',
+  'PI primary employment (>50% with the small business) is required at award, not at proposal submission. NSF treats other employment above 19.6 hours/week as conflicting. Eason’s student load has to be checked against that before you name a PI.',
+  'Do not submit Fast-Track. Fast-Track needs NSF research lineage, customer discovery, and a complete team. We have none of those.',
+  'Do not claim a hit rate. Do not claim NSF affiliation after a pitch, an invitation, or a decline.',
+]
+
+export const nsfFields = [
+  {
+    id: 'tech',
+    title: 'The Technology Innovation',
+    limit: 3500,
+    body: `The technical uncertainty is not whether a solenoid can open a water circuit. Residential fire suppression already does that with fusible sprinkler heads under NFPA 13D, and with at least one listed targeting water-mist unit (UL 2167A Outline of Investigation, 8 July 2024; Plumis Automist, UL file EX29276). The unsolved problem is reliable, fail-closed confirmation of a residential fire from radiometric longwave infrared fused with a listed-smoke-alarm interconnect, fast enough to wet the seat before a fusible element operates, without flooding the house from cooking, sunlight, pets, or a single noisy sensor.
+
+We propose research toward a wall-mounted, normally-unpressurized targeting water circuit for one- and two-family dwellings on the California wildland-urban interface. Dual FLIR Lepton-class radiometric modules (160x120, <50 mK NETD, 8.6 Hz exportable) watch a room. A visible camera is used only as a local false-alarm discriminator and is processed on-device. A listed household smoke-alarm interconnect is the second independent cue. A formal finite-state machine permits the valve to energize only in a confirmed SUPPRESS state. Any sensor, pump, or leak fault fails closed (no water) and raises a loud local alarm. UL 2167A is explicit that units of this type do not replace a household fire alarm; we treat that as a constraint.
+
+The R&D is the confirmation policy: radiometric thresholds and temporal filters that separate a stove plume from a structure fire, fusion with the smoke interconnect, and a lockout a homeowner cannot reboot away. Existing cameras notify. Existing heads wait for the plume. The gap is a measured, fail-closed decision that an authority having jurisdiction could someday evaluate under UL 2167A and NFPA 750. We do not claim NFPA 13D compliance or equivalence. We do not claim a listing. Phase I is to produce evidence that the confirmation problem is tractable.`,
+  },
+  {
+    id: 'objectives',
+    title: 'The Technical Objectives and Challenges',
+    limit: 3500,
+    body: `Phase I (6-18 months; up to $305,000 under NSF 26-510) has four technical objectives.
+
+O1. Dual-cue confirmation study. Collect labeled radiometric and visible sequences of cooking, toaster, candle, direct sun on a wall, space heater, pets, and staged safe heat sources in a garage or lab. Quantify false-positive rate of thermal-only versus thermal plus smoke-interconnect versus the proposed state machine. Success: a written threshold policy with a measured false-positive rate on a held-out set, and a documented failure reel.
+
+O2. Fail-closed finite-state machine on hardware. Implement eight states (BOOT, WATCH, SUSPECT, CONFIRM, SUPPRESS, HOLD, FAULT, LOCKOUT) on a Raspberry Pi 5-class mule with a Lepton 3.5 and a 12 V solenoid. The valve may energize only in SUPPRESS. Target: confirmed-cue to valve command under three seconds on the mule, with a log of every transition. Success: hardware tests of illegal-event rejection and lockout-until-technician.
+
+O3. Hose-bibb then plumbing mule. First water circuit is a garden-hose mule at household bibb pressure (typically 40-60 psi), not a pressure-washer pump. Second, if O1-O2 hold, a plumber-supervised connection with a check valve — still a lab, not a product. Success: timed spray, estimated volume, and a hard maximum duration.
+
+O4. Listing-gap analysis. Paid scoping with a California fire protection engineer against UL 2167A and the Automist AHJ-package shape. Success: a written gap list (sensors, DIOM, inspection, backflow) an NSF reviewer can read. We will not submit for listing in Phase I.
+
+Challenges: (a) Lepton 8.6 Hz and 160x120 are coarse — temporal integration and dual modules may be required; (b) smoke-interconnect timing versus thermal rise is unknown in WUI ember attack; (c) a mule is not a listed valve — lab parts will not be described as fire-service hardware; (d) two founders, no staff FPE — O4 is contracted. Titan (ground vehicle) and Atlas (humanoid) are out of scope.`,
+  },
+  {
+    id: 'market',
+    title: 'The Market Opportunity',
+    limit: 1750,
+    body: `Near-term customer: owner-occupants and estate managers of one- and two-family dwellings in California WUI counties (El Dorado, Placer, Los Angeles), including households that have already evacuated. Pain: notification cameras do not put water on the seat; NFPA 13D is not in every existing home; wildfire insurance is tightening and carriers want listed equipment and evidence, not gadgets. We will not promise premium cuts.
+
+Competition: Plumis Automist is already UL 2167A listed (EX29276). Residential sprinklers are code-driven and reactive. Consumer cameras notify. Our wedge, if we earn it, is pre-flame thermal confirmation plus fail-closed dual-cue on household plumbing for homes that will not retrofit 13D — not a claim that we replace 13D.
+
+Channel: founder-sold, licensed plumber install, manufacturer commissioning. Not Home Depot. Not an app. Line-two Titan and line-three Atlas are not this market.`,
+  },
+  {
+    id: 'team',
+    title: 'The Company and Team',
+    limit: 1750,
+    body: `Prometheus Defense is not yet incorporated. Founders: Eason Greene (Sierra Nevada / UC Berkeley student) and Chris Dawson (Los Angeles). No EIN, no SAM.gov UEI, no employees, no fire protection engineer on staff. This pitch must not be submitted until a U.S. small-business entity exists and the named PI can meet NSF's primary-employment rule for the award period.
+
+Technical work to date is internal: a Kenaz-gated research desk, a tested eight-state suppress finite-state machine, and a UL 2167A / NFPA 750 gap analysis versus Automist. No listing, no field installs, no government affiliation or endorsement.
+
+Team gaps we will name: fire protection engineer (contract), electrical/firmware, and a licensed installer channel. A Phase I SBIR budget would keep at least two-thirds of the work inside the small business, with FPE and listing-gap work as consultants. We are not Fast-Track eligible (no NSF research-lineage award).`,
+  },
+]
+
+export const nsfPitch = nsfFields.map((row) => `${row.title}\n\n${row.body}`).join('\n\n')
 
 export const emails = [
   {
@@ -474,6 +541,12 @@ export const nightLog = [
     entry:
       'Kenaz desk expanded: Founder queue (Eason-only), viability stack, code path, forge BOM, Atlas staged doctrine, capital map, cold drafts. Sentinel FSM tested. Public language “any situation” parked as forbidden.',
   },
+  {
+    t: '2026-08-17 10:15 PT',
+    who: 'Agent',
+    entry:
+      'Next artifacts: hose-bibb mule shopping list with live vendor URLs (Forge), NSF 26-510 four-field paste block (Capital; 27 Jul window closed, 4 Nov next), dated 90-day calendar from 17 Aug, install/service model plus false-discharge SOP (Install), in-home telemetry/privacy spec (Privacy, Kenaz only). Titan 2,800 PSI language pulled off the internal systems blurb.',
+  },
 ]
 
 export const muleTotal = forge.muleBom.reduce((n, row) => n + row.est, 0)
@@ -534,8 +607,8 @@ export const ninetyDay = [
     window: 'Weeks 6–10',
     theme: 'Capital',
     items: [
-      'SAM.gov registration, then NSF Project Pitch.',
-      'If the pitch is invited, target the 4 Nov 2026 full proposal.',
+      'SAM.gov registration after the entity exists, then NSF Project Pitch. The 27 Jul 2026 full-proposal window is closed. Target 4 Nov 2026 only if a pitch invitation arrives in time (NSF: typically 1–2 months).',
+      'If the invitation misses November, the next full-proposal dates are 4 Mar 2027 and 7 Jul 2027. Do not rush a dishonest pitch to catch November.',
       'Do not open a friends round until the mule video exists.',
     ],
   },
@@ -571,7 +644,7 @@ export const risks = [
     risk: 'Cameras inside homes',
     severity: 'High',
     control:
-      'This is the blind spot nobody flags. Thermal plus visible imaging inside a residence is a surveillance product unless you design against it. Process on-device, retain nothing by default, no cloud video without explicit opt-in, and publish the policy before the first install.',
+      'This is the blind spot nobody flags. Thermal plus visible imaging inside a residence is a surveillance product unless you design against it. Process on-device, retain nothing by default, no cloud video without explicit opt-in, and publish the policy before the first install. Spec is on the Privacy tab. Do not put it on the public site as if it were shipping.',
   },
   {
     id: '04',
@@ -601,3 +674,344 @@ export const risks = [
       'They are listed and we are not. Differentiate on WUI ember threat and pre-flame thermal confirmation, or concede the interior-mist category and pick a different wedge. Do not pretend they are not there.',
   },
 ]
+
+/** Dated from 17 Aug 2026. Owner column is who has to move that week. */
+export const ninetyDayCalendar = [
+  {
+    dates: '17–23 Aug 2026',
+    week: '01',
+    owner: 'Eason + Chris',
+    items: [
+      'Start entity + IP assignment. NSF November is already tight without an EIN.',
+      'Buy the hose-bibb gauge from the Forge cart and photograph static PSI at the Sierra bibb and one interior fixture.',
+      'Order the mule cart (or explicitly refuse the spend).',
+      'Buy the UL 2167A outline (shopulstandards.com UniqueKey=46789).',
+    ],
+  },
+  {
+    dates: '24–30 Aug 2026',
+    week: '02',
+    owner: 'Eason',
+    items: [
+      'Pi 5 + Lepton 3.5 + PureThermal Mini on the bench. USB UVC first, not custom SPI.',
+      'If the entity exists, open the NSF Project Pitch and paste Capital fields. Do not submit a fictional company.',
+      'Draft, do not send, the fire-captain email with a real name.',
+    ],
+  },
+  {
+    dates: '31 Aug–13 Sep 2026',
+    week: '03–04',
+    owner: 'Eason',
+    items: [
+      'Hose-bibb mule: detect → confirm → valve, logged, on video. Fail-closed on fault.',
+      'Hard maximum spray duration on the mule. Physical shutoff you can reach without software.',
+    ],
+  },
+  {
+    dates: '14–27 Sep 2026',
+    week: '05–06',
+    owner: 'Eason',
+    items: [
+      'False-alarm gauntlet: stove, toaster, candle, sun on a wall, space heater, dog.',
+      'First fire-service conversation. Feedback, not sign-off.',
+    ],
+  },
+  {
+    dates: '28 Sep–11 Oct 2026',
+    week: '07–08',
+    owner: 'Eason',
+    items: [
+      'Paid FPE scoping call (CA, NFPA 13D or 750).',
+      'If the pitch is still unanswered, wait. Do not send a second pitch while one is under review.',
+    ],
+  },
+  {
+    dates: '12 Oct–1 Nov 2026',
+    week: '09–11',
+    owner: 'Eason + Chris',
+    items: [
+      'NSF 4 Nov 2026 full proposal exists only with an invitation, SAM.gov UEI, Research.gov, and SBA Company Registry. If any of those are missing, skip November.',
+      'Walk Chris through this desk. Sentinel is Model One. Atlas is not the raise.',
+    ],
+  },
+  {
+    dates: '2–15 Nov 2026',
+    week: '12–13',
+    owner: 'Both',
+    items: [
+      'Go/no-go on plumbing-integrated prototype versus staying on a hose circuit.',
+      'Write the stop condition. If the mule cannot tell a stove from a structure fire, stop.',
+    ],
+  },
+]
+
+/**
+ * Shoppable mule cart. Prices checked 17 Aug 2026 against live product pages.
+ * A Pi 5 8GB now lists at $175 (PiShop / Raspberry Pi brief). 4GB keeps the cart near $800.
+ */
+export const muleCart = {
+  verified: '17 Aug 2026',
+  caveat:
+    'Lab mule for a hose bibb. Not Sentinel. Not listed. Not potable-plumbing. Prices move; tax and shipping are extra. Adafruit 997 is 1/2 in. NPS plastic with a 3 PSI minimum — household bibb pressure is enough. Do not buy a 2,800 PSI washer pump.',
+  doNot:
+    'DO NOT: tie this into interior potable plumbing, leave it armed unattended, claim UL or NFPA 13D, use a pressure-washer pump, or pitch this cart as the product.',
+  rows: [
+    {
+      item: 'Raspberry Pi 5 4GB (mule default)',
+      sku: 'Adafruit 5812',
+      vendor: 'Adafruit',
+      url: 'https://www.adafruit.com/product/5812',
+      est: 130,
+      note: '4GB is enough for Lepton UVC + Camera Module 3 + FSM. 8GB Adafruit 5813 was $200 the same day; official list $175 at PiShop.',
+    },
+    {
+      item: 'Raspberry Pi 5 8GB (optional headroom)',
+      sku: 'SC1112 / PiShop 8GB-9028',
+      vendor: 'PiShop.us (authorized)',
+      url: 'https://www.pishop.us/product/raspberry-pi-5-8gb/',
+      est: 175,
+      note: 'Do not buy both. Official Raspberry Pi brief lists 8GB at $175, 4GB at $110. Skip this line if you take the 4GB.',
+      optional: true,
+    },
+    {
+      item: 'Official 27W USB-C PD PSU (US, 5.1V 5A)',
+      sku: 'Raspberry Pi 27W',
+      vendor: 'CanaKit',
+      url: 'https://www.canakit.com/official-raspberry-pi-5-power-supply-27w-usb-c.html',
+      est: 13,
+      note: 'Canonical spec page: https://www.raspberrypi.com/products/27w-power-supply/ — CanaKit had the US SKU at $12.95.',
+    },
+    {
+      item: 'Raspberry Pi Camera Module 3 (standard)',
+      sku: 'Camera Module 3',
+      vendor: 'Raspberry Pi',
+      url: 'https://www.raspberrypi.com/products/camera-module-3/',
+      est: 25,
+      note: 'From $25. Visible discriminator only. On-device. Do not stream this off the property.',
+    },
+    {
+      item: 'Pi 5 camera cable (22-way to 15-way, 200mm)',
+      sku: 'Standard–Mini 200mm',
+      vendor: 'Raspberry Pi',
+      url: 'https://www.raspberrypi.com/products/camera-cable/',
+      est: 5,
+      note: 'Pi 5 uses a different FPC than Pi 4. The camera will not talk without this cable.',
+    },
+    {
+      item: 'FLIR Lepton 3.5 radiometric 160×120 57°',
+      sku: '500-0771-01',
+      vendor: 'GroupGets / Teledyne FLIR OEM',
+      url: 'https://groupgets.com/products/flir-lepton-3-5',
+      est: 164,
+      note: 'OEM page https://oem.flir.com/products/lepton/?model=500-0771-01 also $164. NDAA, ITAR-free, 8.6 Hz exportable. GroupGets emails an end-use statement.',
+    },
+    {
+      item: 'PureThermal Mini USB (Lepton UVC breakout)',
+      sku: 'PURETHERMAL-MINI-USB',
+      vendor: 'GroupGets',
+      url: 'https://groupgets.com/products/purethermal-mini-usb',
+      est: 115,
+      note: 'Plug-and-play UVC on Linux. Faster than SPI breakout for a mule. Board was in stock 17 Aug 2026 at $114.99. Lepton sold separately.',
+    },
+    {
+      item: 'SEAFLO 12V diaphragm pump 3.0 GPM / 55 PSI shut-off',
+      sku: 'SFDP1-030-055-42',
+      vendor: 'Home Depot',
+      url: 'https://www.homedepot.com/p/SEAFLO-12-Volt-3-0-GPM-0-064-HP-Variable-Flow-Water-Pressure-Diaphragm-Pump-SFDP1-030-055-42/312082230',
+      est: 60,
+      note: 'Household-pressure class. Max draw ~7 A. Not 2,800 PSI. Manufacturer: seaflo.com 42-series.',
+    },
+    {
+      item: 'Plastic 12V water solenoid, 1/2 in. NPS',
+      sku: 'Adafruit 997',
+      vendor: 'Adafruit',
+      url: 'https://www.adafruit.com/product/997',
+      est: 7,
+      note: 'Normally closed. 3 PSI minimum, one-way flow, ~320 mA at 12V. Lab only, not food-safe, not a listed fire valve. Brass BSP alt: Adafruit 996 at $24.95 if the plastic weeps.',
+    },
+    {
+      item: 'N-channel MOSFET 30V/60A (valve + pump switch)',
+      sku: 'Adafruit 355',
+      vendor: 'Adafruit',
+      url: 'https://www.adafruit.com/product/355',
+      est: 2,
+      note: 'Drive from 3.3V GPIO. You still need a 1N4001 kickback diode across the solenoid coil. Adafruit 755 (10-pack) was out of stock 17 Aug 2026 — buy 1N4001 from DigiKey or Mouser (~$2).',
+    },
+    {
+      item: 'Bioenno 12V 12Ah LiFePO4 + 2A charger',
+      sku: 'BLF-1212A',
+      vendor: 'Bioenno Power',
+      url: 'https://www.bioennopower.com/products/12volt-12ah-lifepo4-battery',
+      est: 165,
+      note: 'Battery-only $124.99; use the Battery+Charger(2A) option on the same page. 14.6V LiFePO4 charger only — not an SLA charger. Pump and solenoid ride this pack, not the Pi PSU.',
+    },
+    {
+      item: 'Orbit 0–200 PSI hose-end pressure gauge',
+      sku: '26268',
+      vendor: 'Home Depot',
+      url: 'https://www.homedepot.com/p/Orbit-0-200-PSI-Hose-End-Water-Pressure-Gauge-26268/205074399',
+      est: 15,
+      note: 'This is also the founder PSI task. Photograph static pressure at the bibb, then one sink. Typical CA homes 40–60 psi at the tap.',
+    },
+    {
+      item: 'IP66 weatherproof enclosure (Pi + MOSFET, not the pump)',
+      sku: 'Adafruit 905',
+      vendor: 'Adafruit',
+      url: 'https://www.adafruit.com/product/905',
+      est: 20,
+      note: '125×175×75 mm, clear lid. Pump and battery stay outside the box. Add a PG-7 gland if you split cables.',
+    },
+    {
+      item: 'Hose, check valve, 1/2 in. fittings, 10A fuse, wire',
+      sku: 'Hardware aisle',
+      vendor: 'Local plumbing / electrical',
+      url: 'https://www.homedepot.com/b/Plumbing/N-5yc1vZbqpw',
+      est: 55,
+      note: '25 ft hose, 1/2 in. NPS adapters for Adafruit 997, brass in-line check, blade fuse + holder, 16 AWG. Do not remove the bibb vacuum breaker.',
+    },
+  ],
+}
+
+export const muleCartCore = muleCart.rows.filter((row) => !row.optional)
+export const muleCartTotal = muleCartCore.reduce((n, row) => n + row.est, 0)
+
+export function formatMuleCart() {
+  const lines = [
+    'HOSE-BIBB MULE — ORDER LIST',
+    `Lab only. Not Sentinel. Not listed. Prices checked ${muleCart.verified}.`,
+    muleCart.caveat,
+    '',
+  ]
+  for (const row of muleCartCore) {
+    lines.push(row.item)
+    lines.push(`  ${row.sku}  ·  ${row.vendor}  ·  ~$${row.est}`)
+    lines.push(`  ${row.url}`)
+    lines.push(`  ${row.note}`)
+    lines.push('')
+  }
+  const eight = muleCart.rows.find((row) => row.optional)
+  if (eight) {
+    lines.push('OPTIONAL 8GB INSTEAD OF 4GB')
+    lines.push(`  ${eight.sku}  ·  ${eight.vendor}  ·  ~$${eight.est}`)
+    lines.push(`  ${eight.url}`)
+    lines.push(`  ${eight.note}`)
+    lines.push('')
+  }
+  lines.push(`ESTIMATED CORE TOTAL  ~$${muleCartTotal}  (tax/shipping extra)`)
+  lines.push(muleCart.doNot)
+  return lines.join('\n')
+}
+
+export const installModel = {
+  status:
+    'Draft operating model for a future listed product. Sentinel is not UL listed. Do not sell installs. Do not tell a homeowner this is a code sprinkler.',
+  sources: [
+    {
+      name: 'UL Solutions on targeting residential water mist',
+      url: 'https://www.ul.com/thecodeauthority/knowledge/water-mist-fire-protection-one-and-two-family-homes',
+      take: 'For the listed class, installation, commissioning, and annual maintenance are to be done only by people qualified by the manufacturer. Evaluated for one- and two-family dwellings; ceiling-height limit in that write-up is 8 ft.',
+    },
+    {
+      name: 'Automist / IFC 904.11.3 analog (they are listed; we are not)',
+      url: 'https://automist.us/faq/can-automist-be-approved-as-an-alternative-to-a-13d-sprinkler-system/',
+      take: 'Where an AHJ applies IFC/CFC 904.11.3, water mist is maintained to NFPA 25: nozzles inspected annually and the system operated annually per the manufacturer DIOM. That is the obligation we inherit if we ever list. It is not a claim we hold the listing.',
+    },
+    {
+      name: 'California C-36 plumbing contractor',
+      url: 'https://www.cslb.ca.gov/About_Us/Library/Licensing_Classifications/C-36_Plumbing.aspx',
+      take: 'A connection to potable supply is plumbing. In California that is a licensed C-36, plus local permit and listed backflow prevention. Founders do not DIY a house into a product.',
+    },
+  ],
+  roles: [
+    {
+      who: 'Licensed plumber (CA C-36 or local equivalent)',
+      does: 'Permit, tap, isolation valve, listed backflow, drain, labeling. Owns the potable-water interface. Does not program the unit and does not declare it listed.',
+    },
+    {
+      who: 'Prometheus commissioning (manufacturer-qualified, once we have a DIOM)',
+      does: 'Mount, aim, interconnect to listed smoke alarms, FSM self-test, flow-duration cap, homeowner abort, event-log sample, privacy defaults on. Signs a commissioning sheet. Until we have a qualification program, only founders commission the mule — and only on a bibb.',
+    },
+    {
+      who: 'Homeowner',
+      does: 'Knows the physical shutoff. Keeps listed smoke alarms. Calls 911 on fire. Does not reboot a FAULT into WATCH.',
+    },
+    {
+      who: 'AHJ / inspector',
+      does: 'Accepts or refuses the system. Until we are listed, there is nothing for them to accept as 904.11 equipment.',
+    },
+  ],
+  annual: [
+    'Visual: nozzle, leaks, mounting, labels, shutoff reach.',
+    'Power: mains present, backup pack health, heartbeat log for the prior year.',
+    'Sensors: thermal self-test, visible lens clean, smoke-interconnect continuity. Not a substitute for listed-alarm testing.',
+    'Water: operate the circuit per the (future) DIOM into a catch, confirm volume estimate, confirm fail-closed.',
+    'Who: manufacturer-qualified person, not a random handy person, not a Ring installer.',
+    'Until listed: no paid inspection product. Do not invoice homeowners for a listing we do not hold.',
+  ],
+  falseDischarge: {
+    label: 'DRAFT SOP — false discharge / unintended water',
+    steps: [
+      'If there is fire or smoke, 911 first. This SOP is for water where there is no fire.',
+      'Hit the physical shutoff. Do not debug in software while water is moving.',
+      'The unit must go FAULT then LOCKOUT. A reboot is not a reset. Technician only.',
+      'Contain: towels, move electronics, shut the home water main if the isolation valve failed.',
+      'Estimate volume: pump rating × open time from the log, then photograph the standing water. Phone photos. Not Sentinel video.',
+      'Export the event packet: timestamps, FSM states, event class, zone/unit ID, estimated gallons, abort/fault flags. No frames, no faces.',
+      'Notify the homeowner in person or by phone. Then, if a policy exists, the carrier — with the packet, not a video dump.',
+      'Water-damage mitigation is a restoration contractor. We do not dry houses.',
+      'Root cause on the Kenaz desk before the unit is ever re-armed. Dual-cue logs only.',
+      'Never tell the homeowner insurance will pay. Never blame them. Never leave the unit armed.',
+    ],
+  },
+}
+
+export const privacySpec = {
+  status:
+    'Internal design intent for a future in-home unit. Not a shipping privacy policy. Not a public-site claim. Not CCPA certification.',
+  default:
+    'On-device. The unit must be able to watch, confirm, and (if ever authorized) open a valve with no cloud and no account. If the network is down, the FSM still runs.',
+  rules: [
+    {
+      id: '01',
+      title: 'No cloud video without opt-in',
+      body: 'Thermal and visible frames are processed in RAM on the device. They are discarded after the decision unless the owner has explicitly opted into event-clip upload. Opt-in is per household, written, revocable. Default is off.',
+    },
+    {
+      id: '02',
+      title: 'Visible camera is a discriminator, not a nanny cam',
+      body: 'The visible sensor exists to reject stoves, sun, and pets. It is not a viewing product. No live view in an app. No audio. No night-vision marketing.',
+    },
+    {
+      id: '03',
+      title: 'Thermal is still imaging',
+      body: 'Radiometric frames can outline a person. Treat them as personal data, not as “just heat.” Same retention as visible.',
+    },
+    {
+      id: '04',
+      title: 'What we store by default',
+      body: 'Event log only: UTC timestamp, unit/zone ID, FSM state transitions, event class (suspect / confirm / suppress / abort / fault / lockout), spray duration, estimated volume, self-test heartbeat, firmware hash. Retention target: 3 years for incident logs, 90 days for heartbeats. No frames in that log.',
+    },
+    {
+      id: '05',
+      title: 'What insurers actually need',
+      body: 'A claims packet is timestamps, event class, duration, estimated gallons, and whether the valve commanded open. It is not video. Do not volunteer footage. If a carrier later demands a clip, that is a legal process plus owner consent — not a product feature.',
+    },
+    {
+      id: '06',
+      title: 'Opt-in clips, if ever',
+      body: 'If an owner opts in: clip window is 30 seconds before confirm through 30 seconds after hold. Encrypted at rest. Delete 72 hours after upload unless the owner freezes a claim. We do not train models on customer homes.',
+    },
+    {
+      id: '07',
+      title: 'Access and deletion',
+      body: 'Owner can export the event log. Owner can request deletion of clips. Incident logs needed for a live claim or a safety investigation are retained until that matter closes. California residents get a real CCPA/CPRA notice before any install — written later with counsel, not invented here.',
+    },
+    {
+      id: '08',
+      title: 'Kids’ rooms and bathrooms',
+      body: 'No unit in a bathroom. Visible sensor disabled in any room the owner marks as a child’s room; thermal-only. That marking is local, not a cloud profile.',
+    },
+  ],
+  publicSite:
+    'Do not put this spec on prometheusdefense.com as if it were a live product policy. The public site may say we do not operate in-home cameras today. It may not promise a certified privacy program we have not built.',
+}

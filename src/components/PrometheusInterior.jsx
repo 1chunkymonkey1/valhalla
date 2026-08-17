@@ -18,11 +18,20 @@ import {
   codePath,
   emails,
   forge,
+  formatMuleCart,
   founderTodos,
+  installModel,
+  muleCart,
+  muleCartTotal,
   muleTotal,
   nightLog,
   ninetyDay,
+  ninetyDayCalendar,
+  nsfFields,
+  nsfGates,
+  nsfMeta,
   nsfPitch,
+  privacySpec,
   risks,
   unitEconomics,
   viability,
@@ -267,15 +276,42 @@ export default function PrometheusInterior({ onLock }) {
             </div>
           </section>
           <section className="pm-hall__block">
-            <p className="pm-mono pm-hall__kicker">{`// HOSE MULE BOM  ·  ~$${muleTotal}`}</p>
-            <div className="pm-hall__stack">
-              {forge.muleBom.map((row) => (
-                <article key={row.item} className="pm-hall__row">
-                  <h3>{row.item}</h3>
-                  <p>${row.est}</p>
-                </article>
-              ))}
+            <p className="pm-mono pm-hall__kicker">{`// HOSE MULE CART  ·  CORE ~$${muleCartTotal}  ·  CHECKED ${muleCart.verified}`}</p>
+            <h2 className="pm-display pm-hall__title">Buy this. It is a lab. It is not Sentinel.</h2>
+            <p className="pm-hall__lede">{muleCart.caveat}</p>
+            <div className="pm-table-wrap">
+              <table className="pm-cart">
+                <thead>
+                  <tr>
+                    <th>Part</th>
+                    <th>Vendor</th>
+                    <th>Est.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {muleCart.rows.map((row) => (
+                    <tr key={row.item} className={row.optional ? 'is-optional' : ''}>
+                      <td>
+                        <strong>{row.item}</strong>
+                        <span className="pm-mono">{row.sku}</span>
+                        <p>{row.note}</p>
+                        <a href={row.url} target="_blank" rel="noreferrer">
+                          {row.url}
+                        </a>
+                      </td>
+                      <td>{row.vendor}</td>
+                      <td>~${row.est}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
+            <p className="pm-hall__lede">
+              Core cart (skip the 8GB line): ~${muleCartTotal}. Older round-number BOM still sums to ~${muleTotal} and
+              is stale on the Pi. Use the cart.
+            </p>
+            <p className="pm-hall__lede">{muleCart.doNot}</p>
+            <CopyBlock label="Copy-paste order list" text={formatMuleCart()} />
             <p className="pm-hall__lede">{forge.cushman.fact}</p>
             <p className="pm-hall__lede">{forge.cushman.use}</p>
           </section>
@@ -339,7 +375,25 @@ export default function PrometheusInterior({ onLock }) {
               </article>
             ))}
           </div>
-          <CopyBlock label="NSF Project Pitch draft" text={nsfPitch} />
+          <CopyBlock label="NSF Project Pitch — all four fields" text={nsfPitch} />
+          <p className="pm-hall__lede">
+            {nsfMeta.solicitation}. {nsfMeta.phaseI} {nsfMeta.deadlines} {nsfMeta.pitchRules}
+          </p>
+          <p className="pm-mono pm-hall__kicker">
+            PORTAL {nsfMeta.pitchUrl} · ELIGIBILITY {nsfMeta.eligibilityUrl}
+          </p>
+          <ul className="pm-list pm-list--plain">
+            {nsfGates.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+          {nsfFields.map((row) => (
+            <CopyBlock
+              key={row.id}
+              label={`${row.title} · ${row.body.length}/${row.limit} chars`}
+              text={row.body}
+            />
+          ))}
         </section>
       ) : null}
 
@@ -408,6 +462,86 @@ export default function PrometheusInterior({ onLock }) {
               </article>
             ))}
           </div>
+          <p className="pm-mono pm-hall__kicker">{'// DATED CALENDAR · FROM 17 AUG 2026'}</p>
+          <div className="pm-hall__stack">
+            {ninetyDayCalendar.map((row) => (
+              <article key={row.week} className="pm-hall__row">
+                <div>
+                  <p className="pm-mono pm-hall__id">
+                    {row.week} {row.dates}
+                  </p>
+                  <h3 className="pm-display">{row.owner}</h3>
+                </div>
+                <ul className="pm-list pm-list--plain">
+                  {row.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {tab === 'install' ? (
+        <section className="pm-hall__block">
+          <p className="pm-mono pm-hall__kicker">{'// INSTALL · COMMISSION · INSPECT · FALSE DISCHARGE'}</p>
+          <h2 className="pm-display pm-hall__title">A plumber opens the pipe. We commission. Nobody DIY-lists this.</h2>
+          <p className="pm-hall__lede">{installModel.status}</p>
+          <div className="pm-hall__stack">
+            {installModel.roles.map((row) => (
+              <article key={row.who} className="pm-hall__row">
+                <h3 className="pm-display">{row.who}</h3>
+                <p>{row.does}</p>
+              </article>
+            ))}
+          </div>
+          <p className="pm-mono pm-hall__kicker">ANNUAL INSPECTION — UL 2167A-CLASS OBLIGATION, NOT OUR LISTING</p>
+          <ul className="pm-list pm-list--plain">
+            {installModel.annual.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+          <div className="pm-hall__stack">
+            {installModel.sources.map((row) => (
+              <article key={row.name} className="pm-hall__row">
+                <div>
+                  <h3 className="pm-display">{row.name}</h3>
+                  <p className="pm-hall__stance">
+                    <a href={row.url} target="_blank" rel="noreferrer">
+                      {row.url}
+                    </a>
+                  </p>
+                </div>
+                <p>{row.take}</p>
+              </article>
+            ))}
+          </div>
+          <CopyBlock
+            label={installModel.falseDischarge.label}
+            text={installModel.falseDischarge.steps.map((step, i) => `${i + 1}. ${step}`).join('\n')}
+          />
+        </section>
+      ) : null}
+
+      {tab === 'privacy' ? (
+        <section className="pm-hall__block">
+          <p className="pm-mono pm-hall__kicker">{'// TELEMETRY · KENAZ ONLY · NOT A PUBLIC CLAIM'}</p>
+          <h2 className="pm-display pm-hall__title">Insurers need a log. They do not need a movie.</h2>
+          <p className="pm-hall__lede">{privacySpec.status}</p>
+          <p className="pm-hall__lede">{privacySpec.default}</p>
+          <div className="pm-hall__stack">
+            {privacySpec.rules.map((row) => (
+              <article key={row.id} className="pm-hall__row">
+                <div>
+                  <p className="pm-mono pm-hall__id">{row.id}</p>
+                  <h3 className="pm-display">{row.title}</h3>
+                </div>
+                <p>{row.body}</p>
+              </article>
+            ))}
+          </div>
+          <p className="pm-hall__lede">{privacySpec.publicSite}</p>
         </section>
       ) : null}
 

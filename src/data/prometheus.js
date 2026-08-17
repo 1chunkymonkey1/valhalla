@@ -8,8 +8,8 @@ export const systems = [
   {
     id: '02',
     name: 'TITAN',
-    klass: 'Autonomous Ground Defense Unit',
-    body: 'Tracked rover for perimeter and fire line. 2,800 PSI water plus Class-A retardant. Autonomous via LiDAR and thermal, or remote command.',
+    klass: 'Ground Defense Unit — in design',
+    body: 'Tracked ground unit for the structure perimeter and estate drive. Water plus Class-A foam from an onboard tank. Remote command first; autonomy staged. Slope and monitor pressure are test targets, not brochure facts — not 40°, not 2,800 PSI.',
   },
   {
     id: '03',
