@@ -124,6 +124,12 @@ propulsion) · Dandelion Energy (Holm geothermal) · QJ Motor USA via SSR Motors
 
 ---
 
+## Updates after capture
+
+**2026-08-17 — Noah and Micah / Maren-go / Escapes (founder note).** Noah and Micah work at [Maren-go](https://www.maren-go.com/) (airfield operating system; autonomous ground vehicles). They intend to build a robot that assesses hiking-trail traversability for a named lane **Escapes**. People-relationship only. Not a partnership, vendor, or closed deal. Escapes is not a hall. Do not merge them with archive “Wagners” / “Noka twins” until Eason confirms. Full note: `docs/partners/maren-go-noah-micah-escapes.md`.
+
+---
+
 ## Source archive
 
 `~/Desktop/Valhalla/Council/` — 20 agent folders. Athena's is the only one unzipped;
