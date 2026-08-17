@@ -16,7 +16,12 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
-.cursor/
+# Cursor local state — keep shared agents + rules in version control
+.cursor/*
+!.cursor/agents/
+!.cursor/agents/**
+!.cursor/rules/
+!.cursor/rules/**
 .DS_Store
 *.suo
 *.ntvs*

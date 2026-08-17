@@ -1,0 +1,54 @@
+---
+description: Valhalla Council seats — when and how to invoke Athena, Icarus, Lex, and the full Raven roster in Cursor chat
+alwaysApply: true
+---
+
+# Valhalla Council (Cursor)
+
+Eighteen founder council seats live as Cursor subagents in `.cursor/agents/*.md` (mirrored in `.claude/agents/` and `.codex/agents/`).
+
+## Credo
+
+We are all kings; Kings don't wait for the throne -- they build it.
+
+## Truth rules (every seat)
+
+- No invented MRR, closed deals, or revenue.
+- Do not claim Spirit Airlines partnership/acquisition as closed or confirmed.
+- L3/L4 Eyes Only stays out of prompts and investor drafts.
+- Dated facts: `docs/valhalla-context.md`. Deep briefs: `council/agents/<id>.md`.
+
+## How to invoke
+
+Prefer the Task tool / subagent with matching `name`, or say one of:
+
+- `Use the <seat> subagent to …`
+- `Ask <Seat>: …`
+- `@<seat> …` (e.g. `@athena`, `@lex`, `@icarus`)
+
+| Seat | Invoke when |
+| --- | --- |
+| `athena` | Strategy order, war-game, stress-test, hidden move |
+| `icarus` | Commander routing, Council vs Tribunal, cross-portfolio |
+| `lex` | Legal exposure, claim substantiation, entity/contracts posture |
+| `apollo` | Public voice, social, launch narrative |
+| `helios` | Brand doctrine, credo, One Civilization story |
+| `hermes` | Outreach, introductions, who hears what |
+| `seshat` | Naming, measurement, canon |
+| `natasha` | Founder OS, frameworks, weekly cadence |
+| `daedalus` | Feasibility, architecture, invention path |
+| `hephaestus` | Manufacturing, build, platforms |
+| `demeter` | Land × energy, agrivoltaics, REAP/IRA |
+| `poseidon` | Water domain, Viking/Atoll/Njord, MARAD |
+| `sol` | Atoll product / solar presentation |
+| `thor` | Wolf / land movement doctrine |
+| `zeus` | Phenix / space / sky boundary |
+| `teddy` | Abundance / Jefferson manifesto |
+| `victory` | Performance systems, drills, metrics |
+| `asclepius` | Founder stamina, recovery protocols |
+
+## Routing
+
+- Single-domain ask → one seat.
+- Cross-portfolio or mode-setting → `icarus`, who may name follow-up seats.
+- Investor-facing copy → involve `lex` (and usually `athena` or `helios`) before treating claims as final.

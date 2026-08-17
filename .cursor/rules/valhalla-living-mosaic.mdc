@@ -1,0 +1,459 @@
+---
+description: Build the Valhalla Living Mosaic launch experience
+alwaysApply: false
+---
+
+# Valhalla Living Mosaic: Complete Build Specification
+
+Build a premium, single-page launch experience called the **Valhalla White Hub**.
+
+It starts as a nearly empty warm-white page with a countdown. Over time, twelve company portals are constructed by pairs of tiny white pixels. The pixels behave like carefully controlled cellular life: they build shimmering frames from elemental material. Once a frame completes, its image is revealed. Five seconds later, a minimal click cue appears below it. Clicking opens that company’s full-screen experience.
+
+This must feel like a civilization quietly assembling itself from real material. It must not feel like a card grid, dashboard, particle demo, NFT collection, cyberpunk UI, or generic startup site.
+
+## Non-negotiable grid
+
+The grid is **4 columns × 3 rows**.
+
+Columns are the domains:
+
+```text
+LAND | WATER | AIR | SPACE
+```
+
+Rows are the pillars:
+
+```text
+MOVEMENT
+HABITATION
+SUBSTRATE
+```
+
+Exact placement:
+
+```text
+                    LAND        WATER       AIR        SPACE
+
+MOVEMENT           Wolf        Viking      Eagle      Phenix
+HABITATION         Holm        Atoll       Olympus    Aether
+SUBSTRATE          Demeter     Njord       Aeolus     Corvus
+```
+
+Do not reorder this matrix.
+
+Image portals are approximately 3:2.
+
+- Preferred source images: 1200×800 or 820×558.
+- Desktop gap between portals: 28–32px.
+- Use intentional placeholders for every missing image.
+- Wolf is the first production-ready image slot.
+
+## Launch reveal order
+
+Visual placement and reveal order are different.
+
+The first launch block reveals the first two domain columns, top to bottom:
+
+```text
+1. Wolf
+2. Holm
+3. Demeter
+4. Viking
+5. Atoll
+6. Njord
+```
+
+The second launch block begins at 2:00 PM and reveals:
+
+```text
+7. Eagle
+8. Olympus
+9. Aeolus
+10. Phenix
+11. Aether
+12. Corvus
+```
+
+Each company is revealed 20 minutes after the previous company within its block.
+
+Initial first-block cadence:
+
+```text
+Wolf frame completes:      T−40:00
+Holm frame completes:      T−20:00
+Demeter frame completes:   T−00:00
+Viking frame completes:    T+20:00
+Atoll frame completes:     T+40:00
+Njord frame completes:     T+60:00
+```
+
+The second block repeats the same vertical-column cadence at 2:00 PM:
+
+```text
+Eagle → Olympus → Aeolus → Phenix → Aether → Corvus
+```
+
+The schedule must be configurable from one source of truth. Do not hard-code animation timing in components.
+
+## Experience phases
+
+### 1. Dormant white hub
+
+Before a portal begins construction:
+
+- Background: warm off-white `#F7F7F3`
+- Very faint film grain / paper texture
+- Minimal countdown
+- Empty portal space may be subtly implied but must not appear as visible boxes
+- No loud navigation
+- No visible cards
+- No text inside the future image areas
+
+### 2. Two-pixel construction ritual
+
+Each portal begins with exactly two white builder pixels.
+
+- Pixel A appears first.
+- Pixel B appears a moment later and finds Pixel A.
+- Both are 2–3px on desktop, slightly larger on mobile.
+- They move along an invisible, deterministic path around the future portal.
+- They leave temporary pale-white construction traces.
+- Their movement should feel like a designed version of Conway’s Game of Life: cellular, curious, alive, but not random.
+- Do not use literal Conway simulation.
+- Use deterministic seeded paths, so every company retains its own recognizable construction behavior and always completes precisely on schedule.
+- Each build ritual lasts 12–18 seconds at live speed.
+- The white traces become the elemental frame.
+- The frame completes first.
+- The image appears under a thin white veil.
+- The veil dissolves over 1.5–2.5 seconds.
+- Five seconds after image reveal, show the tiny click cue beneath the portal.
+
+### 3. Revealed portal
+
+Once revealed:
+
+- The image is the emotional center.
+- The frame has a quiet idle animation.
+- Hover reveals subtle micro-detail in the frame.
+- Image contrast rises only 1–2% on hover.
+- The company name can fade in beneath the portal.
+- No buttons.
+- The click cue is a 6–8px dot, notch, or short rule beneath the image.
+- Before reveal, portals cannot be clicked.
+- After reveal, each portal is keyboard accessible and opens with Enter/Space.
+
+## Living elemental frame systems
+
+Frames are living worlds at the edge of each image, not flat decorative borders.
+
+At ordinary viewing scale, they should be approximately 10px thick, with a restrained 2–4px glow or atmospheric bleed. On hover or close inspection, intricate micro-details emerge.
+
+### Land column: Wolf, Holm, Demeter
+
+Palette:
+
+```text
+forest green
+deep evergreen
+moss
+wet stone
+oxidized bronze
+muted gold
+```
+
+Frame behavior:
+
+- Delicate miniature vines grow along corners and edges.
+- Tiny leaf movement and sparse pollen-like gold motes.
+- Occasional rain-catching shimmer.
+- Rare tiny butterfly-like flicker, never more than one or two.
+- Organic asymmetry: each edge should feel alive, not mirrored.
+
+Company-specific material:
+
+```text
+Wolf: Sierra granite, alpine pine, dark iron, cold mountain moisture
+Holm: oak, adobe, moss, pale timber, sod roof texture
+Demeter: dark soil, crop roots, wheat-gold pollen, subtle solar reflection
+```
+
+Close-detail reveal:
+
+- Mineral grain in stone
+- Moving root systems beneath moss
+- Tiny leaves
+- Rain droplets refracting light
+- Microscopic terrain variation
+
+### Water column: Viking, Atoll, Njord
+
+Palette:
+
+```text
+midnight navy
+deep teal
+dark silver
+sea-glass
+soft foam white
+```
+
+Frame behavior:
+
+- Subtle perimeter swell, never enough to distort the image.
+- A thin silver reflection slowly travels around the border.
+- Occasional foam glint.
+- A sense of depth below the frame, not waves crashing over it.
+- The motion must be physically calm and believable.
+
+Company-specific material:
+
+```text
+Viking: cold fjord water, wet bronze, rope fiber, storm-light reflection
+Atoll: clear warm water, coral stone, pale composite, sunlit shallow depth
+Njord: cold ocean mist, engineered maritime surfaces, dark seawater
+```
+
+Close-detail reveal:
+
+- Fine currents
+- Small kelp strands
+- Light refraction
+- Layered water depth
+- Tiny droplets and salt texture
+
+### Air column: Eagle, Olympus, Aeolus
+
+Palette:
+
+```text
+pale sky blue
+ice white
+brushed silver
+faint violet
+```
+
+Frame behavior:
+
+- Fine translucent wisps move sideways.
+- Tiny floating motes rise slowly.
+- Brief pressure ripples distort the edge by 1–2px.
+- Very rare faint lightning flicker in the far background of the frame only.
+- No storm spectacle.
+- Motion follows one coherent wind direction per portal.
+
+Company-specific material:
+
+```text
+Eagle: cold stratosphere, white feather-metal, titanium, sharp clear air
+Olympus: luminous cloud vapor, translucent glass, pale stone, weightless calm
+Aeolus: weather instruments abstracted as material, air currents, climate fields without visible data text
+```
+
+Close-detail reveal:
+
+- Layered turbulence
+- Ice crystals
+- Vapor sheets
+- Fine pressure lines
+- Small field-like currents
+
+### Space column: Phenix, Aether, Corvus
+
+Palette:
+
+```text
+near black
+graphite
+midnight indigo
+dim silver
+faint copper ember
+```
+
+Frame behavior:
+
+- Rare tiny star twinkles.
+- One or two slow copper embers drift through the frame.
+- Fine metallic dust moves almost imperceptibly.
+- No galaxy wallpaper.
+- No neon.
+- No visible sci-fi interface.
+
+Company-specific material:
+
+```text
+Phenix: dark alloy, copper ember, launch heat, volcanic dust
+Aether: glass, soft silver, quiet orbital illumination, deep indigo
+Corvus: obsidian metal, black glass, warm internal amber intelligence
+```
+
+Close-detail reveal:
+
+- Tiny distant constellations
+- Metallic dust
+- Low-energy engine-ember traces
+- Infinite depth without visual clutter
+
+## Demo mode
+
+Create a simulation clock with two modes.
+
+```text
+LIVE
+DEMO
+```
+
+Demo mode requirements:
+
+- Starts at simulated T−01:00:00.
+- Runs at 100× speed.
+- One real second equals 100 simulated seconds.
+- Countdown, construction timing, reveal state, click cues, and interaction availability all derive from the same simulated clock.
+- Do not create a separate animation-only demo path.
+- Add internal replay/reset controls.
+- Keep controls minimal and hidden from public production view.
+
+## Technical architecture
+
+Use React / Next.js with TypeScript.
+
+Suggested structure:
+
+```text
+app/
+  page.tsx
+
+components/
+  ValhallaHub.tsx
+  CountdownClock.tsx
+  MosaicGrid.tsx
+  CompanyPortal.tsx
+  LivingFrame.tsx
+  CellularBuilder.tsx
+  ElementalFrameLayer.tsx
+  ClickCue.tsx
+  CompanyExperienceModal.tsx
+  DemoControls.tsx
+
+lib/
+  companies.ts
+  launchSchedule.ts
+  simulationClock.ts
+  domainPalettes.ts
+  frameSeeds.ts
+  animationMath.ts
+
+public/
+  images/
+    wolf.jpg
+    placeholders/
+```
+
+Use:
+
+- CSS/SVG for layout, masks, frame outlines, accessibility, hover, and image reveals.
+- Canvas for pixel-builder behavior, micro-particles, vines, water shimmer, air wisps, and space sparks.
+- Do not use WebGL unless a Canvas prototype cannot meet the visual target.
+- Seed all procedural animation by company ID.
+- Respect `prefers-reduced-motion`.
+- Pause or simplify animations when portals are off-screen.
+- Do not run random state updates on every React render.
+
+Data model:
+
+```ts
+type Domain = "land" | "water" | "air" | "space";
+type Pillar = "movement" | "habitation" | "substrate";
+type Wave = 1 | 2;
+
+type Company = {
+  id: string;
+  name: string;
+  domain: Domain;
+  pillar: Pillar;
+  imageSrc?: string;
+  placeholderSrc: string;
+  wave: Wave;
+  revealAt: string;
+  frameCompleteAt: string;
+  clickEnabledAt: string;
+  frameSeed: number;
+};
+```
+
+Create the `companies.ts` matrix in this exact order:
+
+```ts
+wolf, viking, eagle, phenix,
+holm, atoll, olympus, aether,
+demeter, njord, aeolus, corvus
+```
+
+Do not confuse visual grid order with chronological reveal order.
+
+## Responsive behavior
+
+Desktop:
+
+- 4-column × 3-row matrix
+- 3:2 image portals
+- 28–32px grid gaps
+
+Tablet:
+
+- Preserve four columns where possible
+- Reduce frame thickness carefully, not image quality
+
+Mobile:
+
+- Stack in chronological reveal order:
+  Wolf, Holm, Demeter, Viking, Atoll, Njord, Eagle, Olympus, Aeolus, Phenix, Aether, Corvus
+- Keep domain-specific frame behavior
+- Preserve the countdown and launch ritual
+- Avoid expensive particle density
+
+## Accessibility and performance
+
+- Every revealed portal needs an accessible name.
+- Keyboard interaction must work.
+- Reduced-motion mode uses gentle fades and completed frames instead of cellular construction.
+- Do not convey readiness or meaning through color alone.
+- Maintain adequate contrast for countdown and company labels.
+- Use lazy-loaded images.
+- Keep canvas effects isolated and optimized.
+- No autoplay audio.
+
+## Definition of done
+
+The build is successful only when:
+
+1. The top row reads exactly: Wolf, Viking, Eagle, Phenix.
+2. Each vertical domain column has a unique elemental material system.
+3. Wolf, Holm, Demeter reveal top-to-bottom in the Land column.
+4. Viking, Atoll, Njord follow top-to-bottom in Water.
+5. The 2 PM block reveals Air, then Space, top-to-bottom.
+6. The two white pixels visibly craft each frame.
+7. The image reveal and click cue follow the configured clock precisely.
+8. Wolf can be swapped from placeholder to supplied image by changing one field.
+9. The mosaic feels quiet, monumental, tactile, and alive.
+10. The implementation is deterministic, performant, accessible, and works in live and demo modes.
+
+## Implementation sequence
+
+Do not attempt the entire system in one pass.
+
+Phase 1:
+- Build white hub, grid geometry, image placeholders, schedule engine, live/demo clock, and simple portal state changes.
+
+Phase 2:
+- Build the two-pixel deterministic frame construction system for Wolf only.
+
+Phase 3:
+- Add the four reusable elemental frame engines.
+
+Phase 4:
+- Apply company-specific textures and reveal schedule to all twelve companies.
+
+Phase 5:
+- Add full-screen portal transitions, responsive behavior, reduced-motion support, and performance polish.
+
+Start with Phase 1 only. Before writing code, describe the files you will create and the schedule assumptions you will encode.

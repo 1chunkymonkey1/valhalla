@@ -1,8 +1,47 @@
 # Valhalla Council
 
-Founder-only AI workspace in **Admin → Council**. Eighteen Raven agents, each preloaded from Desktop `Valhalla/Council` source files (copied into this repo).
+Eighteen Raven agents, each preloaded from Desktop `Valhalla/Council` source files (copied into this repo). Available in two places:
 
-## Open it
+1. **Cursor chat** (this repo) — subagents in `.cursor/agents/`
+2. **Admin → Council** on the live hub — founder-only threads
+
+## Cursor chat (primary for building)
+
+Agent defs: `.cursor/agents/<seat>.md` (mirrored to `.claude/agents/` and `.codex/agents/`). Routing rule: `.cursor/rules/valhalla-council.mdc`. Deep knowledge: `council/agents/<seat>.md`. Situation: `docs/valhalla-context.md`.
+
+### Invoke a seat
+
+Say any of:
+
+- `Use the athena subagent to war-game the Demeter raise`
+- `Ask Lex: what claims in this deck need substantiation?`
+- `@hermes draft the intro sequence to Brian Sheng`
+- `Ask Icarus to convene council mode on launch blockers`
+
+| Seat | Exact name | Good trigger phrases |
+| --- | --- | --- |
+| Athena | `athena` | `@athena`, "use the athena subagent", "what happens if we're wrong" |
+| Icarus | `icarus` | `@icarus`, "convene the council", "commander" |
+| Lex | `lex` | `@lex`, "legal exposure", "substantiation" |
+| Apollo | `apollo` | `@apollo`, "public voice", "social strategy" |
+| Helios | `helios` | `@helios`, "credo", "brand doctrine" |
+| Hermes | `hermes` | `@hermes`, "outreach", "who should hear" |
+| Seshat | `seshat` | `@seshat`, "canon", "naming" |
+| Natasha | `natasha` | `@natasha`, "founder OS", "weekly cadence" |
+| Daedalus | `daedalus` | `@daedalus`, "feasibility", "architecture" |
+| Hephaestus | `hephaestus` | `@hephaestus`, "manufacturing", "build path" |
+| Demeter | `demeter` | `@demeter`, "agrivoltaics", "REAP" |
+| Poseidon | `poseidon` | `@poseidon`, "maritime", "water domain" |
+| Sol | `sol` | `@sol`, "Atoll product" |
+| Thor | `thor` | `@thor`, "Wolf doctrine" |
+| Zeus | `zeus` | `@zeus`, "Phenix", "space" |
+| Teddy | `teddy` | `@teddy`, "Jefferson", "abundance" |
+| Victory | `victory` | `@victory`, "training", "performance" |
+| Asclepius | `asclepius` | `@asclepius`, "recovery", "stamina" |
+
+Single-domain → one seat. Cross-portfolio → `icarus`. Investor-facing copy → include `lex`.
+
+## Admin Council (hub app)
 
 1. Sign in at `/admin` (founder session + 2FA).
 2. Open the **Council** tab.
