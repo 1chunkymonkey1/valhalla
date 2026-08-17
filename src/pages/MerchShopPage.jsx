@@ -7,6 +7,7 @@ import {
   MERCH_STATUS,
   getHallAnnouncement,
   merchItemsForCompany,
+  mosaicHallsWithMerch,
 } from '../data/meridianMerch'
 import { companyProducts } from '../data/companyProducts'
 import EmailCapture from '../components/EmailCapture'
@@ -56,6 +57,8 @@ export default function MerchShopPage({ companyId }) {
   const open = company.mosaic === false || isCompanySiteOpen(company.id, now)
   if (!open) return <Navigate to={`/${companyId}`} replace />
 
+  const halls = companyId === 'meridian' ? mosaicHallsWithMerch() : null
+
   return (
     <div
       className={`cs cs--${productMeta.tone || 'land'} cs-merch-page`}
@@ -86,6 +89,25 @@ export default function MerchShopPage({ companyId }) {
             </li>
           ))}
         </ul>
+
+        {halls ? (
+          <div className="cs-merch__halls">
+            <h2 className="cs-merch__halls-title">{t('merch.allHalls')}</h2>
+            <ul className="cs-merch__hall-grid">
+              {halls.map((hall) => (
+                <li key={hall.id}>
+                  <Link to={hall.shopHref} className="cs-merch__hall">
+                    <img src={hall.imageSrc} alt="" aria-hidden="true" />
+                    <span>
+                      <strong>{hall.name}</strong>
+                      <em>{hall.announcement.statement}</em>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
 
         <section id="reserve" className="cs-reserve">
           <EmailCapture
