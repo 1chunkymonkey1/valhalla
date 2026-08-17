@@ -5,7 +5,8 @@
 **Prepared for:** Eason Greene  
 **Package folder:** `/Users/silver/Desktop/valhalla_fundraising/`
 
-> Paste answers field-by-field. Items marked `[[FILL]]` must be replaced with Eason’s real numbers before submit.  
+> The check, if any, is Demeter Energy. Valhalla is the charter map, not the issuer.  
+> Do not invent burn, runway, cash, or a priced valuation.  
 > Elevator pitch character count is verified below.
 
 ---
@@ -17,7 +18,7 @@
 | Founder / Full name | Eason Greene |
 | Email | easongreene@gmail.com · also info@valhallaco.org |
 | Phone | (209) 768-4306 |
-| LinkedIn / personal | [[FILL: LinkedIn URL]] |
+| LinkedIn / personal | Leave blank unless Eason pastes a live URL |
 | Role | Founder / Leader, Valhalla |
 
 ---
@@ -26,7 +27,7 @@
 
 | Field | Answer |
 |-------|--------|
-| Company name | Valhalla |
+| Company name | Demeter Energy (issuer). Valhalla is charter, not the SAFE. |
 | Website | https://valhallaco.org |
 | Press | https://valhallaco.org/press |
 | Tags / sectors | **DeepTech**, **Other** |
@@ -65,9 +66,9 @@ Valhalla creates value as a holdco + 12 specialized halls across Land, Water, Ai
 **Also useful:**  
 - https://valhallaco.org  
 - https://valhallaco.org/press  
-- Company decks folder: `/Users/silver/Desktop/valhalla_fundraising/company-decks/` (zip before upload if a single file is required)
+- Hall charter one-pagers: `https://valhallaco.org/investors/halls.html` (charter, not twelve issuers)
 
-If the form requires a URL and local path is rejected, upload the PDF to Drive/Dropbox and paste the share link here: `[[FILL: Public deck URL]]`
+If the form requires a URL: `https://valhallaco.org/investors/deck.html`
 
 ---
 
@@ -78,7 +79,7 @@ If the form requires a URL and local path is rejected, upload the PDF to Drive/D
 | Option | When to choose | Note |
 |--------|----------------|------|
 | **First Check / Pre-seed** *(recommended default)* | Honest for: no entity yet, $0 raised, $0 MRR, mosaic + lead seats | Best fit for LvlUp First Check Fund |
-| **Seed** | If you want to position the full 12-hall platform as a seed vehicle | Use if raise size / narrative is Seed-scale |
+| **Seed** | Only if the form cannot name a farm SAFE | Do not position twelve halls as the issuer |
 
 **Suggested Stage field answer:** `First Check` (or `Pre-seed` if that’s the closest dropdown)  
 **Alt:** `Seed` — Eason chooses based on raise size.
@@ -89,14 +90,14 @@ If the form requires a URL and local path is rejected, upload the PDF to Drive/D
 
 | Field | Paste / enter | Notes |
 |-------|---------------|-------|
-| Raise Amount | `[[FILL: Raise Amount]]` | Coherent default band: **$500,000 – $2,500,000**. For First Check lean lower; for Seed lean toward upper/mid. |
-| Current Valuation | `[[FILL: Valuation]]` | Planning midpoint often discussed ~**$50M** (e.g. 0.1% conversation math). **Not** a closed priced round — label as target/posture if form allows. |
+| Raise Amount | **$1.0–1.5M SAFE** | Demeter Energy only. Capital desk sourced. Not a Valhalla holdco raise. |
+| Current Valuation | **$8M cap** | YC post-money SAFE. Not a priced round. |
 | VC-Backed | **No** | |
 | Company MRR | **$0** | Do not invent revenue |
-| Company Burn Rate | `[[FILL: Monthly Burn USD]]` | Suggest starting point only after you know real spend, e.g. `[[FILL]]` |
-| Runway (months) | `[[FILL: Runway Months]]` | = cash reserve ÷ burn |
+| Company Burn Rate | **Not claimed** | Do not invent spend |
+| Runway (months) | **Not claimed** | Founder-funded until a desk number exists |
 | Previously Raised Capital | **$0** | Do not invent prior raise |
-| Cash Reserve | `[[FILL: Cash Reserve USD]]` | Enter actual bank/cash on hand |
+| Cash Reserve | **Not claimed** | Do not invent bank cash |
 
 ### Coherence check (fill then verify)
 `Runway months ≈ Cash Reserve ÷ Monthly Burn`  
@@ -138,7 +139,7 @@ Eason Greene — Founder / Leader, Valhalla. Demeter Energy founder (farm raise)
 
 ### Why LvlUp / why now
 ```
-Valhalla is forming the legal and operating structure to build 12 interconnected DeepTech halls as one civilization system. Seeking a first institutional check and Seed-aligned partners who understand multi-domain deep tech — not CPG or fake-MRR narratives.
+Applying as Demeter Energy: agrivoltaic solar on working land, hydrogen as the second product. First site lead Gothenburg, Nebraska. Land not signed. Entity in formation. $1.0–1.5M SAFE at $8M cap. Valhalla is the twelve-hall charter behind that one instrument, not the company taking the check.
 ```
 
 ### Competitors

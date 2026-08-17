@@ -63,7 +63,7 @@ const HALLS = {
   holm: {
     name: 'Holm',
     hero: 'Built for the terrain you chose.',
-    body: 'Holm turns first-time home buyers into first-time home builders: courses, financing, real estate, compliance, workshops, and in-person designers. Sod, log, adobe by terrain. Twelve interlocking container Holms: design on the website, build and place.',
+    body: 'Holm stands on the terrain you chose. First-time home buyers become first-time home builders: courses, financing, compliance, workshops, and in-person designers. Sod, log, adobe by terrain. Twelve interlocking container Holms are the research suite. Design is on the website. Placement is not a live build-and-ship claim on this surface.',
     bullets: [
       'Buyer → builder pathway',
       'Sod / log / adobe by terrain',
@@ -107,11 +107,11 @@ const HALLS = {
   demeter: {
     name: 'Demeter',
     hero: 'The same acre feeds a family and powers twenty homes.',
-    body: 'Demeter owns energy production. Flagship: agrivoltaic solar on US farms (goal 2% of US farms by Q4 2027). Also SMRs, geothermal, Stirling engines, high-altitude and standard wind. Seventy-five-year plan culminates in Earth’s first Dyson swarm.',
+    body: 'Demeter feeds the acre: agrivoltaic solar on working farmland, with on-farm hydrogen as the second product. First site lead is Gothenburg, Nebraska. Land is not signed. Research stack includes SMRs, geothermal, Stirling engines, and wind. The 75-year Dyson path is thesis, not a securities offer.',
     bullets: [
-      'Agrivoltaics · 2% US farms by Q4 2027 goal',
-      'SMR, geothermal, Stirling, wind stack',
-      '75-year Dyson swarm path',
+      'Agrivoltaics on working land; hydrogen as second product',
+      'Gothenburg is a lead, not a lease',
+      '75-year Dyson path is thesis',
       'No securities offer; blueprint targets only',
     ],
   },

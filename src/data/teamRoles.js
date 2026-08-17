@@ -17,7 +17,7 @@ export const TEAM_ROLES = {
   },
   finance: {
     label: 'Finance',
-    blurb: 'Refundable holds, pay-link status, and reservation money capture.',
+    blurb: 'Pay-link status and interest notes. Checkout stays off unless enabled.',
   },
   comms: {
     label: 'Comms',

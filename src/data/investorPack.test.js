@@ -64,6 +64,15 @@ test('investor pack does not name myth officers as CEOs', () => {
   assert.equal(failures.length, 0, failures.join('\n'))
 })
 
+test('LvlUp paste pack uses the sourced Demeter raise, not a priced midpoint', () => {
+  const text = readFileSync(join(repoRoot, 'public/investors/APPLICATION.md'), 'utf8')
+  assert.match(text, /\$1\.0–1\.5M SAFE/)
+  assert.match(text, /\$8M cap/)
+  assert.equal(text.includes('$50M'), false)
+  assert.equal(text.includes('[[FILL: Raise Amount]]'), false)
+  assert.equal(text.includes('[[FILL: Valuation]]'), false)
+})
+
 test('Investor Signals Sam note is staged on the capital desk, not auto-sent', () => {
   const item = DISPATCH_SEED.find((row) => row.id === 'demeter-investor-signals')
   assert.ok(item)

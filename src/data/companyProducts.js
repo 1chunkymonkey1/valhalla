@@ -34,7 +34,7 @@ export const companyProducts = {
     headline: 'Built for the terrain you chose.',
     support:
       'First-time home buyers become first-time home builders: courses, financing, compliance, designers, and twelve interlocking container Holms you configure on the site.',
-    body: 'Holm turns first-time home buyers into first-time home builders. Courses and support for your first home: sod houses on the plains, log cabins in forests, adobe in the desert. Financing, real estate, compliance, workshops, and in-person designers help you make the home you want. The modular suite is twelve container Holms that interlock and configure in any arrangement you can imagine. You design it on the website; we build it and get it in place.',
+    body: 'Holm stands on the terrain you chose. First-time home buyers become first-time home builders: courses, financing, compliance, workshops, and in-person designers. Sod houses on the plains, log cabins in forests, adobe in the desert. Twelve interlocking container Holms are the research suite. Design is on the website. Placement is not a live build-and-ship claim on this surface.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -57,7 +57,7 @@ export const companyProducts = {
     headline: 'The same acre feeds a family and powers twenty homes.',
     support:
       'Energy production from agrivoltaic farms toward SMRs, geothermal, Stirling, wind, and a 75-year path to Earth’s first Dyson swarm.',
-    body: 'Demeter owns energy production. The flagship is agrivoltaic solar grids on US farms, with a goal of 2% of US farms by Q4 2027, enough in the thesis to power the US economy many times over. The wider machine set includes SMRs, geothermal, Stirling engines, high-altitude wind, and standard wind. The 75-year plan culminates in Earth’s first Dyson swarm. Blueprint targets, not a securities offer.',
+    body: 'Demeter feeds the acre: agrivoltaic solar on working farmland, with on-farm hydrogen as the second product. First site lead is Gothenburg, Nebraska. Land is not signed. Wider research stack includes SMRs, geothermal, Stirling engines, and wind. The 75-year Dyson path is thesis, not a securities offer. Diligence-first. No capacity or ROI claims on this surface.',
     tone: 'land',
     ...emailFirst,
     gallery: [

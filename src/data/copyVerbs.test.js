@@ -106,6 +106,15 @@ test('Aeolus ownership speech and live-hold copy are banned on L0', () => {
   assert.equal(findCopyVerbHits('Aeolus presses the sky. Email until gates clear.').length, 0)
 })
 
+test('Holm placement, Demeter ownership, and $50M valuation are banned on L0', () => {
+  assert.ok(findCopyVerbHits('You design it; we build it and get it in place.').some((h) => h.id === 'we-build-place'))
+  assert.ok(findCopyVerbHits('design on the website, we build and place.').some((h) => h.id === 'we-build-place'))
+  assert.ok(findCopyVerbHits('Demeter owns energy production.').some((h) => h.id === 'owns-energy-production'))
+  assert.ok(findCopyVerbHits('goal of 2% of US farms by Q4 2027').some((h) => h.id === 'farms-2pct-goal'))
+  assert.ok(findCopyVerbHits('planning midpoint often discussed ~$50M').some((h) => h.id === 'valuation-50m'))
+  assert.equal(findCopyVerbHits('Holm stands. Demeter feeds the acre. Email until gates clear.').length, 0)
+})
+
 test('App does not stand a public /music route while Apollo Music is interior', () => {
   assert.equal(APOLLO_MUSIC_PUBLIC, false)
   const app = readFileSync(join(repoRoot, 'src/App.jsx'), 'utf8')

@@ -69,6 +69,26 @@ export const BAN_PATTERNS = [
     note: 'No vendor present tense on L0.',
   },
   {
+    id: 'we-build-place',
+    pattern: /\bwe build(?: it and get it in place| and place)\b/i,
+    note: 'Holm stands. Placement is not a live build-and-ship claim.',
+  },
+  {
+    id: 'owns-energy-production',
+    pattern: /\bowns energy production\b/i,
+    note: 'Demeter feeds the acre. Owns is not the public identity.',
+  },
+  {
+    id: 'farms-2pct-goal',
+    pattern: /\b2%\s+of US farms\b/i,
+    note: 'Farmland share is thesis, not an L0 operating goal.',
+  },
+  {
+    id: 'valuation-50m',
+    pattern: /~?\$50M\b/,
+    note: 'No $50M priced valuation on L0. Demeter cap is $8M.',
+  },
+  {
     id: 'cart-claim',
     pattern: /\b(?:buy now|in stock|shipping now|pre-sale live)\b/i,
     note: 'List not cart. No shipping claims.',
@@ -149,6 +169,10 @@ export const BAN_PATTERNS = [
 
 /** L0 surfaces Helios auto-enforces. Interior canon (council/) stays out. */
 export const L0_SCAN_FILES = [
+  'index.html',
+  'src/components/ReservationForm.jsx',
+  'src/pages/TeamWorkspacePage.jsx',
+  'src/data/teamRoles.js',
   'src/i18n/locales/en.js',
   'src/i18n/locales/es.js',
   'src/i18n/locales/fr.js',

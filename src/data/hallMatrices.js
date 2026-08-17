@@ -523,7 +523,7 @@ const holmMatrix = matrix({
   title: 'Holm matrix',
   mission: {
     title: 'What Holm is building',
-    body: 'Holm turns first-time home buyers into first-time home builders: courses, financing, real estate, compliance, workshops, and in-person designers. Sod, log, adobe by terrain. Twelve interlocking container Holms: design on the website, we build and place. Not stamped plans alone.',
+    body: 'Holm stands on the terrain you chose. First-time home buyers become first-time home builders: courses, financing, compliance, workshops, and in-person designers. Sod, log, adobe by terrain. Twelve interlocking container Holms are the research suite. Design is on the website. Placement is not a live build-and-ship claim on this surface.',
     cadence: 'Cadence: Timber 01 and buyer→builder courses lead; paired modules unlock as site partnerships clear. No false “move-in date” on this surface.',
   },
   lines: holmLines,
@@ -683,7 +683,7 @@ const demeterMatrix = matrix({
   title: 'Demeter matrix',
   mission: {
     title: 'What Demeter is building',
-    body: 'Demeter owns energy production. Flagship: agrivoltaic solar on US farms (goal 2% of US farms by Q4 2027). Machine set includes SMRs, geothermal, Stirling engines, high-altitude and standard wind, ethanol and green hydrogen. The 75-year plan culminates in Earth’s first Dyson swarm. Soil first. Not an investment offer.',
+    body: 'Demeter feeds the acre: agrivoltaic solar on working farmland, with on-farm hydrogen as the second product. First site lead is Gothenburg, Nebraska. Land is not signed. Research stack includes SMRs, geothermal, Stirling engines, wind, ethanol, and green hydrogen. The 75-year Dyson path is thesis. Soil first. Not an investment offer.',
     cadence: 'Cadence: Field Lattice agrivoltaic diligence leads toward the Q4 2027 farm goal; SMR / geothermal / wind / Stirling mature in parallel; Dyson stays the 75-year culmination. No securities offer.',
   },
   lines: demeterLines,
