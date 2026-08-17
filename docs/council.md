@@ -7,7 +7,7 @@ Eighteen Raven agents, each preloaded from Desktop `Valhalla/Council` source fil
 
 ## Cursor chat (primary for building)
 
-Agent defs: `.cursor/agents/<seat>.md` (mirrored to `.claude/agents/` and `.codex/agents/`). Routing rule: `.cursor/rules/valhalla-council.mdc`. Deep knowledge: `council/agents/<seat>.md`. Situation: `docs/valhalla-context.md`.
+Agent defs: `.cursor/agents/<seat>.md` (mirrored to `.claude/agents/` and `.codex/agents/`). Routing rule: `.cursor/rules/valhalla-council.mdc`. Deep knowledge: `council/agents/<seat>.md`. Situation: `docs/valhalla-context.md`. Recorded sessions: `council/sessions/`. Open: [Overnight Bottleneck](../council/sessions/2026-08-17-overnight-bottleneck.md) (17 August 2026). Unencoded BALLAST / Founder Runtime; Council mode; tools due 18 August 08:00 UTC. Meridian Gate (BALLAST 14-3) stays bound.
 
 ### Invoke a seat
 
