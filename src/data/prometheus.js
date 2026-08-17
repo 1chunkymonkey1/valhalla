@@ -15,7 +15,7 @@ export const systems = [
     id: '03',
     name: 'ATLAS',
     klass: 'Humanoid Rescue System',
-    body: 'Bipedal platform for structural penetration and extraction. Built for conditions lethal to human responders. Atlas goes in when no one else can.',
+    body: 'Humanoid rescue north star. Staged through Titan and recon platforms. Built so a firefighter is not the one who has to go in. Not a 2026 SKU.',
   },
 ]
 
@@ -51,6 +51,11 @@ export const audiences = [
 ]
 
 export const competitors = [
+  {
+    name: 'Plumis Automist',
+    stance: 'UL 2167A listed targeting water mist — the actual analogue',
+    vs: 'They already hold EX29276. Study their AHJ package. Differentiate on WUI ember/thermal confirmation and dual-cue fail-closed, not on “we invented wall mist.” Never trash them in a chief meeting.',
+  },
   {
     name: 'Residential sprinklers',
     stance: 'Reactive, interior, code-driven',
