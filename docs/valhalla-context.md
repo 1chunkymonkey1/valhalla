@@ -126,7 +126,7 @@ propulsion) · Dandelion Energy (Holm geothermal) · QJ Motor USA via SSR Motors
 
 ## Updates after capture
 
-**2026-08-17 — Noah and Micah / Maren-go / Escapes (founder note).** Noah and Micah work at [Maren-go](https://www.maren-go.com/) (airfield operating system; autonomous ground vehicles). They intend to build a robot that assesses hiking-trail traversability for a named lane **Escapes**. People-relationship only. Not a partnership, vendor, or closed deal. Escapes is not a hall. Do not merge them with archive “Wagners” / “Noka twins” until Eason confirms. Full note: `docs/partners/maren-go-noah-micah-escapes.md`.
+**2026-08-17 — Noah and Micah / Maren-go / Escapes (founder note).** Noah and Micah work at [Maren-go](https://www.maren-go.com/). They intend a hiking-trail traversability robot for a named lane **Escapes**. They gate Chris Thobaben: do not email him; do not tie work to him; they will intro only if a viable project exists. People-relationship only. Not a partnership. Full note: `docs/partners/maren-go-noah-micah-escapes.md`.
 
 **2026-08-17 — Maren-go Chris gate (founder, later same day).** Noah and Micah forbade Eason emailing Chris Thobaben (CEO). They do not want Chris’s time spent on Eason’s projects, and they do not want it tied back to Chris or Maren-go. They will connect only if a viable project exists. The staged Collaborations send is forbidden. People door only. Hermes bar and friends reply live in the same partner note.
 

@@ -17,6 +17,7 @@ Published contacts stay on file so nobody "rediscovers" them as an action: 217-5
 
 - Noah and Micah work at Maren-go.
 - They are going to build a robot that assesses **traversability for hiking trails** for **Escapes**.
+- **Gate (same day):** they do not want Eason to email Chris. They do not want Chris to waste time on Eason’s projects. They do not want this tied back to him. They will connect the two if there is a **viable project going**.
 
 That is intent. It is not a robot in hand, not a Valhalla SKU, and not a closed partnership.
 
@@ -68,6 +69,8 @@ Ask Eason privately. Do not ask Noah or Micah whether they are the Wagners or th
 ## Viable-project bar (checkable, not vibes)
 
 Noah and Micah may introduce Eason to Chris only after Eason can send them a dated field pass on a named public hiking trail, from an existing ground vehicle, with a georeferenced segment file they can open that scores grade, roughness, and blockage, carrying no Maren-go, Chris, or employment mark.
+
+`@daedalus` detail if he builds: named public **doubletrack** (fire road, not canopy singletrack); consumer vehicle Eason rents or owns; phone GNSS/IMU/camera only; GeoJSON segments plus photographed blockage; CSV of independent hiker ratings on those same segments; methods page (date, trail, vehicle, width versus tread, sensors). Checkable number: Spearman rho between vehicle scores and hiker ranks. A failed calibration still counts as a real file. A landing page, custom robot, wilderness demo, or binary go/no-go does not.
 
 That sentence is the bar. It is not a claim that the pass exists. It is not MRR, not an entity, not a custom robot, not a deck.
 
