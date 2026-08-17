@@ -13,9 +13,9 @@ export const pressRelease = {
   headline:
     'Valhalla Launches a New Model for Building Civilization Across Land, Water, Air, and Space',
   paragraphs: [
-    'VALHALLA announced its civilization platform: twelve companies across Land, Water, Air, and Space, with Meridian as the materials layer beneath. Each company solves a specific problem facing humanity and ties into the other eleven so they grow as a unit. Valhalla was founded on a simple observation: humanity’s greatest challenges are no longer isolated problems. Energy, housing, transportation, climate resilience, water security, and expansion beyond Earth are deeply interconnected, yet are typically addressed by disconnected industries. Valhalla’s mission is to build the foundational systems that support civilization itself. At Valhalla, everyone is a king. Kings don’t wait for the throne; they build it.',
+    'VALHALLA announced its civilization platform: twelve halls across Land, Water, Air, and Space, with Meridian as the materials layer beneath. Each hall solves a specific problem facing humanity and ties into the other eleven so they grow as a unit. Valhalla was founded on a simple observation: humanity’s greatest challenges are no longer isolated problems. Energy, housing, transportation, climate resilience, water security, and expansion beyond Earth are deeply interconnected, yet are typically addressed by disconnected industries. Valhalla’s mission is to build the foundational systems that support civilization itself. At Valhalla, everyone is a king. Kings don’t wait for the throne; they build it.',
     'Today’s infrastructure challenges are growing faster than the systems designed to solve them. Communities face housing shortages, rising energy demand, water insecurity, transportation bottlenecks, and climate pressures. Meanwhile, organizations often address these issues independently, creating fragmented solutions that fail to work together. Consumers and industries alike are frustrated by systems that are expensive, inefficient, difficult to scale, and disconnected from one another. Housing is often unaffordable or inflexible. Energy infrastructure struggles to meet growing demand sustainably. Transportation networks require modernization. Water scarcity threatens communities around the world. The result is a collection of challenges that cannot be solved in isolation. Valhalla was founded to address these foundational issues at their source by building the infrastructure layers that enable civilization to function, grow, and adapt over the long term. Valhalla was founded to forge an army of champions that don’t back down from these problems.',
-    'Valhalla brings together 12 specialized mosaic companies under a unified operating framework across four domains, with Meridian as the materials layer beneath:',
+    'Valhalla brings together 12 specialized mosaic halls under a unified operating framework across four domains, with Meridian as the materials layer beneath:',
   ],
   domains: [
     {
@@ -36,7 +36,7 @@ export const pressRelease = {
     },
     {
       name: 'Materials',
-      text: 'Meridian — the materials layer beneath all four domains: Earth garment systems, Venus-rated suits, and defense supply-chain concepts.',
+      text: 'Meridian — the materials layer beneath all four domains. Earth garment systems, Venus-rated suit concepts, and merch for every hall.',
     },
   ],
   quote: {

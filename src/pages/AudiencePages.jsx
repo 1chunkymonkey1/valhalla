@@ -100,7 +100,7 @@ export function RoadmapIndexPage() {
       </header>
       <main className="vh-aud__main">
         <p>
-          Open a company from the <Link to="/">{t('common.mosaic')}</Link> or the{' '}
+          Open a hall from the <Link to="/">{t('common.mosaic')}</Link> or the{' '}
           <Link to="/flow">{t('nav.flow')}</Link> for its product sequence.
         </p>
       </main>

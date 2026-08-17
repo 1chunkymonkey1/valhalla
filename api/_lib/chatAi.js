@@ -33,6 +33,16 @@ const HUMAN_PATTERNS = [
   /\b(pay|payment|wire|invoice|refund|deposit|money|crypto|bitcoin|bank|credit card)\b/i,
   /\b(reserv(e|ation)|book(ing)?|purchase|buy now|checkout|pre-?sale)\b/i,
   /\b(ssn|passport|social security|password|secret|confidential)\b/i,
+  /\b(spirit airlines|taylor swift)\b/i,
+  /\b(in talks to acquire|acquisition of)\b/i,
+  /\b(valued?\s*\$?\s*40|400\s*b(?:illion)?)\b/i,
+  /\b(safe note|pre-money safe|securities (offer|offering))\b/i,
+  /\b(claims? property beyond earth|territorial ownership)\b/i,
+  /\bmaren-?go\b/i,
+  /\bemail chris\b/i,
+  /\b(qj motor|ssr motorsports).{0,40}(partner|deal|signed)\b/i,
+  /\b(aquaria|brian sheng).{0,40}(partner|deal|signed)\b/i,
+  /\bcharter membership\b/i,
 ]
 
 export function heuristicNeedsHuman(text) {

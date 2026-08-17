@@ -10,6 +10,7 @@ import PhenixKenazGate from './PhenixKenazGate'
 import PublishedBlocks, { fetchPublishedLayout } from './PublishedBlocks'
 import { companyProducts } from '../data/companyProducts'
 import { formatUsd, getCompanyPayLink } from '../data/payLinks'
+import MeridianMerch from './MeridianMerch'
 
 const TONES = {
   land: {
@@ -71,7 +72,7 @@ export default function CompanySite({ company, now }) {
   const emailOnly = Boolean(product.emailOnly) || Boolean(pay?.disabled)
   const primaryCta = product.ctaPrimary || (emailOnly ? 'Email' : 'Hold a reservation')
   const secondaryCta = product.ctaSecondary || 'Product path'
-  const aboutNote = product.aboutNote || (emailOnly ? '' : 'Fully refundable reservations')
+  const aboutNote = product.aboutNote || ''
   const [social, setSocial] = useState(null)
   const [published, setPublished] = useState(null)
 
@@ -120,6 +121,10 @@ export default function CompanySite({ company, now }) {
           </div>
           <PublishedBlocks layout={published} className="cs-pub" />
           <main>
+            <MeridianMerch
+              companyId={company.slug}
+              variant={company.slug === 'meridian' ? 'cutter' : 'hall'}
+            />
             <section id="reserve" className="cs-reserve">
               {emailOnly ? (
                 <EmailCapture
@@ -186,6 +191,9 @@ export default function CompanySite({ company, now }) {
             <a href="#roadmap" className="cs-btn cs-btn--ghost">
               {secondaryCta}
             </a>
+            <a href="#merch" className="cs-btn cs-btn--ghost">
+              Merch
+            </a>
           </div>
         </div>
       </header>
@@ -208,6 +216,11 @@ export default function CompanySite({ company, now }) {
                 }
           />
         </section>
+
+        <MeridianMerch
+          companyId={company.slug}
+          variant={company.slug === 'meridian' ? 'cutter' : 'hall'}
+        />
 
         {pay && !pay.disabled && !emailOnly && (
           <section className="cs-payband" aria-label="Refundable pay hold">
