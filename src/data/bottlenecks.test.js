@@ -6,6 +6,7 @@ import {
   CANON,
   FORBIDDEN_HALL_IDS,
   FOUNDER_QUEUE,
+  FOUR_WORDS,
   HALL_ROWS,
   MERIDIAN_APPAREL,
   MOSAIC_HALL_IDS,
@@ -27,12 +28,14 @@ import {
 
 test('seat and unifying bottleneck ids are stable kebab-case', () => {
   assert.equal(SEAT, 'seshat')
-  assert.equal(UNIFYING_BOTTLENECK.id, 'layer-key-collision')
+  assert.equal(UNIFYING_BOTTLENECK.id, 'unencoded-ballast')
   assert.match(UNIFYING_BOTTLENECK.id, /^[a-z0-9]+(?:-[a-z0-9]+)*$/)
-  assert.equal(UNIFYING_BOTTLENECK.publicLabel, 'Three layers')
-  assert.equal(UNIFYING_BOTTLENECK.adminLabel, 'Layer-key collision')
-  assert.equal(UNIFYING_BOTTLENECK.todoKey, 'bn:layer-key-collision')
+  assert.equal(UNIFYING_BOTTLENECK.publicLabel, 'Unencoded BALLAST')
+  assert.equal(UNIFYING_BOTTLENECK.adminLabel, 'Founder Runtime')
+  assert.equal(UNIFYING_BOTTLENECK.todoKey, 'bn:unencoded-ballast')
+  assert.deepEqual(UNIFYING_BOTTLENECK.aliases, ['founder-runtime', 'layer-key-collision'])
   assert.equal(UNIFYING_BOTTLENECK.mosaic, false)
+  assert.deepEqual(FOUR_WORDS, ['hall', 'operating-company', 'chartered', 'future'])
 })
 
 test('mosaic hall ids match GRID_ORDER and exclude Apollo and Meridian', () => {
@@ -52,7 +55,7 @@ test('mosaic hall ids match GRID_ORDER and exclude Apollo and Meridian', () => {
 
 test('canon sentences keep the three layers distinct', () => {
   assert.match(CANON.halls, /twelve halls/)
-  assert.match(CANON.halls, /mosaic/)
+  assert.match(CANON.halls, /chartered/)
   assert.match(CANON.apolloMusic, /not a mosaic hall/)
   assert.match(CANON.apolloMusic, /not the council seat apollo/)
   assert.match(CANON.meridianApparel, /not a thirteenth hall/)
@@ -113,21 +116,23 @@ test('registry schema fields are present on every record', () => {
   }
 })
 
-test('todo keys are unique and spawn refuses duplicates', () => {
+test('todo keys are unique and spawn refuses duplicate aliases', () => {
   const keys = allTodoKeys()
   const unique = uniqueTodoKeys()
   assert.equal(keys.length, unique.length, 'duplicate todoKey in registry')
   resetSpawnedTodos()
-  const first = spawnTodo('bn', 'layer-key-collision')
-  assert.equal(first, 'bn:layer-key-collision')
+  const first = spawnTodo('bn', 'unencoded-ballast')
+  assert.equal(first, 'bn:unencoded-ballast')
   assert.throws(() => spawnTodo('bn', 'layer-key-collision'), /duplicate todo refused/)
+  assert.throws(() => spawnTodo('bn', 'founder-runtime'), /duplicate todo refused/)
   assert.throws(() => spawnTodo('hall', 'apollo'), /not a mosaic hall/)
   assert.throws(() => spawnTodo('hall', 'meridian'), /not a mosaic hall/)
   assert.throws(() => assertNotHallAlias('apollo-music'), /not a mosaic hall id/)
   assert.ok(FORBIDDEN_HALL_IDS.includes('phoenix'))
   assert.equal(todoKey('hall', 'wolf'), 'hall:wolf')
+  assert.equal(todoKey('bn', 'wolf.first-product'), 'bn:bn-wolf-oem-path')
   assert.ok(NAMING_RULES.length >= 8)
-  assert.ok(FOUNDER_QUEUE.some((item) => item.id === 'fq-ratify-layer-keys'))
+  assert.ok(FOUNDER_QUEUE.some((item) => item.id === 'fq-demeter-safe'))
   const registered = new Set(unique)
   for (const item of FOUNDER_QUEUE) {
     assert.equal(registered.has(item.todoKey), true, item.todoKey)

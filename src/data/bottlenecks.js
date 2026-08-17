@@ -20,33 +20,38 @@ export const LAYERS = {
 }
 
 /**
- * Unifying overnight bottleneck: unnamed layers share one keyspace,
- * so agents spawn the same work as a hall, a track, and a garment.
+ * Icarus named the gate. Seshat locks the id.
+ * Mechanism: hall / music / merch share one unnamed keyspace, so work
+ * collapses onto Eason and overnight todos spawn twice.
  */
 export const UNIFYING_BOTTLENECK = {
-  id: 'layer-key-collision',
+  id: 'unencoded-ballast',
   kind: 'unifying',
-  publicLabel: 'Three layers',
-  adminLabel: 'Layer-key collision',
+  publicLabel: 'Unencoded BALLAST',
+  adminLabel: 'Founder Runtime',
   layer: 'hub',
   mosaic: false,
   hallId: null,
   musicId: null,
   merchId: null,
-  bottleneckId: 'layer-key-collision',
-  todoKey: 'bn:layer-key-collision',
+  bottleneckId: 'unencoded-ballast',
+  todoKey: 'bn:unencoded-ballast',
   ownerSeat: 'seshat',
   status: 'named',
-  note: 'Overnight duplicate todos spawn when mosaic halls, Apollo Music, and Meridian apparel share names without distinct keys.',
+  aliases: ['founder-runtime', 'layer-key-collision'],
+  note: 'Every mosaic hall, Apollo Music, and Meridian still executes through Eason because claim-speech, operating-vs-charter verbs, and send-authorization are rulings, not keyed code.',
 }
+
+/** Public grammar. 13 August is not recanted. 17 August is not a false present. */
+export const FOUR_WORDS = ['hall', 'operating-company', 'chartered', 'future']
 
 export const CANON = {
   halls:
-    'The twelve halls are the 4x3 mosaic companies (Land/Water/Air/Space x Movement/Habitation/Substrate), ids frozen to GRID_ORDER, and they are the only mosaic tiles.',
+    'The twelve halls are the chartered 4x3 mosaic cells (Land/Water/Air/Space x Movement/Habitation/Substrate), ids frozen to GRID_ORDER; they are the only mosaic tiles, and empty halls stay chartered rather than operating companies.',
   apolloMusic:
-    'Apollo Music is the off-mosaic music label (artist deals, originals, sync); it is not a mosaic hall and is not the council seat apollo.',
+    'Apollo Music is the off-mosaic music label (artist deals, originals, sync); it is not a mosaic hall, not the council seat apollo, and it has no public route until founder send-authorization.',
   meridianApparel:
-    'Meridian is the off-mosaic materials layer that cuts Earth Line apparel and hall-marked merch; it is not a thirteenth hall and is not on the launch clock.',
+    'Meridian is the off-mosaic materials layer that cuts Earth Line apparel and hall-marked merch; it is not a thirteenth hall, not an operating company, and not on the launch clock.',
 }
 
 export const APOLLO_MUSIC = {
@@ -217,58 +222,109 @@ export const FORBIDDEN_HALL_IDS = Object.freeze([
 ])
 
 /**
+ * Standing-rule dotted ids and competing overnight names collapse here.
+ * Spawn uses the kebab canonical. A second name is a refuse, not a new todo.
+ */
+export const BOTTLENECK_ALIASES = Object.freeze({
+  'founder-runtime': 'unencoded-ballast',
+  'layer-key-collision': 'unencoded-ballast',
+  'wolf.first-product': 'bn-wolf-oem-path',
+  'viking.partner-gate': 'bn-viking-partner-voyage',
+  'eagle.spirit-language': 'bn-eagle-faa-dialogue',
+  'phenix.entity-vs-myth': 'bn-phenix-pad-path',
+  'holm.first-artifact': 'bn-holm-site-builder',
+  'atoll.funds-posture': 'bn-atoll-harbor-partner',
+  'olympus.tickets-vs-research': 'bn-olympus-platform-partner',
+  'aether.deed-posture': 'bn-aether-claim-platform',
+  'demeter.next-send': 'bn-demeter-site-control',
+  'njord.earth-first': 'bn-njord-water-energy',
+  'aeolus.earth-vs-venus': 'bn-aeolus-atmosphere-path',
+  'corvus.money-path': 'bn-corvus-raven-product',
+  'apollo.music-lane': 'bn-apollo-music-identity',
+  'meridian.list-not-cart': 'bn-meridian-cutter-identity',
+})
+
+/**
  * Overnight spawn rules. Duplicate todoKey is a refuse, not a merge.
  * Display names, epithets, and council seats are never keys.
  */
 export const NAMING_RULES = [
-  'todoKey is {layer}:{id} with layer in hall | music | merch | bn | seat.',
-  'Hall ids are exactly GRID_ORDER (12). Refuse any other hall spawn.',
-  'apollo is the council seat only. Music catalog uses apollo-music and am-* ids.',
+  'todoKey is {layer}:{canonical-id} with layer in hall | music | merch | bn | seat.',
+  'Unifying id is unencoded-ballast. founder-runtime and layer-key-collision are aliases, not new gates.',
+  'Four public words: hall, operating-company, chartered, future. Empty halls stay chartered.',
+  'Hall ids are exactly GRID_ORDER (12). Refuse apollo, apollo-music, meridian, phoenix as hall ids.',
+  'apollo is the council seat only. Music catalog uses apollo-music and am-* ids. No public music route without send-authorization.',
   'meridian is EXTRA_COMPANY_ROUTES only. Never add it to GRID_ORDER or REVEAL_ORDER.',
   'bottleneckId, musicId, and merchId must never equal a hall id.',
   'Phénix display stays Phénix; id is phenix. phoenix is a forbidden alias.',
   'Hall merch SKUs stay {hall}-shirt and {hall}-jacket; collections are merch-{hall}.',
-  'Meridian Carbon SKUs stay meridian-pants, meridian-shirt, meridian-jacket.',
-  'Spawn is refused when todoKey already exists (exact match, case-sensitive).',
+  'Meridian Carbon SKUs stay meridian-pants, meridian-shirt, meridian-jacket. List, not a cart.',
+  'Aliases in BOTTLENECK_ALIASES resolve before spawn. A second name for the same gate is refused.',
   'Cross-layer work must cite two keys. Never collapse music or merch into a hall todo.',
 ]
 
 export const FOUNDER_QUEUE = [
   {
-    id: 'fq-ratify-layer-keys',
-    todoKey: 'bn:layer-key-collision',
-    label: 'Ratify Three layers / Layer-key collision as canon',
+    id: 'fq-demeter-safe',
+    todoKey: 'hall:demeter',
+    label: 'Demeter SAFE signature and terms after counsel papers',
     owner: 'Eason',
-    note: 'Overnight agents may name and register. Only the founder locks canon.',
+    note: 'Farm raise, not a civilization raise. Founder sends.',
   },
   {
-    id: 'fq-meridian-logo',
+    id: 'fq-lex-engagement',
+    todoKey: 'bn:unencoded-ballast',
+    label: 'Lex engagement letter: stage only',
+    owner: 'Eason',
+    note: 'Overnight may draft. Founder sends.',
+  },
+  {
+    id: 'fq-meridian-lead',
     todoKey: 'merch:meridian',
-    label: 'Lock the Meridian mark',
+    label: 'Appoint Meridian lead (roster still FILL)',
     owner: 'Eason',
-    note: 'Logo lock unblocks Apollo brand assets. Do not invent a locked mark in copy.',
+    note: 'Do not invent a named lead. Do not email Chris at Maren-go.',
   },
   {
-    id: 'fq-apollo-music-deals',
+    id: 'fq-merch-merge',
+    todoKey: 'merch:meridian',
+    label: 'Authorize merch PR merge after Lex clears Aether Claim naming',
+    owner: 'Eason',
+    note: 'List not a cart. No inventory claims.',
+  },
+  {
+    id: 'fq-apollo-music-surface',
     todoKey: 'music:apollo-music',
-    label: 'Artist deals stay unsigned until the founder signs',
+    label: 'Apollo Music public surface: send-authorization only',
     owner: 'Eason',
-    note: 'Do not announce Apollo Music artist deals as closed.',
+    note: 'Aug 16 announce remains unverified. No artist deals as closed.',
   },
   {
-    id: 'fq-eagle-spirit',
+    id: 'fq-claim-proof',
     todoKey: 'hall:eagle',
-    label: 'Eagle / Spirit stays unsubstantiated',
+    label: 'Claim-proof packets if any quarantined line goes live',
     owner: 'Eason',
-    note: 'No overnight copy may claim Spirit partnership or acquisition as confirmed.',
+    note: 'Default stay dark. Spirit acquire and Taylor Swift first-consumer stay unsubstantiated.',
+  },
+  {
+    id: 'fq-edna-charge',
+    todoKey: 'bn:unencoded-ballast',
+    label: 'Edna Charge containment: any filing or reply is founder send',
+    owner: 'Eason',
+    note: 'C&D dated Aug 1. Spell Edna Charge with a space. Not a growth hall.',
   },
 ]
 
 const spawnedTodoKeys = new Set()
 
+export function canonicalBottleneckId(id) {
+  const raw = String(id || '').trim()
+  return BOTTLENECK_ALIASES[raw] || raw
+}
+
 export function todoKey(layer, id) {
   const layerKey = String(layer || '').trim()
-  const stableId = String(id || '').trim()
+  const stableId = canonicalBottleneckId(id)
   if (!layerKey || !stableId) {
     throw new Error('todoKey requires layer and id')
   }
