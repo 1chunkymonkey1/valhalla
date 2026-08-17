@@ -68,7 +68,8 @@ export default {
     consumersTitle: 'Consumers',
     consumersLead: 'Hold a place on products you care about. Fully refundable until gates clear.',
     consumersB1: 'Watch halls unlock on the mosaic.',
-    consumersB2: 'Each hall wears Meridian. Merch lives on the hall site as a list, not a cart.',
+    consumersB2:
+      'Each hall wears Meridian and carries an Apollo Music identity. Lists, not carts.',
     consumersB3: 'Discord for drops and questions.',
     partnersTitle: 'Partners',
     partnersLead: 'Manufacturers, operators, harbors, landowners, research labs.',
@@ -101,5 +102,16 @@ export default {
     allHalls: 'Merch for every hall',
     viewPiece: 'View',
     backToMerch: 'All merch',
+  },
+  music: {
+    kicker: 'Apollo Music',
+    shop: 'Music',
+    madeBy: 'Named by Apollo',
+    joinList: 'Join the music list',
+    openHouse: 'Apollo Music',
+    allHalls: 'Identities for every hall',
+    viewScore: 'Read',
+    backToMusic: 'All music',
+    wearsWith: 'Wears with {{garment}}.',
   },
 }

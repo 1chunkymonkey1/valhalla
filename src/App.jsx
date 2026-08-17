@@ -5,6 +5,9 @@ import CompanySitePage from './pages/CompanySitePage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import MerchShopPage from './pages/MerchShopPage'
 import MerchDetailPage from './pages/MerchDetailPage'
+import MusicIndexPage from './pages/MusicIndexPage'
+import MusicShopPage from './pages/MusicShopPage'
+import MusicDetailPage from './pages/MusicDetailPage'
 import PressPage from './pages/PressPage'
 import FlowPage from './pages/FlowPage'
 import AdminPage from './pages/AdminPage'
@@ -67,6 +70,11 @@ export default function App() {
             <HostProductGate>
               <Routes>
                 <Route path="/" element={<ValhallaHub />} />
+                <Route path="/music" element={<MusicIndexPage />} />
+                <Route
+                  path="/music/:sku"
+                  element={<MusicDetailPage companyId="apollo-music" />}
+                />
                 <Route path="/press" element={<PressPage />} />
                 <Route path="/flow" element={<FlowPage />} />
                 <Route path="/investors" element={<InvestorsPage />} />
@@ -113,6 +121,20 @@ export default function App() {
                     key={`${id}-merch-sku`}
                     path={`/${id}/merch/:sku`}
                     element={<MerchDetailPage companyId={id} />}
+                  />
+                ))}
+                {GRID_ORDER.map((id) => (
+                  <Route
+                    key={`${id}-music`}
+                    path={`/${id}/music`}
+                    element={<MusicShopPage companyId={id} />}
+                  />
+                ))}
+                {GRID_ORDER.map((id) => (
+                  <Route
+                    key={`${id}-music-sku`}
+                    path={`/${id}/music/:sku`}
+                    element={<MusicDetailPage companyId={id} />}
                   />
                 ))}
                 {COMPANY_ROUTES.map((id) => (

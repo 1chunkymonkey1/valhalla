@@ -94,6 +94,10 @@ export function answerQuestion(text) {
     return 'I will never share admin credentials. Use the site admin gate if you are authorized.'
   }
 
+  if (/apollo.?music|anthem|soundtrack|playlist|streaming/.test(q)) {
+    return 'Apollo Music is the public catalog of hall sonic identities at /music. It is a list, not a stream and not a cart. Named tracks stay private until the founder clears them. Do not invent play counts, signed artists, or an August 16 launch as fact.'
+  }
+
   const hit = knowledge.companies.find((c) => q.includes(c.id) || q.includes(c.id.replace('-', ' ')))
   if (hit) {
     return `${hit.id[0].toUpperCase()}${hit.id.slice(1)} — ${hit.domain} · ${hit.pillar}. ${hit.blurb} Open /${hit.id} on the hub when that hall is unlocked.`

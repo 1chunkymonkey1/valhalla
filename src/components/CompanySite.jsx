@@ -11,6 +11,7 @@ import PublishedBlocks, { fetchPublishedLayout } from './PublishedBlocks'
 import { companyProducts } from '../data/companyProducts'
 import { formatUsd, getCompanyPayLink } from '../data/payLinks'
 import MeridianMerch from './MeridianMerch'
+import ApolloMusic from './ApolloMusic'
 
 const TONES = {
   land: {
@@ -125,6 +126,10 @@ export default function CompanySite({ company, now }) {
               companyId={company.slug}
               variant={company.slug === 'meridian' ? 'cutter' : 'hall'}
             />
+            <ApolloMusic
+              companyId={company.slug === 'meridian' ? 'apollo-music' : company.slug}
+              variant={company.slug === 'meridian' ? 'house' : 'hall'}
+            />
             <section id="reserve" className="cs-reserve">
               {emailOnly ? (
                 <EmailCapture
@@ -194,6 +199,9 @@ export default function CompanySite({ company, now }) {
             <a href="#merch" className="cs-btn cs-btn--ghost">
               Merch
             </a>
+            <a href="#music" className="cs-btn cs-btn--ghost">
+              Music
+            </a>
           </div>
         </div>
       </header>
@@ -220,6 +228,10 @@ export default function CompanySite({ company, now }) {
         <MeridianMerch
           companyId={company.slug}
           variant={company.slug === 'meridian' ? 'cutter' : 'hall'}
+        />
+        <ApolloMusic
+          companyId={company.slug === 'meridian' ? 'apollo-music' : company.slug}
+          variant={company.slug === 'meridian' ? 'house' : 'hall'}
         />
 
         {pay && !pay.disabled && !emailOnly && (

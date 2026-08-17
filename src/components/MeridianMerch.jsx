@@ -38,6 +38,11 @@ export default function MeridianMerch({ companyId, variant = 'hall' }) {
       <p className="cs-merch__links">
         <Link to={`/${companyId}/merch`}>{t('merch.shop')}</Link>
         {companyId !== 'meridian' ? (
+          <Link to={`/${companyId}/music`}>{t('music.shop')}</Link>
+        ) : (
+          <Link to="/music">{t('music.openHouse')}</Link>
+        )}
+        {companyId !== 'meridian' ? (
           <Link to="/meridian#merch">{t('merch.openMeridian')}</Link>
         ) : null}
       </p>

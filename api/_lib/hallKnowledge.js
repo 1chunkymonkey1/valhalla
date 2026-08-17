@@ -166,14 +166,19 @@ const SCHEDULE_BLURB =
 const MERCH_BULLET =
   'Merch is cut by Meridian. Earth Line is a list, not a cart. No merch checkout on this surface.'
 
+const MUSIC_BULLET =
+  'Apollo Music is a catalog of hall sonic identities, not a stream and not a cart. Named tracks stay private until the founder clears them. No artist roster and no play counts on this surface.'
+
 export function getHallKnowledge(pageId) {
   const id = String(pageId || 'hub').toLowerCase()
   const hall = HALLS[id] || HALLS.hub
   const hasMerch = hall.bullets.some((b) => /merch/i.test(b))
+  const hasMusic = hall.bullets.some((b) => /apollo music|sonic identity/i.test(b))
+  const bullets = hasMerch ? [...hall.bullets] : [...hall.bullets, MERCH_BULLET]
   return {
     pageId: HALLS[id] ? id : 'hub',
     ...hall,
-    bullets: hasMerch ? hall.bullets : [...hall.bullets, MERCH_BULLET],
+    bullets: hasMusic ? bullets : [...bullets, MUSIC_BULLET],
     schedule: SCHEDULE_BLURB,
     empire:
       'Valhalla builds twelve companies across Land, Water, Air, and Space. Each solves a human problem and ties into the other eleven so the mosaic grows as a unit. Meridian is materials beneath. Every hall wears Meridian merch. Interest forms and Ask chat are non-binding. Everyone is a king: kings don’t wait for the throne; they build it.',
@@ -199,6 +204,7 @@ export function buildKnowledgePrompt(pageId) {
     '- Never guarantee ship, launch, move-in, or delivery dates as locked contracts.',
     '- Interest lists, research status, partner inquiries, and blueprint targets are OK to mention.',
     '- Merch is cut by Meridian for every hall. It is a waitlist, not a store that ships or takes payment.',
+    '- Apollo Music is a catalog of hall identities. It is not a streaming store, not a cart, and not a confirmation that any track shipped. Do not invent play counts, signed artists, or an August 16 launch as fact.',
     '- If the user needs a human (money, legal, sensitive personal data, explicit person request, or you are unsure), set needs_human true and say a Valhalla person will follow up in this thread.',
   ].join('\n')
 }

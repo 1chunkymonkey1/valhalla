@@ -3,15 +3,14 @@ import { getCompany } from '../lib/companies'
 import { isCompanySiteOpen } from '../lib/launchSchedule'
 import { useSimulationClock } from '../hooks/useSimulationClock'
 import {
-  MERCH_POSTURE,
-  MERCH_STATUS,
-  getHallAnnouncement,
-  merchItemsForCompany,
-  mosaicHallsWithMerch,
-} from '../data/meridianMerch'
+  MUSIC_POSTURE,
+  MUSIC_STATUS,
+  getMusicAnnouncement,
+  musicItemsForCompany,
+} from '../data/apolloMusic'
 import { companyProducts } from '../data/companyProducts'
 import EmailCapture from '../components/EmailCapture'
-import { MerchCard } from '../components/MeridianMerch'
+import { MusicCard } from '../components/ApolloMusic'
 import { useI18n } from '../i18n/I18nProvider'
 
 const TONES = {
@@ -41,23 +40,24 @@ const TONES = {
   },
 }
 
-export default function MerchShopPage({ companyId }) {
+export default function MusicShopPage({ companyId }) {
   const { t } = useI18n()
   const { now } = useSimulationClock()
+
+  if (companyId === 'meridian') return <Navigate to="/music" replace />
+
   const company = getCompany(companyId)
-  const announcement = getHallAnnouncement(companyId)
-  const items = merchItemsForCompany(companyId)
+  const announcement = getMusicAnnouncement(companyId)
+  const items = musicItemsForCompany(companyId)
   const productMeta = companyProducts[companyId] || {}
   const tone = TONES[productMeta.tone] || TONES.land
 
   if (!company || !announcement || items.length === 0) {
-    return <Navigate to={company ? `/${companyId}` : '/'} replace />
+    return <Navigate to={company ? `/${companyId}` : '/music'} replace />
   }
 
   const open = company.mosaic === false || isCompanySiteOpen(company.id, now)
   if (!open) return <Navigate to={`/${companyId}`} replace />
-
-  const halls = companyId === 'meridian' ? mosaicHallsWithMerch() : null
 
   return (
     <div
@@ -72,53 +72,34 @@ export default function MerchShopPage({ companyId }) {
       <header className="cs-merch-page__header">
         <div className="cs-merch-page__bar">
           <Link to={`/${companyId}`}>← {company.name}</Link>
-          <Link to={companyId === 'meridian' ? '/music' : `/${companyId}/music`}>
-            {t('music.shop')}
-          </Link>
-          <Link to="/meridian">{t('merch.openMeridian')}</Link>
+          <Link to={`/${companyId}/merch`}>{t('merch.shop')}</Link>
         </div>
-        <p className="cs-kicker">{t('merch.kicker')}</p>
+        <p className="cs-kicker">{t('music.kicker')}</p>
         <h1>{announcement.statement}</h1>
         <p>{announcement.body}</p>
-        <p className="cs-about__note">{MERCH_STATUS}</p>
-        <p className="cs-merch__posture">{MERCH_POSTURE}</p>
+        {items[0]?.merchTie ? (
+          <p>{t('music.wearsWith', { garment: items[0].merchTie })}</p>
+        ) : null}
+        <p className="cs-about__note">{MUSIC_STATUS}</p>
+        <p className="cs-merch__posture">{MUSIC_POSTURE}</p>
       </header>
 
       <main className="cs-merch-page__main">
         <ul className="cs-merch__grid cs-merch__grid--page">
           {items.map((item) => (
             <li key={item.id}>
-              <MerchCard item={item} />
+              <MusicCard item={item} />
             </li>
           ))}
         </ul>
 
-        {halls ? (
-          <div className="cs-merch__halls">
-            <h2 className="cs-merch__halls-title">{t('merch.allHalls')}</h2>
-            <ul className="cs-merch__hall-grid">
-              {halls.map((hall) => (
-                <li key={hall.id}>
-                  <Link to={hall.shopHref} className="cs-merch__hall">
-                    <img src={hall.imageSrc} alt="" aria-hidden="true" />
-                    <span>
-                      <strong>{hall.name}</strong>
-                      <em>{hall.announcement.statement}</em>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-
         <section id="reserve" className="cs-reserve">
           <EmailCapture
-            title={t('merch.joinList')}
-            hint={MERCH_POSTURE}
-            source={`merch:${companyId}:shop`}
+            title={t('music.joinList')}
+            hint={MUSIC_POSTURE}
+            source={`music:${companyId}:catalog`}
             companyId={companyId}
-            audience="merch"
+            audience="music"
           />
         </section>
       </main>

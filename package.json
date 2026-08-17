@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "test": "node --test src/data/meridianMerch.test.js",
+    "test": "node --test src/data/meridianMerch.test.js src/data/apolloMusic.test.js",
     "preview": "vite preview",
     "admin:totp": "node scripts/generate-admin-totp.mjs",
     "sync:product-images": "node scripts/sync-product-images.mjs",

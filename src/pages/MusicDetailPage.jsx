@@ -2,11 +2,18 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { getCompany } from '../lib/companies'
 import { isCompanySiteOpen } from '../lib/launchSchedule'
 import { useSimulationClock } from '../hooks/useSimulationClock'
-import { MERCH_POSTURE, MERCH_STATUS, getMerchItem } from '../data/meridianMerch'
+import { MUSIC_DOCTRINE, MUSIC_POSTURE, MUSIC_STATUS, getMusicItem } from '../data/apolloMusic'
 import { companyProducts } from '../data/companyProducts'
 import EmailCapture from '../components/EmailCapture'
-import GarmentMark from '../components/GarmentMark'
+import ScoreMark from '../components/ScoreMark'
 import { useI18n } from '../i18n/I18nProvider'
+
+const HUB_TONE = {
+  ink: '#1a1a16',
+  paper: '#f7f7f3',
+  accent: '#4a3d2a',
+  muted: 'rgba(26, 26, 22, 0.62)',
+}
 
 const TONES = {
   land: {
@@ -35,7 +42,7 @@ const TONES = {
   },
 }
 
-export default function MerchDetailPage({
+export default function MusicDetailPage({
   companyId: companyIdProp,
   sku: skuProp,
 }) {
@@ -44,15 +51,24 @@ export default function MerchDetailPage({
   const { now } = useSimulationClock()
   const companyId = companyIdProp || params.companyId
   const sku = skuProp || params.sku
-  const company = getCompany(companyId)
-  const item = getMerchItem(companyId, sku)
-  const productMeta = companyProducts[companyId] || {}
-  const tone = TONES[productMeta.tone] || TONES.land
+  const isHouse = companyId === 'apollo-music' || companyId === 'music'
+  const company = isHouse ? null : getCompany(companyId)
+  const item = getMusicItem(companyId, sku)
+  const productMeta = company ? companyProducts[companyId] || {} : {}
+  const tone = isHouse ? HUB_TONE : TONES[productMeta.tone] || TONES.land
 
-  if (!company) return <Navigate to="/" replace />
-  const open = company.mosaic === false || isCompanySiteOpen(company.id, now)
-  if (!open) return <Navigate to={`/${companyId}`} replace />
-  if (!item) return <Navigate to={`/${companyId}/merch`} replace />
+  if (!isHouse && !company) return <Navigate to="/music" replace />
+  if (!isHouse) {
+    const open = company.mosaic === false || isCompanySiteOpen(company.id, now)
+    if (!open) return <Navigate to={`/${companyId}`} replace />
+  }
+  if (!item) {
+    return <Navigate to={isHouse ? '/music' : `/${companyId}/music`} replace />
+  }
+
+  const backTo = isHouse ? '/music' : `/${companyId}`
+  const backLabel = isHouse ? 'Apollo Music' : company.name
+  const listTo = isHouse ? '/music' : `/${companyId}/music`
 
   return (
     <div
@@ -66,50 +82,54 @@ export default function MerchDetailPage({
     >
       <header className="product-detail__header">
         <div className="product-detail__bar">
-          <Link to={`/${companyId}`} className="product-detail__back">
-            ← {company.name}
+          <Link to={backTo} className="product-detail__back">
+            ← {backLabel}
           </Link>
-          <Link to={`/${companyId}/merch`} className="product-detail__matrix-link">
-            {t('merch.shop')}
+          <Link to={listTo} className="product-detail__matrix-link">
+            {t('music.shop')}
           </Link>
         </div>
-        <p className="product-detail__kicker">{t('merch.madeBy')}</p>
+        <p className="product-detail__kicker">{t('music.madeBy')}</p>
         <h1 className="product-detail__brand">{item.name}</h1>
         <p className="product-detail__naming">{item.statement}</p>
-        <p className="product-detail__status">{MERCH_STATUS}</p>
+        <p className="product-detail__status">{MUSIC_STATUS}</p>
       </header>
 
       <main className="product-detail__main">
         <figure className="product-detail__hero cs-merch-hero">
           <img src={item.imageSrc} alt="" aria-hidden="true" />
-          <GarmentMark piece={item.piece} />
+          <ScoreMark />
         </figure>
 
         <section className="product-detail__blueprint product-detail__blueprint--copy-only">
           <div className="product-detail__blueprint-copy">
-            <h2>{item.garment}</h2>
+            <h2>{item.name}</h2>
             <p>{item.does}</p>
-            <p className="product-detail__overview">{item.material}</p>
-            <p className="product-detail__desc">{MERCH_POSTURE}</p>
+            {item.merchTie ? (
+              <p className="product-detail__overview">
+                {t('music.wearsWith', { garment: item.merchTie })}
+              </p>
+            ) : (
+              <p className="product-detail__overview">{MUSIC_DOCTRINE.meridian}</p>
+            )}
+            <p className="product-detail__desc">{MUSIC_POSTURE}</p>
           </div>
         </section>
 
         <section id="reserve" className="product-detail__reserve">
           <EmailCapture
-            title={t('merch.joinList')}
-            hint={MERCH_POSTURE}
-            source={`merch:${companyId}:${item.sku}`}
-            companyId={companyId}
-            audience="merch"
+            title={t('music.joinList')}
+            hint={MUSIC_POSTURE}
+            source={`music:${companyId}:${item.sku}`}
+            companyId={isHouse ? null : companyId}
+            audience="music"
           />
         </section>
 
         <footer className="product-detail__foot">
-          <Link to={`/${companyId}/merch`}>{t('merch.backToMerch')}</Link>
-          <Link to={companyId === 'meridian' ? '/music' : `/${companyId}/music`}>
-            {t('music.shop')}
-          </Link>
-          <Link to="/meridian">{t('merch.openMeridian')}</Link>
+          <Link to={listTo}>{t('music.backToMusic')}</Link>
+          {item.merchHref ? <Link to={item.merchHref}>{t('merch.shop')}</Link> : null}
+          <Link to="/music">{t('music.openHouse')}</Link>
         </footer>
       </main>
     </div>

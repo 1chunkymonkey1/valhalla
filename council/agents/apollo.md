@@ -323,3 +323,23 @@ Post about the Jefferson movement until Jared clears the manifesto.
 
 Portugal Window — July 5–10
 The TRMNL4 Founders Workation is a content opportunity. The Californian Viking in Europe — specifically in a country that shares Atlantic frontier history with the Norse world — is on brand. Capture: the work, the water, the founders network, the contrast with Sonora. This is Rollo in Normandy content. Use it.
+
+---
+
+## Public music copy rules (standing)
+
+Helios owns sonic-universe doctrine. Apollo owns the public list.
+
+ALWAYS
+- Catalog, not a cart and not a stream.
+- One sonic identity (epithet) per mosaic hall.
+- Pair the identity to Meridian garments: garment + anthem, not a store.
+- Named tracks stay private until the founder clears them.
+- Archive dates (August 12 theme, August 16 announce) stay unverified unless Eason confirms.
+
+NEVER on L0
+- Play counts, monthly listeners, DSP storefronts, autoplay.
+- Closed artist deals, signed acts, licensed-from claims.
+- "Apollo Music is live / launched / announced" as a past fact.
+- Spirit Airlines or Taylor Swift on Eagle music copy.
+- Territorial deeds, parcels, or water-ownership as released tracks.
