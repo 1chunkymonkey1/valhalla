@@ -33,6 +33,11 @@ const HUMAN_PATTERNS = [
   /\b(pay|payment|wire|invoice|refund|deposit|money|crypto|bitcoin|bank|credit card)\b/i,
   /\b(reserv(e|ation)|book(ing)?|purchase|buy now|checkout|pre-?sale)\b/i,
   /\b(ssn|passport|social security|password|secret|confidential)\b/i,
+  /\bspirit airlines\b/i,
+  /\btaylor swift\b/i,
+  /\b(in talks to acquire|acquisition of)\b/i,
+  /\b(valued?\s*\$?\s*40|400\s*b(?:illion)?)\b/i,
+  /\b(safe note|pre-money safe|securities (offer|offering))\b/i,
 ]
 
 export function heuristicNeedsHuman(text) {
