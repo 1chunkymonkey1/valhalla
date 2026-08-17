@@ -52,7 +52,7 @@ Valhalla builds 12 companies across Land, Water, Air, and Space solving transit,
 ## Business Model
 
 ```
-Valhalla creates value as a holdco + 12 specialized companies (“halls”) across Land, Water, Air, and Space (Meridian materials optional beneath). Today: public mosaic, interest/email lists, and research/partner queues per hall — no fabricated revenue (MRR $0). Future capture: products and services as each hall reaches readiness (mobility, habitation, energy/water, clean aviation, atmosphere systems, space transport, claims/habitation platforms, sovereign compute), with cross-hall demand so each company feeds the other eleven. We do not claim deed sales, booked flights, or capacity/ROI figures that are not diligence-ready.
+Valhalla creates value as a holdco + 12 specialized halls across Land, Water, Air, and Space (Meridian materials optional beneath). Today: public mosaic, interest/email lists, and research/partner queues per hall — no fabricated revenue (MRR $0). Future capture: products and services as each hall reaches readiness (mobility, habitation, energy/water, clean aviation, atmosphere systems, space transport, claims/habitation platforms, sovereign compute), with cross-hall demand so each hall feeds the other eleven. We do not claim deed sales, booked flights, or capacity/ROI figures that are not diligence-ready.
 ```
 
 ---

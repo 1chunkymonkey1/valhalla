@@ -11,7 +11,7 @@ export const HALL_BOTTLENECKS = [
     name: 'Wolf',
     decision: 'What is Wolf allowed to speak as live this week: Fenrir path, OEM path, or Dire Wolf story.',
     lockedRule:
-      'Dire Wolf 5.8-hour SF to NYC is a program target. It is not a shipping product. Community-wrench culture does not replace a first artifact.',
+      'Wolf is the first hall seen, not a land-transit OpCo. The pack moves. Dire Wolf 5.8-hour SF to NYC is a program target, not a shipping product. Fenrir is a named pack species, not a shipping SKU. QJ Motor USA via SSR Motorsports is a target, not a deal. Interest and email only until the founder authorizes a cart. Community-wrench culture does not replace a first artifact.',
   },
   {
     id: 'viking.partner-gate',
@@ -67,7 +67,7 @@ export const HALL_BOTTLENECKS = [
     name: 'Aether',
     decision: 'Do Aether claims stay a registry story, or leak into deed sales.',
     lockedRule:
-      'No deed sales, no claim payments, no funds against territory on this surface. Hawk Mark 02 flag path is research with Phénix.',
+      'No deed sales, no claim payments, no funds against territory on this surface. Territorial ownership beyond Earth is not present title. Hawk Mark 02 flag path is research with Phénix.',
   },
   {
     id: 'demeter.next-send',
@@ -75,7 +75,7 @@ export const HALL_BOTTLENECKS = [
     name: 'Demeter',
     decision: 'Which capital path is this week’s send: SAFE desk, fellowship, REAP/IRA, or farm lead.',
     lockedRule:
-      'Sends live in /capital, not in chat. Do not copy dispatch rows into the founder queue. Raise-size language is inconsistent across sources ($5M vs $1.0–1.5M as-of capture); pick one sentence before any investor send. Kyle Chu stepping back is a coverage hole, not a recruiting fair.',
+      'Sends live in /capital, not in chat. Do not copy dispatch rows into the founder queue. Public copy does not speak a $5M pre-money SAFE. Capital desk sourced sentence is $1.0–1.5M SAFE at $8M cap (dispatchSeed / CAPITAL_POSTURE); older $5M figures stay interior and unlabeled as the public raise. Kyle Chu stepping back is a coverage hole, not a recruiting fair.',
   },
   {
     id: 'njord.earth-first',
@@ -118,7 +118,7 @@ export const EXTRA_BOTTLENECKS = [
     name: 'Meridian Apparel',
     decision: 'Freeze Earth Line SKUs, sign a mill/cutter, or change the list-not-cart rule.',
     lockedRule:
-      'Meridian is the cutter, not a shop. Earth Line is a list, not a cart. No merch checkout, no in-stock, no funds on this surface. September 2026 is a research target. Venus Suit is not Earth Line. Hall merch copy is automate.',
+      'Meridian is the cutter, not a shop. Earth Line is a list, not a cart. No merch checkout, no in-stock, no funds on this surface. September 2026 is a research target. Venus Suit is not Earth Line. Hall Mark is the public third line. Stealth / armor supply stays off L0. Hall merch copy is automate.',
   },
   {
     id: 'hub.edna-charge',
@@ -159,7 +159,10 @@ export function isLockedKind(bottleneck, kind, decision) {
   if (bottleneck.id === 'atoll.funds-posture' && /(pre-?sale live|take funds|checkout)/i.test(text)) {
     return true
   }
-  if (bottleneck.id === 'aether.deed-posture' && /(sell deed|deed sale|collect (funds|payment))/.test(text)) {
+  if (bottleneck.id === 'aether.deed-posture' && /(sell deed|deed sale|collect (funds|payment)|claims property beyond earth|present title)/.test(text)) {
+    return true
+  }
+  if (bottleneck.id === 'wolf.first-product' && /(owns land transit|fenrir deposit|pre-order revenue|qj .{0,20}(partner|deal)|shipping sku)/i.test(text)) {
     return true
   }
   return false

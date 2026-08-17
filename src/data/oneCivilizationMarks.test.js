@@ -34,3 +34,27 @@ test('council agent defs keep banned claims inside the quarantine block', () => 
   assert.equal(outside.includes('Taylor Swift is first consumer'), false)
   assert.equal(/ATOLL[^\n]*Pre-sale live/.test(outside), false)
 })
+
+test('L0 hall copy does not leak quarantined claim speech', () => {
+  const files = [
+    new URL('./companyProducts.js', import.meta.url),
+    new URL('./hallMatrices.js', import.meta.url),
+    new URL('./wolfMatrix.js', import.meta.url),
+    new URL('./roadmaps.js', import.meta.url),
+    new URL('../../api/_lib/hallKnowledge.js', import.meta.url),
+  ]
+  const banned = [
+    'claims property beyond Earth',
+    'Wolf owns land transit',
+    'Stealth Armor',
+    'Actively in talks to acquire Spirit Airlines',
+    'Taylor Swift is first consumer',
+    'Raising $5M pre-money SAFE',
+  ]
+  for (const file of files) {
+    const text = readFileSync(file, 'utf8')
+    for (const phrase of banned) {
+      assert.equal(text.includes(phrase), false, `${file.pathname} still has "${phrase}"`)
+    }
+  }
+})

@@ -16,7 +16,7 @@ const FALLBACK_MATERIALS = {
   elevatorPitch: ELEVATOR_PITCH,
   businessModel: BUSINESS_MODEL,
   structureNote:
-    'Valhalla is a civilization platform: one holdco thesis, twelve specialized companies across Land, Water, Air, and Space. Legal entity in formation. No fabricated revenue. Contact info@valhallaco.org.',
+    'Valhalla is a civilization platform: one holdco thesis, twelve specialized halls across Land, Water, Air, and Space. Legal entity in formation. No fabricated revenue. Contact info@valhallaco.org.',
   leadsMarkdown: '',
   companyBlurbs: Object.fromEntries(COMPANY_DECKS.map((c) => [c.id, ''])),
   links: {
@@ -175,7 +175,7 @@ function MaterialsReadView({ materials, companies, tier, onLock, busy }) {
       <section className="vh-inv__section">
         <h2>Twelve company decks</h2>
         <p className="vh-inv__muted">
-          Each of the 12 halls has a dedicated deck. Each company also has a Hall Lead seat (roster
+          Each of the 12 halls has a dedicated deck. Each hall also has a Hall Lead seat (roster
           in leads — names filled as confirmed).
         </p>
         <div className="vh-inv__actions">
@@ -218,7 +218,7 @@ function MaterialsReadView({ materials, companies, tier, onLock, busy }) {
         <p>
           {materials?.structureNote || (
             <>
-              Valhalla is a civilization platform: one holdco thesis, twelve specialized companies
+              Valhalla is a civilization platform: one holdco thesis, twelve specialized halls
               across Land, Water, Air, and Space. Legal entity in formation. No fabricated revenue.
               Contact <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
             </>

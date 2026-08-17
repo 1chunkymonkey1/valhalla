@@ -11,10 +11,10 @@ export const FUNDRAISING_LEADS = '/investors/leads.md'
 export const FUNDRAISING_COMPANY_ZIP = '/investors/company-decks.zip'
 
 /** Business model excerpt (honest; MRR $0). */
-export const BUSINESS_MODEL = `Valhalla creates value as a holdco + 12 specialized companies (“halls”) across Land, Water, Air, and Space (Meridian materials optional beneath). Today: public mosaic, interest/email lists, and research/partner queues per hall — no fabricated revenue (MRR $0). Future capture: products and services as each hall reaches readiness (mobility, habitation, energy/water, clean aviation, atmosphere systems, space transport, claims/habitation platforms, sovereign compute), with cross-hall demand so each company feeds the other eleven. We do not claim deed sales, booked flights, or capacity/ROI figures that are not diligence-ready.`
+export const BUSINESS_MODEL = `Valhalla creates value as a holdco + 12 specialized halls across Land, Water, Air, and Space (Meridian materials optional beneath). Today: public mosaic, interest/email lists, and research/partner queues per hall — no fabricated revenue (MRR $0). Future capture: products and services as each hall reaches readiness (mobility, habitation, energy/water, clean aviation, atmosphere systems, space transport, claims/habitation platforms, sovereign compute), with cross-hall demand so each hall feeds the other eleven. We do not claim deed sales, booked flights, or capacity/ROI figures that are not diligence-ready.`
 
 export const ELEVATOR_PITCH =
-  'Valhalla builds 12 companies across Land, Water, Air, and Space solving transit, housing, energy, water, clean aviation, atmosphere, space transport, claims, and sovereign compute—as one civilization system. Everyone is a king. Kings don’t wait for the throne; they build it. valhallaco.org'
+  'Valhalla builds 12 halls across Land, Water, Air, and Space solving transit, housing, energy, water, clean aviation, atmosphere, space transport, claims, and sovereign compute—as one civilization system. Everyone is a king. Kings don’t wait for the throne; they build it. valhallaco.org'
 
 /** Reveal-order halls with dedicated decks + lead seats. */
 export const COMPANY_DECKS = [

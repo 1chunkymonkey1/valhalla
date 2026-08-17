@@ -311,6 +311,11 @@ Do not speak these as present-tense facts on public or investor surfaces:
 - Valhalla valued $40-400B
 - 1% US farmland = 4,500 GW as investor fact
 - 10-17 Gt CO₂
+- Aether claims property beyond Earth as present title
+- Wolf owns land transit
+- Stealth Armor as a public product line
+- Raising $5M pre-money SAFE as the locked public raise (capital desk sourced sentence is $1.0–1.5M SAFE at $8M cap; do not invent which is true in a send)
+- QJ Motor USA / SSR Motorsports as a closed OEM partnership
 END CLAIMS QUARANTINE
 
 
@@ -318,7 +323,7 @@ END CLAIMS QUARANTINE
 
 **HOLM** — Modular homes. 12 linkable modules. Log cabin, sod house, adobe. Logistics and financing handled. Dandelion Energy geothermal partnership target.
 
-**DEMETER** — Full deployable energy platform. Agrivoltaics, green hydrogen, geothermal, wind, SMR, hydrogen, ethanol, biofuel. California-first. Active farm lead: Gothenburg, Nebraska (Plains Prime). Raising $5M pre-money SAFE. USDA REAP up to 50% eligible costs. IRA §45V $3.00/kg green hydrogen. Farmland-to-grid math is a thesis, not an investor fact, until a document sits behind it. 75-year roadmap ends at Dyson swarm. CEO: Eason. President: Adrian Pelayo. CTA: Kyle Chu.
+**DEMETER** — Full deployable energy platform. Agrivoltaics, green hydrogen, geothermal, wind, SMR, hydrogen, ethanol, biofuel. California-first. Active farm lead: Gothenburg, Nebraska (Plains Prime). Raise-size is inconsistent in the archive ($5M pre-money vs capital desk $1.0–1.5M SAFE at $8M cap). Do not speak either as the public raise until the founder locks one sentence. Capital desk copy lives in dispatchSeed / CAPITAL_POSTURE. USDA REAP up to 50% eligible costs. IRA §45V $3.00/kg green hydrogen. Farmland-to-grid math is a thesis, not an investor fact, until a document sits behind it. 75-year roadmap ends at Dyson swarm. CEO: Eason. President: Adrian Pelayo. CTA: Kyle Chu.
 
 **VIKING** — Clean consumer cruises. Full narrative arc. Board as yourself, disembark as Ragnar. Name chosen intentionally.
 
@@ -407,7 +412,7 @@ L0 Public · L1 Network · L2 Council · L3 Command · L4 Eyes Only (physical on
 
 ## ACTIVE PORTFOLIO STATUS
 
-**DEMETER:** Nebraska farm lead active. MARAD RFI filed Aug 5 (docket MARAD-2026-0729, tracking msf-rj6m-cmxn). Berkeley Crowdfunding applied. Raising $5M SAFE.
+**DEMETER:** Nebraska farm lead active. MARAD RFI filed Aug 5 (docket MARAD-2026-0729, tracking msf-rj6m-cmxn). Berkeley Crowdfunding applied. Do not speak a $5M SAFE as the public raise; capital desk sourced sentence is $1.0–1.5M at $8M cap.
 
 **ARGO ATOMICS:** Delaware LLC. argoatomic.com · info@argoatomic.com · (302) 314-2240. MARAD RFI filed. $4.2T projected maritime fuel savings over 30 years. Correct reactor: LWR (not Valar's HTGR — confirmed by Chris Dawson who works at Valar and was in the room when Argo was founded). Ian Stewart is CVO.
 

@@ -12,13 +12,13 @@ const HALLS = {
       'Twelve mosaic halls across Land / Water / Air / Space',
       'Movement, Habitation, Energy, and Intelligence pillars; Meridian materials at /meridian',
       'Ask widgets reach the Valhalla team',
-      'No false “shipping now” or funded reservation claims on this surface',
+      'No false shipping claims or funded reservation claims on this surface',
     ],
   },
   wolf: {
     name: 'Wolf',
     hero: 'The pack moves first.',
-    body: 'Wolf owns land transit. Fenrir is the adventure electric motorcycle; next is a tri-fuel ATV; the sixth product is Dire Wolf, a transcontinental maglev aiming San Francisco to New York in 5.8 hours. Unifying principles: clean, and fixable. By the time Dire Wolf is built, the pack has assembled.',
+    body: 'The pack moves. Wolf is the first hall seen, not an operating company that ships. Fenrir is the adventure electric motorcycle named first; next is a tri-fuel ATV; the sixth name is Dire Wolf, a transcontinental maglev aiming San Francisco to New York in 5.8 hours. Unifying principles: clean, and fixable. By the time Dire Wolf is built, the pack has assembled. Interest and email only.',
     bullets: [
       'Fenrir: adventure electric motorcycle (first product)',
       'Tri-fuel ATV (second product)',
@@ -29,7 +29,7 @@ const HALLS = {
   viking: {
     name: 'Viking',
     hero: 'Board as yourself. Disembark as Ragnar.',
-    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships use light-water SMRs and emerging sail. First route Stockholm to London; later a Phénix launch-pad call and a moon leg on the vacation arc.',
+    body: 'Viking boards. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships are researched for light-water SMRs and emerging sail. First route studied: Stockholm to London; later a Phénix launch-pad call and a moon leg on the vacation arc. Partner-gated. No ticketed sailing date on this surface.',
     bullets: [
       'Stockholm → London first route',
       'Light-water SMR + sail propulsion thesis',
@@ -96,7 +96,7 @@ const HALLS = {
   aether: {
     name: 'Aether',
     hero: 'Phénix marks the territory. Aether claims it.',
-    body: 'Aether Real Estate helps you claim land in the galaxy: manage claims, defend claim jumpers, protect territory. Hawk Mark 02 plants flags for claims made on Earth. Goal: a fair regulated system for cosmic expansion. Aether claims property beyond Earth.',
+    body: 'Aether marks orbit as a registry research hall: manage claims as ledger instruments, defend claim-jumper framing, disclose legal status. Hawk Mark 02 plants flags for claims made on Earth. Goal: a fair regulated system for cosmic expansion. Territorial ownership beyond Earth is not present title.',
     bullets: [
       'Galactic claims / registry',
       'Claim-jumper defense framing',
@@ -193,7 +193,7 @@ export function buildKnowledgePrompt(pageId) {
     '- Answer helpfully in 2–5 short sentences.',
     '- Never claim products are shipping, available to buy, funded, licensed, or bookable unless the knowledge pack says so.',
     '- You may state founder goals and program targets from the knowledge pack (including 5.8-hour rail, 2028 Olympus Mons, 2031 climate, Dyson path, Rollo).',
-    '- You may state that Aether claims property beyond Earth and that Aeolus intends to own the atmospheric substrate.',
+    '- Never state territorial ownership or present title beyond Earth, and never state that Aeolus presently owns the atmospheric substrate. Registry and intent are research framing only.',
     '- Never say deeds, parcels, territory, or atmospheric rights are for sale, reserved for payment, or that funds are collected against those claims on this site.',
     '- Never invent prices, capacity, CO₂, ROI, or flight times as proven measured facts beyond the stated goals.',
     '- Never guarantee ship, launch, move-in, or delivery dates as locked contracts.',

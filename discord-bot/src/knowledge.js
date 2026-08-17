@@ -25,7 +25,7 @@ export const knowledge = {
     { id: 'phenix', domain: 'Space', pillar: 'Movement', blurb: 'Space transport: Moon, Venus/Mars, Rollo (Alpha Centauri B), O’Neill spheres. Hawk Mark 1/02.' },
     { id: 'aether', domain: 'Space', pillar: 'Habitation', blurb: 'Galactic real estate claims; Hawk Mark 02 plants flags. Phénix marks; Aether claims.' },
     { id: 'corvus', domain: 'Space', pillar: 'Intelligence', blurb: 'Sovereign solar computers, space data centers, Raven OS for the empire. Prompt waitlist.' },
-    { id: 'meridian', domain: 'Materials', pillar: 'Materials', blurb: 'Materials layer: Earth garment, Venus Suit, merch for every hall. List, not a cart.' },
+    { id: 'meridian', domain: 'Materials', pillar: 'Materials', blurb: 'Materials layer: Earth garment, Venus Suit, Hall Mark merch for every hall. List, not a cart.' },
   ],
   reservations:
     'Halls gather email interest on the public site. Do not invent deposit or checkout claims.',
@@ -62,7 +62,7 @@ export function answerQuestion(text) {
       if (/venus|olympus/.test(q) && !/suit/.test(q)) return c.id === 'olympus'
       if (/spirit|saf|eagle/.test(q)) return c.id === 'eagle'
       if (/geothermal|smr|dyson|demeter/.test(q)) return c.id === 'demeter'
-      if (/meridian|garment|armor/.test(q)) return c.id === 'meridian'
+      if (/meridian|garment|merch/.test(q)) return c.id === 'meridian'
       return false
     })
     if (hit) {

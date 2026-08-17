@@ -13,7 +13,7 @@ export const companyProducts = {
     headline: 'The pack moves first.',
     support:
       'Clean and fixable land transit. Fenrir first, then the tri-fuel ATV, through the pack to Dire Wolf: a transcontinental maglev aiming San Francisco to New York in 5.8 hours.',
-    body: 'Wolf owns land transit. The first product is Fenrir, an adventure electric motorcycle. The second is a tri-fuel ATV. The sixth is the Dire Wolf line, a transcontinental maglev railroad built to connect San Francisco to New York in 5.8 hours. Two unifying principles run the pack: clean, and fixable. By the time Dire Wolf is built, the pack has assembled.',
+    body: 'The pack moves. Wolf is the first hall seen, not an operating company that ships. Fenrir is the adventure electric motorcycle named first; next is a tri-fuel ATV; the sixth name is Dire Wolf, a transcontinental maglev aiming San Francisco to New York in 5.8 hours. Two unifying principles run the pack: clean, and fixable. By the time Dire Wolf is built, the pack has assembled. Interest and email only; Fenrir is not a shipping SKU on this surface.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -79,7 +79,7 @@ export const companyProducts = {
     headline: 'Board as yourself. Disembark as Ragnar.',
     support:
       'Sustainable cruises powered by light-water SMRs and emerging sail. Stockholm to London first; later a Phénix pad and a moon leg on the same vacation.',
-    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships run on light-water SMRs and emerging sail technology. The first route is Stockholm to London. Soon you will be able to take a Viking cruise to a Phénix launch pad and add a moon leg to your summer vacation. Partner-gated itineraries; interest only on this surface.',
+    body: 'Viking boards. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships are researched for light-water SMRs and emerging sail. The first route studied is Stockholm to London. A later arc would add a Phénix launch-pad call and a moon leg. Partner-gated itineraries; interest only on this surface. No ticketed sailing date here.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -144,7 +144,7 @@ export const companyProducts = {
     headline: 'The more you fly, the better it is for the atmosphere.',
     support:
       'Clean air transport from private jets to long-distance Earth travel. Every plane is named for a bird. Active carbon removal on every flight.',
-    body: 'Eagle Air is the clean air transportation company of the twenty-first century, from private jets for high-net-worth travelers to long-distance Earth travel. Every plane is named after a bird species to remind us who owns the skies. In accordance with protecting those skies, every Eagle jet has active carbon removal: the more you fly it, the better it is for the atmosphere. Access and partner interest only; not a published flight schedule.',
+    body: 'Eagle rises. Clean air transport from private jets to long-distance Earth travel. Every plane is named after a bird species to remind us who holds the skies. Every Eagle jet is designed with active carbon removal: the more you fly it, the better it is for the atmosphere. Access and partner interest only; not a published flight schedule. Open dialogue is not an acquisition.',
     tone: 'air',
     ...emailFirst,
     gallery: [
@@ -229,7 +229,7 @@ export const companyProducts = {
     headline: 'Phénix marks the territory. Aether claims it.',
     support:
       'Claim land in the galaxy. Manage claims, defend claim jumpers, protect territory. Hawk Mark 02 plants flags for Earth-originated claims.',
-    body: 'Aether Real Estate helps you claim land in the galaxy. Manage claims, defend against claim jumpers, and protect territory. Hawk Mark 02, a Phénix launch vehicle, is tasked with planting flags for claims made on Earth. The goal is a fair and regulated system for human expansion into the cosmos. Aether claims property beyond Earth. No deed sales or fund collection against claims on this surface.',
+    body: 'Aether marks orbit as a registry research hall. Manage claims as ledger instruments, defend claim-jumper framing, and disclose legal status. Hawk Mark 02, a Phénix launch vehicle, is tasked with planting flags for claims made on Earth. The goal is a fair and regulated system for human expansion into the cosmos. Territorial ownership beyond Earth is not present title. No deed sales or fund collection against claims on this surface.',
     tone: 'space',
     ...emailFirst,
     gallery: [
@@ -282,7 +282,7 @@ export const companyProducts = {
       'Consumer / wearer interest',
       'Textile / materials partner',
       'Aerospace suit partner',
-      'Defense / armor supply inquiry',
+      'Hall-mark / mill partner',
       'Press / research',
     ],
   },
