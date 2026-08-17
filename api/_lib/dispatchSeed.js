@@ -32,6 +32,38 @@ UC Berkeley · Sonora, California`
 
 export const DISPATCH_SEED = [
   {
+    id: 'demeter-investor-signals',
+    lane: 'demeter',
+    channel: 'email',
+    title: 'Investor Signals — Sam',
+    toName: 'Sam',
+    to: 'sam@investorsignals.co',
+    toHint:
+      'Founder-authorized 17 Aug 2026. Pitch-review room, not a confirmed check. Do not ask him to blast a list. Name on the public site is unverified; address is the authorization.',
+    subject: 'Demeter Energy — $1.0–1.5M SAFE, $8M cap',
+    applyUrl: '',
+    gated: '',
+    flags: ['one-to-one', 'no-redistribution'],
+    notes:
+      'Do not attach the twelve HTML files as company decks. Do not send leads.md. Mosaic is charter in one sentence. Gmail compose only; founder clicks Send. Do not mark sent until Gmail actually sends.',
+    body: `Sam,
+
+I am Eason Greene. I am raising Demeter Energy, not Valhalla.
+
+This note is to you only. Please do not forward or post.
+
+If useful as map, not as raise: twelve halls on valhallaco.org (Land, Water, Air, Space). Those are charter rooms of One Civilization. They are not twelve issuers raising.
+
+The round is Demeter only: $1.0–1.5M on a YC post-money SAFE, $8M cap, $25K minimum. Agrivoltaic solar on working land, hydrogen as the second product. First site lead is Gothenburg, Nebraska. Land not signed. Delaware entity in formation. I am 19, at Berkeley.
+
+I am not attaching twelve company decks. Those files were internal stubs. I can send the farm one-pager or do twenty minutes if this stays a one-to-one thread.
+
+Eason Greene
+Founder, Demeter Energy
+easongreene@gmail.com
+(209) 768-4306`,
+  },
+  {
     id: 'demeter-flyer-one',
     lane: 'demeter',
     channel: 'email',

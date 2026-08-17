@@ -172,6 +172,7 @@ export const L0_SCAN_FILES = [
   'public/investors/APPLICATION.md',
   'public/investors/leads.md',
   'public/investors/deck.html',
+  'public/investors/halls.html',
   'public/investors/company-decks/wolf.html',
   'public/investors/company-decks/holm.html',
   'public/investors/company-decks/demeter.html',
