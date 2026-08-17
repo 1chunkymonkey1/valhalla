@@ -2,21 +2,32 @@
 
 **Date:** 2026-08-17  
 **Source:** Founder note (Eason). Not a signed relationship.  
-**Contacts:** Two doors. Do not mix them in one send.
+**Hermes ruling (same day, later):** Chris door is closed. People who hold the relationship forbade the send.
 
-| Door | Who | Channel | Subject |
+| Door | Who | Status | Subject |
 | --- | --- | --- | --- |
-| People | Noah and Micah | A thread Eason already has. Do not invent emails. | Escapes trail-traversability robot |
-| Company | Chris Thobaben, CEO | 217-506-2749 · contact@maren-go.com (published Collaborations CTA, 2026-08-17) | Their three public asks. Do not name Noah, Micah, Escapes, or moonlighting. |
+| People | Noah and Micah | Open. Existing thread only. Do not invent emails. | Honor the gate. Name the bar. Escapes stays a named lane, not a deal. |
+| Company | Chris Thobaben, CEO | **Forbidden.** Do not email, call, form, or LinkedIn. Do not use the published Collaborations CTA as a workaround. | Intro exists only if Noah and Micah make it, after the viable-project bar. |
 
-**Valhalla side:** Named lane **Escapes** (Land × Movement neighbor of Wolf). Not a hall. Not Wolf. Not Draco. Not Eagle.
+Published contacts stay on file so nobody "rediscovers" them as an action: 217-506-2749 · contact@maren-go.com (Collaborations CTA, 2026-08-17). Recorded. Not a send.
 
-## What Eason said
+**Valhalla side:** Named lane **Escapes** (Land × Movement neighbor of Wolf). Not a hall. Not Wolf. Not Draco. Not Eagle. Not a Maren-go project.
+
+## What Eason said (morning)
 
 - Noah and Micah work at Maren-go.
 - They are going to build a robot that assesses **traversability for hiking trails** for **Escapes**.
 
 That is intent. It is not a robot in hand, not a Valhalla SKU, and not a closed partnership.
+
+## What Noah and Micah said (same day, gate)
+
+- Eason should **not** email Chris.
+- They do not want Chris to waste his time on Eason's projects.
+- They do not want it tied back to Chris or to Maren-go.
+- They will connect them **if** Eason has a viable project going.
+
+The people who hold the relationship closed the second door. Honor it.
 
 ## What Maren-go is (their public site, 2026-08-17)
 
@@ -39,55 +50,59 @@ Three bins stay separate until Eason says they are the same people:
 
 Ask Eason privately. Do not ask Noah or Micah whether they are the Wagners or the Noka twins.
 
-## Council read (2026-08-17)
+## Council read
 
-- **Hermes:** Lane is **Escapes**. That send is Noah/Micah only. Chris is a second door: their published Collaborations CTA. Do not put Escapes, Noah, or Micah in a mail to Chris. Do not mention SAFE, Wolf SKUs, or Draco co-founder talk in either first message.
-- **Thor:** A trail-traversability robot is **not Wolf**. Wolf is the corridor and the pack (Fenrir first). This robot may later feed Wolf as a sensor if it changes a real go/no-go on a named trail. Until then, do not put a wolf stencil on it. Escapes is not a twelfth hall.
-- **Daedalus:** First article is a **scored trail map from an existing ground vehicle**, not a new custom robot. Reuse driving stack and surface-inspection sensors. Output: georeferenced segments (grade, roughness, blockage), calibrated against hikers. Do not ship a binary go/no-go before false-clearance is known. Singletrack under canopy is later. Platforms too wide for the trail they claim to score are ornamental.
-- **Lex:** Noun is **people**, not partner, not vendor. Maren-go IP, CUI, and export-control screens sit on their employment. Mutual NDA before any technical share. Confirm moonlighting and IP assignment in writing before any SOW. Qualified human counsel before action.
+- **Hermes (this ruling):** One door. Noah and Micah only. The staged Chris Collaborations mail is dead. Do not mention SAFE, Wolf SKUs, Draco co-founder talk, or Maren-go employment in the friends reply. Do not argue the gate.
+- **Thor (prior, still holds):** A trail-traversability robot is **not Wolf**. Wolf is the corridor and the pack (Fenrir first). This robot may later feed Wolf as a sensor if it changes a real go/no-go on a named trail. Until then, do not put a wolf stencil on it. Escapes is not a twelfth hall. `@thor` owns that call when a named trail exists.
+- **Daedalus (prior, still holds as build doctrine, not as inventory):** First article is a **scored trail map from an existing ground vehicle**, not a new custom robot. `@daedalus` owns the artifact spec if Eason wants to build toward the bar. Do not imply that article exists today.
+- **Lex (prior, still holds):** Noun is **people**, not partner, not vendor. Maren-go IP, CUI, and export-control screens sit on their employment. That is why their "do not tie it back" line is the correct legal instinct, not just manners. `@lex` before any file share that could look like joint IP, and before any intro to Chris even after the bar is met. Qualified human counsel before action.
 
 ## How we should treat this
 
-**Internal (Council / L2):** We know Noah and Micah. They work at Maren-go. They intend a hiking-trail traversability robot for Escapes. Micah Wagner was pitched a SAFE and did not close (archive). No commercial paper.
+**Internal (Council / L2):** We know Noah and Micah. They work at Maren-go. They intend a hiking-trail traversability robot for Escapes. They gatekeep Chris. Micah Wagner was pitched a SAFE and did not close (archive). No commercial paper. No Chris send.
 
-**Public:** Nothing. No logo, no “defense AI partnership,” no SDVOSB or DoD-site language, no Escapes hall on the mosaic, no investor sentence.
+**Public:** Nothing. No logo, no “defense AI partnership,” no SDVOSB or DoD-site language, no Escapes hall on the mosaic, no investor sentence, no Chris name.
 
-**Do not say:** partnership, LOI, co-founder, join Wolf, join Draco, our SBIR, our CMMC, our airfield deployments.
+**Do not say:** partnership, LOI, co-founder, join Wolf, join Draco, our SBIR, our CMMC, our airfield deployments, "Chris is expecting this," "Maren-go is helping."
+
+## Viable-project bar (checkable, not vibes)
+
+Noah and Micah may introduce Eason to Chris only after Eason can send them a dated field pass on a named public hiking trail, from an existing ground vehicle, with a georeferenced segment file they can open that scores grade, roughness, and blockage, carrying no Maren-go, Chris, or employment mark.
+
+That sentence is the bar. It is not a claim that the pass exists. It is not MRR, not an entity, not a custom robot, not a deck.
+
+`@daedalus` specifies the file if Eason builds. `@thor` says whether that trail is Escapes or a Wolf sensor. `@lex` screens the share.
 
 ## Suggested follow-up (Eason → Noah and Micah)
 
-Send only if Eason authorizes, on a channel he already has. Do not invent emails.
+Send only if Eason authorizes, on a channel he already has. Do not invent emails. This replaces the earlier "curious about the first trail" opener. That send is stale. This one answers the gate.
 
-> Heard you two are looking at a robot that scores hiking-trail traversability for Escapes. That’s a real gap. If you want to talk it through, I’m around. No pitch. Just curious how you’re thinking about the first trail.
-
-## Suggested follow-up (Eason → Chris Thobaben)
-
-Published Collaborations copy (maren-go.com, 2026-08-17):
-
-- You have tasks to automate on your airfield or industrial site?
-- Want to make your vehicle autonomous?
-- Have a R&D project that requires AI and automation?
-- Let’s talk!
-- Chris Thobaben, CEO — 217-506-2749 — contact@maren-go.com
-
-Their third ask is the honest door (R&D / autonomy). We do not have an airfield. Do not name Noah, Micah, Escapes, or any employee side-build. Send only if Eason authorizes. Founder sends.
-
-Subject: R&D / autonomy — Valhalla
-
-> Chris,
+> Got it. I will not email Chris, call him, or use the collaborations form. I do not want this tied back to him or to Maren-go.
 >
-> Saw Maren-go’s collaborations note. We have an R&D problem that needs AI and ground autonomy on unprepared terrain, and a land-vehicle line that will need autonomy later. Not an airfield. Not a pitch deck. If the third door is the right one, I’m around.
+> When I have a field pass on a named trail with a scored map you two can actually open, I will send that to you. If it is real enough to be worth his time, you connect us. If it is not, we leave it.
 >
-> Eason Greene
-> Valhalla / Edna Capital
-> easongreene@gmail.com
+> Thanks for saying it straight.
 
-Phone is the same CTA if he prefers a call: 217-506-2749.
+## Chris Thobaben (do not send)
+
+The Collaborations draft (subject "R&D / autonomy — Valhalla") is **retired**. Do not complete, edit, or "just tweak" it. Do not call 217-506-2749. Do not write contact@maren-go.com. Do not CC Noah or Micah on any company mail, because there is no company mail.
+
+If they later make the intro, `@hermes` drafts the first Chris note from a clean page. That note still must not name moonlighting, Escapes-as-their-side-build, or who opened the door unless they choose to be named.
+
+## Who must not hear this
+
+| Audience | Why | When they hear anything |
+| --- | --- | --- |
+| Chris Thobaben | This conversation is about protecting his time. He is not a party to it. | Only if Noah and Micah make an intro after the bar. |
+| Anyone else at Maren-go | Same leak path. | Never from our side. |
+| Public / mosaic / social | No hall, no logo, no "defense AI friends." | Never on this thread. |
+| Investors / decks / SAFE list | People-relationship, not traction. Naming Maren-go or Chris is a halo we do not have. | Never. |
 
 ## Next (named, not sent)
 
-1. Eason confirms whether Noah/Micah, the Wagners, and the Noka twins are one set of people (`@lex` only).
-2. People door: if a channel exists and he wants it, he sends the Noah/Micah opener.
-3. Company door: if he wants the published CTA, he sends or calls Chris. Do not CC Noah/Micah on that mail.
-4. If either replies, `@athena` + `@thor` decide whether Escapes stays a named lane or sits under Wolf as a sensor. `@daedalus` only after they want to build.
+1. Eason sends the friends reply, or does not. Founder sends.
+2. Eason does not contact Chris by any channel.
+3. Identity bins (Noah/Micah vs Wagners vs Noka) stay private. `@lex` only, and only if Eason asks.
+4. If Eason wants to chase the bar: `@daedalus` for the first-article file, `@thor` for trail vs Wolf, `@lex` before they see any file.
 5. No NDA, SOW, or public line until founder plus counsel say so.
+6. No intro-request follow-up until the file exists. Asking again without the file is sulk.
