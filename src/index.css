@@ -3714,6 +3714,18 @@
   }
 }
 
+.vh-admin__sunday {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 900px) {
+  .vh-admin__sunday {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 .vh-admin__card {
   padding: 1.25rem 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);

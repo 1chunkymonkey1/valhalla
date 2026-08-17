@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "test": "node --test src/**/*.test.js api/_lib/*.test.js",
+    "test": "node --test src/**/*.test.js api/_lib/*.test.js discord-bot/src/**/*.test.js",
     "preview": "vite preview",
     "admin:totp": "node scripts/generate-admin-totp.mjs",
     "sync:product-images": "node scripts/sync-product-images.mjs",

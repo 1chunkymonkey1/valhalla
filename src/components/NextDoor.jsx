@@ -10,7 +10,7 @@ import {
 } from '../lib/launchSchedule'
 
 /**
- * Chain bridge on each company site:
+ * Chain bridge on each hall site:
  * cue + blank + 1h countdown, then clickable next name (both waves).
  */
 export default function NextDoor({ company, now }) {

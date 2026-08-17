@@ -173,7 +173,7 @@ function MaterialsReadView({ materials, companies, tier, onLock, busy }) {
       </section>
 
       <section className="vh-inv__section">
-        <h2>Twelve company decks</h2>
+        <h2>Twelve hall decks</h2>
         <p className="vh-inv__muted">
           Each of the 12 halls has a dedicated deck. Each hall also has a Hall Lead seat (roster
           in leads — names filled as confirmed).
