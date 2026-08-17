@@ -6095,7 +6095,18 @@
   line-height: 1.45;
 }
 
-/* Hidden founder portals — rune marks + embed shells (no password) */
+/* Hidden founder portals — bottom mosaic cluster + embed shells (no password) */
+.hp-runes {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.55rem;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.38);
+}
+
 .hp-rune {
   display: inline-flex;
   align-items: center;
@@ -6103,14 +6114,16 @@
   width: 1.65rem;
   height: 1.65rem;
   color: inherit;
-  opacity: 0.62;
+  opacity: 0.58;
   border-radius: 0.3rem;
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  text-decoration: none;
+  transition: opacity 0.18s ease, transform 0.18s ease, color 0.18s ease;
 }
 
 .hp-rune:hover,
 .hp-rune:focus-visible {
   opacity: 1;
+  color: rgba(0, 0, 0, 0.72);
   outline: none;
 }
 
@@ -6122,6 +6135,10 @@
   width: 1.05rem;
   height: 1.05rem;
   display: block;
+}
+
+.vh-hub__foot--dormant .hp-runes {
+  color: rgba(0, 0, 0, 0.34);
 }
 
 .vh-hub__foot--dormant {

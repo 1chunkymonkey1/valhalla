@@ -123,8 +123,8 @@ export default function ValhallaHub() {
           <CompanySocialLinks
             social={hubSocial}
             className="vh-hub__socials"
-            extra={<HiddenPortalMarks />}
           />
+          <HiddenPortalMarks />
         </footer>
         {!showCountdown ? (
           <AskHallWidget pageId="hub" hallName="Valhalla" dormant={false} />

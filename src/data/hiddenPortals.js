@@ -1,5 +1,6 @@
 /**
- * Founder side-projects hidden behind rune marks in the hub social row.
+ * Founder side-projects hidden behind rune marks at the mosaic page bottom.
+ * Each portal route shows only its own mark in the escape bar.
  * No password gates — discovery is the only lock (click the mark).
  */
 export const HIDDEN_PORTALS = [
