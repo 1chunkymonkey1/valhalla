@@ -104,3 +104,13 @@ Out of order or off-motion: the seat is asked again. Both-and is MOSAIC. Silence
 The scarce asset is not halls. It is commander hours against a September Meridian date, a live SAFE, an active dispute, and a map that already speaks louder than the entities behind it. Take a side.
 
 Icarus out. Chamber is open.
+
+---
+
+## Seat returns (in speaking order)
+
+### 18. Asclepius — BALLAST
+
+Full return: `council/sessions/2026-08-17-meridian-gate/18-asclepius.md`
+
+The body is the binding constraint. Natasha's ~47 commander hours sit before unverified Berkeley class. MOSAIC steals Tuesday and Saturday from the sleep window. No current sleep, weight, or training log in this chamber; none invented. Sacrifice: Space seat fill before Meridian. Vote-changer: seven-night sleep log holding the eight-hour same-bedtime target on a week that already includes the commander block, Edna Charge containment, and class. Until that log exists, MOSAIC is an unmeasured bet.
