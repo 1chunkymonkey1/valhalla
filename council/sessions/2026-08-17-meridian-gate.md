@@ -104,3 +104,13 @@ Out of order or off-motion: the seat is asked again. Both-and is MOSAIC. Silence
 The scarce asset is not halls. It is commander hours against a September Meridian date, a live SAFE, an active dispute, and a map that already speaks louder than the entities behind it. Take a side.
 
 Icarus out. Chamber is open.
+
+---
+
+## Seat returns (in speaking order)
+
+### 11. Hephaestus — BALLAST
+
+Full return: `council/sessions/2026-08-17-meridian-gate/11-hephaestus.md`
+
+A live hall is a process that can cut, join, certify, and ship a first article. As-of 2026-08-13, Demeter is a farm/energy build (Gothenburg; REAP; IRA §45V), Argo Atomics is a Delaware LLC on LWR with MARAD-2026-0729 filed, and Atoll has a warm Aquaria lead with no funds accepted and no PO. Nine halls have no BOM. Space stays unfilled: recruiting is not tooling. Sacrifice: present-tense Air and Space, plus the Space seat fill before Meridian. Vote-changer: named Space operator on written acceptance plus a photographed first article (dated Holm PO/mill cert, Corvus/VSTF ground-test with site address, or Space Line sew confirmation with quantity and ship date).
