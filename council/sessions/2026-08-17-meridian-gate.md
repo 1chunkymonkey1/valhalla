@@ -104,3 +104,13 @@ Out of order or off-motion: the seat is asked again. Both-and is MOSAIC. Silence
 The scarce asset is not halls. It is commander hours against a September Meridian date, a live SAFE, an active dispute, and a map that already speaks louder than the entities behind it. Take a side.
 
 Icarus out. Chamber is open.
+
+---
+
+## Seat returns (in speaking order)
+
+### 3. Lex — BALLAST
+
+Full return: `council/sessions/2026-08-17-meridian-gate/03-lex.md`
+
+Claims killed first (Spirit, Taylor Swift, Atoll pre-sale, Aether territory, $40-400B, 4,500 GW, 10-17 Gt). SAFE is a security: §17(a), Rule 10b-5, Cal. Corp. Code §25110, §17500. Website copy shown to a Demeter offeree is an investor representation. Unformed halls spoken as operating companies are false statements of corporate existence. Edna Charge C&D (1 Aug) makes a fully lit present-tense map enterprise/alter-ego color. Atoll is a warm lead, not operating, even inside BALLAST. Sacrifice: Space seat fill before Meridian. Vote-changer: engagement letter plus dated securities-counsel memo clearing the Mosaic hall by hall as shown to SAFE offerees. Not on this record. Not legal advice.
