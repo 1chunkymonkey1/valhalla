@@ -22,7 +22,7 @@ Single white page that becomes a **4×3 mosaic** of 12 companies launching Aug 1
 **Grid (row-major, left→right):**
 
 ```
-Wolf      Viking     Eagle      Phenix
+Wolf      Viking     Eagle      Phénix
 Holm      Atoll      Olympus    Aether
 Demeter   Njord      Aeolus     Corvus
 ```
@@ -34,7 +34,7 @@ Demeter   Njord      Aeolus     Corvus
 | 1 Land | Wolf, Holm, Demeter | Forest green + gold |
 | 2 Water | Viking, Atoll, Njord | Silver + deep navy ocean |
 | 3 Air | Eagle, Olympus, Aeolus | Light blue, silver, white, wispy sky + lightning |
-| 4 Space | Phenix, Aether, Corvus | Mostly black, sparks/twinkles, faint fire/rocket ember |
+| 4 Space | Phénix, Aether, Corvus | Mostly black, sparks/twinkles, faint fire/rocket ember |
 
 Rows = Movement / Habitation / Substrate.
 

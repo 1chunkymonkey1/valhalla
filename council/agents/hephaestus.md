@@ -175,7 +175,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 |---|---|---|---|
 | Edna Charge | #3AFFE0 (biolume) | 12% | No |
 | Draco | #FF6B35 | 28% | YES |
-| Phenix Space | #B44FFF | 20% | No |
+| Phénix Space | #B44FFF | 20% | No |
 | Atoll Group | #00C2FF | 38% | YES |
 | Demeter Energy | #4ADE80 | 55% | No |
 | Argo Inc. | #4A9EBF | 48% | No |
@@ -194,7 +194,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 - Four Nathan design-site coordinates: Colorado (37.4°N 105.4°W), Tuolumne CA (37.9°N 120.2°W), Gothenburg NE (40.9°N 100.2°W), Upstate NY (42.5°N 74.4°W)
 - Topo data: USGS National Map (nationalmap.gov) 1/3 arc-second DEM or Equator (equatorstudios.com)
 
-### ZEUS / PHENIX SPACE DOCUMENTS
+### ZEUS / PHÉNIX SPACE DOCUMENTS
 
 **`Zeus_Venus_Materials_Library_v1.pdf`** — Document ID: ZEUS-MAT-001
 - 6 material systems for Venus habitation at 50km altitude
@@ -203,7 +203,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 - R&D partners: NASA Glenn, BASF, Solvay, Lawrence Berkeley, ETH Zurich
 
 **`Zeus_VSTF_Business_Case_v1.pdf`** — Document ID: VSTF-BIZ-001
-- Venus Simulation Test Facility as standalone venture under Phenix Space
+- Venus Simulation Test Facility as standalone venture under Phénix Space
 - Phase I: $4.2M Year 1, Phase II: $38M Year 3
 - 5 customer tiers, $29.1M projected annual revenue at stabilization
 - Payback Year 5–6, $50.4M cumulative by Year 7
@@ -290,7 +290,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 **Fleet targets:** Knight-Swift, J.B. Hunt, Schneider, Old Dominion, XPO
 **BLOCKER:** Stripe Atlas incorporation — most urgent operational blocker in the network. $500. Cannot receive investment without entity.
 
-### PHENIX SPACE
+### PHÉNIX SPACE
 **Status:** Pre-revenue, wholly owned by Eason under Edna Capital
 **Ownership:** 90% Eason, 10% employee option pool
 **Co-founder:** Ana Bremlin
@@ -299,7 +299,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 - **Bifrost Base Camp** — lunar base (CANONICAL — replaced "The Blender" June 30, 2026). The passage, not the destination. Earth → Moon → Venus.
 - **Corvus** — orbital debris capture and reprocessing. NO standalone build document yet — this is a gap.
 - **Aether** — deep space comms constellation. Paul Kocher as cryptographic architecture advisor target.
-- **Hawk Mark 1** — launch vehicle. Hawk 02: atmospheric hydrogen bridge (Edna Aviation × Phenix)
+- **Hawk Mark 1** — launch vehicle. Hawk 02: atmospheric hydrogen bridge (Edna Aviation × Phénix)
 **VSTF** — Venus Simulation Test Facility, standalone venture candidate
 **Patent deadline:** Families 2+4, July 16, 2026 (confirm status — may be past)
 **Hydra Doctrine:** 4 simultaneous pivots active post Rocket Lab/Iridium acquisition
@@ -410,7 +410,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 **Gap confirmed:** No standalone Corvus document exists.
 **What's known from Zeus session:**
 - Role: Orbital debris capture and reprocessing
-- Feeds refined orbital materials into Phenix in-space construction supply chain
+- Feeds refined orbital materials into Phénix in-space construction supply chain
 - Timeline: Capture mechanism ground testing Q3 2027, first orbital demo 2029, commercial ops 2032
 - Customers: ESA, JAXA, commercial satellite operators
 - Strategic logic: Debris removal pays near-term → feeds Zeus construction long-term
@@ -449,7 +449,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 | Adrian Pelayo | Demeter CEO candidate | | In contention |
 | Jordan Baker | Demeter acting CEO | she/her | Active |
 | Ojas Prabhune | Draco ML intern | prabhuneojas@gmail.com | Active |
-| Ana Bremlin | Phenix co-founder | Business/psychology | Active |
+| Ana Bremlin | Phénix co-founder | Business/psychology | Active |
 | Denis Dubovik | TRMNL4/Hapday — Edna Charge investor | | SAFE at $5M cap agreed |
 | Matt Mahan | Former San Jose Mayor, advisor | | CA gubernatorial campaign volunteer |
 | Joah Milam | Circle of Four, Scuba co-owner (rhythm/phonemic layer) | | |
@@ -472,7 +472,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 | ASAP | Jared retainer payment | Eason | Unlocks everything |
 | ASAP | Bagel Bin deposit close ($600) | Eason | Funds Foothill Web operations |
 | Ongoing | Foothill Web revenue to $10K | Foothill Web | Gates incorporations |
-| July 16 (PAST) | Phenix patent families 2+4 | Confirm status with Jared | Was critical |
+| July 16 (PAST) | Phénix patent families 2+4 | Confirm status with Jared | Was critical |
 
 ---
 
@@ -688,15 +688,15 @@ Four product tiers:
 ### DOMAIN: LAND (Demeter)
 **Demeter Energy** — Agrivoltaics, hydrogen, land. No entity or cap table yet — Jared must resolve before CEO search advances. Live farm lead: Gothenburg, Nebraska. Eason is investor/board, not founder. CEO search active.
 
-### DOMAIN: SPACE (Zeus / Phenix)
-**Phenix Space** — Off-world infrastructure parent. Five subsidiaries:
+### DOMAIN: SPACE (Zeus / Phénix)
+**Phénix Space** — Off-world infrastructure parent. Five subsidiaries:
 - Zeus — Venus cloud city, crewed target 2035, 50km altitude
 - Bifrost Base Camp — lunar base (canonical name, effective June 30, 2026; replaces "The Blender" everywhere)
 - Corvus — orbital debris capture
 - Aether — deep space comms constellation
 - Hawk Mark 1 — launch vehicle
 
-VSTF (Venus Simulation Test Facility) — standalone venture candidate under Phenix. Patent families 2+4 deadline: July 16, 2026 (hard USPTO provisional deadline).
+VSTF (Venus Simulation Test Facility) — standalone venture candidate under Phénix. Patent families 2+4 deadline: July 16, 2026 (hard USPTO provisional deadline).
 
 ### DOMAIN: LANGUAGE (Seshat)
 **Language AI Inc. / Seshat** — AI language acquisition app. Co-founded with Kein Tung. Scuba constructed language (emoji-based alphabet, 333+ confirmed symbols). seshat.ai domain target. Owl mascot: photorealistic, species shifts by language domain, never illustrated or cute.
@@ -769,7 +769,7 @@ Twenty-one agents. You are Hephaestus (Anvil). Know the others well enough to ro
 
 | Deadline | Item | Priority |
 |---|---|---|
-| July 16, 2026 (PAST — confirm status) | Phenix patent families 2+4 USPTO provisional | CRITICAL |
+| July 16, 2026 (PAST — confirm status) | Phénix patent families 2+4 USPTO provisional | CRITICAL |
 | August 5, 2026 | MARAD RFI docket MARAD-2026-0729 | CRITICAL |
 | September 25, 2026 | Meridian Earth Line launch | Hard |
 | August 30 – September 4, 2026 | Ventotene — Natasha Framework paper presentation | Hard |
@@ -783,7 +783,7 @@ Twenty-one agents. You are Hephaestus (Anvil). Know the others well enough to ro
 These are permanent. They override anything in an older document.
 
 - **Edna Charge** — always with a space. Never "EdnaCharge."
-- **Bifrost Base Camp** — canonical name for Phenix Space lunar base, effective June 30, 2026. "The Blender" is retired everywhere.
+- **Bifrost Base Camp** — canonical name for Phénix Space lunar base, effective June 30, 2026. "The Blender" is retired everywhere.
 - **Foothill Web** — canonical name for the web design studio, effective July 22, 2026. "J&E Web Designs" is retired.
 - **Raven Intelligence Network** — canonical name for the agent network, effective June 25, 2026. "E-Sun Intelligence Network" is retired.
 - **argoatomic.com** — canonical domain for Argo Atomics (no "s"). Email: info@argoatomic.com. Phone: (302) 314-2240.

@@ -63,7 +63,7 @@ export const companyRoadmaps = {
         status: 'vision',
         kind: 'megaproject',
         summary:
-          'Transcontinental railroad SF→NY aiming 5.8 hours; Phase I from Nov 2027; network target August 13, 2031. (Bifröst is the Phenix lunar base camp.)',
+          'Transcontinental railroad SF→NY aiming 5.8 hours; Phase I from Nov 2027; network target August 13, 2031. (Bifröst is the Phénix lunar base camp.)',
         clickable: true,
         capture: 'email',
         detail: {
@@ -482,7 +482,7 @@ export const companyRoadmaps = {
         name: 'Venus Suit',
         status: 'theoretical',
         kind: 'concept',
-        summary: 'Spacesuit rated for Venus — materials layer supporting Olympus / Phenix paths.',
+        summary: 'Spacesuit rated for Venus — materials layer supporting Olympus / Phénix paths.',
         clickable: true,
         capture: 'email',
       },

@@ -92,7 +92,7 @@ const COMPANY_SUMMARY = [
   { id: 'wolf', name: 'Wolf', domain: 'land', pillar: 'movement', wave: 1 },
   { id: 'viking', name: 'Viking', domain: 'water', pillar: 'movement', wave: 1 },
   { id: 'eagle', name: 'Eagle', domain: 'air', pillar: 'movement', wave: 2 },
-  { id: 'phenix', name: 'Phenix', domain: 'space', pillar: 'movement', wave: 2 },
+  { id: 'phenix', name: 'Phénix', domain: 'space', pillar: 'movement', wave: 2 },
   { id: 'holm', name: 'Holm', domain: 'land', pillar: 'habitation', wave: 1 },
   { id: 'atoll', name: 'Atoll', domain: 'water', pillar: 'habitation', wave: 1 },
   { id: 'olympus', name: 'Olympus', domain: 'air', pillar: 'habitation', wave: 2 },

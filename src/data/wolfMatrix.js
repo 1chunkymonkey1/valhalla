@@ -210,7 +210,7 @@ export const wolfLines = [
     vehicle: 'train',
     epithet: 'Transcontinental maglev',
     naming:
-      'Ice-age wolf species, the heavy spine. (Bifröst is the Phenix lunar base camp; Dire Wolf is the Earth maglev.)',
+      'Ice-age wolf species, the heavy spine. (Bifröst is the Phénix lunar base camp; Dire Wolf is the Earth maglev.)',
     overview:
       'Transcontinental maglev program: San Francisco to New York aiming for a 5.8-hour crossing on the network target, built in phases. Right-of-way, energy, and regional partners unlock each segment. Target network completion August 13, 2031. By the time Dire Wolf is built, the pack has assembled.',
     powertrain: true,

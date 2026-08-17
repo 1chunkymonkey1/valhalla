@@ -1,5 +1,5 @@
 # ZEUS
-## Sky/space boundary and Phenix
+## Sky/space boundary and Phénix
 
 - id: `zeus`
 - hall: `phenix`

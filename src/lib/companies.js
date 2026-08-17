@@ -71,7 +71,7 @@ export const companies = [
   },
   {
     id: 'phenix',
-    name: 'Phenix',
+    name: 'Phénix',
     domain: 'space',
     pillar: 'movement',
     wave: 2,

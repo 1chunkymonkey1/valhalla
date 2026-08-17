@@ -1043,7 +1043,7 @@ Southern Resident Killer Whales (SRKW) are listed under the Endangered Species A
 
 ## THE LONG ARC — VENUS
 
-The Atoll thesis does not end on Earth's lakes or Earth's coastlines. The same modular platform logic that works on a Sierra Nevada lake works in Venus's cloud layer at 50km altitude. Atoll Group is the proof of concept for Zeus — the crewed Venus cloud city planned for 2035 under Phenix Space.
+The Atoll thesis does not end on Earth's lakes or Earth's coastlines. The same modular platform logic that works on a Sierra Nevada lake works in Venus's cloud layer at 50km altitude. Atoll Group is the proof of concept for Zeus — the crewed Venus cloud city planned for 2035 under Phénix Space.
 
 The engineering is not speculative. The Atoll white paper demonstrates that modular, self-sufficient floating platforms with energy independence, food integration, and typhoon protection are achievable with current materials and fabrication technology. Everything Atoll proves on Earth, Zeus scales at Venus.
 

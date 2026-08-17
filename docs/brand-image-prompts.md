@@ -129,7 +129,7 @@ a vast sky chamber, climate-research apparatus floating with restraint, teal-sil
 grade, governance-of-atmosphere mood not disaster spectacle, --ar 1:1 --style raw --stylize 75
 ```
 
-## 10 · Phenix · Space × Movement
+## 10 · Phénix · Space × Movement
 
 ```text
 Phoenix of copper embers and dark alloy rising beside a conceptual launch vehicle

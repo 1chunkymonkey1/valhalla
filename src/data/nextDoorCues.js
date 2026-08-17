@@ -40,8 +40,8 @@ export const NEXT_DOOR_CUES = {
     after: 'Let aeolus carry you to',
   },
   phenix: {
-    before: 'Ascend with phenix toward',
-    after: 'Ascend with phenix toward',
+    before: 'Ascend with Phénix toward',
+    after: 'Ascend with Phénix toward',
   },
   aether: {
     before: 'Cross aether to meet',

@@ -32,7 +32,7 @@ APPLICATION
 Rollo
 The primary anchor. Outsider who arrived in new territory and built — not raided. Californian Viking = Rollo on I-80. New York is Normandy.
 Leif Eriksson
-The exploration instinct. No map, first anyway. Draco founded on mile 1,400 in Nevada. Phenix pointing at Venus.
+The exploration instinct. No map, first anyway. Draco founded on mile 1,400 in Nevada. Phénix pointing at Venus.
 Ragnar
 The origin. Farmer to king. Nothing to everything. Mythologized because the story was too good to stay private.
 Harald Hardrada
@@ -181,7 +181,7 @@ Atoll/Holm + Argo — maritime, ocean, frontier infrastructure
 New York texture. The outsider who built anyway.
 Week 4
 The code — loyalty, directness, conquest, building to last
-Phenix + Draco — exploration instinct, edge of the map
+Phénix + Draco — exploration instinct, edge of the map
 The Viking ethos in practice. Not aggression — intention.
 
 Media Tour
@@ -243,8 +243,8 @@ Nuclear port infrastructure — what the next 100 years of maritime power actual
 Argo MARAD RFI filing
 SpaceNews / NASASpaceflight
 Space
-Phenix Space — why a 19-year-old is building a launch vehicle and a Venus cloud city
-Phenix Space portfolio overview + ITAR/FAA flag context
+Phénix Space — why a 19-year-old is building a launch vehicle and a Venus cloud city
+Phénix Space portfolio overview + ITAR/FAA flag context
 VentureBeat / The Information
 AI / Language
 Thoth — why the 6,900 languages AI can't handle are the actual market
@@ -271,7 +271,7 @@ Podcast
 The I-80 founding story is built for this format exactly. Pitch the road trip first.
 Lex Fridman Podcast
 Podcast — Tier 1 reach
-Space + AI + Norse philosophy. Long-form. Phenix and Thoth are the hooks. The Californian Viking is the character.
+Space + AI + Norse philosophy. Long-form. Phénix and Thoth are the hooks. The Californian Viking is the character.
 Y Combinator / a16z Content
 Owned / Partner
 Edna Charge a16z Speedrun submission creates organic content opportunity if it advances.

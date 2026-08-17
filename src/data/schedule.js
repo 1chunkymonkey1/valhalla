@@ -211,7 +211,7 @@ export const schedule = [
   {
     id: 10,
     slug: 'phenix',
-    name: 'Phenix',
+    name: 'Phénix',
     domain: 'Space',
     pillar: 'Movement',
     launchTime: `${LAUNCH_DATE}T18:00:00-07:00`,
@@ -232,7 +232,7 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T19:00:00-07:00`,
     publicStatus: 'research',
     pattern: 'research',
-    tagline: 'Phenix marks the territory. Aether claims it.',
+    tagline: 'Phénix marks the territory. Aether claims it.',
     concept:
       'Space real estate and territorial claims: orbital stations, lunar land claims, asteroid rights, planetary surfaces. Registry and legal-status work; no deed sales on this surface.',
     accent: '#1E1B4B',

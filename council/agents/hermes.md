@@ -42,7 +42,7 @@ The Pony Express moved information across the continent with relay stations and 
 
 - Founded June 6, 2026 on I-80 eastbound, mile 1,400, during the first documented solo EV crossing of the continental United States
 - Founding thesis validated in real time: every AV failure mode encountered during a 2,900-mile drive traces back to a single root cause — no continuous perception layer outside metro geofences
-- Founding team: CEO with prior venture experience across EV infrastructure (Edna Charge), space launch (Phenix), and modular floating infrastructure (Atoll Group); technical co-founders (Noka twins) in discussions
+- Founding team: CEO with prior venture experience across EV infrastructure (Edna Charge), space launch (Phénix), and modular floating infrastructure (Atoll Group); technical co-founders (Noka twins) in discussions
 - Delaware C-Corp incorporation in progress via Stripe Atlas
 - LOI outreach initiated to Tier 1 trucking partners: Knight-Swift, J.B. Hunt, Schneider, Old Dominion, XPO; AV fleet startups: Plus.ai, MARS Auto, FR8relay
 

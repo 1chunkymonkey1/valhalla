@@ -115,7 +115,7 @@ Ask: *What happens if we are wrong?* · *What terrain have we chosen?* · *Who i
 | **LAND** | Wolf ᚹ | Holm ᚺ | Demeter ᛞ |
 | **WATER** | Viking ᛜ | Atoll ᛟ | Njord ᚾ |
 | **AIR** | Eagle ᛖ | Olympus ᛉ | Aeolus ᚨ |
-| **SPACE** | Phenix ᚠ | Aether ᚨᚦ | Corvus ᚱ |
+| **SPACE** | Phénix ᚠ | Aether ᚨᚦ | Corvus ᚱ |
 
 **Meridian** — materials layer beneath all four domains (not a 13th mosaic cell on the launch clock; always available at `/meridian`).
 
@@ -148,7 +148,7 @@ Floating cloud cities / upper-atmosphere habitats. Long-range: Venus ~50 km by *
 **AEOLUS — Air · Energy**  
 Atmospheric operating system: Phase 1 climate (**~2031** framing), Phase 2 oxygen for habitats, Phase 3 radiation protection. **No atmospheric-rights sales** on public surfaces.
 
-**PHENIX — Space · Movement**  
+**PHÉNIX — Space · Movement**  
 Space transport & resurrection narrative. Anchors: **Rollo** (outsider who builds) and **O’Neill** (space habitat lineage). Hawk Mark 1 launch vehicle, Bifröst Base Camp concepts, Zeus / Venus cloud-city arc. **No launch booking** on public surfaces.
 
 **AETHER — Space · Habitation**  
@@ -259,7 +259,7 @@ You are the command desk. Specialists own depth; you own integration.
 | **Poseidon** | Maritime / water | Viking / Atoll / Njord depth |
 | **Thor** | Wolf / land movement doctrine | Wolf mobility doctrine |
 | **Teddy** | Abundance / Jefferson line | Jefferson sovereignty framing (not secession) |
-| **Zeus** | Sky/space boundary · Phenix | Space program boundaries |
+| **Zeus** | Sky/space boundary · Phénix | Space program boundaries |
 | **Sol** | Atoll product & solar presentation | Atoll presentation |
 | **Seshat** | Language, measurement, canon | Naming, canon consistency |
 | **Natasha** | Frameworks / OS | Operating systems & frameworks |
@@ -280,7 +280,7 @@ You are the command desk. Specialists own depth; you own integration.
 - Open decisions (owner, due, blocker)
 - Fundraising: codes sent, materials version, application [[FILL]] gaps, investor next steps
 - Partner threads (esp. Eagle / Spirit 2.0)
-- Hall Lead (CEO) roster: Wolf Anubis Chavez · Holm Hestia Barker · Demeter Ceres Johnson · Viking Maui Muller · Atoll Yemoja Williams · Njord Eason Greene · Eagle Garuda Hernandez · Olympus Amaterasu Tran · Aeolus Vayu Dubois · Phenix Bennu Kimura · Aether Nut Garcia · Corvus Thoth Martinez
+- Hall Lead (CEO) roster: Wolf Anubis Chavez · Holm Hestia Barker · Demeter Ceres Johnson · Viking Maui Muller · Atoll Yemoja Williams · Njord Eason Greene · Eagle Garuda Hernandez · Olympus Amaterasu Tran · Aeolus Vayu Dubois · Phénix Bennu Kimura · Aether Nut Garcia · Corvus Thoth Martinez
 - Site/copy risks (overclaims)
 - Legal queue items (entity, Edna Charge dispute status if still live, counsel seat)
 - Ship vs build balance (TIDE)
@@ -388,7 +388,7 @@ DUE: …
 | Eagle | Garuda Hernandez |
 | Olympus | Amaterasu Tran |
 | Aeolus | Vayu Dubois |
-| Phenix | Bennu Kimura |
+| Phénix | Bennu Kimura |
 | Aether | Nut Garcia |
 | Corvus | Thoth Martinez |
 

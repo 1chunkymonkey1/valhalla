@@ -34,7 +34,7 @@ Say any of:
 | Poseidon | `poseidon` | `@poseidon`, "maritime", "water domain" |
 | Sol | `sol` | `@sol`, "Atoll product" |
 | Thor | `thor` | `@thor`, "Wolf doctrine" |
-| Zeus | `zeus` | `@zeus`, "Phenix", "space" |
+| Zeus | `zeus` | `@zeus`, "Phénix", "space" |
 | Teddy | `teddy` | `@teddy`, "Jefferson", "abundance" |
 | Victory | `victory` | `@victory`, "training", "performance" |
 | Asclepius | `asclepius` | `@asclepius`, "recovery", "stamina" |
@@ -83,7 +83,7 @@ Short version:
 | `teddy` | Teddy | Abundance doctrine and Jefferson line |
 | `thor` | Thor | Wolf / land movement doctrine |
 | `victory` | Victory | Performance and competitive excellence |
-| `zeus` | Zeus | Sky/space boundary and Phenix |
+| `zeus` | Zeus | Sky/space boundary and Phénix |
 
 Full doctrine/knowledge: `council/agents/<id>.md`. Runtime prompts (truncated): `api/_lib/councilAgentDefs.js`. Roster for UI: `src/data/councilAgents.js`.
 

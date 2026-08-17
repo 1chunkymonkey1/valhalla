@@ -105,7 +105,7 @@ export const COUNCIL_AGENTS = [
   {
     "id": "zeus",
     "name": "Zeus",
-    "role": "Sky/space boundary and Phenix",
+    "role": "Sky/space boundary and Phénix",
     "hall": "phenix"
   }
 ]

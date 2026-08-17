@@ -273,7 +273,7 @@ Win before the first move. Position before the first shot. Own the terrain befor
 LAND         Wolf ᚹ          Holm ᚺ          Demeter ᛞ
 WATER        Viking ᛜ        Atoll ᛟ         Njord ᚾ
 AIR          Eagle ᛖ         Olympus ᛉ       Aeolus ᚨ
-SPACE        Phenix ᚠ        Aether ᚨᚦ       Corvus ᚱ
+SPACE        Phénix ᚠ        Aether ᚨᚦ       Corvus ᚱ
 
 ─────────────────────────────────────────────────────
 MERIDIAN — The material layer beneath all four domains
@@ -289,8 +289,8 @@ MERIDIAN — The material layer beneath all four domains
 - Eagle: "The more you fly, the better it is for the atmosphere."
 - Olympus: "The first home above the clouds."
 - Aeolus: "Fix the atmosphere. Then own it."
-- Phenix: "Every launch is a death. Every orbit is a resurrection."
-- Aether: "Phenix marks the territory. Aether claims it."
+- Phénix: "Every launch is a death. Every orbit is a resurrection."
+- Aether: "Phénix marks the territory. Aether claims it."
 - Corvus: "The mind that runs eleven companies. And counting."
 - Meridian: "Worn by everyone. Built to last forever."
 
@@ -314,7 +314,7 @@ MERIDIAN — The material layer beneath all four domains
 
 **AEOLUS** — Owns the substrate gas. Fix climate then own it.
 
-**PHENIX** — Space travel. Hawk Mark 1 launch vehicle. North star: Venus cloud city 2035. Subsidiaries: Bifrost Base Camp (lunar south pole), Zeus (Venus), Corvus (orbital debris), Aether (deep space comms).
+**PHÉNIX** — Space travel. Hawk Mark 1 launch vehicle. North star: Venus cloud city 2035. Subsidiaries: Bifrost Base Camp (lunar south pole), Zeus (Venus), Corvus (orbital debris), Aether (deep space comms).
 
 **AETHER** — Space real estate. Orbital stations, lunar parcels, asteroid rights. Territorial claims.
 
@@ -619,7 +619,7 @@ TechCrunch (Tim De Chant) · Forbes · Fast Company · Wired · Axios (Ben Geman
 
 **1 year:** Demeter has 10 farms. Odin has 500 paying users. Mentiforce has placed 40 Valhalla hires. S-1 Hawk found via Mentiforce.
 
-**5 years:** Wolf corridor groundbreaking. Demeter 500 farms, 22,500 MW. Argo has 5 nuclear-retrofitted vessels. Atoll first permanent offshore community. Phenix first orbital payload. Valhalla valued $40-400B range.
+**5 years:** Wolf corridor groundbreaking. Demeter 500 farms, 22,500 MW. Argo has 5 nuclear-retrofitted vessels. Atoll first permanent offshore community. Phénix first orbital payload. Valhalla valued $40-400B range.
 
 **100 years:** The substrate is so embedded nobody remembers who built it. A child on a planet that is not Earth, around a star named Rollo, will not know Eason's name. They will know the substrate. The substrate is the legacy.
 

@@ -60,7 +60,7 @@ Your primary domain is the Jefferson Abundance Movement's digital infrastructure
 - Future: the Jefferson County Summit registration flow (October 7, 2026), the Watershed Institute research portal, the county supervisor endorsement tracker
 
 **Edna Capital portfolio, for reference**
-Edna Charge (P2P EV charging), Argo Atomics (nuclear-port adoption layer), Draco (AV perception data network), Demeter Energy (agrivoltaics), Orca Capital (venture pod), Seshat (language AI), Phenix Space, Atoll Group, Forge (web agency), Nature, Meridian (apparel).
+Edna Charge (P2P EV charging), Argo Atomics (nuclear-port adoption layer), Draco (AV perception data network), Demeter Energy (agrivoltaics), Orca Capital (venture pod), Seshat (language AI), Phénix Space, Atoll Group, Forge (web agency), Nature, Meridian (apparel).
 
 ---
 

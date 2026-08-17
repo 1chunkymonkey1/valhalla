@@ -39,7 +39,7 @@ export const flowDomains = [
     name: 'Space',
     accent: '#c45a28',
     companies: [
-      { id: 'phenix', name: 'Phenix', pillar: 'Movement' },
+      { id: 'phenix', name: 'Phénix', pillar: 'Movement' },
       { id: 'aether', name: 'Aether', pillar: 'Habitation' },
       { id: 'corvus', name: 'Corvus', pillar: 'Intelligence' },
     ],
@@ -193,7 +193,7 @@ export const flowEdges = [
     major: true,
     curve: -6,
     label: 'Ascent → quiet rooms',
-    detail: 'Phenix mission concepts open Aether habitation partner ledgers.',
+    detail: 'Phénix mission concepts open Aether habitation partner ledgers.',
   },
   {
     id: 'column-space-2',
@@ -235,7 +235,7 @@ export const flowEdges = [
     major: true,
     curve: 8,
     label: 'Sky → space',
-    detail: 'Aviation discipline graduates into Phenix mission-concept rigor.',
+    detail: 'Aviation discipline graduates into Phénix mission-concept rigor.',
   },
 
   // —— Habitation housing row ——
@@ -430,7 +430,7 @@ export const flowEdges = [
     major: false,
     curve: 12,
     label: 'Mission docs',
-    detail: 'Phenix mission concepts lean on Corvus for requirements and status-labeled documentation.',
+    detail: 'Phénix mission concepts lean on Corvus for requirements and status-labeled documentation.',
   },
   // —— Meridian materials (off-grid) ——
   {
@@ -480,7 +480,7 @@ export const companyTies = {
     body: 'Clean aviation: bird-named jets with active carbon removal, the more you fly the better for the atmosphere. Feeds Olympus thin-air habitation. No flight timetable claims.',
   },
   phenix: {
-    title: 'Phenix · Movement · Space',
+    title: 'Phénix · Movement · Space',
     body: 'Hawk Mark 1, Bifröst lunar base camp, and Zeus Venus 2035. Opens Aether claims ledgers. Corvus holds the docs; Eagle discipline is the ladder up.',
   },
   holm: {
@@ -493,11 +493,11 @@ export const companyTies = {
   },
   olympus: {
     title: 'Olympus · Habitation · Air',
-    body: 'Pressurized cloud cities between Eagle access and Aeolus climate fields—bridge to Aether claims and Venus 50 km / 2035 with Phenix Zeus.',
+    body: 'Pressurized cloud cities between Eagle access and Aeolus climate fields—bridge to Aether claims and Venus 50 km / 2035 with Phénix Zeus.',
   },
   aether: {
     title: 'Aether · Habitation · Space',
-    body: 'Claims and real estate beyond Earth. Phenix marks the territory; Aether claims it. Corvus is the local intelligence layer. No deed sales on this surface.',
+    body: 'Claims and real estate beyond Earth. Phénix marks the territory; Aether claims it. Corvus is the local intelligence layer. No deed sales on this surface.',
   },
   demeter: {
     title: 'Demeter · Energy · Land',

@@ -78,8 +78,8 @@ export const companyProducts = {
     product: 'Viking Cruises',
     headline: 'Board as yourself. Disembark as Ragnar.',
     support:
-      'Sustainable cruises powered by light-water SMRs and emerging sail. Stockholm to London first; later a Phenix pad and a moon leg on the same vacation.',
-    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships run on light-water SMRs and emerging sail technology. The first route is Stockholm to London. Soon you will be able to take a Viking cruise to a Phenix launch pad and add a moon leg to your summer vacation. Partner-gated itineraries; interest only on this surface.',
+      'Sustainable cruises powered by light-water SMRs and emerging sail. Stockholm to London first; later a Phénix pad and a moon leg on the same vacation.',
+    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships run on light-water SMRs and emerging sail technology. The first route is Stockholm to London. Soon you will be able to take a Viking cruise to a Phénix launch pad and add a moon leg to your summer vacation. Partner-gated itineraries; interest only on this surface.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -204,15 +204,15 @@ export const companyProducts = {
     ],
   },
   phenix: {
-    product: 'Phenix Aerospace',
+    product: 'Phénix Aerospace',
     headline: 'Every launch is a death. Every orbit is a resurrection.',
     support:
       'Space transportation: Moon first, then Moon to Venus and Mars, then Alpha Centauri B (Rollo). O’Neill spheres on the long road.',
-    body: 'Phenix Aerospace builds transportation in space. Routes to the Moon are the first priority; second is routes from the Moon to Venus and Mars; third is Alpha Centauri B, henceforth named Rollo. Phenix is also building O’Neill spheres. Hawk Mark vehicles carry the fire; Bifröst and Zeus sit on the lunar and Venus path. No launch booking on this surface.',
+    body: 'Phénix Aerospace builds transportation in space. Routes to the Moon are the first priority; second is routes from the Moon to Venus and Mars; third is Alpha Centauri B, henceforth named Rollo. Phénix is also building O’Neill spheres. Hawk Mark vehicles carry the fire; Bifröst and Zeus sit on the lunar and Venus path. No launch booking on this surface.',
     tone: 'space',
     ...emailFirst,
     gallery: [
-      { src: '/images/phenix.png', alt: 'Phenix bird' },
+      { src: '/images/phenix.png', alt: 'Phénix bird' },
       { src: '/images/sites/aether-orbit.jpg', alt: 'Earth from orbit' },
       { src: '/images/sites/city-bridge.jpg', alt: 'Ground infrastructure' },
     ],
@@ -226,10 +226,10 @@ export const companyProducts = {
   },
   aether: {
     product: 'Aether Real Estate',
-    headline: 'Phenix marks the territory. Aether claims it.',
+    headline: 'Phénix marks the territory. Aether claims it.',
     support:
       'Claim land in the galaxy. Manage claims, defend claim jumpers, protect territory. Hawk Mark 02 plants flags for Earth-originated claims.',
-    body: 'Aether Real Estate helps you claim land in the galaxy. Manage claims, defend against claim jumpers, and protect territory. Hawk Mark 02, a Phenix launch vehicle, is tasked with planting flags for claims made on Earth. The goal is a fair and regulated system for human expansion into the cosmos. Aether claims property beyond Earth. No deed sales or fund collection against claims on this surface.',
+    body: 'Aether Real Estate helps you claim land in the galaxy. Manage claims, defend against claim jumpers, and protect territory. Hawk Mark 02, a Phénix launch vehicle, is tasked with planting flags for claims made on Earth. The goal is a fair and regulated system for human expansion into the cosmos. Aether claims property beyond Earth. No deed sales or fund collection against claims on this surface.',
     tone: 'space',
     ...emailFirst,
     gallery: [

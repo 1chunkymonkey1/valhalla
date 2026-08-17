@@ -148,7 +148,7 @@ Mark status: `[ ]` todo · `[~]` seed/stand-in · `[x]` Gemini/GPT plate-composi
 | apex-01 | long-range concept aircraft | [~] seed |
 | apex-02 | long-range follow-on | [~] seed |
 
-### Phenix (space · movement) — plate: orbit / pad mood
+### Phénix (space · movement) — plate: orbit / pad mood
 
 | Slug | Subject noun | Status |
 |------|--------------|--------|

@@ -38,7 +38,7 @@ const HALL_META = {
   wolf: { name: 'Wolf', domain: 'land', pillar: 'movement' },
   viking: { name: 'Viking', domain: 'water', pillar: 'movement' },
   eagle: { name: 'Eagle', domain: 'air', pillar: 'movement' },
-  phenix: { name: 'Phenix', domain: 'space', pillar: 'movement' },
+  phenix: { name: 'Phénix', domain: 'space', pillar: 'movement' },
   holm: { name: 'Holm', domain: 'land', pillar: 'habitation' },
   atoll: { name: 'Atoll', domain: 'water', pillar: 'habitation' },
   olympus: { name: 'Olympus', domain: 'air', pillar: 'habitation' },

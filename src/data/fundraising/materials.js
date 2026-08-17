@@ -27,7 +27,7 @@ export const COMPANY_DECKS = [
   { id: 'eagle', name: 'Eagle', domain: 'Air', pillar: 'Movement' },
   { id: 'olympus', name: 'Olympus', domain: 'Air', pillar: 'Habitation' },
   { id: 'aeolus', name: 'Aeolus', domain: 'Air', pillar: 'Energy' },
-  { id: 'phenix', name: 'Phenix', domain: 'Space', pillar: 'Movement' },
+  { id: 'phenix', name: 'Phénix', domain: 'Space', pillar: 'Movement' },
   { id: 'aether', name: 'Aether', domain: 'Space', pillar: 'Habitation' },
   { id: 'corvus', name: 'Corvus', domain: 'Space', pillar: 'Intelligence' },
 ].map((c) => ({

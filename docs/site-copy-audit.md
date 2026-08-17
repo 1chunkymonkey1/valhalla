@@ -72,8 +72,8 @@ The doc assigns each company a tagline. Only one survives on a live surface, and
 | Eagle | The more you fly, the better it is for the atmosphere. | Above the weather line. (`:137`) |
 | Olympus | The first home above the clouds. | Habitation in the thin air. (`:157`) |
 | Aeolus | Fix the atmosphere. Then own it. | Wind as infrastructure. (`:177`) |
-| Phenix | Every launch is a death. Every orbit is a resurrection. | Heat. Ascent. Return. (`:197`) |
-| Aether | Phenix marks the territory. Aether claims it. | Quiet rooms above the curve. (`:217`) |
+| Phénix | Every launch is a death. Every orbit is a resurrection. | Heat. Ascent. Return. (`:197`) |
+| Aether | Phénix marks the territory. Aether claims it. | Quiet rooms above the curve. (`:217`) |
 | Corvus | The mind that runs eleven companies. And counting. | Twenty-one prompts. One badge at the summit. (`:237`) |
 
 Viking's exact tagline does still exist in two non-rendered places (`companyCopy.js:51`,
@@ -103,7 +103,7 @@ Every live surface says habitat, and three of them explicitly deny the claim the
 - `hallKnowledge.js:65-66` (Ask chat) — "Space habitation, legally disclosed." / "a research registry for orbital stations. It **does not sell or imply ownership** of extraterrestrial territory."
 
 Missing entirely: lunar land claims, asteroid rights, planetary surfaces, real-estate framing,
-and the Phenix→Aether relationship in the tagline. Aether's six product lines (Quiet Room,
+and the Phénix→Aether relationship in the tagline. Aether's six product lines (Quiet Room,
 Ring Study, Solarium, Dock Node, Habitat Spine, Halo — `hallMatrices.js:642`) are all
 habitat structures; none is a claim, parcel, or registry instrument.
 
@@ -203,7 +203,7 @@ Field Lattice, Root Net, Canopy, Ethanol Grove, Soil Ledger, Season Ring.
 - 75-year roadmap / Dyson swarm: absent.
 - Site adds **Ethanol Grove** and the Wolf Tier-3 dual-injection synergy, which the doc does not mention.
 
-### 3.3 Phenix — MISSING PRODUCT SPECIFICS
+### 3.3 Phénix — MISSING PRODUCT SPECIFICS
 
 Doc names: Hawk Mark 1 (launch vehicle), Bifrost Base Camp (lunar south pole), Zeus (Venus
 cloud city), north star of a crewed Venus cloud city by 2035.
@@ -212,7 +212,7 @@ cloud city), north star of a crewed Venus cloud city by 2035.
 Ascent, Return, Corona, Ground Nest, Phoenix Gate (`hallMatrices.js:483`). No subsidiaries,
 no lunar south pole, no Venus, no 2035.
 
-Minor: the doc spells the company **Phenix**; the site agrees, but ships a product line named
+Minor: the doc spells the company **Phénix**; the site agrees, but ships a product line named
 "**Phoenix** Gate" (`hallMatrices.js:475`) — mixed spelling in the same matrix.
 
 ### 3.4 Olympus — MISSING PRODUCT SPECIFICS
@@ -340,7 +340,7 @@ descriptions (the sole company reference is "Eagle hasta Corvus" in a schedule h
 | **Njord** | ⚠️ Under-scoped — 3 of 7 doc pillars present; clean/reuse/manufacture absent, hydrogen buried |
 | **Demeter** | ⚠️ Under-scoped — geothermal, wind, SMR, hydrogen, California-first, Dyson roadmap all absent |
 | **Atoll** | ⚠️ 01/02/03 tiering redefined; Tuvalu target absent |
-| **Phenix** | ⚠️ Hawk Mark 1, Bifrost, Zeus, Venus 2035 all absent; "Phoenix" spelling mixed in |
+| **Phénix** | ⚠️ Hawk Mark 1, Bifrost, Zeus, Venus 2035 all absent; "Phoenix" spelling mixed in |
 | **Olympus** | ⚠️ Venus / 50km / 2035 / "cloud city" / pressurized all absent |
 | **Eagle** | ⚠️ SAF and Spirit Airlines absent (acquisition claim deliberately disclaimed) |
 | **Holm** | ⚠️ 12-module count unstated; logistics/financing/real estate not offered |

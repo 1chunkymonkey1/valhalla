@@ -69,7 +69,7 @@ export const STRIPE_CATALOG = {
   },
   phenix: {
     id: 'phenix',
-    label: 'Phenix · mission inquiry hold',
+    label: 'Phénix · mission inquiry hold',
     amountCents: 500_000,
     kind: 'hold',
   },

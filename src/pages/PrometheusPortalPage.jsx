@@ -29,7 +29,7 @@ export default function PrometheusPortalPage() {
   return (
     <div className="pm-portal">
       <header className="pm-portal__bar">
-        <Link to="/phenix">← Phenix</Link>
+        <Link to="/phenix">← Phénix</Link>
         <span>Prometheus Defense</span>
         <Link to="/">mosaic</Link>
       </header>

@@ -29,11 +29,11 @@ const HALLS = {
   viking: {
     name: 'Viking',
     hero: 'Board as yourself. Disembark as Ragnar.',
-    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships use light-water SMRs and emerging sail. First route Stockholm to London; later a Phenix launch-pad call and a moon leg on the vacation arc.',
+    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships use light-water SMRs and emerging sail. First route Stockholm to London; later a Phénix launch-pad call and a moon leg on the vacation arc.',
     bullets: [
       'Stockholm → London first route',
       'Light-water SMR + sail propulsion thesis',
-      'Phenix pad + moon-leg vacation path',
+      'Phénix pad + moon-leg vacation path',
       'Vinland Saga narrative arc; partner-gated',
     ],
   },
@@ -50,9 +50,9 @@ const HALLS = {
     ],
   },
   phenix: {
-    name: 'Phenix',
+    name: 'Phénix',
     hero: 'Every launch is a death. Every orbit is a resurrection.',
-    body: 'Phenix Aerospace builds space transportation. Moon routes first; Moon to Venus and Mars second; Alpha Centauri B (Rollo) third. O’Neill spheres on the long road. Hawk Mark vehicles; Hawk Mark 02 supports Aether flag planting for Earth-originated claims.',
+    body: 'Phénix Aerospace builds space transportation. Moon routes first; Moon to Venus and Mars second; Alpha Centauri B (Rollo) third. O’Neill spheres on the long road. Hawk Mark vehicles; Hawk Mark 02 supports Aether flag planting for Earth-originated claims.',
     bullets: [
       'Moon → Venus/Mars → Rollo (Alpha Centauri B)',
       'O’Neill sphere program',
@@ -95,12 +95,12 @@ const HALLS = {
   },
   aether: {
     name: 'Aether',
-    hero: 'Phenix marks the territory. Aether claims it.',
+    hero: 'Phénix marks the territory. Aether claims it.',
     body: 'Aether Real Estate helps you claim land in the galaxy: manage claims, defend claim jumpers, protect territory. Hawk Mark 02 plants flags for claims made on Earth. Goal: a fair regulated system for cosmic expansion. Aether claims property beyond Earth.',
     bullets: [
       'Galactic claims / registry',
       'Claim-jumper defense framing',
-      'Hawk Mark 02 flag planting with Phenix',
+      'Hawk Mark 02 flag planting with Phénix',
       'No deed sales or claim payments on this surface',
     ],
   },
@@ -157,7 +157,7 @@ const HALLS = {
 }
 
 const SCHEDULE_BLURB =
-  'Launch day schedule (Pacific): Wave 1 halls unlock in chain from morning (Wolf → Holm → Demeter → Viking → Atoll → Njord). Wave 2 starts 2:00 PM PDT (Eagle → Olympus → Aeolus → Phenix → Aether → Corvus). Mosaic tiles become clickable on that schedule; Meridian materials is available at /meridian outside the mosaic clock. There are no public unlock codes.'
+  'Launch day schedule (Pacific): Wave 1 halls unlock in chain from morning (Wolf → Holm → Demeter → Viking → Atoll → Njord). Wave 2 starts 2:00 PM PDT (Eagle → Olympus → Aeolus → Phénix → Aether → Corvus). Mosaic tiles become clickable on that schedule; Meridian materials is available at /meridian outside the mosaic clock. There are no public unlock codes.'
 
 export function getHallKnowledge(pageId) {
   const id = String(pageId || 'hub').toLowerCase()

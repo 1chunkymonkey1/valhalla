@@ -133,7 +133,7 @@ Public launch of the Valhalla Living Mosaic (valhallaco.org): 12 company surface
 
 ### Team
 ```
-Eason Greene — Founder / Leader, Valhalla; Njord Hall Lead. Hall CEOs: Wolf — Anubis Chavez; Holm — Hestia Barker; Demeter — Ceres Johnson; Viking — Maui Muller; Atoll — Yemoja Williams; Eagle — Garuda Hernandez; Olympus — Amaterasu Tran; Aeolus — Vayu Dubois; Phenix — Bennu Kimura; Aether — Nut Garcia; Corvus — Thoth Martinez (see leads.md).
+Eason Greene — Founder / Leader, Valhalla; Njord Hall Lead. Hall CEOs: Wolf — Anubis Chavez; Holm — Hestia Barker; Demeter — Ceres Johnson; Viking — Maui Muller; Atoll — Yemoja Williams; Eagle — Garuda Hernandez; Olympus — Amaterasu Tran; Aeolus — Vayu Dubois; Phénix — Bennu Kimura; Aether — Nut Garcia; Corvus — Thoth Martinez (see leads.md).
 ```
 
 ### Why LvlUp / why now

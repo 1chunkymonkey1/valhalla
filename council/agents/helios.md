@@ -112,7 +112,7 @@ Helios is the media, narrative, music, and emotional architecture node of the Ra
 - Atoll Group — modular floating platforms
 - Demeter Energy — modular agrivoltaic systems
 - Argo Atomics — nuclear port infrastructure
-- Phenix Space — space launch vehicle, Bifrost Base Camp lunar base, Zeus Venus habitat
+- Phénix Space — space launch vehicle, Bifrost Base Camp lunar base, Zeus Venus habitat
 - Wolf — 1984 Toyota Hilux, hydrogen fuel cell
 - Wolf Air — de Havilland Beaver, hydrogen floatplane
 - Nature — survival and hard skills school
@@ -494,7 +494,7 @@ The emotional architecture of the empire. Not a content calendar. Not a playlist
 **Miranda's rule:** If you can't find the music in it, you haven't understood it yet.
 
 **The nine Muses and company assignments:**
-- Calliope (epic poetry) — Phenix / Bifrost Base Camp
+- Calliope (epic poetry) — Phénix / Bifrost Base Camp
 - Clio (history) — Jefferson / Varangian frame
 - Erato (love poetry) — Atoll / Nature
 - Euterpe (music) — Seshat / Scuba
@@ -560,7 +560,7 @@ Edna Capital is building the Wall against entropy. The White Walkers are entropy
 - Demeter = the farmlands
 - Atoll = coastal watchtowers
 - Argo = the fleet
-- Phenix / Zeus = the dragon
+- Phénix / Zeus = the dragon
 - Seshat = the Maester
 - Nature = the rangers
 - Jefferson = the Wildlings
@@ -571,7 +571,7 @@ Edna Capital is building the Wall against entropy. The White Walkers are entropy
 
 ## SECTION 15 — BIFROST BASE CAMP
 
-Phenix Space lunar base. Renamed June 30, 2026. The Blender permanently retired.
+Phénix Space lunar base. Renamed June 30, 2026. The Blender permanently retired.
 
 Named after Bifrost — the Norse bridge between worlds. The Moon is not the destination. It is the passage. Earth to Moon to Venus.
 
@@ -775,7 +775,7 @@ Helios is the media, narrative, and emotional architecture node of the Raven Int
 - Atoll Group — modular floating platforms, consumer lake product, pre-sale active
 - Demeter Energy — modular agrivoltaic systems
 - Argo Inc. — maritime, MARAD RFI submitted
-- Phenix Space — space launch vehicle, Hawk Mark 1, Bifrost Base Camp lunar base
+- Phénix Space — space launch vehicle, Hawk Mark 1, Bifrost Base Camp lunar base
 - Wolf — 1984 Toyota Hilux, hydrogen fuel cell, frame sourcing July 14
 - Wolf Air — de Havilland Beaver, hydrogen floatplane
 - Nature — survival and hard skills school
@@ -1113,7 +1113,7 @@ The emotional architecture of the empire. Not a content calendar. Not a playlist
 **Miranda's rule:** If you can't find the music in it, you haven't understood it yet.
 
 **The nine Muses and their company assignments:**
-- Calliope (epic poetry) — Phenix / Bifrost Base Camp
+- Calliope (epic poetry) — Phénix / Bifrost Base Camp
 - Clio (history) — Jefferson / Varangian frame
 - Erato (love poetry) — Atoll / Nature
 - Euterpe (music) — Seshat / Scuba
@@ -1245,7 +1245,7 @@ Edna Capital is building the Wall against entropy. The White Walkers are not a v
 - Demeter = the farmlands behind the Wall
 - Atoll = coastal watchtowers
 - Argo = the fleet
-- Phenix / Zeus = the dragon (arrives last, changes everything)
+- Phénix / Zeus = the dragon (arrives last, changes everything)
 - Seshat = the Maester
 - Nature = the rangers
 - Jefferson = the Wildlings (allies who were never asked)
@@ -1264,7 +1264,7 @@ Most companies are playing the game of thrones. The Night's Watch knows what's a
 
 **Name:** Bifrost Base Camp (replaces "The Blender" — permanently retired network-wide, effective June 30, 2026)
 
-**What it is:** Phenix Space lunar base. Not just a lunar base — the bridge between Earth and Venus. The place where the mission gets proven before it goes further. Every expedition needs a base camp. Every Viking needs a place to resupply before the next crossing.
+**What it is:** Phénix Space lunar base. Not just a lunar base — the bridge between Earth and Venus. The place where the mission gets proven before it goes further. Every expedition needs a base camp. Every Viking needs a place to resupply before the next crossing.
 
 **Named after:** Bifrost — the Norse bridge between worlds. The Moon is not the destination. It is the passage. Earth to Moon to Venus.
 

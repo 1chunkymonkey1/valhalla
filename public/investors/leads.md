@@ -13,7 +13,7 @@ Dedicated lead (CEO) seat for each of the 12 companies.
 | 7 | Eagle | Air | Movement | Garuda Hernandez | CEO / Hall Lead |
 | 8 | Olympus | Air | Habitation | Amaterasu Tran | CEO / Hall Lead |
 | 9 | Aeolus | Air | Energy | Vayu Dubois | CEO / Hall Lead |
-| 10 | Phenix | Space | Movement | Bennu Kimura | CEO / Hall Lead |
+| 10 | Phénix | Space | Movement | Bennu Kimura | CEO / Hall Lead |
 | 11 | Aether | Space | Habitation | Nut Garcia | CEO / Hall Lead |
 | 12 | Corvus | Space | Intelligence | Thoth Martinez | CEO / Hall Lead |
 

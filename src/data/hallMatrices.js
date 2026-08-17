@@ -146,9 +146,9 @@ const vikingMatrix = matrix({
   title: 'Viking matrix',
   mission: {
     title: 'What Viking Cruises is building',
-    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships use light-water SMRs and emerging sail. First route Stockholm to London; later a Phenix launch-pad call and a moon leg on the same vacation. Vinland Saga is the narrative arc. Partner-gated.',
+    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships use light-water SMRs and emerging sail. First route Stockholm to London; later a Phénix launch-pad call and a moon leg on the same vacation. Vinland Saga is the narrative arc. Partner-gated.',
     cadence:
-      'Cadence: Knarr 01 and Stockholm→London diligence lead; Phenix pad and moon-leg arcs follow as partners clear. No ticketed sailing date on this surface.',
+      'Cadence: Knarr 01 and Stockholm→London diligence lead; Phénix pad and moon-leg arcs follow as partners clear. No ticketed sailing date on this surface.',
   },
   lines: vikingLines,
   rows: [
@@ -468,22 +468,22 @@ const eagleMatrix = matrix({
   ],
 })
 
-/* ─── Phenix ─── */
+/* ─── Phénix ─── */
 const phenixLines = [
   line({ id: 'ember', name: 'Hawk Mark 1', stencil: 'rocket', epithet: 'Launch vehicle', naming: 'First heat of the Hawk: the Mark 1 launch vehicle.', overview: 'Hawk Mark 1 launch-vehicle mission-concept workspace for payload inquiry, not a launch booking. Mark 02 follows for Aether flag planting.', powertrain: true, does: 'Hosts payload inquiry for Hawk Mark 1 suborbital and ascent mission concepts; Mark 02 path supports Aether claim flags.', benefits: ['Named launch vehicle honesty', 'Aether Mark 02 flag adjacency', 'Partner engineering path'], savings: ['Shared ground systems with Bifröst / Corona'], addOns: [{ id: 'payload-bay', name: 'Payload bay study', text: 'Bay geometry studies for inquiry partners.' }] }),
   line({ id: 'ascent', name: 'Ascent', stencil: 'rocket', epithet: 'Payload path', naming: 'The climb through fire.', overview: 'Ascent architecture studies for Hawk Mark 1 payload customers (prospective).', powertrain: true, does: 'Studies ascent paths for prospective Hawk Mark 1 payload partners.', benefits: ['Transparent research status', 'No launch date fiction'], savings: [], addOns: [] }),
   line({ id: 'return', name: 'Return', stencil: 'rocket', epithet: 'Recovery path', naming: 'What goes up must be studied coming home.', overview: 'Recovery architecture studies for Hawk Mark 1 and follow-on vehicles.', does: 'Explores recovery and return architectures.', benefits: ['Recovery-first honesty'], savings: [], addOns: [] }),
   line({ id: 'corona', name: 'Corona', stencil: 'platform', epithet: 'Heat shield study', naming: 'The bright edge of reentry research.', overview: 'Heat-shield and thermal path research for Earth return and Venus entry studies, not tourism.', does: 'Researches thermal protection concepts including Venus-entry adjacency with Zeus.', benefits: ['Materials research framing', 'Venus entry adjacency'], savings: [], addOns: [] }),
-  line({ id: 'ground-nest', name: 'Bifröst', stencil: 'platform', epithet: 'Lunar base camp', naming: 'Bifröst Base Camp at the lunar south pole.', overview: 'Bifröst Base Camp: lunar south-pole mission ops, habitat staging, and energy concepts. (Dire Wolf remains the Earth railroad under Wolf; Bifröst is the lunar bridge.)', powertrain: true, does: 'Stages lunar south-pole base-camp ops and energy for Phenix concepts.', benefits: ['Lunar south-pole framing', 'Electric/H₂ ground story', 'Distinct from Dire Wolf rail'], savings: [], addOns: [{ id: 'h2-pad', name: 'H₂ pad study', text: 'Hydrogen ground pad concept for Bifröst staging.' }] }),
+  line({ id: 'ground-nest', name: 'Bifröst', stencil: 'platform', epithet: 'Lunar base camp', naming: 'Bifröst Base Camp at the lunar south pole.', overview: 'Bifröst Base Camp: lunar south-pole mission ops, habitat staging, and energy concepts. (Dire Wolf remains the Earth railroad under Wolf; Bifröst is the lunar bridge.)', powertrain: true, does: 'Stages lunar south-pole base-camp ops and energy for Phénix concepts.', benefits: ['Lunar south-pole framing', 'Electric/H₂ ground story', 'Distinct from Dire Wolf rail'], savings: [], addOns: [{ id: 'h2-pad', name: 'H₂ pad study', text: 'Hydrogen ground pad concept for Bifröst staging.' }] }),
   line({ id: 'phoenix-gate', name: 'Zeus', stencil: 'platform', epithet: 'Venus cloud city', naming: 'Zeus: crewed Venus cloud city by 2035.', overview: 'Zeus is the Venus cloud-city program gate and north star: crewed Venus habitation concepts aimed at 2035, paired with Olympus atmospheric research.', does: 'Queues Zeus / Venus 2035 briefings when diligence clears.', benefits: ['Venus 2035 north star', 'Olympus adjacency', 'Diligence-first access'], savings: [], addOns: [] }),
 ]
 
 const phenixMatrix = matrix({
   companyId: 'phenix',
-  title: 'Phenix matrix',
+  title: 'Phénix matrix',
   mission: {
-    title: 'What Phenix Aerospace is building',
-    body: 'Phenix Aerospace builds space transportation. Moon routes first; Moon to Venus and Mars second; Alpha Centauri B (Rollo) third. O’Neill spheres on the long road. Hawk Mark 1 opens the vehicle family; Hawk Mark 02 plants Aether claim flags. Bifröst Base Camp at the lunar south pole; Zeus toward Venus. No launch booking on this surface.',
+    title: 'What Phénix Aerospace is building',
+    body: 'Phénix Aerospace builds space transportation. Moon routes first; Moon to Venus and Mars second; Alpha Centauri B (Rollo) third. O’Neill spheres on the long road. Hawk Mark 1 opens the vehicle family; Hawk Mark 02 plants Aether claim flags. Bifröst Base Camp at the lunar south pole; Zeus toward Venus. No launch booking on this surface.',
     cadence: 'Cadence: Hawk Mark 1 inquiry and Bifröst base studies lead; Zeus / Venus, Mars legs, Rollo, and O’Neill spheres stay vision until nearer gates clear.',
   },
   lines: phenixLines,
@@ -497,7 +497,7 @@ const phenixMatrix = matrix({
       'phoenix-gate': cell({ id: 'phoenix-gate-01', status: 'vision', summary: 'Zeus / Venus 2035.', description: 'Zeus 01 queues Venus cloud-city briefings aimed at 2035 when diligence clears.', does: phenixLines[5].does, benefits: phenixLines[5].benefits, savings: [], addOns: [], hostAlias: 'phoenixgate01' }),
     }),
     row02({
-      ember: cell({ id: 'ember-02', status: 'theoretical', summary: 'Hawk Mark 02.', description: 'Hawk Mark 02: Phenix vehicle tasked with planting flags for Aether claims made on Earth.', does: 'Stages Hawk Mark 02 flag-planting mission concepts with Aether.', benefits: phenixLines[0].benefits, savings: [], addOns: phenixLines[0].addOns, hostAlias: 'ember02' }),
+      ember: cell({ id: 'ember-02', status: 'theoretical', summary: 'Hawk Mark 02.', description: 'Hawk Mark 02: Phénix vehicle tasked with planting flags for Aether claims made on Earth.', does: 'Stages Hawk Mark 02 flag-planting mission concepts with Aether.', benefits: phenixLines[0].benefits, savings: [], addOns: phenixLines[0].addOns, hostAlias: 'ember02' }),
       ascent: cell({ id: 'ascent-02', status: 'theoretical', summary: 'Ascent follow-on.', description: 'Ascent 02 deepens architecture options.', does: 'Deeper ascent options.', benefits: phenixLines[1].benefits, savings: [], addOns: [], hostAlias: 'ascent02' }),
       return: cell({ id: 'return-02', status: 'theoretical', summary: 'Return follow-on.', description: 'Return 02 adds contingency paths.', does: 'Recovery contingency studies.', benefits: phenixLines[2].benefits, savings: [], addOns: [], hostAlias: 'return02' }),
       corona: cell({ id: 'corona-02', status: 'vision', summary: 'Corona follow-on.', description: 'Corona 02 materials vision for Venus entry.', does: 'Advanced thermal materials vision.', benefits: phenixLines[3].benefits, savings: [], addOns: [], hostAlias: 'corona02' }),
@@ -595,7 +595,7 @@ const olympusLines = [
   line({ id: 'aerie-lab', name: 'Aerie Lab', stencil: 'habitat', epithet: 'High lab', naming: 'Eagle’s nest as laboratory.', overview: 'High-altitude lab modules with Eagle adjacency.', does: 'Pairs lab modules with Eagle research craft concepts.', benefits: ['Eagle synergy'], savings: ['Shared sensors'], addOns: [] }),
   line({ id: 'thin-air', name: 'Thin Air', stencil: 'platform', epithet: 'Pressure systems', naming: 'Pressure and breath as infrastructure.', overview: 'Pressurization and environmental system studies for cloud-city volumes.', does: 'Researches pressure and environmental systems for pressurized habitats.', benefits: ['Systems honesty', 'Pressurized habitat path'], savings: [], addOns: [] }),
   line({ id: 'cloud-deck', name: 'Cloud Deck', stencil: 'platform', epithet: 'Deck structure', naming: 'Decks among the clouds, structural studies.', overview: 'Structural deck concepts for thin-air platforms and floating cloud cities.', does: 'Studies structural decks for high platforms.', benefits: ['Cloud-city structure'], savings: [], addOns: [] }),
-  line({ id: 'strat', name: 'Strat Platform', stencil: 'platform', epithet: 'Venus 2035 path', naming: 'Highest opacity by design, Venus north star.', overview: 'Stratospheric platform vision and Venus 50 km / 2035 long-range target with Phenix Zeus.', does: 'Vision register for stratospheric platforms and Venus 50 km by 2035.', benefits: ['Venus 50 km / 2035 north star', 'Phenix Zeus adjacency', 'Honest opacity'], savings: [], addOns: [] }),
+  line({ id: 'strat', name: 'Strat Platform', stencil: 'platform', epithet: 'Venus 2035 path', naming: 'Highest opacity by design, Venus north star.', overview: 'Stratospheric platform vision and Venus 50 km / 2035 long-range target with Phénix Zeus.', does: 'Vision register for stratospheric platforms and Venus 50 km by 2035.', benefits: ['Venus 50 km / 2035 north star', 'Phénix Zeus adjacency', 'Honest opacity'], savings: [], addOns: [] }),
 ]
 
 const olympusMatrix = matrix({
@@ -603,7 +603,7 @@ const olympusMatrix = matrix({
   title: 'Olympus matrix',
   mission: {
     title: 'What Olympus is building',
-    body: 'Olympus builds cities of the future above the clouds. Fly Eagle to your Olympus Holm; drink through Njord pipes. Olympus Mons, the first cloud city, finishes in 2028 on the program target. Longer Venus adjacency remains with Phenix Zeus.',
+    body: 'Olympus builds cities of the future above the clouds. Fly Eagle to your Olympus Holm; drink through Njord pipes. Olympus Mons, the first cloud city, finishes in 2028 on the program target. Longer Venus adjacency remains with Phénix Zeus.',
     cadence: 'Cadence: Summit / Olympus Mons 2028 program target leads; Strat / Venus adjacency stays vision until nearer gates clear.',
   },
   lines: olympusLines,
@@ -633,7 +633,7 @@ const aetherLines = [
   line({ id: 'quiet-room', name: 'Quiet Room', stencil: 'habitat', epithet: 'Station claim cell', naming: 'Quiet rooms above the curve, claimed as registry cells.', overview: 'Orbital station claim cell: registry instrument for a volume with legal status disclosed. Supports the claims layer; not a deed sale.', does: 'Registers orbital station claim cells for partner research ledgers.', benefits: ['Claims / registry framing', 'Legal status disclosed', 'Not a habitat company thesis'], savings: [], addOns: [{ id: 'quiet-pack', name: 'Quiet pack', text: 'Acoustic and lighting research pack for claim volumes.' }] }),
   line({ id: 'ring-study', name: 'Ring Study', stencil: 'platform', epithet: 'Orbital claim ring', naming: 'A ring studied so it can be claimed.', overview: 'Orbital ring claim studies: real-estate and rights framing for ring architectures.', does: 'Studies orbital ring claim architectures with partners.', benefits: ['Partner claims research', 'Real-estate framing'], savings: [], addOns: [] }),
   line({ id: 'solarium', name: 'Solarium', stencil: 'habitat', epithet: 'Light volume claim', naming: 'Sun rooms in the dark.', overview: 'Light-volume claim studies. Radiation protection pathways sit with Aeolus Phase 3; Solarium coordinates volume geometry only.', does: 'Researches light volumes as claimable station packages.', benefits: ['Aeolus radiation-phase adjacency'], savings: [], addOns: [] }),
-  line({ id: 'dock-node', name: 'Dock Node', stencil: 'platform', epithet: 'Docking claim', naming: 'Where visiting craft meet the claim.', overview: 'Docking node concepts tied to Phenix access and Aether claim stacks.', does: 'Studies docking nodes for claim stacks.', benefits: ['Phenix adjacency'], savings: [], addOns: [] }),
+  line({ id: 'dock-node', name: 'Dock Node', stencil: 'platform', epithet: 'Docking claim', naming: 'Where visiting craft meet the claim.', overview: 'Docking node concepts tied to Phénix access and Aether claim stacks.', does: 'Studies docking nodes for claim stacks.', benefits: ['Phénix adjacency'], savings: [], addOns: [] }),
   line({ id: 'spine', name: 'Habitat Spine', stencil: 'habitat', epithet: 'Lunar / parcel spine', naming: 'The backbone that parcels attach to.', overview: 'Structural spine for multi-cell claim clusters, including lunar parcel adjacency.', does: 'Provides structural spine concepts for multi-parcel claim clusters.', benefits: ['Modular claim growth', 'Lunar parcel adjacency'], savings: ['Add cells without full redesign'], addOns: [] }),
   line({ id: 'halo', name: 'Halo', stencil: 'platform', epithet: 'Planetary / asteroid claims', naming: 'Widest ring: asteroid rights and planetary surfaces.', overview: 'Halo-scale vision for asteroid rights and planetary surface claims, sealed until nearer gates.', does: 'Vision register for asteroid rights and planetary surface claims.', benefits: ['Asteroid and planetary claims framing', 'Honest opacity'], savings: [], addOns: [] }),
 ]
@@ -643,8 +643,8 @@ const aetherMatrix = matrix({
   title: 'Aether matrix',
   mission: {
     title: 'What Aether Real Estate is building',
-    body: 'Aether Real Estate helps you claim land in the galaxy: manage claims, defend claim jumpers, protect territory. Hawk Mark 02 (Phenix) plants flags for claims made on Earth. Goal: a fair regulated system for cosmic expansion. Aether claims property beyond Earth. No deed sales on this surface.',
-    cadence: 'Cadence: Quiet Room claim-cell research leads; Hawk Mark 02 flag path with Phenix; Halo planetary / asteroid claims stay vision.',
+    body: 'Aether Real Estate helps you claim land in the galaxy: manage claims, defend claim jumpers, protect territory. Hawk Mark 02 (Phénix) plants flags for claims made on Earth. Goal: a fair regulated system for cosmic expansion. Aether claims property beyond Earth. No deed sales on this surface.',
+    cadence: 'Cadence: Quiet Room claim-cell research leads; Hawk Mark 02 flag path with Phénix; Halo planetary / asteroid claims stay vision.',
   },
   lines: aetherLines,
   rows: [
@@ -849,9 +849,9 @@ const meridianLines = [
     stencil: 'habitat',
     epithet: 'Venus-rated spacesuit',
     naming: 'A suit rated for the Venus cloud line.',
-    overview: 'Spacesuit concepts rated for Venus conditions, paired with Phenix Zeus and Olympus thin-air research.',
+    overview: 'Spacesuit concepts rated for Venus conditions, paired with Phénix Zeus and Olympus thin-air research.',
     does: 'Studies Venus-rated spacesuit materials and systems.',
-    benefits: ['Venus adjacency', 'Phenix / Olympus synergy'],
+    benefits: ['Venus adjacency', 'Phénix / Olympus synergy'],
     savings: [],
     addOns: [],
   }),

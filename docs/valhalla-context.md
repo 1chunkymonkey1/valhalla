@@ -31,7 +31,7 @@ Jolee Ginsberg.
 | LAND   | Wolf ᚹ | Holm ᚺ | Demeter ᛞ |
 | WATER  | Viking ᛜ | Atoll ᛟ | Njord ᚾ |
 | AIR    | Eagle ᛖ | Olympus ᛉ | Aeolus ᚨ |
-| SPACE  | Phenix ᚠ | Aether ᚨᚦ | Corvus ᚱ |
+| SPACE  | Phénix ᚠ | Aether ᚨᚦ | Corvus ᚱ |
 
 **Meridian** — the material layer beneath all four domains. Launching September 2026.
 

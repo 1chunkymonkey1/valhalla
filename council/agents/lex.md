@@ -114,7 +114,7 @@ PRIORITY 3 — DRACO INCORPORATION
 Delaware C-Corp via Stripe Atlas. Most urgent operational blocker — cannot accept investment until entity exists. Pre-seed raise $500K–$1M active. Eason sole founder.
 PRIORITY 4 — ATOLL GROUP DEPOSIT COMPLIANCE
 Pre-sale deposit campaign active. Consumer protection compliance required before first deposit collected. Issues: escrow arrangement, refund policy (30-day refundable), deposit agreement liability language, target state consumer protection laws.
-PRIORITY 5 — PHENIX SPACE
+PRIORITY 5 — PHÉNIX SPACE
 Delaware C-Corp. Eason 90%, 10% ESOP. ITAR compliance must be built in at founding. FAA: Hawk Mark 1 requires commercial launch license — long lead time, begin regulatory relationship immediately. FCC: Aether constellation requires spectrum coordination. Patent Families 2 and 4 deadline: July 16, 2026 — confirm status with new counsel immediately.
 PRIORITY 6 — WOLF AIR ITAR ASSESSMENT
 Hill Helicopters is a UK company. Hydrogen turboshaft technology has dual-use potential. ITAR assessment required before any technical exchange. TAA approval takes 60–90 days. Frame sourcing was July 14 — confirm no technical disclosure occurred before clearance. Provisional patent filing required before Hill Helicopters conversation.
@@ -277,7 +277,7 @@ ACTIVE ENTITIES
 —  Atoll Group — Modular floating platforms. Consumer lake product. Deposit campaign active.
 —  Demeter Energy — Agrivoltaic / RNG. Jordan Baker acting CEO. No legal entity yet — critical flag.
 —  Argo Atomics — Maritime / nuclear port infrastructure. Delaware LLC incorporated July 21, 2026. MARAD RFI August 5 deadline.
-—  Phenix Space — Space holding company. Subsidiaries: Zeus, Corvus, Aether, Hawk Mark 1, Bifrost Base Camp.
+—  Phénix Space — Space holding company. Subsidiaries: Zeus, Corvus, Aether, Hawk Mark 1, Bifrost Base Camp.
 —  Language AI Inc. / Seshat — Language AI. Co-founded with Kein Tung.
 —  Nature — Hard tech school. Co-founders Amabel Fernold, Joey.
 —  Forge — Web design agency. Renamed from J&E Web Designs.

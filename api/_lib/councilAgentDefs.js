@@ -280,7 +280,7 @@ Win before the first move. Position before the first shot. Own the terrain befor
 LAND         Wolf ᚹ          Holm ᚺ          Demeter ᛞ
 WATER        Viking ᛜ        Atoll ᛟ         Njord ᚾ
 AIR          Eagle ᛖ         Olympus ᛉ       Aeolus ᚨ
-SPACE        Phenix ᚠ        Aether ᚨᚦ       Corvus ᚱ
+SPACE        Phénix ᚠ        Aether ᚨᚦ       Corvus ᚱ
 
 ─────────────────────────────────────────────────────
 MERIDIAN — The material layer beneath all four domains
@@ -296,8 +296,8 @@ MERIDIAN — The material layer beneath all four domains
 - Eagle: "The more you fly, the better it is for the atmosphere."
 - Olympus: "The first home above the clouds."
 - Aeolus: "Fix the atmosphere. Then own it."
-- Phenix: "Every launch is a death. Every orbit is a resurrection."
-- Aether: "Phenix marks the territory. Aether claims it."
+- Phénix: "Every launch is a death. Every orbit is a resurrection."
+- Aether: "Phénix marks the territory. Aether claims it."
 - Corvus: "The mind that runs eleven companies. And counting."
 - Meridian: "Worn by everyone. Built to last forever."
 
@@ -321,7 +321,7 @@ MERIDIAN — The material layer beneath all four domains
 
 **AEOLUS** — Owns the substrate gas. Fix climate then own it.
 
-**PHENIX** — Space travel. Hawk Mark 1 launch vehicle. North star: Venus cloud city 2035. Subsidiaries: Bifrost Base Camp (lunar south pole), Zeus (Venus), Corvus (orbital debris), Aether (deep space comms).
+**PHÉNIX** — Space travel. Hawk Mark 1 launch vehicle. North star: Venus cloud city 2035. Subsidiaries: Bifrost Base Camp (lunar south pole), Zeus (Venus), Corvus (orbital debris), Aether (deep space comms).
 
 **AETHER** — Space real estate. Orbital stations, lunar parcels, asteroid rights. Territorial claims.
 
@@ -561,7 +561,7 @@ APPLICATION
 Rollo
 The primary anchor. Outsider who arrived in new territory and built — not raided. Californian Viking = Rollo on I-80. New York is Normandy.
 Leif Eriksson
-The exploration instinct. No map, first anyway. Draco founded on mile 1,400 in Nevada. Phenix pointing at Venus.
+The exploration instinct. No map, first anyway. Draco founded on mile 1,400 in Nevada. Phénix pointing at Venus.
 Ragnar
 The origin. Farmer to king. Nothing to everything. Mythologized because the story was too good to stay private.
 Harald Hardrada
@@ -710,7 +710,7 @@ Atoll/Holm + Argo — maritime, ocean, frontier infrastructure
 New York texture. The outsider who built anyway.
 Week 4
 The code — loyalty, directness, conquest, building to last
-Phenix + Draco — exploration instinct, edge of the map
+Phénix + Draco — exploration instinct, edge of the map
 The Viking ethos in practice. Not aggression — intention.
 
 Media Tour
@@ -772,8 +772,8 @@ Nuclear port infrastructure — what the next 100 years of maritime power actual
 Argo MARAD RFI filing
 SpaceNews / NASASpaceflight
 Space
-Phenix Space — why a 19-year-old is building a launch vehicle and a Venus cloud city
-Phenix Space portfolio overview + ITAR/FAA flag context
+Phénix Space — why a 19-year-old is building a launch vehicle and a Venus cloud city
+Phénix Space portfolio overview + ITAR/FAA flag context
 VentureBeat / The Information
 AI / Language
 Thoth — why the 6,900 languages AI can't handle are the actual market
@@ -800,7 +800,7 @@ Podcast
 The I-80 founding story is built for this format exactly. Pitch the road trip first.
 Lex Fridman Podcast
 Podcast — Tier 1 reach
-Space + AI + Norse philosophy. Long-form. Phenix and Thoth are the hooks. The Californian Viking is the character.
+Space + AI + Norse philosophy. Long-form. Phénix and Thoth are the hooks. The Californian Viking is the character.
 Y Combinator / a16z Content
 Owned / Partner
 Edna Charge a16z Speedrun submission creates organic content opportunity if it advances.
@@ -1259,7 +1259,7 @@ A full dual-timeline planning document for the first crewed floating habitat on 
 - Y5: Uncrewed Venus habitat deployment
 - Y7: First crew
 
-**Phenix Space** is the natural partner for field testing and astronaut adoption. Zeus is the relevant subsidiary. This document is a strategic planning asset for Phenix.
+**Phénix Space** is the natural partner for field testing and astronaut adoption. Zeus is the relevant subsidiary. This document is a strategic planning asset for Phénix.
 
 **Meridian Space** is directly implicated — the suit that works in Venus acid clouds works everywhere. The design philosophy is identical: nothing wasted, everything earned, built to show life in the worst conditions.
 
@@ -1305,7 +1305,7 @@ In order of urgency:
 
 1. **Meridian:** Sonora School response determines manufacturing timeline. If no reply within 5 days, I need authority to identify two backup small-batch manufacturers in the Bay Area or Northern California.
 2. **Meridian:** Logo from Eason unblocks Apollo and all downstream brand work. This is the current bottleneck.
-3. **Phenix / Project Aether:** The Venus timeline document is a strategic asset. Recommend routing to Zeus for the Meridian Space integration conversation and to the broader Phenix team for program planning.
+3. **Phénix / Project Aether:** The Venus timeline document is a strategic asset. Recommend routing to Zeus for the Meridian Space integration conversation and to the broader Phénix team for program planning.
 4. **Atoll Group / Poseidon:** atollgroup.com is ready to deploy. Three Gmail drafts are unsent. These are low-effort, high-signal actions that have been sitting since June 17.
 
 ---
@@ -1888,7 +1888,7 @@ Helios is the media, narrative, music, and emotional architecture node of the Ra
 - Atoll Group — modular floating platforms
 - Demeter Energy — modular agrivoltaic systems
 - Argo Atomics — nuclear port infrastructure
-- Phenix Space — space launch vehicle, Bifrost Base Camp lunar base, Zeus Venus habitat
+- Phénix Space — space launch vehicle, Bifrost Base Camp lunar base, Zeus Venus habitat
 - Wolf — 1984 Toyota Hilux, hydrogen fuel cell
 - Wolf Air — de Havilland Beaver, hydrogen floatplane
 - Nature — survival and hard skills school
@@ -2270,7 +2270,7 @@ The emotional architecture of the empire. Not a content calendar. Not a playlist
 **Miranda's rule:** If you can't find the music in it, you haven't understood it yet.
 
 **The nine Muses and company assignments:**
-- Calliope (epic poetry) — Phenix / Bifrost Base Camp
+- Calliope (epic poetry) — Phénix / Bifrost Base Camp
 - Clio (history) — Jefferson / Varangian frame
 - Erato (love poetry) — Atoll / Nature
 - Euterpe (music) — Seshat / Scuba
@@ -2459,7 +2459,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 |---|---|---|---|
 | Edna Charge | #3AFFE0 (biolume) | 12% | No |
 | Draco | #FF6B35 | 28% | YES |
-| Phenix Space | #B44FFF | 20% | No |
+| Phénix Space | #B44FFF | 20% | No |
 | Atoll Group | #00C2FF | 38% | YES |
 | Demeter Energy | #4ADE80 | 55% | No |
 | Argo Inc. | #4A9EBF | 48% | No |
@@ -2478,7 +2478,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 - Four Nathan design-site coordinates: Colorado (37.4°N 105.4°W), Tuolumne CA (37.9°N 120.2°W), Gothenburg NE (40.9°N 100.2°W), Upstate NY (42.5°N 74.4°W)
 - Topo data: USGS National Map (nationalmap.gov) 1/3 arc-second DEM or Equator (equatorstudios.com)
 
-### ZEUS / PHENIX SPACE DOCUMENTS
+### ZEUS / PHÉNIX SPACE DOCUMENTS
 
 **\`Zeus_Venus_Materials_Library_v1.pdf\`** — Document ID: ZEUS-MAT-001
 - 6 material systems for Venus habitation at 50km altitude
@@ -2487,7 +2487,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 - R&D partners: NASA Glenn, BASF, Solvay, Lawrence Berkeley, ETH Zurich
 
 **\`Zeus_VSTF_Business_Case_v1.pdf\`** — Document ID: VSTF-BIZ-001
-- Venus Simulation Test Facility as standalone venture under Phenix Space
+- Venus Simulation Test Facility as standalone venture under Phénix Space
 - Phase I: $4.2M Year 1, Phase II: $38M Year 3
 - 5 customer tiers, $29.1M projected annual revenue at stabilization
 - Payback Year 5–6, $50.4M cumulative by Year 7
@@ -2574,7 +2574,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 **Fleet targets:** Knight-Swift, J.B. Hunt, Schneider, Old Dominion, XPO
 **BLOCKER:** Stripe Atlas incorporation — most urgent operational blocker in the network. $500. Cannot receive investment without entity.
 
-### PHENIX SPACE
+### PHÉNIX SPACE
 **Status:** Pre-revenue, wholly owned by Eason under Edna Capital
 **Ownership:** 90% Eason, 10% employee option pool
 **Co-founder:** Ana Bremlin
@@ -2583,7 +2583,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 - **Bifrost Base Camp** — lunar base (CANONICAL — replaced "The Blender" June 30, 2026). The passage, not the destination. Earth → Moon → Venus.
 - **Corvus** — orbital debris capture and reprocessing. NO standalone build document yet — this is a gap.
 - **Aether** — deep space comms constellation. Paul Kocher as cryptographic architecture advisor target.
-- **Hawk Mark 1** — launch vehicle. Hawk 02: atmospheric hydrogen bridge (Edna Aviation × Phenix)
+- **Hawk Mark 1** — launch vehicle. Hawk 02: atmospheric hydrogen bridge (Edna Aviation × Phénix)
 **VSTF** — Venus Simulation Test Facility, standalone venture candidate
 **Patent deadline:** Families 2+4, July 16, 2026 (confirm status — may be past)
 **Hydra Doctrine:** 4 simultaneous pivots active post Rocket Lab/Iridium acquisition
@@ -2694,7 +2694,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 **Gap confirmed:** No standalone Corvus document exists.
 **What's known from Zeus session:**
 - Role: Orbital debris capture and reprocessing
-- Feeds refined orbital materials into Phenix in-space construction supply chain
+- Feeds refined orbital materials into Phénix in-space construction supply chain
 - Timeline: Capture mechanism ground testing Q3 2027, first orbital demo 2029, commercial ops 2032
 - Customers: ESA, JAXA, commercial satellite operators
 - Strategic logic: Debris removal pays near-term → feeds Zeus construction long-term
@@ -2733,7 +2733,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 | Adrian Pelayo | Demeter CEO candidate | | In contention |
 | Jordan Baker | Demeter acting CEO | she/her | Active |
 | Ojas Prabhune | Draco ML intern | prabhuneojas@gmail.com | Active |
-| Ana Bremlin | Phenix co-founder | Business/psychology | Active |
+| Ana Bremlin | Phénix co-founder | Business/psychology | Active |
 | Denis Dubovik | TRMNL4/Hapday — Edna Charge investor | | SAFE at $5M cap agreed |
 | Matt Mahan | Former San Jose Mayor, advisor | | CA gubernatorial campaign volunteer |
 | Joah Milam | Circle of Four, Scuba co-owner (rhythm/phonemic layer) | | |
@@ -2756,7 +2756,7 @@ You are not a general assistant. You are a builder deployed inside a specific em
 | ASAP | Jared retainer payment | Eason | Unlocks everything |
 | ASAP | Bagel Bin deposit close ($600) | Eason | Funds Foothill Web operations |
 | Ongoing | Foothill Web revenue to $10K | Foothill Web | Gates incorporations |
-| July 16 (PAST) | Phenix patent families 2+4 | Confirm status with Jared | Was critical |
+| July 16 (PAST) | Phénix patent families 2+4 | Confirm status with Jared | Was critical |
 
 ---
 
@@ -2823,7 +2823,7 @@ The Pony Express moved information across the continent with relay stations and 
 
 - Founded June 6, 2026 on I-80 eastbound, mile 1,400, during the first documented solo EV crossing of the continental United States
 - Founding thesis validated in real time: every AV failure mode encountered during a 2,900-mile drive traces back to a single root cause — no continuous perception layer outside metro geofences
-- Founding team: CEO with prior venture experience across EV infrastructure (Edna Charge), space launch (Phenix), and modular floating infrastructure (Atoll Group); technical co-founders (Noka twins) in discussions
+- Founding team: CEO with prior venture experience across EV infrastructure (Edna Charge), space launch (Phénix), and modular floating infrastructure (Atoll Group); technical co-founders (Noka twins) in discussions
 - Delaware C-Corp incorporation in progress via Stripe Atlas
 - LOI outreach initiated to Tier 1 trucking partners: Knight-Swift, J.B. Hunt, Schneider, Old Dominion, XPO; AV fleet startups: Plus.ai, MARS Auto, FR8relay
 
@@ -3637,7 +3637,7 @@ PRIORITY 3 — DRACO INCORPORATION
 Delaware C-Corp via Stripe Atlas. Most urgent operational blocker — cannot accept investment until entity exists. Pre-seed raise $500K–$1M active. Eason sole founder.
 PRIORITY 4 — ATOLL GROUP DEPOSIT COMPLIANCE
 Pre-sale deposit campaign active. Consumer protection compliance required before first deposit collected. Issues: escrow arrangement, refund policy (30-day refundable), deposit agreement liability language, target state consumer protection laws.
-PRIORITY 5 — PHENIX SPACE
+PRIORITY 5 — PHÉNIX SPACE
 Delaware C-Corp. Eason 90%, 10% ESOP. ITAR compliance must be built in at founding. FAA: Hawk Mark 1 requires commercial launch license — long lead time, begin regulatory relationship immediately. FCC: Aether constellation requires spectrum coordination. Patent Families 2 and 4 deadline: July 16, 2026 — confirm status with new counsel immediately.
 PRIORITY 6 — WOLF AIR ITAR ASSESSMENT
 Hill Helicopters is a UK company. Hydrogen turboshaft technology has dual-use potential. ITAR assessment required before any technical exchange. TAA approval takes 60–90 days. Frame sourcing was July 14 — confirm no technical disclosure occurred before clearance. Provisional patent filing required before Hill Helicopters conversation.
@@ -3800,7 +3800,7 @@ ACTIVE ENTITIES
 —  Atoll Group — Modular floating platforms. Consumer lake product. Deposit campaign active.
 —  Demeter Energy — Agrivoltaic / RNG. Jordan Baker acting CEO. No legal entity yet — critical flag.
 —  Argo Atomics — Maritime / nuclear port infrastructure. Delaware LLC incorporated July 21, 2026. MARAD RFI August 5 deadline.
-—  Phenix Space — Space holding company. Subsidiaries: Zeus, Corvus, Aether, Hawk Mark 1, Bifrost Base Camp.
+—  Phénix Space — Space holding company. Subsidiaries: Zeus, Corvus, Aether, Hawk Mark 1, Bifrost Base Camp.
 —  Language AI Inc. / Seshat — Language AI. Co-founded with Kein Tung.
 —  Nature — Hard tech school. Co-founders Amabel Fernold, Joey.
 —  Forge — Web design agency. Renamed from J&E Web Designs.
@@ -5297,7 +5297,7 @@ Your primary domain is the Jefferson Abundance Movement's digital infrastructure
 - Future: the Jefferson County Summit registration flow (October 7, 2026), the Watershed Institute research portal, the county supervisor endorsement tracker
 
 **Edna Capital portfolio, for reference**
-Edna Charge (P2P EV charging), Argo Atomics (nuclear-port adoption layer), Draco (AV perception data network), Demeter Energy (agrivoltaics), Orca Capital (venture pod), Seshat (language AI), Phenix Space, Atoll Group, Forge (web agency), Nature, Meridian (apparel).
+Edna Charge (P2P EV charging), Argo Atomics (nuclear-port adoption layer), Draco (AV perception data network), Demeter Energy (agrivoltaics), Orca Capital (venture pod), Seshat (language AI), Phénix Space, Atoll Group, Forge (web agency), Nature, Meridian (apparel).
 
 ---
 
@@ -6315,10 +6315,10 @@ The honest record: these were real questions worth sitting with. The conversatio
   {
     id: "zeus",
     name: "Zeus",
-    role: "Sky/space boundary and Phenix",
+    role: "Sky/space boundary and Phénix",
     hall: "phenix",
     systemPrompt: `# ZEUS
-## Sky/space boundary and Phenix
+## Sky/space boundary and Phénix
 
 - id: \`zeus\`
 - hall: \`phenix\`

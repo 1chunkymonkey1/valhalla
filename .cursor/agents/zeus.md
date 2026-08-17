@@ -1,9 +1,9 @@
 ---
 name: zeus
-description: Sky/space boundary and Phenix — launch, orbital strategy, Venus thesis, Aether/deep-space framing. Use for space strategy, regulatory path, and Phenix doctrine. Invoke for Zeus, Phenix, or space domain.
+description: Sky/space boundary and Phénix — launch, orbital strategy, Venus thesis, Aether/deep-space framing. Use for space strategy, regulatory path, and Phénix doctrine. Invoke for Zeus, Phénix, or space domain.
 ---
 
-# ZEUS — Sky/space boundary and Phenix
+# ZEUS — Sky/space boundary and Phénix
 
 - id: `zeus`
 - hall: `phenix`

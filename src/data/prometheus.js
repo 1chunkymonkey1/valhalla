@@ -98,7 +98,7 @@ export const objections = [
 
 export const channels = [
   { channel: 'Direct / founder', use: 'Every early-access conversation. Eason on Sierra WUI. Chris on LA.' },
-  { channel: 'Valhalla / Phenix', use: 'Internal only. Kenaz gate. Never listed on the mosaic or investor decks.' },
+  { channel: 'Valhalla / Phénix', use: 'Internal only. Kenaz gate. Never listed on the mosaic or investor decks.' },
   { channel: 'Insurance partners', use: 'After 20+ instrumented installs. Bring logs, not a vision deck.' },
   { channel: 'Press', use: 'Short form only. No render-as-product unless labeled in development.' },
 ]

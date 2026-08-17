@@ -22,7 +22,7 @@ export const PAGE_LABELS = {
   wolf: 'Wolf',
   viking: 'Viking',
   eagle: 'Eagle',
-  phenix: 'Phenix',
+  phenix: 'Phénix',
   holm: 'Holm',
   atoll: 'Atoll',
   olympus: 'Olympus',

@@ -227,7 +227,7 @@ function AircraftStencil() {
 
 function RocketStencil() {
   return (
-    <Frame label="Ascent concept stencil" hall="PHENIX">
+    <Frame label="Ascent concept stencil" hall="PHÉNIX">
       <g fill="none" stroke={ink} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <path d="M160 40 L185 90 V150 L160 170 L135 150 V90 Z" />
         <path d="M135 150 L120 175 M185 150 L200 175" strokeOpacity="0.55" />

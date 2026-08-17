@@ -34,7 +34,7 @@ Exact placement:
 ```text
                     LAND        WATER       AIR        SPACE
 
-MOVEMENT           Wolf        Viking      Eagle      Phenix
+MOVEMENT           Wolf        Viking      Eagle      Phénix
 HABITATION         Holm        Atoll       Olympus    Aether
 SUBSTRATE          Demeter     Njord       Aeolus     Corvus
 ```
@@ -69,7 +69,7 @@ The second launch block begins at 2:00 PM and reveals:
 7. Eagle
 8. Olympus
 9. Aeolus
-10. Phenix
+10. Phénix
 11. Aether
 12. Corvus
 ```
@@ -90,7 +90,7 @@ Njord frame completes:     T+60:00
 The second block repeats the same vertical-column cadence at 2:00 PM:
 
 ```text
-Eagle → Olympus → Aeolus → Phenix → Aether → Corvus
+Eagle → Olympus → Aeolus → Phénix → Aether → Corvus
 ```
 
 The schedule must be configurable from one source of truth. Do not hard-code animation timing in components.
@@ -257,7 +257,7 @@ Close-detail reveal:
 - Fine pressure lines
 - Small field-like currents
 
-### Space column: Phenix, Aether, Corvus
+### Space column: Phénix, Aether, Corvus
 
 Palette:
 
@@ -281,7 +281,7 @@ Frame behavior:
 Company-specific material:
 
 ```text
-Phenix: dark alloy, copper ember, launch heat, volcanic dust
+Phénix: dark alloy, copper ember, launch heat, volcanic dust
 Aether: glass, soft silver, quiet orbital illumination, deep indigo
 Corvus: obsidian metal, black glass, warm internal amber intelligence
 ```
@@ -406,7 +406,7 @@ Tablet:
 Mobile:
 
 - Stack in chronological reveal order:
-  Wolf, Holm, Demeter, Viking, Atoll, Njord, Eagle, Olympus, Aeolus, Phenix, Aether, Corvus
+  Wolf, Holm, Demeter, Viking, Atoll, Njord, Eagle, Olympus, Aeolus, Phénix, Aether, Corvus
 - Keep domain-specific frame behavior
 - Preserve the countdown and launch ritual
 - Avoid expensive particle density
@@ -426,7 +426,7 @@ Mobile:
 
 The build is successful only when:
 
-1. The top row reads exactly: Wolf, Viking, Eagle, Phenix.
+1. The top row reads exactly: Wolf, Viking, Eagle, Phénix.
 2. Each vertical domain column has a unique elemental material system.
 3. Wolf, Holm, Demeter reveal top-to-bottom in the Land column.
 4. Viking, Atoll, Njord follow top-to-bottom in Water.

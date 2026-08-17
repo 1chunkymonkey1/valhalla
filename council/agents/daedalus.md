@@ -130,7 +130,7 @@ A full dual-timeline planning document for the first crewed floating habitat on 
 - Y5: Uncrewed Venus habitat deployment
 - Y7: First crew
 
-**Phenix Space** is the natural partner for field testing and astronaut adoption. Zeus is the relevant subsidiary. This document is a strategic planning asset for Phenix.
+**Phénix Space** is the natural partner for field testing and astronaut adoption. Zeus is the relevant subsidiary. This document is a strategic planning asset for Phénix.
 
 **Meridian Space** is directly implicated — the suit that works in Venus acid clouds works everywhere. The design philosophy is identical: nothing wasted, everything earned, built to show life in the worst conditions.
 
@@ -176,7 +176,7 @@ In order of urgency:
 
 1. **Meridian:** Sonora School response determines manufacturing timeline. If no reply within 5 days, I need authority to identify two backup small-batch manufacturers in the Bay Area or Northern California.
 2. **Meridian:** Logo from Eason unblocks Apollo and all downstream brand work. This is the current bottleneck.
-3. **Phenix / Project Aether:** The Venus timeline document is a strategic asset. Recommend routing to Zeus for the Meridian Space integration conversation and to the broader Phenix team for program planning.
+3. **Phénix / Project Aether:** The Venus timeline document is a strategic asset. Recommend routing to Zeus for the Meridian Space integration conversation and to the broader Phénix team for program planning.
 4. **Atoll Group / Poseidon:** atollgroup.com is ready to deploy. Three Gmail drafts are unsent. These are low-effort, high-signal actions that have been sitting since June 17.
 
 ---

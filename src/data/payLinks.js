@@ -65,7 +65,7 @@ export const companyPayLinks = {
     ...openingSoon,
   },
   phenix: {
-    label: 'Phenix · mission inquiry hold',
+    label: 'Phénix · mission inquiry hold',
     estimateUsd: 5000,
     ...openingSoon,
   },
