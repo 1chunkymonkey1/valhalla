@@ -7,7 +7,8 @@
 **Status:** CLOSED. Founder is final on action. This file is the bound draft.  
 **Classification:** L2 Council  
 **Facts:** As-of capture 2026-08-13 in `docs/valhalla-context.md`. Treat as dated. Do not invent newer status, revenue, or closed deals.  
-**Open:** `council/sessions/2026-08-17-meridian-gate.md`
+**Open:** `council/sessions/2026-08-17-meridian-gate.md`  
+**Floor:** `council/sessions/2026-08-17-meridian-gate-floor.md`
 
 ---
 

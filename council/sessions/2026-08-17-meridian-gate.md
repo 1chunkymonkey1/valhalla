@@ -4,7 +4,7 @@
 **Date:** Monday 17 August 2026  
 **Mode:** Council  
 **Session:** Meridian Gate  
-**Status:** OPEN. Commander has framed. Seats speak. Commander closes after synthesis.  
+**Status:** CLOSED. Floor: `council/sessions/2026-08-17-meridian-gate-floor.md`. Ruling: `council/sessions/2026-08-17-meridian-gate-ruling.md`.  
 **Classification:** L2 Council  
 **Facts:** As-of capture 2026-08-13 in `docs/valhalla-context.md`. Treat as dated. Do not invent newer status, revenue, or closed deals.
 
