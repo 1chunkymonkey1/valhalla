@@ -7,12 +7,12 @@ const HALLS = {
   hub: {
     name: 'Valhalla',
     hero: 'Everyone is a king. Kings don’t wait for the throne; they build it.',
-    body: 'Valhalla is building twelve companies across the four domains of Land, Water, Air, and Space. Each company solves a specific problem facing humanity and ties into the other eleven so they grow and evolve as a unit. Meridian is the materials layer beneath. Public pages are research and interest surfaces.',
+    body: 'Valhalla holds twelve halls across the four domains of Land, Water, Air, and Space. Each hall holds a specific problem facing humanity and ties into the other eleven so they grow and evolve as a unit. Meridian is the materials layer beneath. Public pages are research and interest surfaces.',
     bullets: [
       'Twelve mosaic halls across Land / Water / Air / Space',
       'Movement, Habitation, Energy, and Intelligence pillars; Meridian materials at /meridian',
       'Ask widgets reach the Valhalla team',
-      'No false “shipping now” or funded reservation claims on this surface',
+      'No false shipping claims or funded reservation claims on this surface',
     ],
   },
   wolf: {
@@ -29,7 +29,7 @@ const HALLS = {
   viking: {
     name: 'Viking',
     hero: 'Board as yourself. Disembark as Ragnar.',
-    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships use light-water SMRs and emerging sail. First route Stockholm to London; later a Phénix launch-pad call and a moon leg on the vacation arc.',
+    body: 'The deck boards as yourself and disembarks as Ragnar Lothbrok or Leif Erikson. Ships use light-water SMRs and emerging sail. First route Stockholm to London; later a Phénix launch-pad call and a moon leg on the vacation arc.',
     bullets: [
       'Stockholm → London first route',
       'Light-water SMR + sail propulsion thesis',
@@ -139,7 +139,7 @@ const HALLS = {
   },
   corvus: {
     name: 'Corvus',
-    hero: 'The mind that runs eleven companies. And counting.',
+    hero: 'The mind that runs the mosaic. And counting.',
     body: 'Corvus builds equitable intelligence infrastructure. Sovereign medium solar-powered computers so you keep your data. Space data centers on the long path. Raven OS runs the empire; waitlist for early prompts and products.',
     bullets: [
       'Sovereign solar computers',
@@ -151,23 +151,32 @@ const HALLS = {
   meridian: {
     name: 'Meridian',
     hero: 'Worn by everyone. Built to last forever.',
-    body: 'Meridian is the materials layer beneath all four domains: Earth garment systems and space-rated suits including Venus and Stealth armor paths.',
-    bullets: ['Earth garment research', 'Venus Suit', 'Stealth Armor supply chain'],
+    body: 'Meridian is the materials layer beneath all four domains: Earth garment systems, Venus-rated suits, and merch for every hall. Earth Line is a list, not a cart.',
+    bullets: [
+      'Earth garment research',
+      'Venus Suit',
+      'Merch for all twelve halls (Earth Line list, not a cart)',
+    ],
   },
 }
 
 const SCHEDULE_BLURB =
   'Launch day schedule (Pacific): Wave 1 halls unlock in chain from morning (Wolf → Holm → Demeter → Viking → Atoll → Njord). Wave 2 starts 2:00 PM PDT (Eagle → Olympus → Aeolus → Phénix → Aether → Corvus). Mosaic tiles become clickable on that schedule; Meridian materials is available at /meridian outside the mosaic clock. There are no public unlock codes.'
 
+const MERCH_BULLET =
+  'Merch is cut by Meridian. Earth Line is a list, not a cart. No merch checkout on this surface.'
+
 export function getHallKnowledge(pageId) {
   const id = String(pageId || 'hub').toLowerCase()
   const hall = HALLS[id] || HALLS.hub
+  const hasMerch = hall.bullets.some((b) => /merch/i.test(b))
   return {
     pageId: HALLS[id] ? id : 'hub',
     ...hall,
+    bullets: hasMerch ? hall.bullets : [...hall.bullets, MERCH_BULLET],
     schedule: SCHEDULE_BLURB,
     empire:
-      'Valhalla builds twelve companies across Land, Water, Air, and Space. Each solves a human problem and ties into the other eleven so the mosaic grows as a unit. Meridian is materials beneath. Interest forms and Ask chat are non-binding. Everyone is a king: kings don’t wait for the throne; they build it.',
+      'Valhalla holds twelve halls across Land, Water, Air, and Space. Each hall holds a human problem and ties into the other eleven so the mosaic grows as a unit. Meridian is materials beneath. Every hall wears Meridian merch. Interest forms and Ask chat are non-binding. Everyone is a king: kings don’t wait for the throne; they build it.',
   }
 }
 
@@ -189,6 +198,7 @@ export function buildKnowledgePrompt(pageId) {
     '- Never invent prices, capacity, CO₂, ROI, or flight times as proven measured facts beyond the stated goals.',
     '- Never guarantee ship, launch, move-in, or delivery dates as locked contracts.',
     '- Interest lists, research status, partner inquiries, and blueprint targets are OK to mention.',
+    '- Merch is cut by Meridian for every hall. It is a waitlist, not a store that ships or takes payment.',
     '- If the user needs a human (money, legal, sensitive personal data, explicit person request, or you are unsure), set needs_human true and say a Valhalla person will follow up in this thread.',
   ].join('\n')
 }

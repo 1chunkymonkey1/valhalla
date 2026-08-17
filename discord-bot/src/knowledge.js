@@ -10,7 +10,7 @@ export const knowledge = {
     email: 'info@valhallaco.org',
     discord: 'https://discord.gg/JA6wrNg6n',
     summary:
-      'Valhalla builds twelve companies across Land, Water, Air, and Space. Each solves a human problem and ties into the other eleven. Meridian is materials beneath. Everyone is a king: kings don’t wait for the throne; they build it.',
+      'Valhalla holds twelve halls across Land, Water, Air, and Space. Each hall holds a human problem and ties into the other eleven. Meridian is materials beneath. Everyone is a king: kings don’t wait for the throne; they build it.',
   },
   companies: [
     { id: 'wolf', domain: 'Land', pillar: 'Movement', blurb: 'Land transit: Fenrir electric motorcycle, tri-fuel ATV, pack through Dire Wolf maglev SF→NYC in 5.8 hours. Clean and fixable.' },
@@ -25,7 +25,7 @@ export const knowledge = {
     { id: 'phenix', domain: 'Space', pillar: 'Movement', blurb: 'Space transport: Moon, Venus/Mars, Rollo (Alpha Centauri B), O’Neill spheres. Hawk Mark 1/02.' },
     { id: 'aether', domain: 'Space', pillar: 'Habitation', blurb: 'Galactic real estate claims; Hawk Mark 02 plants flags. Phénix marks; Aether claims.' },
     { id: 'corvus', domain: 'Space', pillar: 'Intelligence', blurb: 'Sovereign solar computers, space data centers, Raven OS for the empire. Prompt waitlist.' },
-    { id: 'meridian', domain: 'Materials', pillar: 'Materials', blurb: 'Materials layer: Earth garment, Venus Suit, Stealth Armor.' },
+    { id: 'meridian', domain: 'Materials', pillar: 'Materials', blurb: 'Materials layer: Earth garment, Venus Suit, merch for every hall. List, not a cart.' },
   ],
   reservations:
     'Halls gather email interest on the public site. Do not invent deposit or checkout claims.',

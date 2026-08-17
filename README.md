@@ -1,6 +1,6 @@
 # Valhalla Multi-Launch Hub
 
-Living Mosaic hub for twelve companies across land, water, air, and space.
+Living Mosaic hub for twelve halls across land, water, air, and space.
 
 - Production: https://valhallaco.org
 - Discord: https://discord.gg/JA6wrNg6n

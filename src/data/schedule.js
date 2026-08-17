@@ -247,7 +247,7 @@ export const schedule = [
     launchTime: `${LAUNCH_DATE}T20:00:00-07:00`,
     publicStatus: 'concept',
     pattern: 'local',
-    tagline: 'The mind that runs eleven companies. And counting.',
+    tagline: 'The mind that runs the mosaic. And counting.',
     concept:
       'Sovereign AI compute: solar-powered, offline-capable, modular. Raven OS is the substrate; Odin is the consumer product for founders. Prompt ladder is the access path.',
     accent: '#09090B',
@@ -269,7 +269,7 @@ export const schedule = [
     mosaic: false,
     tagline: 'Worn by everyone. Built to last forever.',
     concept:
-      'Materials layer beneath all four domains: Earth garment (self-cleaning polymer pants, September 2026 research target), Venus-rated spacesuit, and Stealth body-armor supply chain. Blueprint and interest only.',
+      'Materials layer beneath all four domains: Earth garment (self-cleaning polymer pants, September 2026 research target), Venus-rated spacesuit, and merch for every hall. Blueprint and interest only.',
     accent: '#3F3A32',
     ink: '#F7F4EE',
   },

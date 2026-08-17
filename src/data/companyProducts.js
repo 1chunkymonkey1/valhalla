@@ -79,7 +79,7 @@ export const companyProducts = {
     headline: 'Board as yourself. Disembark as Ragnar.',
     support:
       'Sustainable cruises powered by light-water SMRs and emerging sail. Stockholm to London first; later a Phénix pad and a moon leg on the same vacation.',
-    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships run on light-water SMRs and emerging sail technology. The first route is Stockholm to London. Soon you will be able to take a Viking cruise to a Phénix launch pad and add a moon leg to your summer vacation. Partner-gated itineraries; interest only on this surface.',
+    body: 'The deck boards as yourself and disembarks as Ragnar Lothbrok or Leif Erikson. Ships run on light-water SMRs and emerging sail technology. The first route is Stockholm to London. Soon you will be able to take a Viking cruise to a Phénix launch pad and add a moon leg to your summer vacation. Partner-gated itineraries; interest only on this surface.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -144,7 +144,7 @@ export const companyProducts = {
     headline: 'The more you fly, the better it is for the atmosphere.',
     support:
       'Clean air transport from private jets to long-distance Earth travel. Every plane is named for a bird. Active carbon removal on every flight.',
-    body: 'Eagle Air is the clean air transportation company of the twenty-first century, from private jets for high-net-worth travelers to long-distance Earth travel. Every plane is named after a bird species to remind us who owns the skies. In accordance with protecting those skies, every Eagle jet has active carbon removal: the more you fly it, the better it is for the atmosphere. Access and partner interest only; not a published flight schedule.',
+    body: 'Flight rises on clean air from private jets to long-distance Earth travel. Every plane is named after a bird species to remind us who owns the skies. In accordance with protecting those skies, every Eagle jet has active carbon removal: the more you fly it, the better it is for the atmosphere. Access and partner interest only; not a published flight schedule.',
     tone: 'air',
     ...emailFirst,
     gallery: [
@@ -247,7 +247,7 @@ export const companyProducts = {
   },
   corvus: {
     product: 'Corvus',
-    headline: 'The mind that runs eleven companies. And counting.',
+    headline: 'The mind that runs the mosaic. And counting.',
     support:
       'Equitable intelligence infrastructure: sovereign solar computers, space data centers, and Raven OS for the empire. Waitlist for early prompts.',
     body: 'Corvus builds the equitable intelligence infrastructure life on Earth will use to thrive. Sovereign computers: medium-sized, solar-powered machines so you can access intelligence without giving your data to giant tech. Space data centers sit on the long path. Corvus Raven OS is what the rest of the empire runs on. Join the waitlist for early access to prompts and other products.',
@@ -272,7 +272,7 @@ export const companyProducts = {
     headline: 'Worn by everyone. Built to last forever.',
     support:
       'The materials layer beneath all four domains: Earth garment systems and space-rated suits.',
-    body: 'Meridian is the materials layer under the twelve halls. Earth: one pair of self-cleaning white stain-trapping polymer pants meant to replace dozens of purchases a year. Space: a spacesuit rated for Venus, plus the Stealth body-armor supply chain. Blueprint and interest only on this surface.',
+    body: 'Meridian is the materials layer under the twelve halls. Earth: one pair of self-cleaning white stain-trapping polymer pants meant to replace dozens of purchases a year. Space: a spacesuit rated for Venus. Every hall wears Meridian merch. Blueprint and interest only on this surface.',
     tone: 'land',
     ...emailFirst,
     gallery: [
