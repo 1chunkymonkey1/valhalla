@@ -36,7 +36,7 @@ export const pressRelease = {
     },
     {
       name: 'Materials',
-      text: 'Meridian — the materials layer beneath all four domains: Earth garment systems, Venus-rated suits, and defense supply-chain concepts.',
+      text: 'Meridian — the materials layer beneath all four domains. Earth garment systems, Venus-rated suit concepts, and merch for every hall.',
     },
   ],
   quote: {

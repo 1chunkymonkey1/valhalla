@@ -1,0 +1,16 @@
+name: Catalog completeness
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fail if a hall loses merch or music
+        run: npm test
