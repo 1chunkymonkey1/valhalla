@@ -49,7 +49,7 @@ Single-domain → one seat. Cross-portfolio → `icarus`. Investor-facing copy �
 4. Type normally. Use `@athena`, `@lex`, `@all` (or `@council`) to route or broadcast.
 5. Set a **Shared goal**, then **Run round** for one bounded autonomous pass (cooldown + caps — not an infinite loop).
 
-Hall **Inbox** (visitor Ask chat) stays separate. Council is the primary internal AI desk.
+Hall **Inbox** (visitor Ask chat) stays separate. **/team** holds teammate tasks. **Founder** is the 08:00 act queue (signature, send, choose, pay, hire, claim, unblock). Council is advice. Capital sends live on `/capital`.
 
 ## Connect AI tonight
 

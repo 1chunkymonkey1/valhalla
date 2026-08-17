@@ -87,6 +87,12 @@ import {
 } from '../_lib/councilStore.js'
 import { buildAiStatus } from '../_lib/aiStatus.js'
 import { setAiSettings } from '../_lib/aiSettings.js'
+import {
+  actOnFounderTodo,
+  createFounderTodo,
+  listFounderTodos,
+  seedStandingActs,
+} from '../_lib/founderTodoStore.js'
 
 const COMPANY_SUMMARY = [
   { id: 'wolf', name: 'Wolf', domain: 'land', pillar: 'movement', wave: 1 },
@@ -871,6 +877,44 @@ async function handleAi(req, res) {
   return json(res, 405, { ok: false, error: 'Method not allowed' })
 }
 
+async function handleFounderTodo(req, res) {
+  const session = requireAdmin(req, res)
+  if (!session) return
+
+  if (req.method === 'GET') {
+    try {
+      const data = await listFounderTodos()
+      return json(res, 200, data)
+    } catch (err) {
+      return json(res, 500, { ok: false, error: err.message || 'Founder queue error' })
+    }
+  }
+
+  if (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH') {
+    try {
+      const body = await readBody(req)
+      const action = String(body.action || 'create').trim().toLowerCase()
+      if (action === 'create') {
+        const item = await createFounderTodo(body, session.email)
+        return json(res, 200, { ok: true, item })
+      }
+      if (action === 'seed') {
+        const created = await seedStandingActs(session.email)
+        const data = await listFounderTodos()
+        return json(res, 200, { ok: true, created: created.length, ...data })
+      }
+      const id = String(body.id || '').trim()
+      if (!id) return json(res, 400, { ok: false, error: 'id required' })
+      const item = await actOnFounderTodo(id, action, body, session.email)
+      return json(res, 200, { ok: true, item })
+    } catch (err) {
+      return json(res, 400, { ok: false, error: err.message || 'Bad request' })
+    }
+  }
+
+  return json(res, 405, { ok: false, error: 'Method not allowed' })
+}
+
 export default async function handler(req, res) {
   const key = routeKey(req)
   if (key === 'login') return handleLogin(req, res)
@@ -889,5 +933,6 @@ export default async function handler(req, res) {
   if (key === 'dispatch') return handleDispatch(req, res)
   if (key === 'council') return handleCouncil(req, res)
   if (key === 'ai') return handleAi(req, res)
+  if (key === 'founder-todo' || key === 'founder-queue') return handleFounderTodo(req, res)
   return json(res, 404, { ok: false, error: 'Not found' })
 }
