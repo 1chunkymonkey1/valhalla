@@ -5,6 +5,9 @@ export const TABS = [
   { id: 'forge', label: 'Forge' },
   { id: 'atlas', label: 'Atlas' },
   { id: 'capital', label: 'Capital' },
+  { id: 'money', label: 'Unit economics' },
+  { id: 'risk', label: 'Risk' },
+  { id: 'plan', label: '90 days' },
   { id: 'outreach', label: 'Outreach' },
   { id: 'log', label: 'Night log' },
 ]
@@ -474,3 +477,127 @@ export const nightLog = [
 ]
 
 export const muleTotal = forge.muleBom.reduce((n, row) => n + row.est, 0)
+
+/** Order-of-magnitude only. Every number here is an assumption until a real quote replaces it. */
+export const unitEconomics = {
+  caveat:
+    'These are assumptions, not quotes. The only honest number today is the mule BOM. Replace each line as real vendor pricing arrives, and never show this tab to an investor as if it were measured.',
+  rows: [
+    { line: 'Thermal module (Lepton 3.5, qty 100)', low: 120, high: 172, note: 'MSRP $172 at qty 1. Volume discount unknown until FLIR OEM replies.' },
+    { line: 'Compute + visible camera', low: 40, high: 90, note: 'A Pi is a prototype answer. A listed product wants a dedicated MCU/SoM.' },
+    { line: 'Valve, pump, nozzle, plumbing', low: 90, high: 220, note: 'Listed fire-service valves cost multiples of hardware-store parts.' },
+    { line: 'Enclosure, mount, wiring, PSU', low: 60, high: 140, note: 'Injection molding is a tooling cheque, not a per-unit cost, until volume.' },
+    { line: 'Assembly and test', low: 40, high: 100, note: 'Hand-built in the first hundred. Functional test fixture required for listing.' },
+  ],
+  truths: [
+    'Hardware gross margin under 50% cannot carry a direct sales motion. If BOM lands near $500, the unit cannot retail at $999.',
+    'Install is the hidden cost. A licensed plumber touching potable supply is a real trade, priced per home, and it is the bottleneck on scale — not manufacturing.',
+    'The listing is a fixed cost measured in six figures and years, amortized across every unit. Model it as a gate, not a line item.',
+    'Service, annual inspection, and false-discharge response are recurring obligations. UL 2167A units are inspected annually by qualified people. That is either a revenue line or a liability.',
+    'Do not price before a site survey. Early access is an invitation, not a checkout.',
+  ],
+}
+
+export const ninetyDay = [
+  {
+    id: '01',
+    window: 'Weeks 1–2',
+    theme: 'Standing',
+    items: [
+      'Entity, EIN, bank, founder IP assignment (Eason + Chris).',
+      'Measure static pressure at the Sierra house — bibb and interior fixture.',
+      'Buy the UL 2167A outline and read it before writing another spec.',
+    ],
+  },
+  {
+    id: '02',
+    window: 'Weeks 3–5',
+    theme: 'Evidence',
+    items: [
+      'Build the hose-bibb mule. Detect → confirm → valve, logged, on video.',
+      'Run the false-alarm gauntlet: stove, toaster, candle, sunlight on a wall, space heater, dog.',
+      'Record every false positive. The failure reel is more persuasive than the success clip.',
+    ],
+  },
+  {
+    id: '03',
+    window: 'Weeks 4–7',
+    theme: 'Judgment',
+    items: [
+      'Three fire-service conversations. Feedback, not endorsement.',
+      'Paid scoping call with a California fire protection engineer.',
+      'Write the Automist gap analysis honestly — where we are behind and what is genuinely different.',
+    ],
+  },
+  {
+    id: '04',
+    window: 'Weeks 6–10',
+    theme: 'Capital',
+    items: [
+      'SAM.gov registration, then NSF Project Pitch.',
+      'If the pitch is invited, target the 4 Nov 2026 full proposal.',
+      'Do not open a friends round until the mule video exists.',
+    ],
+  },
+  {
+    id: '05',
+    window: 'Weeks 10–13',
+    theme: 'Decide',
+    items: [
+      'Go/no-go on the plumbing-integrated prototype versus staying on a hose circuit.',
+      'Decide whether Titan is a mule, a product, or a distraction this year.',
+      'Write down what would make you stop. Founders who skip this step raise for five years on a dead thesis.',
+    ],
+  },
+]
+
+export const risks = [
+  {
+    id: '01',
+    risk: 'False discharge floods a home',
+    severity: 'Company-ending',
+    control:
+      'Dual-cue confirm before the valve can open. Fail-closed on any sensor fault. Flow sensor with a hard maximum duration and a physical shutoff the homeowner can reach.',
+  },
+  {
+    id: '02',
+    risk: 'Failure to discharge in a real fire',
+    severity: 'Company-ending',
+    control:
+      'Loud, visible fault state — never a silent failure. Weekly self-test with a logged heartbeat. Never sold as the only line of defense; the house keeps its listed alarms.',
+  },
+  {
+    id: '03',
+    risk: 'Cameras inside homes',
+    severity: 'High',
+    control:
+      'This is the blind spot nobody flags. Thermal plus visible imaging inside a residence is a surveillance product unless you design against it. Process on-device, retain nothing by default, no cloud video without explicit opt-in, and publish the policy before the first install.',
+  },
+  {
+    id: '04',
+    risk: 'Backflow into potable water',
+    severity: 'High',
+    control: 'Listed backflow prevention, plumbing permit, licensed installer. Non-negotiable and inspected.',
+  },
+  {
+    id: '05',
+    risk: 'Selling an unlisted suppression system',
+    severity: 'High',
+    control:
+      'Until UL 2167A, position as supplemental detection and response, disclose development status in writing, and let the AHJ conversation happen before the sale — not after.',
+  },
+  {
+    id: '06',
+    risk: 'Founder bandwidth',
+    severity: 'Real',
+    control:
+      'Two founders, one in school, no FPE, no EE. Three product lines is the fastest way to ship none. Sentinel only until it is listed.',
+  },
+  {
+    id: '07',
+    risk: 'Automist is ahead',
+    severity: 'Strategic',
+    control:
+      'They are listed and we are not. Differentiate on WUI ember threat and pre-flame thermal confirmation, or concede the interior-mist category and pick a different wedge. Do not pretend they are not there.',
+  },
+]

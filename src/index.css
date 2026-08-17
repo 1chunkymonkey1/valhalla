@@ -5901,6 +5901,11 @@
   border-bottom: 1px solid rgba(200, 155, 10, 0.12);
 }
 
+.pm-hall__hero-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .pm-hall__brand {
   display: flex;
   align-items: center;
@@ -6117,7 +6122,8 @@
   transition: color 0.15s ease, background 0.15s ease;
 }
 
-.pm-tabs button:hover {
+.pm-tabs button:hover,
+.pm-tabs button:focus-visible {
   color: rgba(237, 232, 218, 0.8);
 }
 
@@ -6206,6 +6212,16 @@
   display: grid;
   gap: 0.4rem;
   font-size: 0.88rem;
+}
+
+.pm-list--plain {
+  color: rgba(237, 232, 218, 0.55);
+  line-height: 1.6;
+}
+
+.pm-list--plain::marker,
+.pm-list--plain li::marker {
+  color: #c89b0a;
 }
 
 .pm-mail {
@@ -6320,9 +6336,15 @@
   cursor: pointer;
 }
 
-.pm-fsm__btns button:hover {
+.pm-fsm__btns button:hover,
+.pm-fsm__btns button:focus-visible {
   border-color: rgba(200, 155, 10, 0.5);
   color: #c89b0a;
+}
+
+.pm-mail__bar button:hover,
+.pm-mail__bar button:focus-visible {
+  background: rgba(200, 155, 10, 0.12);
 }
 
 /* Hidden founder portals — bottom mosaic cluster + embed shells (no password) */

@@ -21,7 +21,10 @@ import {
   founderTodos,
   muleTotal,
   nightLog,
+  ninetyDay,
   nsfPitch,
+  risks,
+  unitEconomics,
   viability,
 } from '../data/prometheusOps'
 import { STATES, TARGET_CYCLE_MS, canOpenValve, nextState } from '../lib/sentinelFsm'
@@ -337,6 +340,74 @@ export default function PrometheusInterior({ onLock }) {
             ))}
           </div>
           <CopyBlock label="NSF Project Pitch draft" text={nsfPitch} />
+        </section>
+      ) : null}
+
+      {tab === 'money' ? (
+        <section className="pm-hall__block">
+          <p className="pm-mono pm-hall__kicker">{'// UNIT ECONOMICS — ASSUMPTIONS, NOT QUOTES'}</p>
+          <h2 className="pm-display pm-hall__title">The BOM is not the cost.</h2>
+          <p className="pm-hall__lede">{unitEconomics.caveat}</p>
+          <div className="pm-hall__stack">
+            {unitEconomics.rows.map((row) => (
+              <article key={row.line} className="pm-hall__row">
+                <div>
+                  <h3>{row.line}</h3>
+                  <p className="pm-hall__stance">
+                    ${row.low}–${row.high}
+                  </p>
+                </div>
+                <p>{row.note}</p>
+              </article>
+            ))}
+          </div>
+          <ul className="pm-list pm-list--plain">
+            {unitEconomics.truths.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {tab === 'risk' ? (
+        <section className="pm-hall__block">
+          <p className="pm-mono pm-hall__kicker">{'// WHAT KILLS THIS COMPANY'}</p>
+          <h2 className="pm-display pm-hall__title">Name it, then control it.</h2>
+          <div className="pm-hall__stack">
+            {risks.map((row) => (
+              <article key={row.id} className="pm-hall__row">
+                <div>
+                  <p className="pm-mono pm-hall__id">
+                    {row.id} {row.severity}
+                  </p>
+                  <h3 className="pm-display">{row.risk}</h3>
+                </div>
+                <p>{row.control}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {tab === 'plan' ? (
+        <section className="pm-hall__block">
+          <p className="pm-mono pm-hall__kicker">{'// NEXT 90 DAYS'}</p>
+          <h2 className="pm-display pm-hall__title">Evidence before capital.</h2>
+          <div className="pm-hall__grid pm-hall__grid--2">
+            {ninetyDay.map((row) => (
+              <article key={row.id} className="pm-hall__card">
+                <p className="pm-mono pm-hall__id">
+                  {row.id} {row.window}
+                </p>
+                <h3 className="pm-display">{row.theme}</h3>
+                <ul className="pm-list pm-list--plain">
+                  {row.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
         </section>
       ) : null}
 
