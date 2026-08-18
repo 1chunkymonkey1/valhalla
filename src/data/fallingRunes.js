@@ -107,8 +107,8 @@ export function fallingRunes(portals) {
 
 export function driftStyle(index) {
   const slot = GUTTER_SLOTS[index % GUTTER_SLOTS.length]
-  const dur = 8 + ((index * 7) % 9)
-  const pulse = 5.5 + ((index * 3) % 5)
+  const dur = 7 + ((index * 5) % 5)
+  const pulse = 3.2 + ((index * 2) % 3) * 0.4
   const delay = -((index * 1.15) % 12)
   const drift = (8 + ((index * 5) % 10)) * (index % 2 === 0 ? 1 : -1)
   const size = 0.95 + ((index * 11) % 8) / 20
