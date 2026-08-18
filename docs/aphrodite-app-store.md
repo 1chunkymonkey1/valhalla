@@ -77,6 +77,13 @@ If Bundle ID is empty in the dropdown, the identifier is not registered yet — 
 
 Create an App Bundle only after Aphrodite is **Ready for Sale** and you have a second released app to group with it. That is not this ship.
 
+**Apps list (this team):** Edna Charge already sits here as iOS 1.0 Prepare for Submission. That is not Aphrodite. Do not reuse Edna Charge’s record, bundle ID, or IAP. Click the blue **+** next to the Apps heading → **New App**.
+
+Yellow banners on that page are account-level:
+
+- **Trader status (EU DSA)** — Business / Compliance in Connect. Fill it for this team or EU storefronts can be pulled. Use the legal entity that actually ships. Do not invent a new company name in chat.
+- **Age rating social-media questions** — answer on each app’s App Information. For Aphrodite: it is dating (18+), not a social-media network; still answer the new questions honestly after the record exists.
+
 ## App Store Connect listing
 
 | Field | Value |
