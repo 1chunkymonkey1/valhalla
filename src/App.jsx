@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import ValhallaHub from './components/mosaic/ValhallaHub'
 import CompanySitePage from './pages/CompanySitePage'
 import ProductDetailPage from './pages/ProductDetailPage'
+import MerchShopPage from './pages/MerchShopPage'
+import MerchDetailPage from './pages/MerchDetailPage'
 import PressPage from './pages/PressPage'
 import FlowPage from './pages/FlowPage'
 import AdminPage from './pages/AdminPage'
@@ -108,6 +110,20 @@ export default function App() {
                 </Route>
                 {COMPANY_ROUTES.map((id) => (
                   <Route key={id} path={`/${id}`} element={<CompanySitePage slug={id} />} />
+                ))}
+                {COMPANY_ROUTES.map((id) => (
+                  <Route
+                    key={`${id}-merch`}
+                    path={`/${id}/merch`}
+                    element={<MerchShopPage companyId={id} />}
+                  />
+                ))}
+                {COMPANY_ROUTES.map((id) => (
+                  <Route
+                    key={`${id}-merch-sku`}
+                    path={`/${id}/merch/:sku`}
+                    element={<MerchDetailPage companyId={id} />}
+                  />
                 ))}
                 {COMPANY_ROUTES.map((id) => (
                   <Route

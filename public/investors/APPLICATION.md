@@ -33,16 +33,16 @@
 | Location | United States / California |
 | Founded | 2026 |
 | Legal entity | **No legal entity yet** (forming). Say: “In formation — Delaware/US entity planned.” |
-| One-liner / product | Civilization platform: 12 companies across Land, Water, Air, Space |
+| One-liner / product | Civilization platform: 12 halls across Land, Water, Air, Space |
 
 ---
 
 ## Elevator Pitch (≤300 characters)
 
-**Character count: 290 / 300**
+**Character count: 286 / 300**
 
 ```
-Valhalla builds 12 companies across Land, Water, Air, and Space solving transit, housing, energy, water, clean aviation, atmosphere, space transport, claims, and sovereign compute—as one civilization system. Everyone is a king. Kings don’t wait for the throne; they build it. valhallaco.org
+Valhalla builds 12 halls across Land, Water, Air, and Space solving transit, housing, energy, water, clean aviation, atmosphere, space transport, claims, and sovereign compute—as one civilization system. Everyone is a king. Kings don’t wait for the throne; they build it. valhallaco.org
 ```
 
 *(Original draft was ~362 chars; trimmed to fit the form while keeping credo + domains + URL.)*
@@ -52,7 +52,7 @@ Valhalla builds 12 companies across Land, Water, Air, and Space solving transit,
 ## Business Model
 
 ```
-Valhalla creates value as a holdco + 12 specialized companies (“halls”) across Land, Water, Air, and Space (Meridian materials optional beneath). Today: public mosaic, interest/email lists, and research/partner queues per hall — no fabricated revenue (MRR $0). Future capture: products and services as each hall reaches readiness (mobility, habitation, energy/water, clean aviation, atmosphere systems, space transport, claims/habitation platforms, sovereign compute), with cross-hall demand so each company feeds the other eleven. We do not claim deed sales, booked flights, or capacity/ROI figures that are not diligence-ready.
+Valhalla creates value as a holdco + 12 specialized halls across Land, Water, Air, and Space (Meridian materials optional beneath). Today: public mosaic, interest/email lists, and research/partner queues per hall — no fabricated revenue (MRR $0). Future capture: products and services as each hall reaches readiness (mobility, habitation, energy/water, clean aviation, atmosphere systems, space transport, claims/habitation platforms, sovereign compute), with cross-hall demand so each hall feeds the other eleven. We do not claim deed sales, booked flights, or capacity/ROI figures that are not diligence-ready.
 ```
 
 ---
@@ -138,7 +138,7 @@ Eason Greene — Founder / Leader, Valhalla; Njord Hall Lead. Hall CEOs: Wolf �
 
 ### Why LvlUp / why now
 ```
-Valhalla is forming the legal and operating structure to build 12 interconnected DeepTech companies as one civilization system. Seeking a first institutional check and Seed-aligned partners who understand multi-domain deep tech — not CPG or fake-MRR narratives.
+Valhalla is forming the legal and operating structure to build 12 interconnected DeepTech halls as one civilization system. Seeking a first institutional check and Seed-aligned partners who understand multi-domain deep tech — not CPG or fake-MRR narratives.
 ```
 
 ### Competitors

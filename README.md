@@ -1,6 +1,6 @@
 # Valhalla Multi-Launch Hub
 
-Living Mosaic hub for twelve companies across land, water, air, and space.
+Living Mosaic hub for twelve halls across land, water, air, and space.
 
 - Production: https://valhallaco.org
 - Discord: https://discord.gg/JA6wrNg6n
@@ -89,7 +89,7 @@ npx vercel --prod
 | `/investors` `/consumers` `/partners` | Audience pages |
 | `/roadmap` | Roadmap index |
 | `/contact` | Contact |
-| `/admin` | Founder control tower (2FA), reveal clock, people, codes, socials, ledgers |
+| `/admin` | Founder control tower (2FA): Founder queue at 08:00, Council, reveal, inbox, people, codes, socials, ledgers |
 | `/team` | Team workspace |
 | `/team/login` | Email + password |
 | `/team/join?token=` | Accept invite |
@@ -108,7 +108,7 @@ Competition dating for Valhalla. See **[docs/aphrodite.md](docs/aphrodite.md)** 
 
 ## Payments (Stripe)
 
-See **[docs/stripe-setup.md](docs/stripe-setup.md)**. Catch-all: `/api/stripe/*`. Hall estimate stubs remain in `src/data/payLinks.js` (email-only until `STRIPE_CHECKOUT_ENABLED`). Holds are **fully refundable**; no shipping claims on public CTAs.
+See **[docs/stripe-setup.md](docs/stripe-setup.md)**. Catch-all: `/api/stripe/*`. Hall estimate stubs remain in `src/data/payLinks.js` (email-only until `STRIPE_CHECKOUT_ENABLED`). No live holds or shipping claims on public CTAs.
 
 ## Discord Odin
 

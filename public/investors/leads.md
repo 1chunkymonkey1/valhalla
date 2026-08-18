@@ -1,6 +1,6 @@
 # Valhalla — Hall Leads Roster
 
-Dedicated lead (CEO) seat for each of the 12 companies.
+Dedicated lead (CEO) seat for each of the 12 halls.
 
 | # | Company | Domain | Pillar | Lead | Notes |
 |---|---------|--------|--------|------|-------|
@@ -21,7 +21,7 @@ Dedicated lead (CEO) seat for each of the 12 companies.
 We are all kings. Kings don't wait for the throne — they build it.
 
 ## Structure note
-Valhalla intends a **lead for each of the 12** halls and a **dedicated pitch deck for each of the 12 companies** (see `company-decks/`).
+Valhalla intends a **lead for each of the 12** halls and a **dedicated pitch deck for each of the 12 halls** (see `company-decks/`).
 
 ## Meridian (materials layer — optional)
 | Entity | Domain | Pillar | Lead |

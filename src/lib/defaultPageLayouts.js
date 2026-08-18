@@ -8,6 +8,7 @@ import { companyProducts } from '../data/companyProducts'
 import { companyPayLinks, formatUsd } from '../data/payLinks'
 import { DISCORD_INVITE, pressRelease } from '../data/pressRelease'
 import { companies, getCompany } from './companies'
+import { getHallAnnouncement } from '../data/meridianMerch'
 import { PAGE_IDS, SNAP, emptyLayout, snap } from './pageEditor'
 
 const FONTS = {
@@ -171,6 +172,19 @@ function buildCompanyLayout(pageId) {
       },
     }),
   )
+  blocks.push(
+    block(pageId, 'cta_merch', 'cta', { x: 456, y, w: 140, h: 48 }, {
+      content: 'Merch',
+      href: '#merch',
+      style: {
+        fontFamily: FONTS.body,
+        fontSize: 16,
+        color: tone.ink,
+        align: 'center',
+        fontWeight: '500',
+      },
+    }),
+  )
   y += 72
 
   blocks.push(block(pageId, 'sp1', 'spacer', { x: 40, y, w: 880, h: 24 }))
@@ -214,9 +228,36 @@ function buildCompanyLayout(pageId) {
   )
   y += 112
 
+  const merchNote = getHallAnnouncement(pageId)
+  if (merchNote) {
+    blocks.push(
+      block(pageId, 'merch_title', 'text', { x: 40, y, w: 880, h: 48 }, {
+        content: merchNote.statement,
+        style: {
+          fontFamily: FONTS.display,
+          fontSize: 28,
+          color: tone.ink,
+          fontWeight: '600',
+        },
+      }),
+    )
+    y += 56
+    blocks.push(
+      block(pageId, 'merch_body', 'text', { x: 40, y, w: 720, h: 72 }, {
+        content: merchNote.body,
+        style: {
+          fontFamily: FONTS.body,
+          fontSize: 18,
+          color: tone.ink,
+        },
+      }),
+    )
+    y += 88
+  }
+
   blocks.push(
     block(pageId, 'refund_note', 'text', { x: 40, y, w: 720, h: 32 }, {
-      content: 'Fully refundable reservations',
+      content: 'Email until gates clear',
       style: {
         fontFamily: FONTS.body,
         fontSize: 15,
@@ -405,7 +446,7 @@ function buildHubLayout() {
   y += 112
 
   const mission =
-    'Twelve mosaic companies across land, water, air, and space, plus Meridian materials, building the infrastructure layers that support civilization: movement, habitation, energy, intelligence, and materials.'
+    'Twelve mosaic halls across land, water, air, and space, plus Meridian materials, building the infrastructure layers that support civilization: movement, habitation, energy, intelligence, and materials.'
   blocks.push(
     block(pageId, 'mission', 'text', { x: 80, y, w: 800, h: 88 }, {
       content: mission,

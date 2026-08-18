@@ -520,7 +520,7 @@ export const wolfModelRows = [
 
 export const wolfMission = {
   title: 'What Wolf Transit is building',
-  body: 'Wolf owns land transit under two principles: clean, and fixable. Fenrir (adventure electric motorcycle) opens the pack; the tri-fuel ATV follows; car, truck, and rescue air assemble next; Dire Wolf closes as a transcontinental maglev aiming San Francisco to New York in 5.8 hours. By the time Dire Wolf is built, the pack has assembled. Add-ons from helmets and fix-it kits to hydrogen boost. Product matrix, not a checkout cart. Fenrir 01 targets January 13, 2027; a new line or model every two months on that cadence.',
+  body: 'The pack moves under two principles: clean, and fixable. Wolf is the first hall seen, not an operating company that ships. Fenrir (adventure electric motorcycle) opens the pack; the tri-fuel ATV follows; car, truck, and rescue air assemble next; Dire Wolf closes as a transcontinental maglev aiming San Francisco to New York in 5.8 hours. By the time Dire Wolf is built, the pack has assembled. Add-ons from helmets and fix-it kits to hydrogen boost. Product matrix, not a checkout cart. Fenrir 01 targets January 13, 2027; a new line or model every two months on that cadence. Interest and email only.',
   cadence:
     'Cadence: Fenrir 01 on January 13, 2027 → new product line 01 every two months through Dire Wolf Phase I → model 02/03 generations continue on the same drumbeat. Dire Wolf maglev completes in segments by August 13, 2031, with a 5.8-hour SF→NYC network target.',
 }
