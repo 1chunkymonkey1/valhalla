@@ -29,7 +29,9 @@ export default function SiteChrome() {
   if (location.pathname === '/capital') return null
   if (location.pathname.startsWith('/aphrodite')) return null
   if (location.pathname.startsWith('/phenix/prometheus')) return null
-  if (HIDDEN_PORTAL_PATHS.includes(location.pathname)) return null
+  if (HIDDEN_PORTAL_PATHS.includes(location.pathname) && location.pathname !== '/eason') {
+    return null
+  }
 
   const isHome = location.pathname === '/'
   const tone =

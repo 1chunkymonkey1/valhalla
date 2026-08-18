@@ -106,6 +106,18 @@ export function PsiMark() {
   )
 }
 
+/** Four tiles — Photo Tile */
+export function TileMark() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="4" y="4" width="7" height="7" fill="none" stroke="currentColor" strokeWidth="1.7" />
+      <rect x="13" y="4" width="7" height="7" fill="none" stroke="currentColor" strokeWidth="1.7" />
+      <rect x="4" y="13" width="7" height="7" fill="none" stroke="currentColor" strokeWidth="1.7" />
+      <rect x="13" y="13" width="7" height="7" fill="currentColor" />
+    </svg>
+  )
+}
+
 const MARKS = {
   perthro: PerthroMark,
   ansuz: AnsuzMark,
@@ -114,6 +126,7 @@ const MARKS = {
   dagaz: DagazMark,
   orca: OrcaFinMark,
   psi: PsiMark,
+  tile: TileMark,
 }
 
 export default function PortalRuneIcon({ rune }) {

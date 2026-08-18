@@ -13,7 +13,7 @@ import { DISCORD_URL, INSTAGRAM_URL, LINKEDIN_URL } from '../../lib/launchSchedu
 import { Link } from 'react-router-dom'
 import SimpleCountdown from '../SimpleCountdown'
 import { useI18n } from '../../i18n/I18nProvider'
-import HiddenPortalMarks from '../portals/HiddenPortalMarks'
+import HiddenPortalMarks, { MosaicRuneField } from '../portals/HiddenPortalMarks'
 
 const HUB_SOCIAL = {
   companyId: 'hub',
@@ -85,7 +85,10 @@ export default function ValhallaHub() {
               <p className="vh-hub__credo">{t('hub.credo')}</p>
             </header>
 
-            <MosaicGrid now={now} />
+            <div className="vh-mosaic-stage">
+              <MosaicRuneField />
+              <MosaicGrid now={now} />
+            </div>
 
             {hubLayout?.enabled && hubLayout.blocks?.length > 0 && (
               <section className="vh-hub__pub" aria-label={t('hub.customContent')}>
@@ -124,7 +127,7 @@ export default function ValhallaHub() {
             social={hubSocial}
             className="vh-hub__socials"
           />
-          <HiddenPortalMarks />
+          {showCountdown ? <HiddenPortalMarks includeTile /> : null}
         </footer>
         {!showCountdown ? (
           <AskHallWidget pageId="hub" hallName="Valhalla" dormant={false} />

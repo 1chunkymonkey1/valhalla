@@ -24,6 +24,7 @@ import {
 import InvestorsPage from './pages/InvestorsPage'
 import PrometheusPortalPage from './pages/PrometheusPortalPage'
 import PortalEmbedPage from './components/portals/PortalEmbedPage'
+import EasonPage from './pages/EasonPage'
 import AphroditeLayout from './pages/aphrodite/AphroditeLayout'
 import AphroditeHomePage from './pages/aphrodite/AphroditeHomePage'
 import AphroditeSignInPage from './pages/aphrodite/AphroditeSignInPage'
@@ -81,7 +82,7 @@ export default function App() {
                 <Route path="/team/join" element={<TeamJoinPage />} />
                 <Route path="/phenix/prometheus" element={<PrometheusPortalPage />} />
                 <Route path="/purpology" element={<PortalEmbedPage portalId="purpology" />} />
-                <Route path="/eason" element={<PortalEmbedPage portalId="eason" />} />
+                <Route path="/eason" element={<EasonPage />} />
                 <Route path="/seshat" element={<PortalEmbedPage portalId="seshat" />} />
                 <Route path="/raven" element={<PortalEmbedPage portalId="raven" />} />
                 <Route path="/data8" element={<PortalEmbedPage portalId="data8" />} />

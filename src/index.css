@@ -272,6 +272,59 @@
   gap: 30px;
 }
 
+.vh-mosaic-stage {
+  position: relative;
+  padding: 2.75rem 2.4rem 3.25rem;
+}
+
+.vh-rune-field {
+  pointer-events: none;
+}
+
+.vh-float-rune {
+  pointer-events: auto;
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  color: inherit;
+  opacity: 0;
+  animation: vh-rune-breathe 11s ease-in-out infinite;
+}
+
+.vh-float-rune svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  display: block;
+}
+
+.vh-float-rune:hover,
+.vh-float-rune:focus-visible {
+  opacity: 1 !important;
+  outline: none;
+}
+
+@keyframes vh-rune-breathe {
+  0%,
+  18%,
+  100% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  32%,
+  58% {
+    opacity: 0.48;
+    transform: translateY(0);
+  }
+  70% {
+    opacity: 0.08;
+    transform: translateY(-4px);
+  }
+}
+
 .vh-mosaic--mobile {
   display: none;
 }
@@ -969,6 +1022,10 @@
     margin: 0 auto;
   }
 
+  .vh-mosaic-stage {
+    padding: 2.25rem 1.5rem 2.75rem;
+  }
+
   .vh-portal__pixel {
     width: 4px;
     height: 4px;
@@ -993,6 +1050,12 @@
 
   .vh-portal__veil {
     display: none;
+  }
+
+  .vh-float-rune {
+    animation: none;
+    opacity: 0.4;
+    transform: none;
   }
 }
 
@@ -6549,6 +6612,160 @@
 
   .hp-embed__source {
     display: none;
+  }
+}
+
+/* ── Eason Greene (/eason) ── */
+.eg {
+  min-height: 100svh;
+  background: #f7f7f3;
+  color: #0a0a0a;
+  padding: 4.5rem 1.25rem 4rem;
+}
+
+.eg__hero,
+.eg__section,
+.eg__foot,
+.eg__jump {
+  width: min(52rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eg__eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin: 0 0 0.75rem;
+}
+
+.eg h1 {
+  font-family: var(--font-display, Georgia, serif);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  letter-spacing: -0.03em;
+  margin: 0 0 0.75rem;
+}
+
+.eg__lede {
+  max-width: 36rem;
+  line-height: 1.55;
+  opacity: 0.78;
+  margin: 0 0 1.25rem;
+}
+
+.eg__socials,
+.eg__jump,
+.eg__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+}
+
+.eg__socials a,
+.eg__jump a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.eg__jump {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.72;
+  margin-bottom: 2.5rem;
+}
+
+.eg__section {
+  padding: 1.75rem 0 2rem;
+  border-top: 1px solid rgba(10, 10, 10, 0.12);
+}
+
+.eg__section h2 {
+  font-family: var(--font-display, Georgia, serif);
+  font-weight: 500;
+  font-size: 1.55rem;
+  margin: 0 0 0.65rem;
+}
+
+.eg__section p {
+  margin: 0 0 1.1rem;
+  opacity: 0.72;
+  line-height: 1.5;
+}
+
+.eg__grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.eg__grid a,
+.eg__list a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.eg__grid a {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(10, 10, 10, 0.12);
+  background: #fff;
+}
+
+.eg__grid span,
+.eg__list span {
+  font-size: 0.8rem;
+  opacity: 0.55;
+}
+
+.eg__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.eg__list li {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.eg__chips li {
+  border: 1px solid rgba(10, 10, 10, 0.14);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.88rem;
+}
+
+.eg__foot {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(10, 10, 10, 0.12);
+  opacity: 0.65;
+  font-size: 0.9rem;
+}
+
+.eg__foot p {
+  margin: 0 0 0.35rem;
+}
+
+.eg__foot a {
+  color: inherit;
+}
+
+@media (max-width: 640px) {
+  .eg__grid {
+    grid-template-columns: 1fr;
   }
 }
 
