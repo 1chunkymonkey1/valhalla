@@ -14,6 +14,7 @@ test('capital desk is the sourced Demeter raise sentence', () => {
   assert.equal(CAPITAL_POSTURE.raise, DEMETER_RAISE_SOURCED.raise)
   assert.equal(CAPITAL_POSTURE.cap, DEMETER_RAISE_SOURCED.cap)
   assert.equal(CAPITAL_POSTURE.min, DEMETER_RAISE_SOURCED.min)
+  assert.match(CAPITAL_POSTURE.rule, /Do not pay for introductions/)
 })
 
 test('quarantined phrases stay off L0 scan files', () => {

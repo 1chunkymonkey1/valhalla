@@ -138,6 +138,20 @@ test('appointing the Space seat cannot enter the founder queue', () => {
   assert.equal(blocked.code, 'locked')
 })
 
+test('paying for investor introductions cannot enter the founder queue', () => {
+  const blocked = admit(
+    act({
+      kind: 'pay',
+      title: 'Pay Investor Signals for intros',
+      whyEason: 'Only Eason can wire the intro fee.',
+      decision: 'Should we pay Investor Signals $5k–$25k for introductions?',
+      options: ['pay', 'do not pay'],
+    }),
+    { now: NOW },
+  )
+  assert.equal(blocked.code, 'locked')
+})
+
 test('duplicate open dedupe is rejected', () => {
   const first = admit(act(), { now: NOW })
   const existing = [{ ...first.item, id: 'a', status: 'open' }]

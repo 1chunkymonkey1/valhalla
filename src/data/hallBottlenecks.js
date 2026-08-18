@@ -75,7 +75,7 @@ export const HALL_BOTTLENECKS = [
     name: 'Demeter',
     decision: 'Which capital path is this week’s send: SAFE desk, fellowship, REAP/IRA, or farm lead.',
     lockedRule:
-      'Sends live in /capital, not in chat. Do not copy dispatch rows into the founder queue. Public copy does not speak a $5M pre-money SAFE. Capital desk sourced sentence is $1.0–1.5M SAFE at $8M cap (dispatchSeed / CAPITAL_POSTURE); older $5M figures stay interior and unlabeled as the public raise. Kyle Chu stepping back is a coverage hole, not a recruiting fair.',
+      'Sends live in /capital, not in chat. Do not copy dispatch rows into the founder queue. Public copy does not speak a $5M pre-money SAFE. Capital desk sourced sentence is $1.0–1.5M SAFE at $8M cap (dispatchSeed / CAPITAL_POSTURE); older $5M figures stay interior and unlabeled as the public raise. Do not pay for introductions. Paid pitch-review rooms (Investor Signals $5k–$25k) stay no-send. Kyle Chu stepping back is a coverage hole, not a recruiting fair.',
   },
   {
     id: 'njord.earth-first',
@@ -196,6 +196,9 @@ export function isLockedKind(bottleneck, kind, decision) {
     return true
   }
   if (bottleneck.id === 'phenix.entity-vs-myth' && /(appoint|fill|hire).{0,24}space seat|pathfinder/i.test(text)) {
+    return true
+  }
+  if (bottleneck.id === 'demeter.next-send' && /(investor signals|paid intro|pay.{0,24}intro)/i.test(text)) {
     return true
   }
   if (bottleneck.id === 'hub.sunday-three' && /(twelve halls? (score|board|pass)|appoint.{0,20}space seat)/i.test(text)) {

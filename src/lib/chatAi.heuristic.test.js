@@ -11,4 +11,5 @@ test('Ask widget flags quarantined claim speech for a human', () => {
   assert.equal(heuristicNeedsHuman('Is QJ Motor a signed OEM partner?').needsHuman, true)
   assert.equal(heuristicNeedsHuman('Is Aquaria our partner?').needsHuman, true)
   assert.equal(heuristicNeedsHuman('Can I join the Wolf waitlist?').needsHuman, false)
+  assert.equal(heuristicNeedsHuman('Should we pay Investor Signals for intros?').needsHuman, true)
 })

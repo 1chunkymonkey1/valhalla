@@ -139,6 +139,12 @@ export function admit(input, { existing = [], now = Date.now() } = {}) {
   if (/(appoint|fill|hire).{0,24}space seat|pathfinder/i.test(`${title} ${decision}`)) {
     return reject('locked', 'Space seat stays OPEN. Encoding the hall, Launch cloth, and interior sound is the work. Recruiting a vacant title ships nothing.')
   }
+  if (/(investor signals|paid intro|pay.{0,24}(to )?(talk to )?investors?)/i.test(`${title} ${decision} ${whyEason}`)) {
+    return reject(
+      'locked',
+      'Do not pay for introductions. Paid pitch-review rooms stay no-send on /capital. This is not a founder pay item.',
+    )
+  }
 
   if (source === 'inbox-escalation') {
     if (failedLane !== 'inbox') return reject('inbox', 'Inbox escalation must record failedLane=inbox.')

@@ -73,13 +73,14 @@ test('LvlUp paste pack uses the sourced Demeter raise, not a priced midpoint', (
   assert.equal(text.includes('[[FILL: Valuation]]'), false)
 })
 
-test('Investor Signals Sam note is staged on the capital desk, not auto-sent', () => {
+test('Investor Signals is locked no-send because intros are paid', () => {
   const item = DISPATCH_SEED.find((row) => row.id === 'demeter-investor-signals')
   assert.ok(item)
-  assert.equal(item.to, 'sam@investorsignals.co')
-  assert.equal(item.channel, 'email')
-  assert.equal(NOW_ORDER[0], 'demeter-investor-signals')
-  assert.match(item.body, /Demeter Energy/)
-  assert.match(item.body, /not attaching twelve company decks/i)
-  assert.equal(item.body.includes('Anubis Chavez'), false)
+  assert.equal(item.gated, 'no-send')
+  assert.equal(item.channel, 'internal')
+  assert.equal(item.to, '')
+  assert.ok(item.flags?.includes('paid-intro'))
+  assert.equal(NOW_ORDER.includes('demeter-investor-signals'), false)
+  assert.match(item.body, /do not pay to talk to investors/i)
+  assert.equal(item.body.includes('I am raising Demeter Energy, not Valhalla'), false)
 })

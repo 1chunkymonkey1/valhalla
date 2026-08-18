@@ -34,34 +34,30 @@ export const DISPATCH_SEED = [
   {
     id: 'demeter-investor-signals',
     lane: 'demeter',
-    channel: 'email',
-    title: 'Investor Signals — Sam',
-    toName: 'Sam',
-    to: 'sam@investorsignals.co',
-    toHint:
-      'Founder-authorized 17 Aug 2026. Pitch-review room, not a confirmed check. Do not ask him to blast a list. Name on the public site is unverified; address is the authorization.',
-    subject: 'Demeter Energy — $1.0–1.5M SAFE, $8M cap',
+    channel: 'internal',
+    title: 'Investor Signals — do not pay',
+    toName: 'Eason (do not send this to anyone)',
+    to: '',
+    toHint: 'Locked 18 Aug 2026. Sam’s room charges $5k–$25k for introductions. Founder rule: do not pay to talk to investors.',
+    subject: 'LOCKED — do not pay for introductions',
     applyUrl: '',
-    gated: '',
-    flags: ['one-to-one', 'no-redistribution'],
+    gated: 'no-send',
+    flags: ['lock', 'paid-intro'],
     notes:
-      'Do not attach the twelve HTML files as company decks. Do not send leads.md. Mosaic is charter in one sentence. Gmail compose only; founder clicks Send. Do not mark sent until Gmail actually sends.',
-    body: `Sam,
+      'Paid pitch-review / intro mills stay off the send desk. No Gmail compose. No Mark sent. Do not copy this into the founder queue as a pay item.',
+    body: `Do not send to sam@investorsignals.co.
 
-I am Eason Greene. I am raising Demeter Energy, not Valhalla.
+Investor Signals is a paid 1:1 pitch-review room. The ask is $5k–$25k for introductions. That is a product sale, not a check into Demeter.
 
-This note is to you only. Please do not forward or post.
+Founder rule, 18 Aug 2026: I do not pay to talk to investors.
 
-If useful as map, not as raise: twelve halls on valhallaco.org (Land, Water, Air, Space). Those are charter rooms of One Civilization. They are not twelve issuers raising.
+Do not:
+- Wire, card, or SAFE-swap that fee
+- Treat Sam as a NOW send
+- Ask him to blast a list
+- Attach twelve hall decks as twelve issuers
 
-The round is Demeter only: $1.0–1.5M on a YC post-money SAFE, $8M cap, $25K minimum. Agrivoltaic solar on working land, hydrogen as the second product. First site lead is Gothenburg, Nebraska. Land not signed. Delaware entity in formation. I am 19, at Berkeley.
-
-I am not attaching twelve company decks. Those files were internal stubs. I can send the farm one-pager or do twenty minutes if this stays a one-to-one thread.
-
-Eason Greene
-Founder, Demeter Energy
-easongreene@gmail.com
-(209) 768-4306`,
+Capital path stays Climate Capital, Ponderosa, Kocher intros, fellowships, and other unpaid desks. Demeter Energy $1.0–1.5M SAFE at $8M cap.`,
   },
   {
     id: 'demeter-flyer-one',
