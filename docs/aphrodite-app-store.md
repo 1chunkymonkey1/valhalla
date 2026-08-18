@@ -54,6 +54,29 @@ In Xcode:
 
 The Capacitor config loads the live site (`https://valhallaco.org/aphrodite`) so the binary tracks production. Do not point a store build at localhost.
 
+## App Store Connect — wrong door
+
+**Cancel the App Bundle screen.** That form (Name + “Apps in This Bundle” + “Drag up to 10 apps here”) is for grouping apps that are already **Released**. Create stays gray because Aphrodite is not on the store yet. A bundle is not a first listing.
+
+Order:
+
+1. [developer.apple.com/account](https://developer.apple.com/account) → **Identifiers** → **+** → **App IDs** → App. Bundle ID `org.valhallaco.aphrodite`. Enable **Sign In with Apple** and **In-App Purchase**.
+2. [App Store Connect](https://appstoreconnect.apple.com) → **Apps** → **+** → **New App** (not New App Bundle, not New In-App Event).
+3. New App fields:
+
+| Field | Value |
+|---|---|
+| Platforms | iOS |
+| Name | Aphrodite |
+| Primary Language | English (U.S.) |
+| Bundle ID | `org.valhallaco.aphrodite` (must already exist from step 1) |
+| SKU | `aphrodite` |
+| User Access | Full Access |
+
+If Bundle ID is empty in the dropdown, the identifier is not registered yet — go back to step 1. Do not create a wildcard ID.
+
+Create an App Bundle only after Aphrodite is **Ready for Sale** and you have a second released app to group with it. That is not this ship.
+
 ## App Store Connect listing
 
 | Field | Value |
