@@ -13,7 +13,7 @@ export const companyProducts = {
     headline: 'The pack moves first.',
     support:
       'Clean and fixable land transit. Fenrir first, then the tri-fuel ATV, through the pack to Dire Wolf: a transcontinental maglev aiming San Francisco to New York in 5.8 hours.',
-    body: 'Wolf owns land transit. The first product is Fenrir, an adventure electric motorcycle. The second is a tri-fuel ATV. The sixth is the Dire Wolf line, a transcontinental maglev railroad built to connect San Francisco to New York in 5.8 hours. Two unifying principles run the pack: clean, and fixable. By the time Dire Wolf is built, the pack has assembled.',
+    body: 'The pack moves. Wolf is the first hall seen, not an operating company that ships. Fenrir is the adventure electric motorcycle named first; next is a tri-fuel ATV; the sixth name is Dire Wolf, a transcontinental maglev aiming San Francisco to New York in 5.8 hours. Two unifying principles run the pack: clean, and fixable. By the time Dire Wolf is built, the pack has assembled. Interest and email only; Fenrir is not a shipping SKU on this surface.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -34,7 +34,7 @@ export const companyProducts = {
     headline: 'Built for the terrain you chose.',
     support:
       'First-time home buyers become first-time home builders: courses, financing, compliance, designers, and twelve interlocking container Holms you configure on the site.',
-    body: 'Holm turns first-time home buyers into first-time home builders. Courses and support for your first home: sod houses on the plains, log cabins in forests, adobe in the desert. Financing, real estate, compliance, workshops, and in-person designers help you make the home you want. The modular suite is twelve container Holms that interlock and configure in any arrangement you can imagine. You design it on the website; we build it and get it in place.',
+    body: 'Holm stands on the terrain you chose. First-time home buyers become first-time home builders: courses, financing, compliance, workshops, and in-person designers. Sod houses on the plains, log cabins in forests, adobe in the desert. Twelve interlocking container Holms are the research suite. Design is on the website. Placement is not a live build-and-ship claim on this surface.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -57,7 +57,7 @@ export const companyProducts = {
     headline: 'The same acre feeds a family and powers twenty homes.',
     support:
       'Energy production from agrivoltaic farms toward SMRs, geothermal, Stirling, wind, and a 75-year path to Earth’s first Dyson swarm.',
-    body: 'Demeter owns energy production. The flagship is agrivoltaic solar grids on US farms, with a goal of 2% of US farms by Q4 2027, enough in the thesis to power the US economy many times over. The wider machine set includes SMRs, geothermal, Stirling engines, high-altitude wind, and standard wind. The 75-year plan culminates in Earth’s first Dyson swarm. Blueprint targets, not a securities offer.',
+    body: 'Demeter feeds the acre: agrivoltaic solar on working farmland, with on-farm hydrogen as the second product. First site lead is Gothenburg, Nebraska. Land is not signed. Wider research stack includes SMRs, geothermal, Stirling engines, and wind. The 75-year Dyson path is thesis, not a securities offer. Diligence-first. No capacity or ROI claims on this surface.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -79,7 +79,7 @@ export const companyProducts = {
     headline: 'Board as yourself. Disembark as Ragnar.',
     support:
       'Sustainable cruises powered by light-water SMRs and emerging sail. Stockholm to London first; later a Phénix pad and a moon leg on the same vacation.',
-    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships run on light-water SMRs and emerging sail technology. The first route is Stockholm to London. Soon you will be able to take a Viking cruise to a Phénix launch pad and add a moon leg to your summer vacation. Partner-gated itineraries; interest only on this surface.',
+    body: 'Viking boards. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships are researched for light-water SMRs and emerging sail. The first route studied is Stockholm to London. A later arc would add a Phénix launch-pad call and a moon leg. Partner-gated itineraries; interest only on this surface. No ticketed sailing date here.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -101,7 +101,7 @@ export const companyProducts = {
     headline: 'Where land ends, Atoll begins.',
     support:
       'Floating modular Atolls for the billion people facing sea-level displacement by 2040, plus the Atlantis subsurface line.',
-    body: 'Atoll does water habitation, surface and subsurface. The first objective is to help the one billion people who will be displaced by sea-level rise by 2040. Floating modular self-sustaining Atolls: Atoll 01 is a single-family dwelling, Atoll 02 is a twelve-person unit, Atoll 03 is plug-and-play public infrastructure. The second product line is Atlantis, subsurface habitation under the same modular logic. Not a deed sale on this surface.',
+    body: 'Atoll begins where land ends. Surface and subsurface habitation is the path, not a floating-home company that ships. First objective: help the one billion people who will be displaced by sea-level rise by 2040. Atoll 01 / 02 / 03 and Atlantis are thesis scales, not inventory. No funds on this surface. Email only. Not a deed sale.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -122,8 +122,8 @@ export const companyProducts = {
     product: 'Njord',
     headline: 'Every molecule of water in the galaxy. Ours.',
     support:
-      'Owns the H₂O substrate: clean, recycle, develop, split, and transport water on Earth and above. First objective: water scarcity on Earth.',
-    body: 'Njord owns the substrate of H₂O. Clean, recycle, develop, split, and transport the molecule, on Earth and above. The first objective is solving water scarcity on Earth. Research and partner paths before output promises.',
+      'The hall holds the water: clean, recycle, develop, split, and transport on Earth and above. First objective: water scarcity on Earth.',
+    body: 'Njord holds the water. Clean, recycle, develop, split, and transport the molecule, on Earth and above. The first objective is solving water scarcity on Earth. Research and partner paths before output promises. MARAD-2026-0729 stays with Demeter and Argo, not this hall.',
     tone: 'water',
     ...emailFirst,
     gallery: [
@@ -144,7 +144,7 @@ export const companyProducts = {
     headline: 'The more you fly, the better it is for the atmosphere.',
     support:
       'Clean air transport from private jets to long-distance Earth travel. Every plane is named for a bird. Active carbon removal on every flight.',
-    body: 'Eagle Air is the clean air transportation company of the twenty-first century, from private jets for high-net-worth travelers to long-distance Earth travel. Every plane is named after a bird species to remind us who owns the skies. In accordance with protecting those skies, every Eagle jet has active carbon removal: the more you fly it, the better it is for the atmosphere. Access and partner interest only; not a published flight schedule.',
+    body: 'Eagle rises. Clean air transport from private jets to long-distance Earth travel. Every plane is named after a bird species to remind us who holds the skies. Every Eagle jet is designed with active carbon removal: the more you fly it, the better it is for the atmosphere. Access and partner interest only; not a published flight schedule. Open dialogue is not an acquisition.',
     tone: 'air',
     ...emailFirst,
     gallery: [
@@ -186,8 +186,8 @@ export const companyProducts = {
     product: 'Aeolus',
     headline: 'Fix the atmosphere. Then own it.',
     support:
-      'Owns the substrate gas: anything gas or fine particles. Climate on Earth by 2031; acid shielding for Venus habitats next.',
-    body: 'Aeolus owns the substrate gas. Anything that is gas or small particles, Aeolus researches, develops, and builds. The first objective is solving climate change on Earth by 2031. The second is acid shielding for Venus habitats. The company intends to own the atmospheric substrate. No atmospheric-rights sales or fund collection against ownership claims on this surface.',
+      'The hall presses the sky: gas and fine particles. Climate on Earth by 2031; acid shielding for Venus habitats next.',
+    body: 'Aeolus presses the sky. Anything that is gas or small particles, Aeolus researches, develops, and builds. The first objective is solving climate change on Earth by 2031. The second is acid shielding for Venus habitats. Present title to the atmospheric substrate is not claimed here. No atmospheric-rights sales or fund collection against ownership claims on this surface.',
     tone: 'air',
     ...emailFirst,
     gallery: [
@@ -229,7 +229,7 @@ export const companyProducts = {
     headline: 'Phénix marks the territory. Aether claims it.',
     support:
       'Claim land in the galaxy. Manage claims, defend claim jumpers, protect territory. Hawk Mark 02 plants flags for Earth-originated claims.',
-    body: 'Aether Real Estate helps you claim land in the galaxy. Manage claims, defend against claim jumpers, and protect territory. Hawk Mark 02, a Phénix launch vehicle, is tasked with planting flags for claims made on Earth. The goal is a fair and regulated system for human expansion into the cosmos. Aether claims property beyond Earth. No deed sales or fund collection against claims on this surface.',
+    body: 'Aether marks orbit as a registry research hall. Manage claims as ledger instruments, defend claim-jumper framing, and disclose legal status. Hawk Mark 02, a Phénix launch vehicle, is tasked with planting flags for claims made on Earth. The goal is a fair and regulated system for human expansion into the cosmos. Territorial ownership beyond Earth is not present title. No deed sales or fund collection against claims on this surface.',
     tone: 'space',
     ...emailFirst,
     gallery: [
@@ -247,7 +247,7 @@ export const companyProducts = {
   },
   corvus: {
     product: 'Corvus',
-    headline: 'The mind that runs eleven companies. And counting.',
+    headline: 'The mind that runs the mosaic. And counting.',
     support:
       'Equitable intelligence infrastructure: sovereign solar computers, space data centers, and Raven OS for the empire. Waitlist for early prompts.',
     body: 'Corvus builds the equitable intelligence infrastructure life on Earth will use to thrive. Sovereign computers: medium-sized, solar-powered machines so you can access intelligence without giving your data to giant tech. Space data centers sit on the long path. Corvus Raven OS is what the rest of the empire runs on. Join the waitlist for early access to prompts and other products.',
@@ -272,7 +272,7 @@ export const companyProducts = {
     headline: 'Worn by everyone. Built to last forever.',
     support:
       'The materials layer beneath all four domains: Earth garment systems and space-rated suits.',
-    body: 'Meridian is the materials layer under the twelve halls. Earth: one pair of self-cleaning white stain-trapping polymer pants meant to replace dozens of purchases a year. Space: a spacesuit rated for Venus, plus the Stealth body-armor supply chain. Blueprint and interest only on this surface.',
+    body: 'Meridian is the materials layer under the twelve halls. Earth: one pair of self-cleaning white stain-trapping polymer pants meant to replace dozens of purchases a year. Space: a spacesuit rated for Venus. Every hall wears Meridian merch. Blueprint and interest only on this surface.',
     tone: 'land',
     ...emailFirst,
     gallery: [
@@ -282,7 +282,7 @@ export const companyProducts = {
       'Consumer / wearer interest',
       'Textile / materials partner',
       'Aerospace suit partner',
-      'Defense / armor supply inquiry',
+      'Hall-mark / mill partner',
       'Press / research',
     ],
   },

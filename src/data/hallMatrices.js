@@ -146,7 +146,7 @@ const vikingMatrix = matrix({
   title: 'Viking matrix',
   mission: {
     title: 'What Viking Cruises is building',
-    body: 'Viking Cruises is a sustainable cruise company. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships use light-water SMRs and emerging sail. First route Stockholm to London; later a Phénix launch-pad call and a moon leg on the same vacation. Vinland Saga is the narrative arc. Partner-gated.',
+    body: 'Viking boards. Embark as yourself; disembark as Ragnar Lothbrok or Leif Erikson. Ships are researched for light-water SMRs and emerging sail. First route studied: Stockholm to London; later a Phénix launch-pad call and a moon leg on the same vacation. Vinland Saga is the narrative arc. Partner-gated. No ticketed sailing date on this surface.',
     cadence:
       'Cadence: Knarr 01 and Stockholm→London diligence lead; Phénix pad and moon-leg arcs follow as partners clear. No ticketed sailing date on this surface.',
   },
@@ -523,7 +523,7 @@ const holmMatrix = matrix({
   title: 'Holm matrix',
   mission: {
     title: 'What Holm is building',
-    body: 'Holm turns first-time home buyers into first-time home builders: courses, financing, real estate, compliance, workshops, and in-person designers. Sod, log, adobe by terrain. Twelve interlocking container Holms: design on the website, we build and place. Not stamped plans alone.',
+    body: 'Holm stands on the terrain you chose. First-time home buyers become first-time home builders: courses, financing, compliance, workshops, and in-person designers. Sod, log, adobe by terrain. Twelve interlocking container Holms are the research suite. Design is on the website. Placement is not a live build-and-ship claim on this surface.',
     cadence: 'Cadence: Timber 01 and buyer→builder courses lead; paired modules unlock as site partnerships clear. No false “move-in date” on this surface.',
   },
   lines: holmLines,
@@ -643,7 +643,7 @@ const aetherMatrix = matrix({
   title: 'Aether matrix',
   mission: {
     title: 'What Aether Real Estate is building',
-    body: 'Aether Real Estate helps you claim land in the galaxy: manage claims, defend claim jumpers, protect territory. Hawk Mark 02 (Phénix) plants flags for claims made on Earth. Goal: a fair regulated system for cosmic expansion. Aether claims property beyond Earth. No deed sales on this surface.',
+    body: 'Aether marks orbit as a registry research hall: manage claims as ledger instruments, defend claim-jumper framing, disclose legal status. Hawk Mark 02 (Phénix) plants flags for claims made on Earth. Goal: a fair regulated system for cosmic expansion. Territorial ownership beyond Earth is not present title. No deed sales on this surface.',
     cadence: 'Cadence: Quiet Room claim-cell research leads; Hawk Mark 02 flag path with Phénix; Halo planetary / asteroid claims stay vision.',
   },
   lines: aetherLines,
@@ -683,7 +683,7 @@ const demeterMatrix = matrix({
   title: 'Demeter matrix',
   mission: {
     title: 'What Demeter is building',
-    body: 'Demeter owns energy production. Flagship: agrivoltaic solar on US farms (goal 2% of US farms by Q4 2027). Machine set includes SMRs, geothermal, Stirling engines, high-altitude and standard wind, ethanol and green hydrogen. The 75-year plan culminates in Earth’s first Dyson swarm. Soil first. Not an investment offer.',
+    body: 'Demeter feeds the acre: agrivoltaic solar on working farmland, with on-farm hydrogen as the second product. First site lead is Gothenburg, Nebraska. Land is not signed. Research stack includes SMRs, geothermal, Stirling engines, wind, ethanol, and green hydrogen. The 75-year Dyson path is thesis. Soil first. Not an investment offer.',
     cadence: 'Cadence: Field Lattice agrivoltaic diligence leads toward the Q4 2027 farm goal; SMR / geothermal / wind / Stirling mature in parallel; Dyson stays the 75-year culmination. No securities offer.',
   },
   lines: demeterLines,
@@ -723,7 +723,7 @@ const njordMatrix = matrix({
   title: 'Njord matrix',
   mission: {
     title: 'What Njord is building',
-    body: 'Njord owns the H₂O substrate: clean, recycle, develop, split, and transport water on Earth and above. First objective: solve water scarcity on Earth. OTEC, atmospheric wells, offshore energy, harbor power, and manufacture paths sit under that thesis.',
+    body: 'Njord holds the water: clean, recycle, develop, split, and transport on Earth and above. First objective: solve water scarcity on Earth. OTEC, atmospheric wells, offshore energy, harbor power, and manufacture paths sit under that thesis. MARAD-2026-0729 stays with Demeter and Argo.',
     cadence: 'Cadence: scarcity-on-Earth diligence leads; above-Earth transport and manufacture stay method-gated. No water-quality claim here.',
   },
   lines: njordLines,
@@ -750,7 +750,7 @@ const njordMatrix = matrix({
 
 /* ─── Aeolus ─── */
 const aeolusLines = [
-  line({ id: 'gauge', name: 'Wind Gauge', stencil: 'wind', epithet: 'Phase 1 climate gauge', naming: 'Measuring wind as infrastructure.', overview: 'Phase 1 climate-atmosphere research governance toward owning the atmospheric substrate: fix climate through measured programs. No atmospheric-rights sales on this surface.', does: 'Publishes Phase 1 climate research governance updates for atmosphere programs.', benefits: ['Phase 1 climate framing', 'Ownership thesis with research-first cadence', 'Policy partner path'], savings: [], addOns: [{ id: 'ethics-pack', name: 'Ethics pack', text: 'Reviewer briefing pack for counsel/NGO partners.' }] }),
+  line({ id: 'gauge', name: 'Wind Gauge', stencil: 'wind', epithet: 'Phase 1 climate gauge', naming: 'Measuring wind as infrastructure.', overview: 'Phase 1 climate-atmosphere research governance: fix climate through measured programs. Present title to the atmospheric substrate is not claimed. No atmospheric-rights sales on this surface.', does: 'Publishes Phase 1 climate research governance updates for atmosphere programs.', benefits: ['Phase 1 climate framing', 'Research-first cadence toward 2031', 'Policy partner path'], savings: [], addOns: [{ id: 'ethics-pack', name: 'Ethics pack', text: 'Reviewer briefing pack for counsel/NGO partners.' }] }),
   line({ id: 'choir', name: 'Field Choir', stencil: 'wind', epithet: 'Multi-region sensing', naming: 'Many instruments singing one weather.', overview: 'Multi-region sensing for Phase 1 climate work.', does: 'Coordinates multi-region atmospheric sensing concepts.', benefits: ['Eagle Thermal adjacency'], savings: ['Shared sensors'], addOns: [] }),
   line({ id: 'pressure', name: 'Pressure Net', stencil: 'wind', epithet: 'Pressure mesh', naming: 'Pressure as a readable mesh.', overview: 'Pressure mesh research for climate partners.', does: 'Studies pressure meshes across regions.', benefits: [], savings: [], addOns: [] }),
   line({ id: 'jet', name: 'Jet Stream', stencil: 'wind', epithet: 'Jet studies', naming: 'High roads of air.', overview: 'Jet-stream research notes, theoretical.', does: 'Researches jet-stream relevant governance questions.', benefits: [], savings: [], addOns: [] }),
@@ -763,7 +763,7 @@ const aeolusMatrix = matrix({
   title: 'Aeolus matrix',
   mission: {
     title: 'What Aeolus is building',
-    body: 'Aeolus owns the substrate gas: anything gas or small particles. First objective: solve climate change on Earth by 2031. Second: acid shielding for Venus habitats. Intends to own the atmospheric substrate. No atmospheric-rights sales on this surface.',
+    body: 'Aeolus presses the sky: anything gas or small particles. First objective: solve climate change on Earth by 2031. Second: acid shielding for Venus habitats. Present title to the atmospheric substrate is not claimed here. No atmospheric-rights sales on this surface.',
     cadence: 'Cadence: Phase 1 climate programs lead toward 2031; Venus acid shielding and full ownership thesis stay gated. No rights sales.',
   },
   lines: aeolusLines,
@@ -792,7 +792,7 @@ const aeolusMatrix = matrix({
 const corvusLines = [
   line({ id: 'raven-os', name: 'Raven OS', stencil: 'software', epithet: 'Sovereign substrate', naming: 'The modular OS that runs the halls.', overview: 'Raven OS is the sovereign intelligence substrate: modular, solar-aware, offline-capable. Phased prompts are the access path; Prompt 21 unlocks the Twenty-First Raven badge.', does: 'Delivers the Raven OS sovereign substrate and phased access path for founders and operators.', benefits: ['Sovereign compute framing', 'Solar / offline / modular thesis', 'Clear phase pricing when links live', 'Community badge at the summit'], savings: ['Phased entry instead of all-upfront enterprise fiction'], addOns: [{ id: 'badge', name: 'Twenty-First Raven badge', text: 'Community badge unlocked at Prompt 21.' }] }),
   line({ id: 'odin-local', name: 'Odin', stencil: 'software', epithet: 'Consumer product', naming: 'Odin, think locally.', overview: 'Odin is the consumer product for founders: local-first workspace for projects, documents, tasks, and decisions on the Raven OS substrate.', does: 'Ships Odin as the local-first founder consumer product on Raven OS.', benefits: ['Consumer product for founders', 'Local-first data', 'Privacy-minded'], savings: [], addOns: [] }),
-  line({ id: 'mesh', name: 'Corvus Mesh', stencil: 'software', epithet: 'Hall mesh', naming: 'The mind that runs eleven companies.', overview: 'Intelligence layer across the halls, theoretical until Raven cohort clears.', does: 'Studies cross-hall intelligence mesh as the empire spine.', benefits: ['Empire intelligence spine', 'Mosaic awareness'], savings: [], addOns: [] }),
+  line({ id: 'mesh', name: 'Corvus Mesh', stencil: 'software', epithet: 'Hall mesh', naming: 'The mind that runs the mosaic.', overview: 'Intelligence layer across the halls, theoretical until Raven cohort clears.', does: 'Studies cross-hall intelligence mesh as the empire spine.', benefits: ['Empire intelligence spine', 'Mosaic awareness'], savings: [], addOns: [] }),
   line({ id: 'forge', name: 'Prompt Forge', stencil: 'software', epithet: 'Prompt tools', naming: 'Where prompts are tempered.', overview: 'Tools for authoring and reviewing prompts inside Raven OS.', does: 'Helps teams forge and review prompts.', benefits: ['Team workflow'], savings: [], addOns: [] }),
   line({ id: 'badge-path', name: 'Badge Path', stencil: 'software', epithet: 'Community path', naming: 'The climb to the twenty-first raven.', overview: 'Community and badge progression path into the sovereign substrate.', does: 'Tracks community progression toward Prompt 21 badge.', benefits: ['Visible community arc'], savings: [], addOns: [] }),
   line({ id: 'knowledge', name: 'Knowledge Nest', stencil: 'software', epithet: 'Knowledge base', naming: 'What Odin answers from.', overview: 'Curated knowledge base feeding Discord Odin, research governance, not omniscience.', does: 'Curates hall knowledge for Odin answers.', benefits: ['Grounded answers', 'No invented ops claims'], savings: [], addOns: [] }),
@@ -856,14 +856,14 @@ const meridianLines = [
     addOns: [],
   }),
   line({
-    id: 'stealth-armor',
-    name: 'Stealth Armor',
+    id: 'hall-mark',
+    name: 'Hall Mark',
     stencil: 'module',
-    epithet: 'Body-armor supply',
-    naming: 'The Stealth body-armor supply chain.',
-    overview: 'Stealth body-armor supply-chain concepts under the Meridian materials layer.',
-    does: 'Maps Stealth body-armor supply-chain research.',
-    benefits: ['Defense materials path'],
+    epithet: 'Cloth every hall wears',
+    naming: 'Meridian cuts. The hall marks.',
+    overview: 'Hall-marked Earth Line garments: shirt and jacket on every mosaic hall. List, not a cart.',
+    does: 'Cuts hall-marked Earth Line cloth for every mosaic hall.',
+    benefits: ['Claim-free public artifact', 'List not cart', 'Hall marks the cloth'],
     savings: [],
     addOns: [],
   }),
@@ -874,8 +874,8 @@ const meridianMatrix = matrix({
   title: 'Meridian matrix',
   mission: {
     title: 'What Meridian Materials is building',
-    body: 'Meridian is the materials layer beneath all four domains: Earth Garment (self-cleaning polymer pants, September 2026 research target), Venus Suit, and Stealth Armor supply chain. Blueprint and interest only.',
-    cadence: 'Cadence: Earth Garment research leads toward September 2026; Venus Suit and Stealth Armor stay partner-gated.',
+    body: 'Meridian is the materials layer beneath all four domains: Earth Garment (self-cleaning polymer pants, September 2026 research target), Venus Suit, and Hall Mark cloth every mosaic hall wears. Blueprint and interest only. List, not a cart.',
+    cadence: 'Cadence: Earth Garment research leads toward September 2026; Venus Suit stays partner-gated; Hall Mark is the public merch list.',
   },
   lines: meridianLines,
   rows: [
@@ -903,16 +903,16 @@ const meridianMatrix = matrix({
         addOns: [],
         hostAlias: 'venussuit01',
       }),
-      'stealth-armor': cell({
-        id: 'stealth-armor-01',
-        status: 'theoretical',
-        summary: 'Stealth armor supply.',
-        description: 'Stealth Armor 01 maps body-armor supply-chain research.',
+      'hall-mark': cell({
+        id: 'hall-mark-01',
+        status: 'planned',
+        summary: 'Hall-marked cloth.',
+        description: 'Hall Mark 01 lists shirt and jacket every mosaic hall wears. List, not a cart.',
         does: meridianLines[2].does,
         benefits: meridianLines[2].benefits,
         savings: [],
         addOns: [],
-        hostAlias: 'stealtharmor01',
+        hostAlias: 'hallmark01',
       }),
     }),
     row02({
@@ -938,16 +938,16 @@ const meridianMatrix = matrix({
         addOns: [],
         hostAlias: 'venussuit02',
       }),
-      'stealth-armor': cell({
-        id: 'stealth-armor-02',
-        status: 'vision',
-        summary: 'Armor follow-on.',
-        description: 'Stealth Armor 02 vision supply depth.',
-        does: 'Extended armor supply vision.',
+      'hall-mark': cell({
+        id: 'hall-mark-02',
+        status: 'theoretical',
+        summary: 'Mark follow-on.',
+        description: 'Hall Mark 02 extends hall-marked Earth Line cuts. Still a list, not a cart.',
+        does: 'Extended hall-marked cloth.',
         benefits: meridianLines[2].benefits,
         savings: [],
         addOns: [],
-        hostAlias: 'stealtharmor02',
+        hostAlias: 'hallmark02',
       }),
     }),
     mysteryRow(),

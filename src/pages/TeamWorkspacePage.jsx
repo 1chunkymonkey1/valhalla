@@ -168,7 +168,7 @@ export default function TeamWorkspacePage() {
               {reservations.length} holds · {signups.length} emails
             </p>
             <p className="vh-team__blurb">
-              Refundable holds and email signups for halls you can see.
+              Email interest and signups for halls you can see.
             </p>
           </div>
         </section>

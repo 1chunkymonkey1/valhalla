@@ -32,6 +32,34 @@ UC Berkeley · Sonora, California`
 
 export const DISPATCH_SEED = [
   {
+    id: 'demeter-investor-signals',
+    lane: 'demeter',
+    channel: 'internal',
+    title: 'Investor Signals — do not pay',
+    toName: 'Eason (do not send this to anyone)',
+    to: '',
+    toHint: 'Locked 18 Aug 2026. Sam’s room charges $5k–$25k for introductions. Founder rule: do not pay to talk to investors.',
+    subject: 'LOCKED — do not pay for introductions',
+    applyUrl: '',
+    gated: 'no-send',
+    flags: ['lock', 'paid-intro'],
+    notes:
+      'Paid pitch-review / intro mills stay off the send desk. No Gmail compose. No Mark sent. Do not copy this into the founder queue as a pay item.',
+    body: `Do not send to sam@investorsignals.co.
+
+Investor Signals is a paid 1:1 pitch-review room. The ask is $5k–$25k for introductions. That is a product sale, not a check into Demeter.
+
+Founder rule, 18 Aug 2026: I do not pay to talk to investors.
+
+Do not:
+- Wire, card, or SAFE-swap that fee
+- Treat Sam as a NOW send
+- Ask him to blast a list
+- Attach twelve hall decks as twelve issuers
+
+Capital path stays Climate Capital, Ponderosa, Kocher intros, fellowships, and other unpaid desks. Demeter Energy $1.0–1.5M SAFE at $8M cap.`,
+  },
+  {
     id: 'demeter-flyer-one',
     lane: 'demeter',
     channel: 'email',

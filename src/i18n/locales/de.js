@@ -59,15 +59,15 @@ export default {
   audience: {
     investorsTitle: 'Investoren',
     investorsLead:
-      'Zwölf Unternehmen über Land, Wasser, Luft und Raum. Diligence zuerst; kein öffentliches Wertpapierangebot hier.',
+      'Zwölf Hallen über Land, Wasser, Luft und Raum. Diligence zuerst; kein öffentliches Wertpapierangebot hier.',
     investorsB1: 'Ein Betriebsrahmen über die vier Domänen.',
-    investorsB2: 'Erstattungsfähige Holds zeigen Nachfrage vor Kapital.',
+    investorsB2: 'Anfragen zeigen Nachfrage vor Kapital.',
     investorsB3: 'Anfragen nur: info@valhallaco.org.',
     consumersTitle: 'Konsumenten',
     consumersLead:
-      'Halte einen Platz bei Produkten, die dir wichtig sind. Voll erstattungsfähig bis die Tore öffnen.',
+      'Sieh Hallen, die dir wichtig sind. E-Mail, bis die Tore öffnen.',
     consumersB1: 'Sieh zu, wie Hallen auf dem Mosaik freischalten.',
-    consumersB2: 'Unternehmensseiten sammeln Interesse je Halle.',
+    consumersB2: 'Jede Halle trägt Meridian. Merch lebt auf der Hallenseite als Liste, nicht als Warenkorb.',
     consumersB3: 'Discord für Drops und Fragen.',
     partnersTitle: 'Partner',
     partnersLead: 'Hersteller, Betreiber, Häfen, Landbesitzer, Forschungslabore.',

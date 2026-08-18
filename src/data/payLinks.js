@@ -17,7 +17,7 @@ const openingSoon = {
   notes: '',
 }
 
-/** Estimated fully refundable hold amounts by company (USD). */
+/** Estimated hold amounts by hall (USD). Not live until checkout is enabled. */
 export const companyPayLinks = {
   wolf: {
     label: 'Wolf · Fenrir 01',

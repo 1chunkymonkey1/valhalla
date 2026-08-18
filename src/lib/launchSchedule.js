@@ -65,9 +65,7 @@ export function isWave1Hall(companyId) {
 }
 
 function revealIndex(companyId) {
-  const idx = REVEAL_ORDER.indexOf(companyId)
-  if (idx < 0) throw new Error(`Unknown company schedule: ${companyId}`)
-  return idx
+  return REVEAL_ORDER.indexOf(companyId)
 }
 
 function waveIndex(companyId) {

@@ -38,13 +38,13 @@ export default function ReservationForm({
       phone: values.phone.trim(),
       zip: values.zip.trim(),
       interestGroup: values.interestGroup,
-      reservationType: 'fully_refundable',
-      refundable: true,
+      reservationType: 'email_interest',
+      refundable: false,
       paymentCaptured: false,
       amountEstimateUsd: estimateUsd,
       payLinkId: payUrl || null,
       submittedAt: new Date().toISOString(),
-      status: 'held_refundable',
+      status: 'email_interest',
     }
 
     try {
@@ -72,8 +72,8 @@ export default function ReservationForm({
   if (submitted) {
     return (
       <div className="vh-reserve vh-reserve--done">
-        <p className="vh-reserve__eyebrow">Reservation held</p>
-        <h3 className="vh-reserve__title">Fully refundable hold confirmed</h3>
+        <p className="vh-reserve__eyebrow">Interest noted</p>
+        <h3 className="vh-reserve__title">Email until gates clear</h3>
         <p className="vh-reserve__body">
           {submitted.product} · {submitted.interestGroup}
           {estimateUsd != null ? ` · est. ${formatUsd(estimateUsd)}` : ''}
@@ -98,12 +98,12 @@ export default function ReservationForm({
             <a href={payUrl} target="_blank" rel="noreferrer">
               Squarespace Pay Link
             </a>{' '}
-            (fully refundable).
+            (not live checkout).
           </p>
         ) : null}
         <p className="vh-reserve__fine">
-          This is a fully refundable reservation hold stored for follow-up. You can cancel anytime by
-          contacting the hall with this email.
+          This is an email interest note stored for follow-up. Not a live hold or payment. You can
+          cancel anytime by contacting the hall with this email.
         </p>
       </div>
     )
@@ -111,11 +111,11 @@ export default function ReservationForm({
 
   return (
     <form className="vh-reserve" onSubmit={handleSubmit}>
-      <p className="vh-reserve__eyebrow">Fully refundable reservation</p>
+      <p className="vh-reserve__eyebrow">Email interest</p>
       <h3 className="vh-reserve__title">{productName}</h3>
       <p className="vh-reserve__body">
         Leave phone, ZIP, and email. Choose your interest group.
-        {estimateUsd != null ? ` Estimated hold ${formatUsd(estimateUsd)}.` : ''}
+        {estimateUsd != null ? ` Estimated figure ${formatUsd(estimateUsd)} is not a live hold.` : ''}
       </p>
 
       <div className="vh-reserve__grid">
@@ -191,12 +191,12 @@ export default function ReservationForm({
           onChange={(e) => update('refundableAck', e.target.checked)}
         />
         <span>
-          I understand this is a <strong>fully refundable</strong> reservation hold.
+          I understand this is an <strong>email interest</strong> note, not a live hold or payment.
         </span>
       </label>
 
       <button type="submit" className="vh-reserve__submit" style={{ backgroundColor: accent }}>
-        Hold refundable reservation
+        Send interest
       </button>
     </form>
   )

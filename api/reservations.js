@@ -33,12 +33,12 @@ export default async function handler(req, res) {
       phone: plainText(body.phone || '', 40) || null,
       zip: plainText(body.zip || '', 20) || null,
       interestGroup: body.interestGroup ? plainText(body.interestGroup, 120) : null,
-      reservationType: 'fully_refundable',
-      refundable: true,
+      reservationType: body.reservationType ? plainText(body.reservationType, 40) : 'email_interest',
+      refundable: false,
       paymentCaptured: Boolean(body.paymentCaptured),
       payLinkId: body.payLinkId ? plainText(body.payLinkId, 120) : null,
       amountEstimateUsd: body.amountEstimateUsd || null,
-      status: body.status ? plainText(body.status, 64) : 'held_refundable',
+      status: body.status ? plainText(body.status, 64) : 'email_interest',
       submittedAt: body.submittedAt || new Date().toISOString(),
     })
 

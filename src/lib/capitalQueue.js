@@ -10,7 +10,7 @@ export const CAPITAL_POSTURE = {
   cap: '$8M',
   min: '$25K',
   from: 'easongreene@gmail.com',
-  rule: 'Applicant is Eason. Company is Demeter. Valhalla is the story in the room, not the SAFE.',
+  rule: 'Applicant is Eason. Company is Demeter. Valhalla is the story in the room, not the SAFE. Do not pay for introductions.',
 }
 
 /** This week, in send order. Skip Thiel unless leaving Berkeley is a live decision. */
