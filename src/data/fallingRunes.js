@@ -68,7 +68,7 @@ export function leafStyle(index) {
   const dur = 16 + ((index * 7) % 18)
   const delay = -((index * 1.7) % 22)
   const sway = 24 + ((index * 13) % 72)
-  const size = 0.9 + ((index * 11) % 12) / 16
+  const size = 1.15 + ((index * 11) % 12) / 12
   const spin = index % 2 === 0 ? 1 : -1
   return {
     '--leaf-left': `${left}vw`,
