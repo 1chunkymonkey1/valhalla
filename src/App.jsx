@@ -32,6 +32,13 @@ import AphroditeMatchesPage from './pages/aphrodite/AphroditeMatchesPage'
 import AphroditeProfilePage from './pages/aphrodite/AphroditeProfilePage'
 import AphroditeSettingsPage from './pages/aphrodite/AphroditeSettingsPage'
 import AphroditeSubscribePage from './pages/aphrodite/AphroditeSubscribePage'
+import CasurfLayout from './pages/casurf/CasurfLayout'
+import CasurfHomePage from './pages/casurf/CasurfHomePage'
+import CasurfAboutPage from './pages/casurf/CasurfAboutPage'
+import CasurfGalleryPage from './pages/casurf/CasurfGalleryPage'
+import CasurfTeamPage from './pages/casurf/CasurfTeamPage'
+import CasurfEventsPage from './pages/casurf/CasurfEventsPage'
+import CasurfContactPage from './pages/casurf/CasurfContactPage'
 import { EXTRA_COMPANY_ROUTES, GRID_ORDER } from './lib/companies'
 import { resolveProductHost } from './lib/productHost'
 
@@ -87,6 +94,15 @@ export default function App() {
                 <Route path="/data8" element={<PortalEmbedPage portalId="data8" />} />
                 <Route path="/orca" element={<PortalEmbedPage portalId="orca" />} />
                 <Route path="/natasha" element={<PortalEmbedPage portalId="natasha" />} />
+                <Route path="/casurf" element={<Navigate to="/casurfberkeley" replace />} />
+                <Route path="/casurfberkeley" element={<CasurfLayout />}>
+                  <Route index element={<CasurfHomePage />} />
+                  <Route path="about" element={<CasurfAboutPage />} />
+                  <Route path="gallery" element={<CasurfGalleryPage />} />
+                  <Route path="team" element={<CasurfTeamPage />} />
+                  <Route path="events" element={<CasurfEventsPage />} />
+                  <Route path="contact" element={<CasurfContactPage />} />
+                </Route>
                 <Route path="/aphrodite" element={<AphroditeLayout />}>
                   <Route index element={<AphroditeHomePage />} />
                   <Route path="sign-in" element={<AphroditeSignInPage />} />

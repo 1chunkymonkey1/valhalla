@@ -16,7 +16,8 @@
     "optimize:product-images": "node scripts/optimize-product-images.mjs",
     "chat:load-test": "node scripts/chat-load-test.mjs",
     "chat:inprocess": "node scripts/chat-inprocess-test.mjs",
-    "test:prometheus": "node --test src/lib/sentinelFsm.test.js"
+    "test:prometheus": "node --test src/lib/sentinelFsm.test.js",
+    "test:casurf": "node --test src/lib/casurfGallery.test.js"
   },
   "dependencies": {
     "@ai-sdk/openai": "^4.0.41",
