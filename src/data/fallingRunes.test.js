@@ -5,8 +5,9 @@ import { GAMES_RUNE, mosaicFloatRunes } from './easonPage.js'
 import {
   EXTRA_FALLING_RUNES,
   GAMES_COMING_SOON,
+  GUTTER_SLOTS,
+  driftStyle,
   fallingRunes,
-  leafStyle,
 } from './fallingRunes.js'
 
 test('mosaic float runes include the games portal', () => {
@@ -33,8 +34,19 @@ test('coming soon games are named and not live', () => {
   )
 })
 
-test('leaf styles are seeded CSS variables', () => {
-  const style = leafStyle(3)
-  assert.match(style['--leaf-left'], /vw$/)
-  assert.match(style['--leaf-dur'], /s$/)
+test('drift styles sit in mosaic gutters, not a full-viewport fall', () => {
+  const style = driftStyle(3)
+  assert.match(style['--leaf-left'], /%$/)
+  assert.match(style['--leaf-top'], /%$/)
+  assert.match(style['--leaf-drift'], /px$/)
+  assert.equal(GUTTER_SLOTS.length, 35)
+  assert.ok(GUTTER_SLOTS.every((s) => s.left >= 0 && s.left <= 100 && s.top >= 0 && s.top <= 100))
+  const inner = GUTTER_SLOTS.filter((s) => s.inner)
+  assert.equal(inner.length, 6)
+  assert.ok(
+    GUTTER_SLOTS.every((s) => {
+      if (s.inner) return true
+      return s.left <= 5 || s.left >= 85 || s.top <= 9 || s.top >= 90
+    }),
+  )
 })

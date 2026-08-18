@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 import { HIDDEN_PORTALS } from '../../data/hiddenPortals'
 import { GAMES_RUNE, TILE_RUNE, mosaicFloatRunes } from '../../data/easonPage'
-import { fallingRunes, leafStyle } from '../../data/fallingRunes'
+import { GUTTER_SLOTS, driftStyle, fallingRunes } from '../../data/fallingRunes'
 import PortalRuneIcon from './PortalRuneIcon'
 
 export const MOSAIC_FLOAT_RUNES = mosaicFloatRunes(HIDDEN_PORTALS)
-const FALLING_RUNES = fallingRunes(HIDDEN_PORTALS)
+const FIELD_RUNES = fallingRunes(HIDDEN_PORTALS)
 
 function RuneMark({ item, className, style }) {
   const inner = item.rune ? <PortalRuneIcon rune={item.rune} /> : <span>{item.glyph}</span>
@@ -38,18 +38,21 @@ function RuneMark({ item, className, style }) {
   )
 }
 
-/** Full-viewport falling runes. Linked marks stay clickable; extras are leaves. */
+/** Runes that drift in the paper gutters behind the mosaic tiles. */
 export function MosaicRuneField() {
   return (
-    <div className="vh-rune-field" aria-label="Falling founder runes">
-      {FALLING_RUNES.map((item, i) => (
-        <RuneMark
-          key={item.id}
-          item={item}
-          className={`vh-float-rune ${item.clickable ? 'vh-float-rune--hot' : 'vh-float-rune--deco'}`}
-          style={leafStyle(i)}
-        />
-      ))}
+    <div className="vh-rune-field" aria-label="Founder runes in the mosaic gutters">
+      {FIELD_RUNES.map((item, i) => {
+        const inner = GUTTER_SLOTS[i % GUTTER_SLOTS.length]?.inner
+        return (
+          <RuneMark
+            key={item.id}
+            item={item}
+            className={`vh-float-rune ${item.clickable ? 'vh-float-rune--hot' : 'vh-float-rune--deco'}${inner ? ' vh-float-rune--inner' : ''}`}
+            style={driftStyle(i)}
+          />
+        )
+      })}
     </div>
   )
 }
