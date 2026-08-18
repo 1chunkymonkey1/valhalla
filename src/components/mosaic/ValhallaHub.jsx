@@ -69,6 +69,7 @@ export default function ValhallaHub() {
 
   return (
     <div className={`vh-hub ${showCountdown ? 'vh-hub--dormant' : ''}`}>
+      <MosaicRuneField />
       <div className="vh-hub__grain" aria-hidden />
       {!showCountdown && <NextUnlockTimer now={now} />}
       <div className="vh-hub__inner">
@@ -86,7 +87,6 @@ export default function ValhallaHub() {
             </header>
 
             <div className="vh-mosaic-stage">
-              <MosaicRuneField />
               <MosaicGrid now={now} />
             </div>
 
@@ -127,7 +127,7 @@ export default function ValhallaHub() {
             social={hubSocial}
             className="vh-hub__socials"
           />
-          {showCountdown ? <HiddenPortalMarks includeTile /> : null}
+          <HiddenPortalMarks includeTile />
         </footer>
         {!showCountdown ? (
           <AskHallWidget pageId="hub" hallName="Valhalla" dormant={false} />

@@ -118,6 +118,22 @@ export function TileMark() {
   )
 }
 
+/** Chess knight — games portal */
+export function GamesMark() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        d="M5 20 H19 M7.5 20 V16.2 C7.5 13.2 8.4 11.4 11.2 9.4 C9.6 9.2 8.6 7.4 9.4 5.2 C10.1 3.4 12.4 3.1 14.2 4.6 C15.6 5.8 16.2 7.8 16 10.6 C15.8 13.8 16.4 16.2 16.8 20 M11.2 9.4 C12.8 8.2 14.6 7.6 16 8.4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 const MARKS = {
   perthro: PerthroMark,
   ansuz: AnsuzMark,
@@ -127,6 +143,7 @@ const MARKS = {
   orca: OrcaFinMark,
   psi: PsiMark,
   tile: TileMark,
+  games: GamesMark,
 }
 
 export default function PortalRuneIcon({ rune }) {

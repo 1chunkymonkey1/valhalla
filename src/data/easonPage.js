@@ -146,6 +146,16 @@ export const TILE_RUNE = {
   label: 'Tiles',
 }
 
+export const GAMES_RUNE = {
+  id: 'games',
+  name: 'Games',
+  href: '/games',
+  external: false,
+  rune: 'games',
+  glyph: 'ᛟ',
+  label: 'Games',
+}
+
 export function mosaicFloatRunes(portals) {
   return [
     ...portals.map((p) => ({
@@ -161,6 +171,13 @@ export function mosaicFloatRunes(portals) {
       href: TILE_RUNE.href,
       external: true,
       rune: TILE_RUNE.rune,
+    },
+    {
+      id: GAMES_RUNE.id,
+      name: GAMES_RUNE.name,
+      href: GAMES_RUNE.href,
+      external: false,
+      rune: GAMES_RUNE.rune,
     },
   ]
 }

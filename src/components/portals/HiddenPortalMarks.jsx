@@ -1,24 +1,21 @@
 import { Link } from 'react-router-dom'
 import { HIDDEN_PORTALS } from '../../data/hiddenPortals'
-import { mosaicFloatRunes, TILE_RUNE } from '../../data/easonPage'
+import { GAMES_RUNE, TILE_RUNE, mosaicFloatRunes } from '../../data/easonPage'
+import { fallingRunes, leafStyle } from '../../data/fallingRunes'
 import PortalRuneIcon from './PortalRuneIcon'
 
-const FLOAT_SLOTS = [
-  { top: '2%', left: '3%' },
-  { top: '0%', left: '28%' },
-  { top: '4%', right: '6%' },
-  { top: '38%', left: '-0.5%' },
-  { top: '42%', right: '-0.5%' },
-  { bottom: '18%', left: '2%' },
-  { bottom: '6%', left: '32%' },
-  { bottom: '14%', right: '4%' },
-  { top: '18%', right: '18%' },
-]
-
 export const MOSAIC_FLOAT_RUNES = mosaicFloatRunes(HIDDEN_PORTALS)
+const FALLING_RUNES = fallingRunes(HIDDEN_PORTALS)
 
 function RuneMark({ item, className, style }) {
-  const inner = <PortalRuneIcon rune={item.rune} />
+  const inner = item.rune ? <PortalRuneIcon rune={item.rune} /> : <span>{item.glyph}</span>
+  if (!item.clickable && !item.href) {
+    return (
+      <span className={className} style={style} aria-hidden="true" title={item.name}>
+        {inner}
+      </span>
+    )
+  }
   if (item.external) {
     return (
       <a
@@ -41,19 +38,16 @@ function RuneMark({ item, className, style }) {
   )
 }
 
-/** Runes that fade in and out around the mosaic. Tile opens photo-tile.com. */
+/** Full-viewport falling runes. Linked marks stay clickable; extras are leaves. */
 export function MosaicRuneField() {
   return (
-    <div className="vh-rune-field" aria-label="Founder portals around the mosaic">
-      {MOSAIC_FLOAT_RUNES.map((item, i) => (
+    <div className="vh-rune-field" aria-label="Falling founder runes">
+      {FALLING_RUNES.map((item, i) => (
         <RuneMark
           key={item.id}
           item={item}
-          className="vh-float-rune"
-          style={{
-            ...FLOAT_SLOTS[i % FLOAT_SLOTS.length],
-            animationDelay: `${i * 1.15}s`,
-          }}
+          className={`vh-float-rune ${item.clickable ? 'vh-float-rune--hot' : 'vh-float-rune--deco'}`}
+          style={leafStyle(i)}
         />
       ))}
     </div>
@@ -61,13 +55,18 @@ export function MosaicRuneField() {
 }
 
 export default function HiddenPortalMarks({ includeTile = true }) {
-  const items = includeTile
-    ? MOSAIC_FLOAT_RUNES
-    : MOSAIC_FLOAT_RUNES.filter((r) => r.id !== TILE_RUNE.id)
+  const items = MOSAIC_FLOAT_RUNES.filter((r) => {
+    if (!includeTile && r.id === TILE_RUNE.id) return false
+    return true
+  })
   return (
     <nav className="hp-runes" aria-label="Founder portals">
       {items.map((item) => (
-        <RuneMark key={`foot-${item.id}`} item={item} className="hp-rune" />
+        <RuneMark
+          key={`foot-${item.id}`}
+          item={{ ...item, clickable: true }}
+          className={item.id === GAMES_RUNE.id ? 'hp-rune hp-rune--games' : 'hp-rune'}
+        />
       ))}
     </nav>
   )

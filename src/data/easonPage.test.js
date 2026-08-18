@@ -60,3 +60,10 @@ test('tile rune on the mosaic opens photo-tile.com', () => {
   assert.equal(tile.href, 'https://photo-tile.com')
   assert.equal(tile.external, true)
 })
+
+test('games rune on the mosaic opens /games', () => {
+  const games = mosaicFloatRunes([]).find((r) => r.id === 'games')
+  assert.equal(games.href, '/games')
+  assert.equal(games.external, false)
+  assert.equal(games.rune, 'games')
+})
