@@ -3,7 +3,9 @@ import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import {
   APHRODITE_PROVIDERS,
   demoLoginAphrodite,
+  getAphroditeSession,
   isAphroditeAuthConfigured,
+  signInAphroditeEmail,
   startAphroditeOAuth,
   syncAphroditeSession,
   getAphroditeAccessToken,
@@ -16,17 +18,24 @@ export default function AphroditeSignInPage() {
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
   const [booting, setBooting] = useState(true)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const configured = isAphroditeAuthConfigured()
 
   useEffect(() => {
     let cancelled = false
     ;(async () => {
       const intent = takeOAuthIntent()
-      if (intent?.kind === 'aphrodite' && configured) {
+      let token = null
+      if (configured && intent?.kind === 'aphrodite') {
+        token = await getAphroditeAccessToken()
+      } else if (configured) {
+        const session = await getAphroditeSession()
+        token = session?.access_token || null
+      }
+      if (configured && token) {
         setBusy(true)
         try {
-          const token = await getAphroditeAccessToken()
-          if (token) {
             let onboarding = {}
             try {
               const raw = sessionStorage.getItem('aph_onboarding')
@@ -38,9 +47,10 @@ export default function AphroditeSignInPage() {
               // ignore
             }
             const data = await syncAphroditeSession({
-              provider: intent.provider,
+              provider: intent?.provider || 'email',
               intents: onboarding.intents,
               competitions: onboarding.competitions,
+              birthDate: onboarding.birthDate,
             })
             if (!cancelled) {
               setBoot({
@@ -51,7 +61,6 @@ export default function AphroditeSignInPage() {
               navigate(data.subscribed ? '/aphrodite/matches' : '/aphrodite/subscribe')
               return
             }
-          }
         } catch (err) {
           if (!cancelled) setError(err.message || 'Sign-in failed')
         } finally {
@@ -76,6 +85,41 @@ export default function AphroditeSignInPage() {
     }
   }
 
+  async function onEmail(e) {
+    e.preventDefault()
+    setError('')
+    setBusy(true)
+    try {
+      await signInAphroditeEmail({ email, password })
+      let onboarding = {}
+      try {
+        const raw = sessionStorage.getItem('aph_onboarding')
+        if (raw) {
+          onboarding = JSON.parse(raw)
+          sessionStorage.removeItem('aph_onboarding')
+        }
+      } catch {
+        // ignore
+      }
+      const data = await syncAphroditeSession({
+        provider: 'email',
+        intents: onboarding.intents,
+        competitions: onboarding.competitions,
+        birthDate: onboarding.birthDate,
+      })
+      setBoot({
+        loading: false,
+        profile: data.profile,
+        subscribed: Boolean(data.subscribed),
+      })
+      navigate(data.subscribed ? '/aphrodite/matches' : '/aphrodite/subscribe')
+    } catch (err) {
+      setError(err.message || 'Sign-in failed')
+    } finally {
+      setBusy(false)
+    }
+  }
+
   async function onDemoLogin() {
     setError('')
     setBusy(true)
@@ -85,6 +129,7 @@ export default function AphroditeSignInPage() {
         email: 'eason@aphrodite.local',
         intents: ['competition'],
         competitions: ['chess', 'sports'],
+        birthDate: '1990-05-17',
       })
       setBoot({
         loading: false,
@@ -128,6 +173,32 @@ export default function AphroditeSignInPage() {
         </button>
       )}
 
+      <form className="aph-form" onSubmit={onEmail}>
+        <label>
+          Email
+          <input
+            type="email"
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Password
+          <input
+            type="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </label>
+        <button type="submit" className="aph-btn aph-btn--solid" disabled={busy || !configured}>
+          Sign in with email
+        </button>
+      </form>
+
       <div className="aph-provider-list">
         {APHRODITE_PROVIDERS.map((p) => (
           <button
@@ -148,14 +219,11 @@ export default function AphroditeSignInPage() {
 
       <p className="aph-fine">
         New here? <Link to="/aphrodite/sign-up">Create an account</Link>
+        {' · '}
+        <Link to="/aphrodite/privacy">Privacy</Link>
+        {' · '}
+        <Link to="/aphrodite/safety">Safety</Link>
       </p>
-      <ul className="aph-notes">
-        {APHRODITE_PROVIDERS.map((p) => (
-          <li key={`n-${p.id}`}>
-            <strong>{p.id}</strong> — {p.note}
-          </li>
-        ))}
-      </ul>
     </div>
   )
 }

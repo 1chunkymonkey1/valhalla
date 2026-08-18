@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useOutletContext, useSearchParams } from 'react-router-dom'
 import { aphroditeFetch } from '../../lib/aphroditeClient'
+import { isAphroditeNative } from '../../lib/aphroditeNative'
 
 export default function AphroditeSubscribePage() {
   const navigate = useNavigate()
@@ -48,10 +49,25 @@ export default function AphroditeSubscribePage() {
     }
   }, [params, profile, refreshMe, navigate])
 
+  const native = isAphroditeNative()
+
   async function startCheckout() {
     setBusy(true)
     setError('')
     try {
+      if (native) {
+        const data = await aphroditeFetch('iap', {
+          method: 'POST',
+          body: { productId: 'aphrodite_monthly' },
+        })
+        if (data.subscribed) {
+          await refreshMe()
+          navigate('/aphrodite/matches')
+          return
+        }
+        setError(data.error || 'App Store billing is not live on this build yet.')
+        return
+      }
       const data = await aphroditeFetch('subscribe', { method: 'POST', body: {} })
       if (data.url) {
         window.location.href = data.url
@@ -87,7 +103,7 @@ export default function AphroditeSubscribePage() {
     <div className="aph-subscribe">
       <header className="aph-section-head">
         <h1>Membership</h1>
-        <p>$20 / month · card via Stripe · unlock matches</p>
+        <p>$20 / month · web via Stripe · iOS via App Store</p>
       </header>
 
       <div className="aph-price-block">
@@ -95,9 +111,9 @@ export default function AphroditeSubscribePage() {
         <p className="aph-price__sub">per month</p>
         <ul>
           <li>Swipe deck of competitors</li>
-          <li>Mutual-match inbox</li>
+          <li>Mutual-match messages</li>
+          <li>Block and report on every card</li>
           <li>Linked Chess.com, MaxPreps, Instagram, Clash Royale</li>
-          <li>Signup &amp; approval dates on your account</li>
         </ul>
         <button
           type="button"
@@ -105,7 +121,11 @@ export default function AphroditeSubscribePage() {
           disabled={busy}
           onClick={startCheckout}
         >
-          {busy ? 'Opening Stripe…' : 'Subscribe with card'}
+          {busy
+            ? 'Opening…'
+            : native
+              ? 'Subscribe with Apple'
+              : 'Subscribe with card'}
         </button>
         <button
           type="button"
@@ -118,8 +138,8 @@ export default function AphroditeSubscribePage() {
         {note && <p className="aph-muted">{note}</p>}
         {error && <p className="aph-error">{error}</p>}
         <p className="aph-fine">
-          Needs <code>STRIPE_SECRET_KEY</code> on the server. See{' '}
-          <code>docs/aphrodite.md</code>.
+          Web needs <code>STRIPE_SECRET_KEY</code>. iOS needs StoreKit product{' '}
+          <code>aphrodite_monthly</code> — see <code>docs/aphrodite-app-store.md</code>.
         </p>
       </div>
     </div>

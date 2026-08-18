@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useOutletContext, useSearchParams } from 'react-router-dom'
-import { aphroditeFetch } from '../../lib/aphroditeClient'
+import { aphroditeFetch, signOutAphrodite } from '../../lib/aphroditeClient'
 
 export default function AphroditeSettingsPage() {
   const navigate = useNavigate()
-  const { profile, subscribed, loading, refreshMe } = useOutletContext()
+  const { profile, subscribed, loading, refreshMe, setBoot } = useOutletContext()
   const [params] = useSearchParams()
   const [status, setStatus] = useState(null)
   const [message, setMessage] = useState('')
@@ -98,6 +98,37 @@ export default function AphroditeSettingsPage() {
             Subscribe · $20/month
           </Link>
         )}
+      </section>
+
+      <section className="aph-panel">
+        <h2>Safety</h2>
+        <p>
+          Aphrodite is 18+. Birth date is required before matching.{' '}
+          <Link to="/aphrodite/safety">Safety rules</Link>
+          {' · '}
+          <Link to="/aphrodite/privacy">Privacy</Link>
+          {' · '}
+          <Link to="/aphrodite/terms">Terms</Link>
+        </p>
+        <button
+          type="button"
+          className="aph-btn aph-btn--ghost"
+          onClick={async () => {
+            if (!window.confirm('Deactivate your account? You leave the deck until you sign in and we restore you.')) {
+              return
+            }
+            try {
+              await aphroditeFetch('deactivate', { method: 'POST', body: {} })
+              await signOutAphrodite()
+              setBoot({ loading: false, profile: null, subscribed: false })
+              navigate('/aphrodite')
+            } catch (err) {
+              setError(err.message)
+            }
+          }}
+        >
+          Deactivate account
+        </button>
       </section>
 
       <section className="aph-panel">
