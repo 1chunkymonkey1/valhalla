@@ -5423,7 +5423,9 @@
 .aph-subscribe,
 .aph-profile,
 .aph-settings,
-.aph-matches {
+.aph-matches,
+.aph-chat,
+.aph-legal {
   animation: aph-rise 0.55s ease both;
 }
 
@@ -5657,6 +5659,92 @@
   display: grid;
   gap: 0.35rem;
   opacity: 0.65;
+}
+
+.aph-form-block {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  margin: 0 0 1.25rem;
+  max-width: 20rem;
+}
+
+.aph-form-block input,
+.aph-report select,
+.aph-report textarea,
+.aph-compose input {
+  border: 1px solid var(--aph-line);
+  background: #fff;
+  padding: 0.65rem 0.7rem;
+  font: inherit;
+}
+
+.aph-safety-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.aph-report {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--aph-line);
+}
+
+.aph-report label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+}
+
+.aph-match-list a {
+  color: inherit;
+  text-decoration: none;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.aph-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 14rem;
+  max-height: 28rem;
+  overflow: auto;
+  padding: 0.75rem 0;
+}
+
+.aph-bubble {
+  margin: 0;
+  max-width: 80%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--aph-line);
+  background: #fff;
+  align-self: flex-start;
+}
+
+.aph-bubble--mine {
+  align-self: flex-end;
+  background: var(--aph-ink);
+  color: var(--aph-paper);
+}
+
+.aph-compose {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.aph-compose input {
+  flex: 1;
+}
+
+.aph-legal p {
+  max-width: 38rem;
+  line-height: 1.6;
+  opacity: 0.82;
 }
 
 .aph-empty {

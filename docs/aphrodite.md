@@ -6,15 +6,19 @@ Match-based dating for competitors — chess, sports, Clash Royale, track, espor
 
 **Live path:** `/aphrodite` on [valhallaco.org](https://valhallaco.org)
 
+App Store packaging and Eason-only Apple clicks: [docs/aphrodite-app-store.md](./aphrodite-app-store.md).
+
 ## Product
 
 | Item | Value |
 |---|---|
 | Price | **$20/month** Stripe subscription |
-| Auth | Google, Apple, X (Twitter), Discord, Facebook (Meta) via Supabase; Instagram Login **stub** |
+| Auth | Google, Apple, X, Discord, Facebook, **email/password** via Supabase; Instagram Login **stub** |
 | Profile links | Chess.com, MaxPreps, Instagram, Clash Royale |
 | Dates stored | `signed_up_at`, `approved_at` |
-| Gating | Matches/deck require `subscription_status` in `active` \| `trialing` |
+| Gating | Matches/deck/messages require `subscription_status` in `active` \| `trialing` **and** birth date 18+ |
+| Safety | Block, report (harassment / fake / underage / spam / other), deactivate |
+| Legal | `/aphrodite/privacy` `/aphrodite/terms` `/aphrodite/safety` (App Store URLs) |
 
 ## Routes
 
@@ -22,11 +26,15 @@ Match-based dating for competitors — chess, sports, Clash Royale, track, espor
 |---|---|
 | `/aphrodite` | Marketing home |
 | `/aphrodite/sign-up` | Intents + competitions + OAuth |
-| `/aphrodite/sign-in` | OAuth providers |
-| `/aphrodite/subscribe` | $20/mo Stripe Checkout (or demo activate in test) |
+| `/aphrodite/sign-in` | Email + OAuth providers |
 | `/aphrodite/matches` | Swipe deck + mutual matches |
-| `/aphrodite/profile` | Edit profile + linked accounts |
-| `/aphrodite/settings` | Account dates, membership, backend flags |
+| `/aphrodite/matches/:id` | Match thread (block/report) |
+| `/aphrodite/profile` | Edit profile + linked accounts + birth date |
+| `/aphrodite/settings` | Account, membership, deactivate |
+| `/aphrodite/subscribe` | $20/mo Stripe (web) or Apple IAP (native) |
+| `/aphrodite/privacy` | Privacy notice |
+| `/aphrodite/terms` | Terms |
+| `/aphrodite/safety` | Safety / block-report |
 
 Subtle entry: site menu fine print → **Aphrodite**.
 
@@ -41,7 +49,12 @@ Subtle entry: site menu fine print → **Aphrodite**.
 | `/api/aphrodite/me` | GET/PATCH | Bearer |
 | `/api/aphrodite/deck` | GET | Bearer + sub |
 | `/api/aphrodite/swipe` | POST | Bearer + sub |
-| `/api/aphrodite/matches` | GET | Bearer + sub |
+| `/api/aphrodite/matches` | GET | Bearer + sub + 18+ |
+| `/api/aphrodite/messages` | GET/POST | Bearer + sub + 18+ |
+| `/api/aphrodite/block` | POST | Bearer + sub + 18+ |
+| `/api/aphrodite/report` | POST | Bearer + sub + 18+ |
+| `/api/aphrodite/deactivate` | POST | Bearer |
+| `/api/aphrodite/iap` | POST | Bearer · StoreKit / test unlock |
 | `/api/aphrodite/subscribe` | POST | Bearer → Stripe Checkout |
 | `/api/aphrodite/confirm-checkout` | POST | Bearer |
 | `/api/aphrodite/demo-activate` | POST | Bearer (blocked if `sk_live`) |
@@ -50,11 +63,12 @@ Stripe catalog SKU `aphrodite` also lives in `api/_lib/stripeClient.js`. Webhook
 
 ## Supabase
 
-1. Run migration: `supabase/migrations/20260815_aphrodite.sql` (creates `aphrodite_profiles`, `aphrodite_swipes`, `aphrodite_matches` — safe to re-run)
-2. Env:
+1. Run migration: `supabase/migrations/20260815_aphrodite.sql` (profiles, swipes, matches)
+2. Run migration: `supabase/migrations/20260818_aphrodite_ops.sql` (messages, blocks, reports)
+3. Env:
    - Server (on Vercel today): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
    - Client (**still missing on Vercel** — required for OAuth buttons): `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
-3. **Authentication → URL Configuration** — redirect allowlist must include:
+4. **Authentication → URL Configuration** — redirect allowlist must include:
    - `https://valhallaco.org/aphrodite/sign-in`
    - `https://valhallaco.org/aphrodite/**`
    - `http://localhost:5173/aphrodite/sign-in`

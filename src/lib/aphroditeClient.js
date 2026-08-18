@@ -58,6 +58,39 @@ export function isAphroditeAuthConfigured() {
   return isSupabaseBrowserConfigured()
 }
 
+export async function signUpAphroditeEmail({ email, password }) {
+  const sb = getBrowserSupabase()
+  if (!sb) {
+    throw new Error(
+      'Auth is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.',
+    )
+  }
+  const { data, error } = await sb.auth.signUp({
+    email: String(email || '').trim(),
+    password: String(password || ''),
+    options: {
+      emailRedirectTo: `${window.location.origin}/aphrodite/sign-in`,
+    },
+  })
+  if (error) throw error
+  return data
+}
+
+export async function signInAphroditeEmail({ email, password }) {
+  const sb = getBrowserSupabase()
+  if (!sb) {
+    throw new Error(
+      'Auth is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.',
+    )
+  }
+  const { data, error } = await sb.auth.signInWithPassword({
+    email: String(email || '').trim(),
+    password: String(password || ''),
+  })
+  if (error) throw error
+  return data
+}
+
 export async function getAphroditeAccessToken() {
   const sb = getBrowserSupabase()
   if (!sb) return null

@@ -32,6 +32,8 @@ import AphroditeMatchesPage from './pages/aphrodite/AphroditeMatchesPage'
 import AphroditeProfilePage from './pages/aphrodite/AphroditeProfilePage'
 import AphroditeSettingsPage from './pages/aphrodite/AphroditeSettingsPage'
 import AphroditeSubscribePage from './pages/aphrodite/AphroditeSubscribePage'
+import AphroditeChatPage from './pages/aphrodite/AphroditeChatPage'
+import AphroditeLegalPage from './pages/aphrodite/AphroditeLegalPage'
 import { EXTRA_COMPANY_ROUTES, GRID_ORDER } from './lib/companies'
 import { resolveProductHost } from './lib/productHost'
 
@@ -92,9 +94,13 @@ export default function App() {
                   <Route path="sign-in" element={<AphroditeSignInPage />} />
                   <Route path="sign-up" element={<AphroditeSignUpPage />} />
                   <Route path="matches" element={<AphroditeMatchesPage />} />
+                  <Route path="matches/:matchId" element={<AphroditeChatPage />} />
                   <Route path="profile" element={<AphroditeProfilePage />} />
                   <Route path="settings" element={<AphroditeSettingsPage />} />
                   <Route path="subscribe" element={<AphroditeSubscribePage />} />
+                  <Route path="privacy" element={<AphroditeLegalPage />} />
+                  <Route path="terms" element={<AphroditeLegalPage />} />
+                  <Route path="safety" element={<AphroditeLegalPage />} />
                 </Route>
                 {COMPANY_ROUTES.map((id) => (
                   <Route key={id} path={`/${id}`} element={<CompanySitePage slug={id} />} />

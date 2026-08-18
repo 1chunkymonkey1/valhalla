@@ -1,9 +1,13 @@
 /**
- * Aphrodite data layer — profiles, swipes, matches, subscription fields.
+ * Aphrodite data layer — profiles, swipes, matches, messages, safety, subscription.
  * Prefers Supabase; falls back to in-memory demo store when unset.
  */
 
 import { getSupabase, isSupabaseConfigured } from './supabase.js'
+
+export const APHRODITE_MIN_AGE = 18
+export const REPORT_REASONS = ['harassment', 'fake', 'underage', 'spam', 'other']
+export const IAP_PRODUCT_ID = 'aphrodite_monthly'
 
 const INTENT_OPTIONS = ['love', 'friends', 'competition']
 const COMPETITION_OPTIONS = [
@@ -21,6 +25,12 @@ const memProfiles = new Map()
 const memSwipes = new Map()
 /** @type {Map<string, object>} */
 const memMatches = new Map()
+/** @type {Map<string, object>} */
+const memBlocks = new Map()
+/** @type {object[]} */
+const memReports = []
+/** @type {Map<string, object[]>} */
+const memMessages = new Map()
 
 function nowIso() {
   return new Date().toISOString()
@@ -65,6 +75,7 @@ function seedDemoDeck() {
       email: 'rook@example.com',
       display_name: 'Rook',
       bio: 'Chess first. Competition always.',
+      birth_date: '1994-03-12',
       intents: ['competition', 'friends'],
       competitions: ['chess'],
       chess_com: 'rook_demo',
@@ -82,6 +93,7 @@ function seedDemoDeck() {
       email: 'ace@example.com',
       display_name: 'Ace',
       bio: 'Track + Clash Royale ladder climbs.',
+      birth_date: '1996-07-04',
       intents: ['love', 'competition'],
       competitions: ['track', 'clash-royale'],
       chess_com: '',
@@ -99,6 +111,7 @@ function seedDemoDeck() {
       email: 'storm@example.com',
       display_name: 'Storm',
       bio: 'Varsity tennis. Looking for sparring partners.',
+      birth_date: '1995-11-21',
       intents: ['friends', 'competition'],
       competitions: ['sports'],
       chess_com: '',
@@ -135,7 +148,63 @@ export function aphroditeCatalog() {
     competitions: COMPETITION_OPTIONS,
     priceCents: 2000,
     priceLabel: '$20/month',
+    minAge: APHRODITE_MIN_AGE,
+    iapProductId: IAP_PRODUCT_ID,
+    reportReasons: REPORT_REASONS,
   }
+}
+
+export function ageYears(birthDate, now = new Date()) {
+  const raw = String(birthDate || '').trim().slice(0, 10)
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(raw)) return null
+  const [y, m, d] = raw.split('-').map(Number)
+  const birth = new Date(Date.UTC(y, m - 1, d))
+  if (Number.isNaN(birth.getTime())) return null
+  const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()))
+  let age = today.getUTCFullYear() - birth.getUTCFullYear()
+  const monthDelta = today.getUTCMonth() - birth.getUTCMonth()
+  if (monthDelta < 0 || (monthDelta === 0 && today.getUTCDate() < birth.getUTCDate())) age -= 1
+  return age
+}
+
+export function adultStatus(birthDate, now = new Date()) {
+  const age = ageYears(birthDate, now)
+  if (age == null) {
+    return {
+      ok: false,
+      code: 'age_required',
+      error: 'Birth date required. Aphrodite is 18+.',
+    }
+  }
+  if (age < APHRODITE_MIN_AGE) {
+    return {
+      ok: false,
+      code: 'underage',
+      error: 'Aphrodite is for people 18 and older.',
+    }
+  }
+  return { ok: true, age }
+}
+
+export function isAdult(profile) {
+  return adultStatus(profile?.birthDate || profile?.birth_date).ok
+}
+
+export function resetAphroditeMemory() {
+  memProfiles.clear()
+  memSwipes.clear()
+  memMatches.clear()
+  memBlocks.clear()
+  memReports.length = 0
+  memMessages.clear()
+}
+
+function blockKey(fromId, toId) {
+  return `${fromId}:${toId}`
+}
+
+function pairKey(a, b) {
+  return a < b ? `${a}:${b}` : `${b}:${a}`
 }
 
 export async function upsertProfileFromAuth(user, extras = {}) {
@@ -167,6 +236,15 @@ export async function upsertProfileFromAuth(user, extras = {}) {
         auth_providers: providers,
         updated_at: nowIso(),
       }
+      if (extras.birthDate || extras.birth_date) {
+        const status = adultStatus(extras.birthDate || extras.birth_date)
+        if (!status.ok) {
+          const err = new Error(status.error)
+          err.code = status.code
+          throw err
+        }
+        patch.birth_date = String(extras.birthDate || extras.birth_date).slice(0, 10)
+      }
       const { data, error } = await sb
         .from('aphrodite_profiles')
         .update(patch)
@@ -174,10 +252,20 @@ export async function upsertProfileFromAuth(user, extras = {}) {
         .select('*')
         .single()
       if (error) throw error
-      return publicProfile(data)
-    }
+    return publicProfile(data)
+  }
 
-    const row = {
+  const birth = extras.birthDate || extras.birth_date || null
+  if (birth) {
+    const status = adultStatus(birth)
+    if (!status.ok) {
+      const err = new Error(status.error)
+      err.code = status.code
+      throw err
+    }
+  }
+
+  const row = {
       auth_user_id: authUserId,
       email,
       display_name:
@@ -192,6 +280,7 @@ export async function upsertProfileFromAuth(user, extras = {}) {
       maxpreps: sanitizeHandle(extras.maxpreps),
       instagram: sanitizeHandle(extras.instagram),
       clash_royale: sanitizeHandle(extras.clashRoyale, 120),
+      birth_date: extras.birthDate || extras.birth_date || null,
       signed_up_at: nowIso(),
       approved_at: nowIso(),
       subscription_status: 'none',
@@ -222,8 +311,27 @@ export async function upsertProfileFromAuth(user, extras = {}) {
     found.auth_providers = Array.from(
       new Set([...(found.auth_providers || []), provider].filter(Boolean)),
     )
+    if (extras.birthDate || extras.birth_date) {
+      const status = adultStatus(extras.birthDate || extras.birth_date)
+      if (!status.ok) {
+        const err = new Error(status.error)
+        err.code = status.code
+        throw err
+      }
+      found.birth_date = String(extras.birthDate || extras.birth_date).slice(0, 10)
+    }
     found.updated_at = nowIso()
     return publicProfile(found)
+  }
+
+  const birthMem = extras.birthDate || extras.birth_date || null
+  if (birthMem) {
+    const status = adultStatus(birthMem)
+    if (!status.ok) {
+      const err = new Error(status.error)
+      err.code = status.code
+      throw err
+    }
   }
 
   const id = `mem-${authUserId}`
@@ -243,6 +351,7 @@ export async function upsertProfileFromAuth(user, extras = {}) {
     maxpreps: sanitizeHandle(extras.maxpreps),
     instagram: sanitizeHandle(extras.instagram),
     clash_royale: sanitizeHandle(extras.clashRoyale, 120),
+    birth_date: extras.birthDate || extras.birth_date || null,
     signed_up_at: nowIso(),
     approved_at: nowIso(),
     subscription_status: 'none',
@@ -293,7 +402,16 @@ export async function updateProfile(profileId, patch) {
   const fields = {}
   if (patch.displayName != null) fields.display_name = String(patch.displayName).slice(0, 80)
   if (patch.bio != null) fields.bio = String(patch.bio).slice(0, 600)
-  if (patch.birthDate != null) fields.birth_date = patch.birthDate || null
+  if (patch.birthDate != null || patch.birth_date != null) {
+    const nextBirth = patch.birthDate ?? patch.birth_date
+    const status = adultStatus(nextBirth)
+    if (!status.ok) {
+      const err = new Error(status.error)
+      err.code = status.code
+      throw err
+    }
+    fields.birth_date = String(nextBirth).slice(0, 10)
+  }
   if (patch.intents != null) fields.intents = sanitizeList(patch.intents, INTENT_OPTIONS)
   if (patch.competitions != null) {
     fields.competitions = sanitizeList(patch.competitions, COMPETITION_OPTIONS)
@@ -384,7 +502,44 @@ export async function setSubscriptionByAuthOrProfile({ profileId, customerId, st
   return null
 }
 
+async function blockedIdsFor(profileId) {
+  const ids = new Set()
+  if (isSupabaseConfigured()) {
+    const sb = getSupabase()
+    const { data } = await sb
+      .from('aphrodite_blocks')
+      .select('from_profile_id, to_profile_id')
+      .or(`from_profile_id.eq.${profileId},to_profile_id.eq.${profileId}`)
+    for (const row of data || []) {
+      ids.add(row.from_profile_id === profileId ? row.to_profile_id : row.from_profile_id)
+    }
+    return ids
+  }
+  for (const b of memBlocks.values()) {
+    if (b.from_profile_id === profileId) ids.add(b.to_profile_id)
+    if (b.to_profile_id === profileId) ids.add(b.from_profile_id)
+  }
+  return ids
+}
+
+export async function isBlockedPair(a, b) {
+  if (!a || !b || a === b) return false
+  if (isSupabaseConfigured()) {
+    const sb = getSupabase()
+    const { data } = await sb
+      .from('aphrodite_blocks')
+      .select('id')
+      .or(
+        `and(from_profile_id.eq.${a},to_profile_id.eq.${b}),and(from_profile_id.eq.${b},to_profile_id.eq.${a})`,
+      )
+      .limit(1)
+    return Boolean(data?.length)
+  }
+  return memBlocks.has(blockKey(a, b)) || memBlocks.has(blockKey(b, a))
+}
+
 export async function listDeck(viewerProfileId, { limit = 20 } = {}) {
+  const blocked = await blockedIdsFor(viewerProfileId)
   if (isSupabaseConfigured()) {
     const sb = getSupabase()
     const { data: swiped } = await sb
@@ -393,6 +548,7 @@ export async function listDeck(viewerProfileId, { limit = 20 } = {}) {
       .eq('from_profile_id', viewerProfileId)
     const exclude = new Set((swiped || []).map((s) => s.to_profile_id))
     exclude.add(viewerProfileId)
+    for (const id of blocked) exclude.add(id)
 
     const { data, error } = await sb
       .from('aphrodite_profiles')
@@ -419,7 +575,8 @@ export async function listDeck(viewerProfileId, { limit = 20 } = {}) {
         p.id !== viewerProfileId &&
         p.active !== false &&
         hasActiveSub(p) &&
-        !swiped.has(p.id),
+        !swiped.has(p.id) &&
+        !blocked.has(p.id),
     )
     .slice(0, limit)
     .map(publicProfile)
@@ -428,6 +585,7 @@ export async function listDeck(viewerProfileId, { limit = 20 } = {}) {
 export async function recordSwipe(fromId, toId, direction) {
   const dir = direction === 'like' ? 'like' : 'pass'
   if (fromId === toId) throw new Error('Cannot swipe yourself')
+  if (await isBlockedPair(fromId, toId)) throw new Error('This member is not available')
 
   if (isSupabaseConfigured()) {
     const sb = getSupabase()
@@ -511,23 +669,37 @@ export async function listMatches(profileId) {
       .select('*')
       .in('id', otherIds)
     const byId = new Map((profiles || []).map((p) => [p.id, publicProfile(p)]))
-    return (data || []).map((m) => {
+    const blocked = await blockedIdsFor(profileId)
+    const rows = (data || []).filter((m) => {
+      const otherId = m.profile_a === profileId ? m.profile_b : m.profile_a
+      return !blocked.has(otherId)
+    })
+    const previews = await lastMessagesForMatches(rows.map((m) => m.id))
+    return rows.map((m) => {
       const otherId = m.profile_a === profileId ? m.profile_b : m.profile_a
       return {
         id: m.id,
         createdAt: m.created_at,
+        lastMessage: previews.get(m.id) || null,
         profile: byId.get(otherId) || { id: otherId },
       }
     })
   }
 
+  const blocked = await blockedIdsFor(profileId)
   const out = []
   for (const m of memMatches.values()) {
     if (m.profile_a !== profileId && m.profile_b !== profileId) continue
     const otherId = m.profile_a === profileId ? m.profile_b : m.profile_a
+    if (blocked.has(otherId)) continue
+    const thread = memMessages.get(m.id) || []
+    const last = thread[thread.length - 1]
     out.push({
       id: m.id,
       createdAt: m.created_at,
+      lastMessage: last
+        ? { id: last.id, body: last.body, createdAt: last.created_at, fromProfileId: last.from_profile_id }
+        : null,
       profile: publicProfile(memProfiles.get(otherId)),
     })
   }
@@ -538,4 +710,239 @@ export function isSubscribed(profile) {
   return (
     profile?.subscriptionStatus === 'active' || profile?.subscriptionStatus === 'trialing'
   )
+}
+
+async function lastMessagesForMatches(matchIds) {
+  const map = new Map()
+  if (!matchIds.length) return map
+  if (isSupabaseConfigured()) {
+    const sb = getSupabase()
+    const { data } = await sb
+      .from('aphrodite_messages')
+      .select('id, match_id, from_profile_id, body, created_at')
+      .in('match_id', matchIds)
+      .order('created_at', { ascending: false })
+    for (const row of data || []) {
+      if (map.has(row.match_id)) continue
+      map.set(row.match_id, {
+        id: row.id,
+        body: row.body,
+        createdAt: row.created_at,
+        fromProfileId: row.from_profile_id,
+      })
+    }
+  }
+  return map
+}
+
+export async function getMatchForViewer(matchId, viewerId) {
+  if (!matchId || !viewerId) return null
+  if (isSupabaseConfigured()) {
+    const sb = getSupabase()
+    const { data, error } = await sb
+      .from('aphrodite_matches')
+      .select('*')
+      .eq('id', matchId)
+      .maybeSingle()
+    if (error) throw error
+    if (!data) return null
+    if (data.profile_a !== viewerId && data.profile_b !== viewerId) return null
+    const otherId = data.profile_a === viewerId ? data.profile_b : data.profile_a
+    if (await isBlockedPair(viewerId, otherId)) return null
+    const other = await getProfileById(otherId)
+    return {
+      id: data.id,
+      createdAt: data.created_at,
+      otherProfileId: otherId,
+      profile: publicProfile(other),
+    }
+  }
+  const m = memMatches.get(matchId)
+  if (!m) return null
+  if (m.profile_a !== viewerId && m.profile_b !== viewerId) return null
+  const otherId = m.profile_a === viewerId ? m.profile_b : m.profile_a
+  if (await isBlockedPair(viewerId, otherId)) return null
+  return {
+    id: m.id,
+    createdAt: m.created_at,
+    otherProfileId: otherId,
+    profile: publicProfile(memProfiles.get(otherId)),
+  }
+}
+
+export async function listMessages(matchId, viewerId, { limit = 80 } = {}) {
+  const match = await getMatchForViewer(matchId, viewerId)
+  if (!match) {
+    const err = new Error('Match not found')
+    err.code = 'not_found'
+    throw err
+  }
+  if (isSupabaseConfigured()) {
+    const sb = getSupabase()
+    const { data, error } = await sb
+      .from('aphrodite_messages')
+      .select('*')
+      .eq('match_id', matchId)
+      .order('created_at', { ascending: true })
+      .limit(limit)
+    if (error) throw error
+    return (data || []).map((row) => ({
+      id: row.id,
+      matchId: row.match_id,
+      fromProfileId: row.from_profile_id,
+      body: row.body,
+      createdAt: row.created_at,
+      mine: row.from_profile_id === viewerId,
+    }))
+  }
+  const thread = memMessages.get(matchId) || []
+  return thread.slice(-limit).map((row) => ({
+    id: row.id,
+    matchId: row.match_id,
+    fromProfileId: row.from_profile_id,
+    body: row.body,
+    createdAt: row.created_at,
+    mine: row.from_profile_id === viewerId,
+  }))
+}
+
+export async function sendMessage(matchId, fromId, body) {
+  const text = String(body || '').trim().slice(0, 2000)
+  if (!text) {
+    const err = new Error('Message required')
+    err.code = 'empty'
+    throw err
+  }
+  const match = await getMatchForViewer(matchId, fromId)
+  if (!match) {
+    const err = new Error('Match not found')
+    err.code = 'not_found'
+    throw err
+  }
+  if (isSupabaseConfigured()) {
+    const sb = getSupabase()
+    const { data, error } = await sb
+      .from('aphrodite_messages')
+      .insert({
+        match_id: matchId,
+        from_profile_id: fromId,
+        body: text,
+      })
+      .select('*')
+      .single()
+    if (error) throw error
+    return {
+      id: data.id,
+      matchId: data.match_id,
+      fromProfileId: data.from_profile_id,
+      body: data.body,
+      createdAt: data.created_at,
+      mine: true,
+    }
+  }
+  const row = {
+    id: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    match_id: matchId,
+    from_profile_id: fromId,
+    body: text,
+    created_at: nowIso(),
+  }
+  const thread = memMessages.get(matchId) || []
+  thread.push(row)
+  memMessages.set(matchId, thread)
+  return {
+    id: row.id,
+    matchId: row.match_id,
+    fromProfileId: row.from_profile_id,
+    body: row.body,
+    createdAt: row.created_at,
+    mine: true,
+  }
+}
+
+export async function blockProfile(fromId, toId) {
+  if (!fromId || !toId || fromId === toId) throw new Error('Invalid block')
+  if (isSupabaseConfigured()) {
+    const sb = getSupabase()
+    const { error } = await sb.from('aphrodite_blocks').upsert(
+      { from_profile_id: fromId, to_profile_id: toId },
+      { onConflict: 'from_profile_id,to_profile_id' },
+    )
+    if (error) throw error
+    const [a, b] = fromId < toId ? [fromId, toId] : [toId, fromId]
+    await sb.from('aphrodite_matches').delete().eq('profile_a', a).eq('profile_b', b)
+    return { ok: true, blocked: toId }
+  }
+  memBlocks.set(blockKey(fromId, toId), {
+    from_profile_id: fromId,
+    to_profile_id: toId,
+    created_at: nowIso(),
+  })
+  memMatches.delete(pairKey(fromId, toId))
+  return { ok: true, blocked: toId }
+}
+
+export async function reportProfile(fromId, toId, reason, details = '') {
+  if (!fromId || !toId || fromId === toId) throw new Error('Invalid report')
+  const why = String(reason || '').trim().toLowerCase()
+  if (!REPORT_REASONS.includes(why)) throw new Error('Invalid report reason')
+  const note = String(details || '').trim().slice(0, 800)
+  if (isSupabaseConfigured()) {
+    const sb = getSupabase()
+    const { data, error } = await sb
+      .from('aphrodite_reports')
+      .insert({
+        from_profile_id: fromId,
+        to_profile_id: toId,
+        reason: why,
+        details: note,
+      })
+      .select('id, created_at')
+      .single()
+    if (error) throw error
+    return { ok: true, id: data.id, createdAt: data.created_at, reason: why }
+  }
+  const row = {
+    id: `rep-${Date.now()}`,
+    from_profile_id: fromId,
+    to_profile_id: toId,
+    reason: why,
+    details: note,
+    created_at: nowIso(),
+  }
+  memReports.push(row)
+  return { ok: true, id: row.id, createdAt: row.created_at, reason: why }
+}
+
+export async function deactivateProfile(profileId) {
+  if (isSupabaseConfigured()) {
+    const sb = getSupabase()
+    const { data, error } = await sb
+      .from('aphrodite_profiles')
+      .update({ active: false, updated_at: nowIso() })
+      .eq('id', profileId)
+      .select('*')
+      .single()
+    if (error) throw error
+    return publicProfile(data)
+  }
+  const row = memProfiles.get(profileId)
+  if (!row) throw new Error('Profile not found')
+  row.active = false
+  row.updated_at = nowIso()
+  return publicProfile(row)
+}
+
+export async function activateIapMembership(profileId, { productId, transactionId } = {}) {
+  if (productId && productId !== IAP_PRODUCT_ID) {
+    const err = new Error('Unknown App Store product')
+    err.code = 'iap_product'
+    throw err
+  }
+  return setSubscriptionState(profileId, {
+    status: 'active',
+    customerId: transactionId ? `iap_${transactionId}` : 'iap_apple',
+    subscriptionId: transactionId || 'iap_sub',
+    currentPeriodEnd: new Date(Date.now() + 30 * 86400000).toISOString(),
+  })
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import { aphroditeFetch } from '../../lib/aphroditeClient'
+import { aphroditeAdultStatus } from '../../lib/aphroditeAge'
 
 const INTENT_OPTS = ['love', 'friends', 'competition']
 const COMP_OPTS = ['chess', 'sports', 'clash-royale', 'esports', 'track', 'other']
@@ -53,6 +54,8 @@ export default function AphroditeProfilePage() {
     setBusy(true)
     setError('')
     try {
+      const age = aphroditeAdultStatus(form.birthDate)
+      if (!age.ok) throw new Error(age.error)
       await aphroditeFetch('me', { method: 'PATCH', body: form })
       await refreshMe()
       setSaved(true)
@@ -66,6 +69,8 @@ export default function AphroditeProfilePage() {
   if (loading || !form) {
     return <p className="aph-muted">Loading profile…</p>
   }
+
+  const age = aphroditeAdultStatus(form.birthDate)
 
   return (
     <div className="aph-profile">
@@ -84,6 +89,8 @@ export default function AphroditeProfilePage() {
           )}
         </p>
       </header>
+
+      {!age.ok && <p className="aph-banner">Set a birth date. Aphrodite is 18+ before matching.</p>}
 
       <form className="aph-form" onSubmit={onSave}>
         <label>
@@ -105,9 +112,10 @@ export default function AphroditeProfilePage() {
           />
         </label>
         <label>
-          Birth date
+          Birth date (18+)
           <input
             type="date"
+            required
             value={form.birthDate || ''}
             onChange={(e) => setField('birthDate', e.target.value)}
           />

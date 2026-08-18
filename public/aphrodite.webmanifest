@@ -1,0 +1,23 @@
+{
+  "name": "Aphrodite",
+  "short_name": "Aphrodite",
+  "description": "Competition dating. 18+. $20/month.",
+  "start_url": "/aphrodite",
+  "scope": "/aphrodite",
+  "display": "standalone",
+  "background_color": "#F7F7F3",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand-mark.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import {
   aphroditeFetch,
@@ -9,9 +9,41 @@ import {
   syncAphroditeSession,
 } from '../../lib/aphroditeClient'
 
+function injectAphroditePwa() {
+  const head = document.head
+  const ensure = (selector, create) => {
+    if (head.querySelector(selector)) return
+    head.appendChild(create())
+  }
+  ensure('link[rel="manifest"][href="/aphrodite.webmanifest"]', () => {
+    const link = document.createElement('link')
+    link.rel = 'manifest'
+    link.href = '/aphrodite.webmanifest'
+    return link
+  })
+  ensure('meta[name="apple-mobile-web-app-capable"]', () => {
+    const meta = document.createElement('meta')
+    meta.name = 'apple-mobile-web-app-capable'
+    meta.content = 'yes'
+    return meta
+  })
+  ensure('meta[name="apple-mobile-web-app-title"]', () => {
+    const meta = document.createElement('meta')
+    meta.name = 'apple-mobile-web-app-title'
+    meta.content = 'Aphrodite'
+    return meta
+  })
+  document.title = 'Aphrodite'
+}
+
 export default function AphroditeLayout() {
   const navigate = useNavigate()
+  const location = useLocation()
   const [boot, setBoot] = useState({ loading: true, profile: null, subscribed: false })
+
+  useEffect(() => {
+    injectAphroditePwa()
+  }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -54,7 +86,7 @@ export default function AphroditeLayout() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [location.pathname])
 
   async function onSignOut() {
     await signOutAphrodite()
@@ -127,7 +159,13 @@ export default function AphroditeLayout() {
 
       <footer className="aph__foot">
         <p>
-          Aphrodite · Valhalla ecosystem · Competition dating ·{' '}
+          Aphrodite · 18+ · Valhalla ecosystem ·{' '}
+          <Link to="/aphrodite/privacy">Privacy</Link>
+          {' · '}
+          <Link to="/aphrodite/terms">Terms</Link>
+          {' · '}
+          <Link to="/aphrodite/safety">Safety</Link>
+          {' · '}
           <Link to="/">valhallaco.org</Link>
         </p>
       </footer>

@@ -1,0 +1,19 @@
+{
+  "appId": "org.valhallaco.aphrodite",
+  "appName": "Aphrodite",
+  "webDir": "dist",
+  "server": {
+    "url": "https://valhallaco.org/aphrodite",
+    "allowNavigation": [
+      "https://valhallaco.org/*",
+      "https://*.supabase.co/*",
+      "https://checkout.stripe.com/*",
+      "https://appleid.apple.com/*"
+    ]
+  },
+  "ios": {
+    "contentInset": "automatic",
+    "preferredContentMode": "mobile",
+    "scheme": "Aphrodite"
+  }
+}
