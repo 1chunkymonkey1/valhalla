@@ -58,6 +58,14 @@ The Capacitor config loads the live site (`https://valhallaco.org/aphrodite`) so
 
 **Cancel the App Bundle screen.** That form (Name + “Apps in This Bundle” + “Drag up to 10 apps here”) is for grouping apps that are already **Released**. Create stays gray because Aphrodite is not on the store yet. A bundle is not a first listing.
 
+**If + only shows New App Bundle:** Apple is hiding New App. That is not a bug in the click — Connect will not offer New App until all of these are true ([Apple: Add a new app](https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app)):
+
+1. **Latest agreement is signed.** Account Holder: App Store Connect → **Business** (Agreements, Tax, and Banking). Sign the current Paid/Free Apps agreement. Apple: you cannot add an app until this is done. The EU trader-status banner is the same neighborhood — fill it, but the unsigned contract is what removes New App.
+2. **Your role can create apps.** Required: Account Holder, Admin, or App Manager. Check **Users and Access** (top nav). Developer / Marketing / Finance / Customer Support do not get New App. This team shows **Gabrielle Jade Siy Wong** under the avatar — she may be Account Holder. If your role is weaker, she signs the agreement and either creates the app or promotes you to Admin / App Manager.
+3. **An unused explicit App ID exists** on the same team: [developer.apple.com/account/resources/identifiers/list](https://developer.apple.com/account/resources/identifiers/list) → **+** → App IDs → App → explicit `org.valhallaco.aphrodite` (no `*`). Enable Sign In with Apple + In-App Purchase. Edna Charge already consumed one ID; Aphrodite needs its own. Then hard-refresh Connect.
+
+Do not create a bundle while waiting. After 1–3, **+** should list **New App**.
+
 Order:
 
 1. [developer.apple.com/account](https://developer.apple.com/account) → **Identifiers** → **+** → **App IDs** → App. Bundle ID `org.valhallaco.aphrodite`. Enable **Sign In with Apple** and **In-App Purchase**.
