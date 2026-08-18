@@ -58,15 +58,32 @@ The Capacitor config loads the live site (`https://valhallaco.org/aphrodite`) so
 
 **Cancel the App Bundle screen.** That form (Name + “Apps in This Bundle” + “Drag up to 10 apps here”) is for grouping apps that are already **Released**. Create stays gray because Aphrodite is not on the store yet. A bundle is not a first listing.
 
-**If + only shows New App Bundle:** Apple is hiding New App. That is not a bug in the click — Connect will not offer New App until all of these are true ([Apple: Add a new app](https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app)):
+**If + only shows New App Bundle:** You are on the **Edna Charge** Apple team as **Marketing**. Marketing cannot create apps. Do not ask Gabby for Admin on that team to ship Aphrodite — Edna Charge is a separate project; its Account Holder is `admin@ednacharge.com` (Gabrielle Jade Siy Wong). Aphrodite needs **your** team.
+
+### Own Connect page (separate from Edna Charge)
+
+Apple IDs can sit on many teams. Yours (`easongreene@gmail.com`) is only a member of Gabby’s paid team until you enroll your own Program.
+
+1. Top-right in Connect: click **Eason Greene / Gabrielle Jade Siy Wong**. If another team is listed, switch to it. If not, you do not have your own enrollment yet.
+2. Enroll **your** Apple Developer Program ($99/year) as Account Holder: [developer.apple.com/programs/enroll](https://developer.apple.com/programs/enroll/) while signed in as `easongreene@gmail.com`.
+   - **Individual** — App Store seller name is your legal name. Honest path if no formed entity is ready (do not invent a company in the enrollment form).
+   - **Organization** — only if a real legal entity exists, with DUNS. Counsel owns that choice; not this click list.
+3. After Apple approves, Connect shows a **team switcher**. Pick **your** team (you are Account Holder). Apps list is empty. **+** → **New App**.
+4. Stay Marketing on Edna Charge if you still work that app. Switch teams in the top-right; do not create Aphrodite under Gabby’s account.
+
+You cannot split “an admin page” inside someone else’s Program. A second Program enrollment is the split.
+
+**If + only shows New App Bundle on YOUR team:** then also check Business agreements and an unused App ID (below). On Gabby’s team, the cause is the Marketing role — leave that team for Aphrodite.
+
+On **your** team, New App also requires ([Apple: Add a new app](https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app)):
 
 1. **Latest agreement is signed.** Account Holder: App Store Connect → **Business** (Agreements, Tax, and Banking). Sign the current Paid/Free Apps agreement. Apple: you cannot add an app until this is done. The EU trader-status banner is the same neighborhood — fill it, but the unsigned contract is what removes New App.
-2. **Your role can create apps.** Required: Account Holder, Admin, or App Manager. Check **Users and Access** (top nav). Developer / Marketing / Finance / Customer Support do not get New App. This team shows **Gabrielle Jade Siy Wong** under the avatar — she may be Account Holder. If your role is weaker, she signs the agreement and either creates the app or promotes you to Admin / App Manager.
-3. **An unused explicit App ID exists** on the same team: [developer.apple.com/account/resources/identifiers/list](https://developer.apple.com/account/resources/identifiers/list) → **+** → App IDs → App → explicit `org.valhallaco.aphrodite` (no `*`). Enable Sign In with Apple + In-App Purchase. Edna Charge already consumed one ID; Aphrodite needs its own. Then hard-refresh Connect.
+2. **Your role can create apps.** On your team you are Account Holder. Required roles: Account Holder, Admin, or App Manager.
+3. **An unused explicit App ID exists** on **that same team**: [developer.apple.com/account/resources/identifiers/list](https://developer.apple.com/account/resources/identifiers/list) → confirm the team switcher is yours (not Gabby) → **+** → App IDs → App → explicit `org.valhallaco.aphrodite` (no `*`). Enable Sign In with Apple + In-App Purchase. Then hard-refresh Connect.
 
 Do not create a bundle while waiting. After 1–3, **+** should list **New App**.
 
-Order:
+When New App is in the menu:
 
 1. [developer.apple.com/account](https://developer.apple.com/account) → **Identifiers** → **+** → **App IDs** → App. Bundle ID `org.valhallaco.aphrodite`. Enable **Sign In with Apple** and **In-App Purchase**.
 2. [App Store Connect](https://appstoreconnect.apple.com) → **Apps** → **+** → **New App** (not New App Bundle, not New In-App Event).
@@ -85,7 +102,7 @@ If Bundle ID is empty in the dropdown, the identifier is not registered yet — 
 
 Create an App Bundle only after Aphrodite is **Ready for Sale** and you have a second released app to group with it. That is not this ship.
 
-**Apps list (this team):** Edna Charge already sits here as iOS 1.0 Prepare for Submission. That is not Aphrodite. Do not reuse Edna Charge’s record, bundle ID, or IAP. Click the blue **+** next to the Apps heading → **New App**.
+**Apps list (Edna Charge team):** Edna Charge already sits here as iOS 1.0 Prepare for Submission. That is not Aphrodite. Do not reuse that record. Switch to **your** team before clicking New App.
 
 Yellow banners on that page are account-level:
 
